@@ -1,0 +1,10 @@
+<% render 'list' %>
+
+<% render 'item_title' %>
+
+<% content_for :item do %>
+<h3>Modifier le type de recette</h3>
+  <%= render 'form' %>
+
+  <p><%= link_to 'Annuler', @recipe_type %></p>
+<% end %>

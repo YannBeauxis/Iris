@@ -1,0 +1,29 @@
+<% content_for :title do %>
+  Recettes
+<% end %>
+
+<% content_for :list do %>
+
+  <p><%= link_to 'Nouvelle recette', new_recipe_path %></p>
+
+  <table>
+
+   <tr>
+     <th></th>
+     <th># produits</th>
+   </tr>
+
+    <% @recipe_types.sort_by {|r| r.name }.each do |rt| %>
+      <tr><td><strong><%= rt.name %><strong><td></tr>
+      <% @recipes.where(type: rt).sort_by {|r| r.name }.each do |r| %>
+        <tr>
+          <td>- <%= link_to r.name, recipe_products_path(r) %></td>
+          <td class="center"><%= r.products.count %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+
+<% end %>
+
+

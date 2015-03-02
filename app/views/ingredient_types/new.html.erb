@@ -1,0 +1,13 @@
+<%= render 'list' %>
+
+<% content_for :item_title do %>
+  Nouveau type d'ingrédient
+<% end %>
+
+<% content_for :item do %>
+
+  <%= render 'form' %>
+
+  <%= link_to 'Annuler', ingredient_types_path %>
+
+<% end %>

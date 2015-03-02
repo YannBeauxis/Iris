@@ -1,0 +1,14 @@
+<%= render 'list' %>
+
+<% content_for :item_title do %>
+  Nouvelle recette
+<% end %>
+
+<% content_for :item do %>
+
+  <%= render 'form' %>
+
+  <p><%= link_to 'Annuler', recipes_path %></p>
+
+<% end %>
+

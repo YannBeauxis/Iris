@@ -1,0 +1,54 @@
+<%= render 'recipes/list' %>
+
+<%= render 'recipes/item_title' %>
+
+<% content_for :item do %>
+
+  <%= render 'recipes/info' %>
+
+  <h3>Modifier variante <%= @variant.name %></h3>
+
+  <h4>Infos générales</h4>
+
+  <%= render 'form' %>
+
+  <h4>Proportions par type</h4>
+
+  <table>
+    <% @variant.proportions.where(composant_type: 'IngredientType').each do |p| %>
+      <tr>
+         <td><%=  p.composant.name %></td>
+         <td>
+           <%= form_for p ,url: recipe_variant_update_proportion_path(@recipe,@variant,p), method:'patch' do |f| %>
+           <%= f.number_field :value, :step => 'any' %>
+           <%= f.submit 'Enregistrer' %>
+           <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <h4>Proportions des ingréndients pour chaque type</h4>
+
+  <table>
+    <% @variant.proportions.where(composant_type: 'IngredientType').each do |itp| %>
+        <tr><td><strong><%=  itp.composant.name %></strong></td></tr>
+      <% @variant.proportions_for_type(itp.composant).each do |ip| %>
+        <tr>
+           <td><%=  ip.composant.name %></td>
+           <td>
+             <%= form_for ip ,url: recipe_variant_update_proportion_path(@recipe,@variant,ip), method:'patch' do |f| %>
+               <%= f.number_field :value, :step => 'any' %>
+               <%= f.submit 'Enregistrer' %>
+             <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+
+  <p><%= link_to 'Normaliser proportions', recipe_variant_normalize_proportions_path(@recipe,@variant), method:'patch' %></p>
+  <p><%= link_to 'Retour variante', recipe_variant_path(@recipe,@variant) %></p>
+
+
+<% end %>

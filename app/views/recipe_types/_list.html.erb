@@ -1,0 +1,26 @@
+<% content_for :title do %>
+  Types de recettes
+<% end %>
+
+<% content_for :list do %>
+
+  <p><%= link_to 'Nouveau type', new_recipe_type_path %></p>
+
+  <table>
+    <tr>
+      <th>Nom</th>
+      <th># recettes</th>
+      <th># produits</th>
+    </tr>
+
+    <% @recipe_types.each do |rt| %>
+      <tr>
+        <td><%= link_to rt.name, recipe_type_path(rt) %></td>
+        <td class="center"><%= rt.recipes.count %></td>
+        <td class="center"><%= rt.nb_products %></td>
+      </tr>
+    <% end %>
+
+  </table>
+
+<% end %>

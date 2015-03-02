@@ -1,0 +1,29 @@
+<%= render 'list' %>
+
+<%= render 'item_title' %>
+
+<% content_for :item do %>
+
+   <p>
+    <%= link_to 'Modifier', edit_ingredient_type_path %> | 
+    <%= link_to 'Supprimer', ingredient_type_path(@ingredient_type),
+                method: :delete,
+                data: { confirm: 'Confirmer la suppression ?' } %>
+  </p>
+
+  <p>
+    <strong>Unité de mesure : </strong>
+    <%= @ingredient_type.mesure_unit %>
+  </p>
+
+  <h2>Types de recettes associées</h2>
+
+    <ul>
+      <% @ingredient_type.recipe_types.each do |rt| %>
+        <li> <%= link_to rt.name, rt %> </li>
+     <% end %>
+   </ul>
+
+
+
+<% end %>

@@ -1,0 +1,14 @@
+<i><%= @recipe.type.name %></i>
+
+<p>
+  <%= link_to 'Modifier', edit_recipe_path(@recipe) %> | 
+  <%= link_to 'Supprimer', recipe_path(@recipe),
+                method: :delete,
+                data: { confirm: 'Confirmer la suppression ?' } %>
+</p>
+
+<p>
+  <%= link_to 'Ingrédients', recipe_path(@recipe) %> | 
+  <%= link_to 'Variantes', recipe_variants_path(@recipe) %> | 
+  <%= link_to 'Produits', recipe_products_path(@recipe) %>
+</p>

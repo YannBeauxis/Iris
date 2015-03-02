@@ -1,0 +1,16 @@
+<%= form_for @recipe_type do |f| %>
+  <p>
+    <%= f.label 'Nom' %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label 'Type d\'ingrédients' %><br>
+    <%= f.collection_check_boxes :ingredient_type_ids, @ingredient_types, :id, :name %>
+  </p>
+
+
+  <p>
+    <%= f.submit 'Enregistrer' %>
+  </p>
+<% end %>

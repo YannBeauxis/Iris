@@ -1,0 +1,16 @@
+<%= form_for @recipe do |f| %>
+  <p>
+    <%= f.label 'Nom' %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label 'Type de recette' %><br>
+    <%= f.collection_select :recipe_type_id, @recipe_types, :id, :name %>
+  </p>
+
+  <p>
+    <%= f.submit 'Enregistrer'%>
+  </p>
+
+<% end %>

@@ -1,0 +1,43 @@
+<%= render 'list' %>
+
+<%= render 'item_title' %>
+
+<% content_for :item do %>
+
+  <%= render 'info' %>
+
+  <% if @ingredient.containers.count > 0 then %>
+
+    <h3>En stock pour cet ingrédient</h3>
+ 
+    <table>
+      <tr>
+        <th>Volume d'achat</th>
+        <th>Volume actuel</th>
+        <th>Prix d'achat</th>
+        <th>Prix au <%= @ingredient.type.mesure_unit %></th>
+      </tr>
+ 
+      <% @ingredient.containers.each do |c| %>
+        <tr>
+          <td><%= c.volume_init.round(0) %></td>
+          <td><%= if c.volume_actual? then c.volume_actual.round(0) end %></td>
+          <td><%= c.price.round(2) %> €</td>
+          <td><%= c.price_by_unit.round(2) %> €</td>
+          <td><%= link_to 'Modifier', edit_ingredient_container_path(@ingredient,c) %></td>
+          <td><%= link_to 'Supprimer', ingredient_container_path(@ingredient,c),
+                    method: :delete,
+                    data: { confirm: 'Voulez-vous supprimer ce contenant ?' } %></td>
+        </tr>
+      <% end %>
+    </table>
+
+  <% else %>
+
+    <p><italic>Pas de stock pour cet ingrédient.</italic></p>
+
+  <% end %>
+
+  <p><%= link_to 'Ajouter un sotck', new_ingredient_container_path(@ingredient) %></p>
+
+<% end %>

@@ -1,0 +1,11 @@
+<%= render 'recipes/list' %>
+
+<%= render 'recipes/item_title' %>
+
+<% content_for :item do %>
+
+  <%= render 'recipes/info' %>
+
+  <%= render 'list' %>
+
+<% end %>

@@ -1,0 +1,65 @@
+<%= render 'recipes/list' %>
+
+<%= render 'recipes/item_title' %>
+
+<% content_for :item do %>
+
+  <%= render 'recipes/info' %>
+
+  <h3>Produit <%= @product.name %></h3>
+
+  <p>
+    <%= link_to 'Modifier', edit_recipe_product_path %> | 
+    <%= link_to 'Supprimer', recipe_product_path(@recipe, @product),
+                method: :delete,
+                data: { confirm: 'Confirmer la suppression ?' } %>
+  </p>
+
+    <table>
+      <tr>
+        <th>Résumé</th>
+        <th>Dosage</th>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            Variante : <%= link_to @product.variant.name, recipe_variant_path(@recipe,@product.variant) %><br>
+            Volume total : <%= @product.volume.round(2) %> ml<br>
+            <% if not @product.price.nil? then %>
+              Prix : <%= @product.price %> €
+            <% end %>
+          </p>
+        </td>
+        <td>
+          <table>
+            <% @recipe.ingredient_types.each do |it|%>
+              <tr>
+                <td><strong><%= it.name %></strong></td>
+                <td></td>
+                <td></td>
+                <td><i>en stock</i></td>
+                <tr>
+              <% @recipe.ingredients.where(type: it).each do |i| %>
+                <% vol_ml = (@variant.composant_proportion(i) * @variant.composant_proportion(it) * @product.volume).round(2) %>
+                <% if vol_ml >0 then %>
+                  <tr>
+                    <td>- <%= i.name %></td>
+                    <td class="center"><%= vol_ml %> ml</td>
+                    <td class="center">
+                      <% if it.name_short == 'HE' then (vol_ml*35).round(0) %>
+                        <%= (vol_ml*35).round(0) %> gt.
+                      <% end %>
+                    </td>
+                    <td class="center"><%= i.volume_in_stock.round(0) %> ml</td>
+                  </tr>
+                <% end %>
+              <% end %>
+            <% end %>
+          </table>
+       </td>
+      </tr>
+    </table>
+
+  <p><%= link_to 'Retour Produits', recipe_products_path(@recipe) %></p>
+
+<% end %>

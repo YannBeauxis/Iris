@@ -1,0 +1,13 @@
+<%= render 'recipes/list' %>
+
+<%= render 'recipes/item_title' %>
+
+<% content_for :item do %>
+
+  <%= render 'recipes/info' %>
+
+  <h3>Nouveau Produit</h3>
+
+  <%= render 'form' %>
+
+<% end %>

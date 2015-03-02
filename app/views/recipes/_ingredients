@@ -1,0 +1,17 @@
+<h3>Ingrédients</h3>
+
+<table>
+  <% @recipe.ingredient_types.each do|it| %>
+    <tr><td><strong><%= it.name %></strong></td></tr>
+      <% @recipe.ingredients.where(type: it).each do|i| %>
+        <tr>
+          <td><%= link_to i.name, i %></itd>
+          <td><%= if i.price_by_unit != nil  then i.price_by_unit.round(2).to_s + ' €/' +i.type.mesure_unit end %></td>
+          <td><%= link_to 'Supprimer', recipe_delete_ingredient_path(@recipe,:ingredient_id => i), method: :post  %></td>
+        </tr>
+      <% end %>
+  <% end %>
+</table>
+
+<p><%= link_to 'Ajouter ingrédient', recipe_ingredient_candidates_path(@recipe) %></p>
+

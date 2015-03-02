@@ -1,0 +1,17 @@
+<%= form_for @ingredient do |f| %>
+
+  <p>
+    <%= f.label 'Type d\'ingrédient' %><br>
+    <%= f.collection_select(:ingredient_type_id, IngredientType.all, :id, :name) %>
+  </p>
+
+  <p>
+    <%= f.label 'Nom' %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.submit 'Enregistrer'%>
+  </p>
+<% end %>
+

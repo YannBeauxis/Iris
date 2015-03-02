@@ -1,0 +1,2 @@
+module RecipeTypeHelper
+end

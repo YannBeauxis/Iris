@@ -1,0 +1,29 @@
+<% content_for :title do %>
+  Ingrédients
+<% end %>
+
+<% content_for :list do %>
+
+  <p><%= link_to 'Nouvel ingrédient', new_ingredient_path %></p>
+
+    <table>
+
+     <tr>
+       <th></th>
+       <th>prix</th>
+       <th># recettes</th>
+     </tr>
+
+      <% @ingredient_types.each do |it| %>
+        <tr><td><strong><%= it.name %></strong><td></p>
+        <% @ingredients.where(type: it).sort_by {|i| i.name }.each do |i| %>
+          <tr>
+            <td>- <%= link_to i.name, ingredient_path(i) %></td>
+            <td class="center"><%= if i.price_by_unit != nil  then i.price_by_unit.round(2).to_s + ' €/' +i.type.mesure_unit else '-' end %></td>
+            <td class="center"><%= i.recipes.count %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+
+<% end %>

@@ -1,0 +1,13 @@
+<%= render 'ingredients/list' %>
+
+<%= render 'ingredients/item_title' %>
+
+<% content_for :item do %>
+
+  <%= render 'ingredients/info' %>
+
+    <h3>Modifier le contenant</h3>
+    <%= render 'form' %>
+
+<% end %>
+

@@ -1,0 +1,15 @@
+<%= render 'list' %>
+
+<%= render 'item_title' %>
+
+<% content_for :item do %>
+
+  <h3> Modifier le type d'ingrédient</h3>
+
+  <%= render 'form' %>
+
+  <%= link_to 'Annuler', @ingredient_type %>
+
+<% end %>
+
+

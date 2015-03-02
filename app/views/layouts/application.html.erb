@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Oil2</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+
+<p>
+<%= link_to 'Home', root_path %>
+</p>
+<p>
+<%= link_to 'Types d\'ingrédients', ingredient_types_path %> | 
+<%= link_to 'Types de recettes', recipe_types_path %>
+</p>
+<p>
+<%= link_to 'Liste des ingrédients', ingredients_path %> | 
+<%= link_to 'Liste des recettes', recipes_path %>
+</p>
+
+<div id="main">
+
+  <%= yield %>
+
+  <% if content_for?(:title) %>
+    <div id="title"><h1><%= yield( :title ) %></h1></div>
+  <% end %>
+
+  <% if content_for?(:list) %>
+    <div id="list" >
+      <%= yield(:list) %>
+    </div>
+  <% end %>
+
+  <% if (content_for?(:item_title) or content_for?(:item)) %>
+    <div id="item" >
+      <% if content_for?(:item_title) %>
+        <div class="title" >
+          <h2><%= yield :item_title %></h2>
+        </div>
+      <% end %>
+      <% if content_for?(:item) %>
+        <div class="content" >
+          <%= yield :item %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>
+
+</body>
+</html>

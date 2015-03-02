@@ -1,0 +1,28 @@
+
+<%= form_for @container, :url => url_for([ @ingredient, @container]) do |f| %>
+
+  <p>
+    <%= f.label 'Volume intial' %><br>
+    <%= f.number_field :volume_init, :step => 'any' %>
+  </p>
+
+  <p>
+    <%= f.label 'Prix d\'achat' %><br>
+    <%= f.number_field :price, :step => 'any' %>
+  </p>
+
+  <p>
+    <%= f.label 'Volume actuel' %><br>
+    <%= f.number_field :volume_actual, :step => 'any' %>
+  </p>
+
+  <p>
+    <%= f.submit 'Enregistrer'%>
+  </p>
+<% end %>
+
+<p>
+<%= link_to 'Annuler', @ingredient %>
+</p>
+
+

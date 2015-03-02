@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_botanical: MyString
+  name_fr: MyString
+  ingredient_type_id: 
+
+two:
+  name_botanical: MyString
+  name_fr: MyString
+  ingredient_type_id: 

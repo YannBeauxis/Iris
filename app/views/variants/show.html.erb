@@ -1,0 +1,43 @@
+<%= render 'recipes/list' %>
+
+<%= render 'recipes/item_title' %>
+
+<% content_for :item do %>
+
+  <%= render 'recipes/info' %>
+
+<h3>Variante <%= @variant.name %></h3>
+
+<p>
+  <%= link_to 'Modifier', edit_recipe_variant_path(@recipe, @variant) %> | 
+  <%= link_to 'Supprimer', recipe_variant_path(@recipe, @variant),
+                method: :delete,
+                data: { confirm: 'Confirmer la suppression ?' } %>
+</p>
+
+<h4>Dosage ingrédients</h4>
+<table>
+
+  <% @variant.proportions.where(composant_type: 'IngredientType').each do |itp| %>
+       <% if itp.composant.nil? then %>
+    <tr>
+         <td>Pb <%= itp.id %> </td> 
+       <% else %>
+    <tr>
+       <td><strong><%= itp.composant.name %></strong></td>
+       <td><strong><%= number_to_percentage(itp.value*100, precision: 1) %></strong></td>
+    </tr>
+    <% @variant.proportions_for_type(itp.composant).each do |ip| %>
+      <tr>
+        <td>- <%= ip.composant.name %></td>
+        <td><%= number_to_percentage(ip.value*100, precision: 1) %></td>
+      </tr>
+    <% end %>
+       <% end %>
+  <% end %>
+</table>
+
+<p><%= link_to 'Retour variantes', recipe_variants_path(@recipe) %></p>
+
+<% end %>
+

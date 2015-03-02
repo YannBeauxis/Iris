@@ -1,0 +1,28 @@
+<% content_for :title do %>
+  Types d'ingrédient
+<% end %>
+
+<% content_for :list do %>
+ 
+  <p><%= link_to 'Nouveau type', new_ingredient_type_path %></p>
+
+  <table>
+    <tr>
+      <th>Nom</th>
+      <th>Nom abrégé</th>
+      <th>Unité</th>
+      <th># ingrédients</th>
+    </tr>
+ 
+    <% @ingredient_types.each do |it| %>
+      <tr>
+        <td><%= link_to it.name, ingredient_type_path(it) %></td>
+        <td class="center"><%= it.name_short %></td>
+        <td class="center"><%= it.mesure_unit %></td>
+        <td class="center"><%= it.ingredients.count %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<% end %>
+

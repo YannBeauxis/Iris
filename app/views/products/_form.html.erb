@@ -1,0 +1,28 @@
+<%= form_for @product, :url => url_for([@recipe, @product]) do |f| %>
+  <p>
+    <%= f.label 'Nom' %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label 'Variante' %><br>
+    <%= f.collection_select(:variant_id, @recipe.variants, :id, :name) %>
+  </p>
+
+  <p>
+    <%= f.label 'Volume' %><br>
+    <%= f.number_field :volume, :step => 'any' %>
+  </p>
+
+  <p>
+    <%= f.label 'Détail' %><br>
+    <%= f.text_field :detail %>
+  </p>
+
+  <p>
+    <%= f.submit 'Enregistrer' %>
+  </p>
+
+<% end %>
+
+<%= link_to 'Annuler', :back %>

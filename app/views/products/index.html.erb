@@ -1,0 +1,33 @@
+<%= render 'recipes/list' %>
+
+<%= render 'recipes/item_title' %>
+
+<% content_for :item do %>
+
+  <%= render 'recipes/info' %>
+
+    <h3>Liste des produits</h3>
+
+    <table>
+
+      <tr>
+        <th>Nom</th>
+        <th>Variante</th>
+        <th>Volume</th>
+        <th>Prix</th>
+      </tr>
+
+      <% @recipe.products.each do |p| %>
+        <tr>
+          <td><%= link_to p.name, recipe_product_path(@recipe,p) %></td>
+          <td><%= link_to p.variant.name, recipe_variant_path(@recipe,p.variant) %></td>
+          <td><%= p.volume %></td>
+          <td><%= p.price %> €</td>
+        </tr>
+     <% end %>
+
+   </table>
+
+  <p><%= link_to 'Nouveau Produit', new_recipe_product_path(@recipe) %></p>
+
+<% end %>

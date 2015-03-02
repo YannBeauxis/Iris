@@ -1,0 +1,20 @@
+<%= form_for @ingredient_type do |f| %>
+  <p>
+    <%= f.label 'Nom' %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label 'Nom abrégé' %><br>
+    <%= f.text_field :name_short %>
+  </p>
+
+  <p>
+    <%= f.label 'Unité de mesure' %><br>
+    <%= f.text_field :mesure_unit %>
+  </p>
+
+  <p>
+    <%= f.submit 'Enregistrer' %>
+  </p>
+<% end %>
