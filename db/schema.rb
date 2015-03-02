@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150215182128) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "containers", force: :cascade do |t|
     t.integer  "ingredient_id"
     t.float    "volume_init"
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 20150215182128) do
     t.datetime "updated_at",    null: false
   end
 
-  add_index "containers", ["ingredient_id"], name: "index_containers_on_ingredient_id"
+  add_index "containers", ["ingredient_id"], name: "index_containers_on_ingredient_id", using: :btree
 
   create_table "ingredient_types", force: :cascade do |t|
     t.string   "name"
@@ -44,14 +47,14 @@ ActiveRecord::Schema.define(version: 20150215182128) do
     t.datetime "updated_at",         null: false
   end
 
-  add_index "ingredients", ["ingredient_type_id"], name: "index_ingredients_on_ingredient_type_id"
+  add_index "ingredients", ["ingredient_type_id"], name: "index_ingredients_on_ingredient_type_id", using: :btree
 
   create_table "ingredients_recipes", id: false, force: :cascade do |t|
     t.integer "ingredient_id", null: false
     t.integer "recipe_id",     null: false
   end
 
-  add_index "ingredients_recipes", ["ingredient_id", "recipe_id"], name: "index_ingredients_recipes_on_ingredient_id_and_recipe_id", unique: true
+  add_index "ingredients_recipes", ["ingredient_id", "recipe_id"], name: "index_ingredients_recipes_on_ingredient_id_and_recipe_id", unique: true, using: :btree
 
   create_table "products", force: :cascade do |t|
     t.integer  "variant_id"
@@ -62,7 +65,7 @@ ActiveRecord::Schema.define(version: 20150215182128) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "products", ["variant_id"], name: "index_products_on_variant_id"
+  add_index "products", ["variant_id"], name: "index_products_on_variant_id", using: :btree
 
   create_table "proportions", force: :cascade do |t|
     t.integer  "variant_id"
@@ -73,8 +76,8 @@ ActiveRecord::Schema.define(version: 20150215182128) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "proportions", ["composant_type", "composant_id"], name: "index_proportions_on_composant_type_and_composant_id"
-  add_index "proportions", ["variant_id"], name: "index_proportions_on_variant_id"
+  add_index "proportions", ["composant_type", "composant_id"], name: "index_proportions_on_composant_type_and_composant_id", using: :btree
+  add_index "proportions", ["variant_id"], name: "index_proportions_on_variant_id", using: :btree
 
   create_table "recipe_types", force: :cascade do |t|
     t.string   "name"
@@ -89,7 +92,7 @@ ActiveRecord::Schema.define(version: 20150215182128) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "recipes", ["recipe_type_id"], name: "index_recipes_on_recipe_type_id"
+  add_index "recipes", ["recipe_type_id"], name: "index_recipes_on_recipe_type_id", using: :btree
 
   create_table "variants", force: :cascade do |t|
     t.string   "name"
@@ -98,6 +101,12 @@ ActiveRecord::Schema.define(version: 20150215182128) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "variants", ["recipe_id"], name: "index_variants_on_recipe_id"
+  add_index "variants", ["recipe_id"], name: "index_variants_on_recipe_id", using: :btree
 
+  add_foreign_key "containers", "ingredients"
+  add_foreign_key "ingredients", "ingredient_types"
+  add_foreign_key "products", "variants"
+  add_foreign_key "proportions", "variants"
+  add_foreign_key "recipes", "recipe_types"
+  add_foreign_key "variants", "recipes"
 end
