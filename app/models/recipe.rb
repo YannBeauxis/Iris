@@ -6,7 +6,7 @@ class Recipe < ActiveRecord::Base
   validates :type, :name, presence: true
 
   def ingredient_types
-    IngredientType.joins(ingredients: :recipes).where('recipe_id = '+ self.id.to_s).group('ingredient_type_id')
+    IngredientType.joins(ingredients: :recipes).where('recipe_id = '+ self.id.to_s).group('ingredient_types.id')
   end
 
   def ingredient_candidates
