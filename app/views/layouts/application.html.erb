@@ -17,6 +17,12 @@
 <% end %>
 
 <p>
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
+</p>
+
+<p>
 <%= link_to 'Types d\'ingrédients', ingredient_types_path %> | 
 <%= link_to 'Types de recettes', recipe_types_path %>
 </p>
