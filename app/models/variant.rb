@@ -84,7 +84,6 @@ class Variant < ActiveRecord::Base
           end
         end
       end
-    #end
     self.save 
   end
 

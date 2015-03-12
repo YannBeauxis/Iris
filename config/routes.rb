@@ -34,8 +34,8 @@ Rails.application.routes.draw do
       match '/delete_ingredient', to: 'recipes#delete_ingredient', via: :post
 
       resources :variants do
-        match 'proportions/:id/update', to: 'proportions#update', via: :patch, as: 'update_proportion'
-        match '/normalize_proportions', to: 'variants#normalize_proportions', via: :patch #, as: 'update_proportion'
+        match '/update_proportions', to: 'variants#update_proportions', via: :patch
+        match '/normalize_proportions', to: 'variants#normalize_proportions', via: :patch# , as: 'update_proportion'
       end
 
       resources :products

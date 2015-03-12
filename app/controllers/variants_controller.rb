@@ -54,12 +54,18 @@ class VariantsController < ApplicationController
     redirect_to recipe_variants_path(@recipe)
   end
 
-  def normalize_proportions
-
+  def update_proportions
     @variant = Variant.find(params[:variant_id])
-    @variant.update_proportions
-    redirect_to edit_recipe_variant_path(@recipe,@variant)
 
+    update_proportions_params[:proportion_attributes].each do |up|
+       p = Proportion.find(up[:id])
+       p.value = up[:value]
+       p.save
+    end
+
+    @variant.update_proportions
+
+    redirect_to edit_recipe_variant_path(@recipe,@variant)
   end
 
   private
@@ -72,6 +78,10 @@ class VariantsController < ApplicationController
 
     def variant_params
       params.require(:variant).permit(:name)
+    end
+
+    def update_proportions_params
+      params.require(:variant).permit(:id, proportion_attributes: [:id, :value])
     end
 
 end
