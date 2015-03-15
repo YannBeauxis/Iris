@@ -7,31 +7,29 @@
   <%= render 'recipes/info' %>
 
   <h3>Produit <%= @product.name %></h3>
-
-  <p>
-    <%= link_to 'Modifier', edit_recipe_product_path %> | 
-    <%= link_to 'Supprimer', recipe_product_path(@recipe, @product),
-                method: :delete,
-                data: { confirm: 'Confirmer la suppression ?' } %>
-  </p>
-
-    <table>
-      <tr>
-        <th>Résumé</th>
-        <th>Dosage</th>
-      </tr>
-      <tr>
-        <td>
-          <p>
-            Variante : <%= link_to @product.variant.name, recipe_variant_path(@recipe,@product.variant) %><br>
-            Volume total : <%= @product.volume.round(2) %> ml<br>
+    <table class = "product">
+      <tr><th>Résumé</th></tr>
+      <tr><td>
+          <table>
+            <tr><td>Variante : <%= link_to @product.variant.name, recipe_variant_path(@recipe,@product.variant) %></td></tr>
+            <tr><td>Volume total : <%= @product.volume.round(2) %> ml</td></tr>
             <% if not @product.price.nil? then %>
-              Prix : <%= @product.price %> €
+              <tr><td>Prix : <%= @product.price %> €</td></tr>
             <% end %>
-          </p>
+          </table>
         </td>
         <td>
           <table>
+            <tr><td><%= link_to 'Modifier', edit_recipe_product_path %></td></tr>
+            <tr><td>
+              <%= link_to 'Supprimer', recipe_product_path(@recipe, @product),
+                      method: :delete,
+                      data: { confirm: 'Confirmer la suppression ?' } %>
+            </td></tr>
+           </table>
+        </td></tr>
+      <tr><th>Dosage</th></tr>
+        <tr><td><table>
             <% @recipe.ingredient_types.each do |it|%>
               <tr>
                 <td><strong><%= it.name %></strong></td>
@@ -55,9 +53,7 @@
                 <% end %>
               <% end %>
             <% end %>
-          </table>
-       </td>
-      </tr>
+          </table></td></tr>
     </table>
 
   <p><%= link_to 'Retour Produits', recipe_products_path(@recipe) %></p>

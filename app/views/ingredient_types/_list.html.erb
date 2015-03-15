@@ -10,7 +10,6 @@
     <tr>
       <th>Nom</th>
       <th>Nom abrégé</th>
-      <th>Unité</th>
       <th># ingrédients</th>
     </tr>
  
@@ -18,7 +17,6 @@
       <tr>
         <td><%= link_to it.name, ingredient_type_path(it) %></td>
         <td class="center"><%= it.name_short %></td>
-        <td class="center"><%= it.mesure_unit %></td>
         <td class="center"><%= it.ingredients.count %></td>
       </tr>
     <% end %>

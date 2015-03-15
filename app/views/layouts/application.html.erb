@@ -8,13 +8,16 @@
 </head>
 <body>
 
-<p>
-<%= link_to 'Home', root_path %>
-</p>
-
-<% if user_signed_in? %>
-  <p><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></p>
-<% end %>
+<div id="Home">
+  <table>
+    <tr><td><%= link_to 'Home', root_path %></td></tr>
+    <tr><td>
+      <% if user_signed_in? %>
+        <%= link_to('Logout', destroy_user_session_path, :method => :delete) %></p>
+      <% end %>
+    </td></tr>  
+  </table> 
+</div>
 
 <p>
     <% flash.each do |name, msg| -%>
@@ -22,14 +25,18 @@
     <% end -%>
 </p>
 
-<p>
-<%= link_to 'Types d\'ingrédients', ingredient_types_path %> | 
-<%= link_to 'Types de recettes', recipe_types_path %>
-</p>
-<p>
-<%= link_to 'Liste des ingrédients', ingredients_path %> | 
-<%= link_to 'Liste des recettes', recipes_path %>
-</p>
+<div id="Menu">
+  <table>
+    <tr>
+      <td><%= link_to 'Types d\'ingrédients', ingredient_types_path %></td> 
+      <td><%= link_to 'Types de recettes', recipe_types_path %></td>
+    </tr>
+    <tr>
+      <td><%= link_to 'Liste des ingrédients', ingredients_path %></td>
+      <td><%= link_to 'Liste des recettes', recipes_path %></td>
+    </tr>
+  </table>
+</div>
 
 <div id="main">
 
