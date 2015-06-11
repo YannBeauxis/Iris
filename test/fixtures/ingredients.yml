@@ -1,11 +1,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1
   name: 'Lavandin Super'
-  ingredient_type_id: 1
+  type: one
 
 two:
-  id: 2
   name: 'Abricot'
-  ingredient_type_id: 2
+  type: two
+  
+three:
+  name: 'For Container Delete'
+  type: one
+
+four:
+  name: 'For Container Delete by Ingredient Type'
+  type: three
+

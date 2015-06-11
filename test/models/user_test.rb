@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+   test "add user" do
+     u = User.new
+     u.email = "iris@test.com"
+     u.password = "mdpdeiris"
+     assert u.save
+   end
 end

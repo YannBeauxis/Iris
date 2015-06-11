@@ -1,13 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1
   name: 'Huile Essentielle'
   mesure_unit : 'ml'
   name_short : 'HE'
+  #recipe_types: one
 
 two:
-  id: 2
   name: 'Huile Végétale'
   mesure_unit : 'ml'
   name_short : 'HV'
+  #recipe_types: two
+
+three:
+  name: 'For Container Delete'
+  mesure_unit : 'ml'
+  name_short : 'FCD'
+  
+four:
+  name: 'Four'
+  mesure_unit : 'ml'
+  name_short : 'F'
