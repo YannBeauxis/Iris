@@ -43,6 +43,16 @@ td.center {
   background-color: rgb(250,250,250);
 }
 
+#Message {
+  position: absolute;
+  top : 80px;
+  left: 10px;
+  width: 470px;
+  height: 40px;
+  padding: 10px;
+  color : red;
+}
+
 #main {
   position: absolute;
   top : 100px;

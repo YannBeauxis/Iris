@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  variant_id: 
-  volume: 1.5
-  detail: MyString
+#one:
+#  variant_id: 
+#  volume: 1.5
+#  detail: MyString
 
-two:
-  variant_id: 
-  volume: 1.5
-  detail: MyString
+#two:
+#  variant_id: 
+#  volume: 1.5
+#  detail: MyString

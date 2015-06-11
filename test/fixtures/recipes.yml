@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  recipe_type_id: 
+#one:
+#  name: MyString
+#  recipe_type_id: 
 
-two:
-  name: MyString
-  recipe_type_id: 
+#two:
+#  name: MyString
+#  recipe_type_id: 

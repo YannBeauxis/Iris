@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  recipe_variant_id: 
-  ingredient_id: 
-  proportion: 1.5
+#one:
+#  recipe_variant_id: 
+#  ingredient_id: 
+#  proportion: 1.5
 
-two:
-  recipe_variant_id: 
-  ingredient_id: 
-  proportion: 1.5
+#two:
+#  recipe_variant_id: 
+#  ingredient_id: 
+#  proportion: 1.5

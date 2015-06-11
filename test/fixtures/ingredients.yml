@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name_botanical: MyString
-  name_fr: MyString
-  ingredient_type_id: 
+  id: 1
+  name: 'Lavandin Super'
+  ingredient_type_id: 1
 
 two:
-  name_botanical: MyString
-  name_fr: MyString
-  ingredient_type_id: 
+  id: 2
+  name: 'Abricot'
+  ingredient_type_id: 2

@@ -1,0 +1,23 @@
+<h1>Gestion des utilisateurs</h1>
+
+<table>
+	<tr>
+		<th></th>
+		<th>id</th>
+		<th>email</th>
+		<th>approved</th>
+		<th>admin</th>
+
+		
+	</tr>
+	<% @users.each do |u| %>
+		<tr>
+			<td><%= link_to 'Edit', edit_user_path(u.id) %></td>
+			<td><%= u.id %></td>
+			<td><%= u.email %></td>
+			<td><%= u.approved %></td>
+			<td><%= u.admin %></td>
+		</tr>
+	<% end %>
+</table>
+

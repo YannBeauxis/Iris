@@ -12,6 +12,7 @@
  
     <table>
       <tr>
+        <th>Owner email</th>
         <th>Volume d'achat</th>
         <th>Volume actuel</th>
         <th>Prix d'achat</th>
@@ -20,6 +21,7 @@
  
       <% @ingredient.containers.each do |c| %>
         <tr>
+          <td><%= c.user.email %></td>
           <td><%= c.volume_init.round(0) %></td>
           <td><%= if c.volume_actual? then c.volume_actual.round(0) end %></td>
           <td><%= c.price.round(2) %> €</td>

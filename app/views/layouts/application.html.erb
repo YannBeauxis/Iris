@@ -11,6 +11,7 @@
 <div id="Home">
   <table>
     <tr><td><%= link_to 'Home', root_path %></td></tr>
+    <tr><td><%= link_to 'Admin', users_path %></td></tr>
     <tr><td>
       <% if user_signed_in? %>
         <%= link_to('Logout', destroy_user_session_path, :method => :delete) %></p>
@@ -19,11 +20,11 @@
   </table> 
 </div>
 
-<p>
+<div id="Message">
     <% flash.each do |name, msg| -%>
       <%= content_tag :div, msg, class: name %>
     <% end -%>
-</p>
+</div>
 
 <div id="Menu">
   <table>

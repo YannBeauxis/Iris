@@ -1,0 +1,17 @@
+<%= form_for @user do |f| %>
+
+  <p>
+    <%= f.label 'approved' %><br>
+    <%= f.check_box :approved %>
+  </p>
+  
+  <p>
+    <%= f.label 'admin' %><br>
+    <%= f.check_box :admin %>
+  </p>
+  
+  <p>
+    <%= f.submit 'Enregistrer'%>
+  </p>
+
+<% end %>

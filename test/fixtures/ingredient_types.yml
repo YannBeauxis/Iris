@@ -1,7 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  id: 1
+  name: 'Huile Essentielle'
+  mesure_unit : 'ml'
+  name_short : 'HE'
 
 two:
-  name: MyString
+  id: 2
+  name: 'Huile Végétale'
+  mesure_unit : 'ml'
+  name_short : 'HV'

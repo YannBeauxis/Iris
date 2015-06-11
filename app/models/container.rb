@@ -1,5 +1,6 @@
 class Container < ActiveRecord::Base
   belongs_to :ingredient
+  belongs_to :user
   validates :ingredient, :volume_init, :price, presence: true
   validates :volume_init, :numericality => { :greater_than => 0 }
   #, :volume_actual

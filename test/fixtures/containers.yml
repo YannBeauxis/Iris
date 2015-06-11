@@ -1,13 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  ingredient_id: 
-  volume_init: 1.5
-  volume_actual: 
-  price: 1.5
+  id: 1
+  ingredient_id: 1
+  volume_init: 10
+  volume_actual: 5
+  price: 5
 
-two:
-  ingredient_id: 
-  volume_init: 1.5
-  volume_actual: 
-  price: 1.5
+#two:
+#  ingredient_id: 
+#  volume_init: 1.5
+#  volume_actual: 
+#  price: 1.5
