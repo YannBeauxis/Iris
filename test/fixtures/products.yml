@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-#one:
-#  variant_id: 
-#  volume: 1.5
-#  detail: MyString
+variant_delete:
+  name: 'prodcut delete'
+  variant: product_delete
+  volume: 1
 
 #two:
 #  variant_id: 

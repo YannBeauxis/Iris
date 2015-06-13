@@ -1,6 +1,6 @@
 class Recipe < ActiveRecord::Base
   has_and_belongs_to_many :ingredients, -> { uniq }
-  has_many :variants, :class_name => 'Variant', :foreign_key => 'recipe_id'
+  has_many :variants, :class_name => 'Variant', :foreign_key => 'recipe_id', dependent: :destroy
   has_many :products, through: :variants
   belongs_to :type, :class_name => 'RecipeType', :foreign_key => 'recipe_type_id'
   validates :type, :name, presence: true

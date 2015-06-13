@@ -1,5 +1,5 @@
 class IngredientType < ActiveRecord::Base
-  has_many :ingredients, dependent: :destroy
+  has_many :ingredients, :dependent => :restrict_with_error
   has_and_belongs_to_many :recipe_types
   has_many :proportions, as: :composant
   validates :name,:name_short, presence: true

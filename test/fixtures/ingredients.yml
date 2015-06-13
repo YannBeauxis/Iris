@@ -5,7 +5,7 @@ one:
   type: one
 
 two:
-  name: 'Abricot'
+  name: 'For ingredient type delete'
   type: two
   
 three:
@@ -16,3 +16,18 @@ four:
   name: 'For Container Delete by Ingredient Type'
   type: three
 
+ingredient_candidates_include_already:
+  name: 'icia'
+  type: ingredient_candidates_include
+  
+ingredient_candidates_include_not_already:
+  name: 'icina'
+  type: ingredient_candidates_include
+  
+ingredient_candidates_not_include:
+  name: 'icnin'
+  type: ingredient_candidates_not_include
+  
+not_delete_if_recipe:
+  name: 'ndir'
+  type: one

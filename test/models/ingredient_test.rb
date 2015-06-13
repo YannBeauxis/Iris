@@ -12,11 +12,15 @@ class IngredientTest < ActiveSupport::TestCase
     i = ingredients(:two)
     assert_includes Ingredient.all, i
   end
+
+  test "not delete if containers" do
+    c = containers(:two)
+    i = ingredients(:three)
+    assert_not i.destroy
+  end
   
-  test "delete with ingredient type" do
-    i = ingredients(:two)
-    it = ingredient_types(:two)
-    it.destroy
-    assert_not_includes Ingredient.all, i
+  test "not delete if recipe" do
+    i = ingredients(:not_delete_if_recipe)
+    assert_not i.destroy, 'not delete if recipe associated'
   end
 end

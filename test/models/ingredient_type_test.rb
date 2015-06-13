@@ -28,5 +28,12 @@ class IngredientTypeTest < ActiveSupport::TestCase
     rt = recipe_types(:one)
     assert_includes it.recipe_types, rt
   end
+
+  
+  test "not delete if ingredient associated" do
+    i = ingredients(:two)
+    it = ingredient_types(:two)
+    assert_not it.destroy
+  end
   
 end

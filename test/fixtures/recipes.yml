@@ -3,7 +3,25 @@
 one:
   name: 'One'
   type: one
+  ingredients: one
 
-#two:
-#  name: MyString
-#  recipe_type_id: 
+two:
+  name: 'For recipe type delete'
+  type: three 
+  ingredients: one
+  
+ingredient_candidates:
+  name: 'For ingredient Candidate'
+  type: ingredient_candidates
+  ingredients: ingredient_candidates_include_already
+  
+variant_delete:
+  name: 'For variant delete wth recipe'
+  type: one 
+  ingredients: one
+  
+not_delete_if_recipe:
+  name: 'not delete if recipe'
+  type: one
+  ingredients: not_delete_if_recipe
+   

@@ -21,3 +21,13 @@ four:
   name: 'Four'
   mesure_unit : 'ml'
   name_short : 'F'
+  
+ingredient_candidates_include:
+  name: 'ingredient_candidates_include'
+  mesure_unit : 'ml'
+  name_short : 'ICI'
+
+ingredient_candidates_not_include:
+  name: 'ingredient_candidates_not_include'
+  mesure_unit : 'ml'
+  name_short : 'ICE'

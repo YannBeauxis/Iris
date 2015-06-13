@@ -7,3 +7,11 @@ one:
 two:
   name: 'Recipe Type 2'
   ingredient_types: four
+  
+three:
+  name: 'Fore recipe delete with type'
+  ingredient_types: one
+  
+ingredient_candidates:
+  name: 'Ingredient Candidates'
+  ingredient_types: ingredient_candidates_include

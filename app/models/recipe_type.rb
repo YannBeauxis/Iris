@@ -1,5 +1,5 @@
 class RecipeType < ActiveRecord::Base
-  has_many :recipes, dependent: :destroy
+  has_many :recipes, :dependent => :restrict_with_error
   has_and_belongs_to_many :ingredient_types
   validates :name, presence: true
 

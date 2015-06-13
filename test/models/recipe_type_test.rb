@@ -6,4 +6,10 @@ class RecipeTypeTest < ActiveSupport::TestCase
     r.name = 'Recipe Type test'
     assert r.save
   end
+  
+  test "Not delete if recipes" do
+    rt = recipe_types(:three)
+    assert_not rt.destroy
+  end
+  
 end

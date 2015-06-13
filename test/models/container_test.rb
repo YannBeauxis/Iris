@@ -15,18 +15,4 @@ class ContainerTest < ActiveSupport::TestCase
     assert c.price_by_unit == 0.5, c.price_by_unit
   end
   
-  test "delete with ingredient" do
-    c = containers(:two)
-    i = ingredients(:three)
-    i.destroy
-    assert_not_includes Container.all, c
-  end
-  
-  test "delete with ingredient_type" do
-    c = containers(:three)
-    it = ingredient_types(:three)
-    it.destroy
-    assert_not_includes Container.all, c
-  end
-  
 end
