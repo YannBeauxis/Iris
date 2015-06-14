@@ -7,4 +7,36 @@ class VariantTest < ActiveSupport::TestCase
     r.destroy
     assert_not_includes Variant.all, v
   end
+  
+  test "create proportion" do
+    r = recipes(:create_proportions)
+    v = Variant.new
+    v.name = "create_proportion"
+    r.variants << v
+    r.save
+    assert v.proportions.count == 6, v.proportions.count
+  end
+  
+  test "Delete recipe ingredient" do
+    r = recipes(:delete_recipe_ingredient)
+    i = ingredients(:delete_recipe_ingredient)
+    v = Variant.new
+    v.name = "Delete recipe ingredient"
+    r.variants << v
+    r.ingredients.delete(i)
+    r.save
+    assert v.proportions.count == 2, v.proportions.count
+  end
+
+  test "proportion sum" do
+    r = recipes(:create_proportions)
+    v = Variant.new
+    v.name = "proportion sum"
+    r.variants << v
+    r.save
+    s = 0
+    v.proportions.each { |p| s+=p.value }
+    assert s == 2, s
+  end
+  
 end

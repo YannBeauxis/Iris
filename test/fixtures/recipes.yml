@@ -24,4 +24,14 @@ not_delete_if_recipe:
   name: 'not delete if recipe'
   type: one
   ingredients: not_delete_if_recipe
+
+create_proportions:
+  name: 'create_proportions'
+  type: create_proportions
+  ingredients: create_proportions_1_1, create_proportions_1_2, create_proportions_2_1, create_proportions_2_2
+
+delete_recipe_ingredient:
+  name: 'delete_recipe_ingredient'
+  type: one
+  ingredients: one, delete_recipe_ingredient
    

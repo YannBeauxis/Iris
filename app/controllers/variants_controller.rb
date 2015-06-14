@@ -28,7 +28,7 @@ class VariantsController < ApplicationController
     @recipe.variants << @variant
 
     if @recipe.save
-      @variant.update_proportions
+      #@variant.update_proportions
       redirect_to edit_recipe_variant_path(@recipe,@variant)
     else
       render 'new'

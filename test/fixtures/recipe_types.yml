@@ -15,3 +15,7 @@ three:
 ingredient_candidates:
   name: 'Ingredient Candidates'
   ingredient_types: ingredient_candidates_include
+
+create_proportions:
+  name: 'create_proportions'
+  ingredient_types: create_proportions_1,create_proportions_2

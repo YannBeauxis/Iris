@@ -31,3 +31,13 @@ ingredient_candidates_not_include:
   name: 'ingredient_candidates_not_include'
   mesure_unit : 'ml'
   name_short : 'ICE'
+
+create_proportions_1:
+  name: 'create_proportions_1'
+  mesure_unit : 'ml'
+  name_short : 'CP1'
+
+create_proportions_2:
+  name: 'create_proportions_2'
+  mesure_unit : 'ml'
+  name_short : 'CP2'

@@ -4,6 +4,7 @@ class Recipe < ActiveRecord::Base
   has_many :products, through: :variants
   belongs_to :type, :class_name => 'RecipeType', :foreign_key => 'recipe_type_id'
   validates :type, :name, presence: true
+  after_save :update_proportions#, on: :update
 
   def ingredient_types
     IngredientType.joins(ingredients: :recipes).where('recipe_id = '+ self.id.to_s).group('ingredient_types.id')
@@ -14,6 +15,10 @@ class Recipe < ActiveRecord::Base
               .joins('INNER JOIN ingredient_types ON ingredients.ingredient_type_id = ingredient_types.id')
               .joins('INNER JOIN ingredient_types_recipe_types ON ingredients.ingredient_type_id = ingredient_types_recipe_types.ingredient_type_id')
               .where(ingredient_types_recipe_types: {recipe_type_id: self.type})
+  end
+
+  def update_proportions
+    self.variants.each { |v| v.update_proportions }
   end
 
 end

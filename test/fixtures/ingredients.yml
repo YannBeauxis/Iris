@@ -31,3 +31,23 @@ ingredient_candidates_not_include:
 not_delete_if_recipe:
   name: 'ndir'
   type: one
+
+delete_recipe_ingredient:
+  name: delete_recipe_ingredient
+  type: one
+  
+create_proportions_1_1:
+  name: 'create_proportions_1_1'
+  type: create_proportions_1
+  
+create_proportions_1_2:
+  name: 'create_proportions_1_2'
+  type: create_proportions_1
+  
+create_proportions_2_1:
+  name: 'create_proportions_2_1'
+  type: create_proportions_2
+  
+create_proportions_2_2:
+  name: 'create_proportions_2_2'
+  type: create_proportions_2

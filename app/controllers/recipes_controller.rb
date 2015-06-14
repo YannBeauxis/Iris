@@ -65,9 +65,7 @@ class RecipesController < ApplicationController
     @ingredient = Ingredient.find(params[:ingredient_id])
 
     @recipe.ingredients << @ingredient
-
     @recipe.save
-    update_proportions
 
     redirect_to recipe_path(@recipe)
 
@@ -79,7 +77,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @ingredient = Ingredient.find(params[:ingredient_id])
     @recipe.ingredients.delete(@ingredient)
-    update_proportions
+    @recipe.save
 
     redirect_to recipe_path(@recipe)
 
@@ -92,10 +90,6 @@ class RecipesController < ApplicationController
      @recipe_types = RecipeType.all
      @recipes = Recipe.all
    end
-
-    def update_proportions
-      @recipe.variants.each { |v| v.update_proportions }
-    end
 
     def init_form
       @recipe_types = RecipeType.order(:name)

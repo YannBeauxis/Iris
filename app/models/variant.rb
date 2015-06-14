@@ -4,6 +4,7 @@ class Variant < ActiveRecord::Base
   has_many :products, dependent: :destroy
   has_many :ingredients, through: :recipe 
   validates :name, presence: true
+  after_create :update_proportions
 
   def proportions_for_type(type)
 
@@ -58,8 +59,8 @@ class Variant < ActiveRecord::Base
           else
             p.value = p.value/pt_sum
           end
-            p.value = p.value.round(3)
-            p.save
+          p.value = p.value.round(3)
+          p.save
         end
       end
     # Ingredients
