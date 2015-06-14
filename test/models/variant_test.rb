@@ -30,13 +30,12 @@ class VariantTest < ActiveSupport::TestCase
 
   test "proportion sum" do
     r = recipes(:create_proportions)
-    v = Variant.new
-    v.name = "proportion sum"
-    r.variants << v
-    r.save
+    v = r.variants.create! do |vr|
+      vr.name = "proportion sum"
+    end
     s = 0
-    v.proportions.each { |p| s+=p.value }
-    assert s == 2, s
+    v.proportions.all.each { |p| s+=p.value }
+    assert s == 3, s
   end
   
 end

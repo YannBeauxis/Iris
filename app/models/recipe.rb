@@ -1,10 +1,10 @@
 class Recipe < ActiveRecord::Base
   has_and_belongs_to_many :ingredients, -> { uniq }
-  has_many :variants, :class_name => 'Variant', :foreign_key => 'recipe_id', dependent: :destroy
+  has_many :variants, dependent: :destroy, autosave: :true#, :class_name => 'Variant', :foreign_key => 'recipe_id', 
   has_many :products, through: :variants
   belongs_to :type, :class_name => 'RecipeType', :foreign_key => 'recipe_type_id'
   validates :type, :name, presence: true
-  after_save :update_proportions#, on: :update
+  after_save :update_proportions
 
   def ingredient_types
     IngredientType.joins(ingredients: :recipes).where('recipe_id = '+ self.id.to_s).group('ingredient_types.id')

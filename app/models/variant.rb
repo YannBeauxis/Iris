@@ -26,10 +26,14 @@ class Variant < ActiveRecord::Base
     [self.recipe.ingredient_types, self.recipe.ingredients].each do |c|
       c.each do |it|
         if self.proportions.find_by(composant: it).nil?
-          p = Proportion.new
-          p.composant = it
-          p.value = 0
-          self.proportions << p
+          #p = Proportion.new
+          #p.composant = it
+          #p.value = 0
+          #self.proportions << p
+          self.proportions.create! do |p|
+            p.composant = it
+            p.value = 0
+          end
         end
       end
     end
@@ -63,6 +67,7 @@ class Variant < ActiveRecord::Base
           p.save
         end
       end
+
     # Ingredients
       self.recipe.ingredient_types.each do |it|
         pi = Proportion.where('variant_id = ' + self.id.to_s)
@@ -85,7 +90,7 @@ class Variant < ActiveRecord::Base
           end
         end
       end
-    self.save 
+    self.save
   end
 
   def composant_proportion(c)
