@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class ContainerTest < ActiveSupport::TestCase
+  
   test "add container" do
     c = Container.new
     c.ingredient = ingredients(:one)

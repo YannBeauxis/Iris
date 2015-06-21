@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class IngredientTest < ActiveSupport::TestCase
+  
   test "add ingredient" do
     i = Ingredient.new
     i.name = "New Ingredient"

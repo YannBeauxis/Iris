@@ -8,3 +8,13 @@ one:
  email: igrecbis@yahoo.fr
  admin: true
  approved: true
+
+delete_container_recipe:
+ email: delete_container_recipe@yahoo.fr
+ admin: false
+ approved: true
+ 
+not_admin:
+ email: not_admin@yahoo.fr
+ admin: false
+ approved: true

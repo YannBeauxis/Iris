@@ -17,3 +17,10 @@ three:
   volume_init: 100
   volume_actual: 100
   price: 10
+
+delete_with_user:
+  user: delete_container_recipe
+  ingredient: one
+  volume_init: 10
+  volume_actual: 5
+  price: 5

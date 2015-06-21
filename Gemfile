@@ -43,8 +43,11 @@ group :development, :test do
   gem 'spring'
 end
 
-  # For authorization
+  # For authentification
 gem 'devise'
+
+  # For authorization
+gem "cancan"
 
   # For graph visualization of db schema
 group :development do

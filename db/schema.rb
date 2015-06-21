@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150607202038) do
+ActiveRecord::Schema.define(version: 20150621152214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,11 +90,15 @@ ActiveRecord::Schema.define(version: 20150607202038) do
   create_table "recipes", force: :cascade do |t|
     t.string   "name"
     t.integer  "recipe_type_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "user_id"
+    t.boolean  "shared",         default: false, null: false
   end
 
   add_index "recipes", ["recipe_type_id"], name: "index_recipes_on_recipe_type_id", using: :btree
+  add_index "recipes", ["shared"], name: "index_recipes_on_shared", using: :btree
+  add_index "recipes", ["user_id"], name: "index_recipes_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -132,5 +136,6 @@ ActiveRecord::Schema.define(version: 20150607202038) do
   add_foreign_key "products", "variants"
   add_foreign_key "proportions", "variants"
   add_foreign_key "recipes", "recipe_types"
+  add_foreign_key "recipes", "users"
   add_foreign_key "variants", "recipes"
 end

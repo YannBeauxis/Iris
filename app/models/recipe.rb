@@ -3,7 +3,8 @@ class Recipe < ActiveRecord::Base
   has_many :variants, dependent: :destroy, autosave: :true#, :class_name => 'Variant', :foreign_key => 'recipe_id', 
   has_many :products, through: :variants
   belongs_to :type, :class_name => 'RecipeType', :foreign_key => 'recipe_type_id'
-  validates :type, :name, presence: true
+  belongs_to :user
+  validates :user, :type, :name, presence: true
   after_save :update_proportions
 
   def ingredient_types
