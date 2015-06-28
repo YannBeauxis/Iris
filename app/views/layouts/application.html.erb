@@ -1,74 +1,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>IRIS Project</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+<title>IRIS Project</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
 </head>
+
 <body>
+<div id="All_Page">
+  
+<div id="Main_Header">
+  <div id="Main_Title">
+    <span><%= link_to 'IRIS', root_path %></span>
+  </div>
+  <div id="Main_Menu">
+    > <%= link_to 'Ingrédients', ingredients_path %><br>
+    > <%= link_to 'Recettes', recipes_path %>
+  </div>
 
-<div id="Home">
-  <table>
-    <tr><td><%= link_to 'Home', root_path %></td></tr>
-    <tr><td><%= link_to 'Admin', users_path %></td></tr>
-    <tr><td>
-      <% if user_signed_in? %>
-        <%= link_to('Logout', destroy_user_session_path, :method => :delete) %></p>
-      <% end %>
-    </td></tr>  
-  </table> 
+	<div id="Admin_Link">
+    	<%= link_to 'Admin', users_path %>
+  </div>
+    
+	<div id="Manage_Session">
+
+			<% if user_signed_in? %>
+				<%= current_user.email %><br>
+				<%= link_to('Déconnexion', destroy_user_session_path, 
+						:method => :delete) %>
+			<%else%>			
+				Non connecté<br>
+				<%= link_to('Se connecter', new_user_session_path) %>
+			<% end %>
+	</div>
+	
+	<div id="Message">
+		<% flash.each do |name, msg| -%>
+			<%= content_tag :div, msg, class: name %>
+		<% end -%>
+	</div>
+
 </div>
 
-<div id="Message">
-    <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
-    <% end -%>
+<div id="Nav_Resume">
+  <% if content_for?(:nav_resume) %>
+    <%= yield( :nav_resume ) %>
+  <% end %>
 </div>
 
-<div id="Menu">
-  <table>
-    <tr>
-      <td><%= link_to 'Types d\'ingrédients', ingredient_types_path %></td> 
-      <td><%= link_to 'Types de recettes', recipe_types_path %></td>
-    </tr>
-    <tr>
-      <td><%= link_to 'Liste des ingrédients', ingredients_path %></td>
-      <td><%= link_to 'Liste des recettes', recipes_path %></td>
-    </tr>
-  </table>
-</div>
-
-<div id="main">
-
+<div id="Main_Content">
   <%= yield %>
+  
+    <div id="Content_Header">
+    <table>
+      <tr>
+        <td class="main">
+          <% if content_for?(:content_header) %>
+            <%= yield( :content_header ) %>
+          <% end %>
+        </td>
 
-  <% if content_for?(:title) %>
-    <div id="title"><h1><%= yield( :title ) %></h1></div>
-  <% end %>
+        <% if content_for?(:content_menu) %>
+          <td class="menu">
+            <div id="Content_Menu"><%= yield( :content_menu ) %></div>
+          </td>
+        <% end %>
 
-  <% if content_for?(:list) %>
-    <div id="list" >
-      <%= yield(:list) %>
+      </tr>
+    </table>
+  </div>
+  <% if content_for?(:resume_list) %>
+    <div id="Resume_List" >
+      <%= yield(:resume_list) %>
     </div>
   <% end %>
-
-  <% if (content_for?(:item_title) or content_for?(:item)) %>
-    <div id="item" >
-      <% if content_for?(:item_title) %>
-        <div class="title" >
-          <h2><%= yield :item_title %></h2>
-        </div>
-      <% end %>
-      <% if content_for?(:item) %>
-        <div class="content" >
-          <%= yield :item %>
-        </div>
-      <% end %>
-    </div>
+  
+  <% if content_for?(:item_content) %>
+    <div id="Item_Content" >
+      <%= yield( :item_content ) %>
+      </div>
   <% end %>
-
+  
 </div>
 
+</div>
 </body>
 </html>

@@ -1,0 +1,7 @@
+<% content_for :content_menu do %>
+  <%= link_to 'Modifier', edit_ingredient_path(@ingredient) %><br>
+  <%= link_to 'Supprimer', ingredient_path(@ingredient),
+              method: :delete,
+              data: { confirm: 'Voulez-vous supprimer cet ingrédient ?' } %><br>
+  <%= link_to 'Ajouter un sotck', new_ingredient_container_path(@ingredient) %>
+<% end %>

@@ -1,12 +1,9 @@
-<%= render 'recipes/list' %>
+<%= render 'recipes/header' %>
+<%= render 'recipes/menu' %>
 
-<%= render 'recipes/item_title' %>
+<% content_for :item_content do %>
 
-<% content_for :item do %>
-
-  <%= render 'recipes/info' %>
-
-    <h3>Liste des produits</h3>
+    <p><strong>Liste des produits</strong></p>
 
     <table>
 

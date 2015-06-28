@@ -1,14 +1,16 @@
-<%= render 'list' %>
+<%= render 'nav_resume' %>
+<%= render 'header' %>
+<%= render 'menu' %>
 
-<%= render 'item_title' %>
+<%content_for :content_menu do%>
+  <br><%= link_to 'Annuler', recipe_path(@recipe) %>
+<% end %>
 
-<% content_for :item do %>
+<% content_for :item_content do %>
 
-  <%= render 'info' %>
+  <p><strong>Ajouter un ingrédient à la recette</strong></p>
 
-  <h3>Ajouter un ingrédient à la recette</h3>
-
-  <p><%= link_to 'Annuler', recipe_path(@recipe) %></p>
+  <p></p>
 
   <table>
     <tr>

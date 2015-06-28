@@ -1,0 +1,5 @@
+<% content_for :nav_resume do %>
+  > <%= link_to 'Recettes', recipes_path %> 
+  > <%= link_to @recipe.type.name, recipe_type_path(@recipe.type) %>
+  > <%= link_to @recipe.name, recipe_path(@recipe) %>
+<% end %>

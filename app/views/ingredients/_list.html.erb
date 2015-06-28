@@ -1,12 +1,14 @@
-<% content_for :title do %>
-  Ingrédients
+<% content_for :content_header do %>
+  <span class="title">Liste des ingrédients</span>
 <% end %>
 
-<% content_for :list do %>
+<% content_for :content_menu do %>
+  <%= link_to 'Nouvel ingrédient', new_ingredient_path %>
+<% end %>
 
-  <p><%= link_to 'Nouvel ingrédient', new_ingredient_path %></p>
+<% content_for :item_content do %>
 
-    <table>
+    <table class="colored">
 
      <tr>
        <th></th>
@@ -15,10 +17,16 @@
      </tr>
 
       <% @ingredient_types.each do |it| %>
-        <tr><td><strong><%= it.name %></strong><td></p>
+        <tr><td><strong><%= link_to it.name, ingredient_type_path(it) %></strong><td></p>
+        <% colored = true %>
         <% @ingredients.where(type: it).sort_by {|i| i.name }.each do |i| %>
-          <tr>
-            <td>- <%= link_to i.name, ingredient_path(i) %></td>
+          <% if colored then %>
+            <tr class="filled">
+          <% else %>
+            <tr>
+          <% end %>
+          <% colored = !colored %>
+            <td>&nbsp; &nbsp;<%= link_to i.name, ingredient_path(i) %></td>
             <td class="center"><%= if i.price_by_unit != nil  then i.price_by_unit.round(2).to_s + ' €/' +i.type.mesure_unit else '-' end %></td>
             <td class="center"><%= i.recipes.count %></td>
           </tr>

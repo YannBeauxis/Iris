@@ -1,20 +1,22 @@
-<%= render 'recipes/list' %>
+<%= render 'nav_resume' %>
+<%= render 'header' %>
+<%= render 'menu' %>
 
-<%= render 'recipes/item_title' %>
+<% content_for :content_menu do %>
+<br><%= link_to 'Retour variante', recipe_variant_path(@recipe,@variant) %>
+<% end %>
 
-<% content_for :item do %>
+<% content_for :item_content do %>
 
-  <%= render 'recipes/info' %>
-
-  <h3>Modifier Infos générales</h3>
+  <p><strong>Modifier Infos générales</strong></p>
 
   <%= render 'form' %>
 
   <%= form_for @variant ,url: recipe_variant_update_proportions_path(@recipe,@variant), method:'patch' do |f| %>
-
-  <h3>Modifier Proportions</h3>
-
-  <h4>Par type</h4>
+  
+  <p><strong>Modifier Proportions</strong></p>
+  
+  <p><strong><i>Par type</i></strong></p>
 
   <table>
     <% @variant.proportions.where(composant_type: 'IngredientType').each do |p| %>
@@ -28,7 +30,7 @@
     <% end %>
   </table>
 
-  <h4>Ingrédients pour chaque type</h4>
+  <p><strong><i>Ingrédients pour chaque type</i></strong></p>
 
     <table>
       <% @variant.proportions.where(composant_type: 'IngredientType').each do |itp| %>
@@ -46,8 +48,5 @@
   </table>
   <%= f.submit 'Enregistrer' %>
   <% end %>
-
-  <p><%= link_to 'Retour variante', recipe_variant_path(@recipe,@variant) %></p>
-
 
 <% end %>

@@ -1,16 +1,10 @@
-<% render 'list' %>
+<%= render 'nav_resume' %>
+<%= render 'header' %>
+<%= render 'menu' %>
 
-<% render 'item_title' %>
+<% content_for :item_content do %>
 
-<% content_for :item do %>
-  <p>
-    <%= link_to 'Modifier', edit_recipe_type_path %> | 
-    <%= link_to 'Supprimer', recipe_type_path(@recipe_type),
-                method: :delete,
-                data: { confirm: 'Confirmer la suppression ?' } %>
-  </p>
-
-  <h2>Types d'ingrédients</h2>
+<p><strong>Types d'ingrédients</strong></p>
 
     <ul>
       <% @recipe_type.ingredient_types.each do |it| %>
@@ -18,7 +12,7 @@
      <% end %>
    </ul>
 
-  <h2>Recettes associées</h2>
+<p><strong>Recettes associées</strong></p>
 
   <ul>
     <% @recipes.each do |r| %>

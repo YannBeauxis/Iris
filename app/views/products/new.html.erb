@@ -1,12 +1,15 @@
-<%= render 'recipes/list' %>
+<%= render 'variants/nav_resume' %>
 
-<%= render 'recipes/item_title' %>
+<% content_for :content_header do %>
+  <span class="title">Nouveau Produit</span><br>
+  <span class="subtitle"><%= @recipe.name %></span>
+<% end %>
 
-<% content_for :item do %>
+<% content_for :content_menu do %>
+  <%= link_to 'Annuler', :back %>
+<% end %>
 
-  <%= render 'recipes/info' %>
-
-  <h3>Nouveau Produit</h3>
+<% content_for :item_content do %>
 
   <%= render 'form' %>
 

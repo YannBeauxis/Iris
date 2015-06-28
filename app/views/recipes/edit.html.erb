@@ -1,8 +1,7 @@
-<% render 'list' %>
+<%= render 'header' %>
+<%= render 'menu' %>
 
-<% render 'item_title' %>
-
-<% content_for :item do %>
+<% content_for :item_content do %>
  <h3>Modifier la recette</h3>
 
   <%= render 'form' %>

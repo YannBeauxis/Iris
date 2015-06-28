@@ -1,29 +1,33 @@
-<%= render 'list' %>
+<%= render 'nav_resume' %>
 
-<%= render 'item_title' %>
+<%= render 'ingredients/list_resume' %>
 
-<% content_for :item do %>
+<%= render 'item_header' %>
 
-   <p>
-    <%= link_to 'Modifier', edit_ingredient_type_path %> | 
-    <%= link_to 'Supprimer', ingredient_type_path(@ingredient_type),
-                method: :delete,
-                data: { confirm: 'Confirmer la suppression ?' } %>
-  </p>
+<%= render 'item_menu' %>
 
+<% content_for :item_content do %>
   <p>
     <strong>Unité de mesure : </strong>
     <%= @ingredient_type.mesure_unit %>
   </p>
 
-  <h2>Types de recettes associées</h2>
-
+  <p>
+  <strong>Types de recettes associées</strong>
     <ul>
       <% @ingredient_type.recipe_types.each do |rt| %>
         <li> <%= link_to rt.name, rt %> </li>
      <% end %>
    </ul>
+  </p>
 
+  <strong>Ingrédients disponibles</strong>
+    <ul>
+      <% @ingredient_type.ingredients.each do |i| %>
+        <li> <%= link_to i.name, i %> </li>
+     <% end %>
+   </ul>
+  </p>
 
 
 <% end %>

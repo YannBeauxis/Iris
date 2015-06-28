@@ -1,21 +1,14 @@
-<%= render 'recipes/list' %>
+<%= render 'nav_resume' %>
+<% content_for :nav_resume do %>
+  > <%= link_to @variant.name, recipe_variant_path(@recipe,@variant) %> 
+<% end %>
+<%= render 'header' %>
+<%= render 'menu' %>
 
-<%= render 'recipes/item_title' %>
+<% content_for :item_content do %>
 
-<% content_for :item do %>
+<p><strong>Dosage ingrédients</strong></p>
 
-  <%= render 'recipes/info' %>
-
-<h3>Variante <%= @variant.name %></h3>
-
-<p>
-  <%= link_to 'Modifier', edit_recipe_variant_path(@recipe, @variant) %> | 
-  <%= link_to 'Supprimer', recipe_variant_path(@recipe, @variant),
-                method: :delete,
-                data: { confirm: 'Confirmer la suppression ?' } %>
-</p>
-
-<h4>Dosage ingrédients</h4>
 <table>
 
   <% @variant.proportions.where(composant_type: 'IngredientType').each do |itp| %>
@@ -36,8 +29,6 @@
        <% end %>
   <% end %>
 </table>
-
-<p><%= link_to 'Retour variantes', recipe_variants_path(@recipe) %></p>
 
 <% end %>
 

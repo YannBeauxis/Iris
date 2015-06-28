@@ -48,6 +48,7 @@ class IngredientTypesController < ApplicationController
 
     def get_list
       @ingredient_types = IngredientType.all
+      @ingredients = Ingredient.all
     end
 
     def ingredient_type_params

@@ -1,9 +1,0 @@
-<i><%= @ingredient.type.name %></i>
-
-  <P>
-    <%= link_to 'Modifier', edit_ingredient_path(@ingredient) %> | 
-    <%= link_to 'Supprimer', ingredient_path(@ingredient),
-                method: :delete,
-                data: { confirm: 'Voulez-vous supprimer cet ingrédient ?' } %>
-  </p>
-

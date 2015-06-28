@@ -1,11 +1,17 @@
-<%= render 'list' %>
+<%= render 'nav_resume' %>
+<%= render 'header' %>
+<%= render 'menu' %>
 
-<%= render 'item_title' %>
+<% content_for :content_menu do %>
+<br> <%= link_to 'Ajouter ingrédient', recipe_ingredient_candidates_path(@recipe) %>
+<br> <%= link_to 'Ajouter variante', new_recipe_variant_path(@recipe) %>
+<br> <%= link_to 'Ajouter produit', new_recipe_product_path(@recipe) %>
+<% end %>
 
-<% content_for :item do %>
+<% content_for :item_content do %>
 
-  <%= render 'info' %>
-
+  <%= render 'products/list' %>
+  
   <%= render 'ingredients' %>
 
 <% end %>

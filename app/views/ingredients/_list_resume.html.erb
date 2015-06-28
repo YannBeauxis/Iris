@@ -1,0 +1,14 @@
+<% content_for :resume_list do %>
+
+    <table>
+      <% @ingredient_types.each do |it| %>
+        <tr><td><strong><%= link_to it.name, ingredient_type_path(it) %></strong><td></p>
+        <% @ingredients.where(type: it).sort_by {|i| i.name }.each do |i| %>
+          <tr>
+            <td>&nbsp; &nbsp;<%= link_to i.name, ingredient_path(i) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+
+<% end %>

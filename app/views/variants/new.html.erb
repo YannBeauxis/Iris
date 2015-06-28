@@ -1,12 +1,11 @@
-<%= render 'recipes/list' %>
+<%= render 'nav_resume' %>
 
-<%= render 'recipes/item_title' %>
+<% content_for :content_header do %>
+  <span class="title">Nouvelle Variante</span><br>
+  <span class="subtitle"><%= @recipe.name %></span>
+<% end %>
 
-<% content_for :item do %>
-
-  <%= render 'recipes/info' %>
-
-  <h3>Nouvelle variante</h3>
+<% content_for :item_content do %>
 
   <%= render 'form' %>
   <p><%= link_to 'Annuler', recipe_path(@recipe) %></p>

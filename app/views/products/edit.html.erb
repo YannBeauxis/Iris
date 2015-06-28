@@ -1,12 +1,10 @@
-<%= render 'recipes/list' %>
+<%= render 'nav_resume' %>
+<%= render 'header' %>
+<%= render 'menu' %>
 
-<%= render 'recipes/item_title' %>
+<% content_for :item_content do %>
 
-<% content_for :item do %>
-
-  <%= render 'recipes/info' %>
-
-  <h3>Modifier le produit <%= @product.name %></h3>
+  <p><strong>Modifier le produit</strong></p>
 
   <%= render 'form' %>
 

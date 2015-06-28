@@ -1,10 +1,14 @@
-<%= render 'list' %>
+<%= render 'nav_resume' %>
 
-<%= render 'item_title' %>
+<%= render 'ingredients/list_resume' %>
 
-<% content_for :item do %>
+<%= render 'item_header' %>
 
-  <h3> Modifier le type d'ingrédient</h3>
+<%= render 'item_menu' %>
+
+<% content_for :item_content do %>
+
+  <p><strong>Modifier le type d'ingrédient</strong></p>
 
   <%= render 'form' %>
 

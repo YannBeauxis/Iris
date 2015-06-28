@@ -1,0 +1,4 @@
+<% content_for :content_header do %>
+  <span class="title">Produit <%= @product.name %></span><br>
+  <span class="subtitle"><%= @product.variant.recipe.name %>, variante <%= @product.variant.name %></span>
+<% end %>

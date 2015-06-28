@@ -1,0 +1,28 @@
+  <p><strong>Liste des produits par variante</strong></p>
+  
+    <table>
+
+      <tr>
+        <th></th>
+        <th>Volume</th>
+        <th>Prix</th>
+      </tr>
+      
+      <% @recipe.variants.each do |v| %>
+        <tr><td><strong><%= link_to v.name, recipe_variant_path(@recipe,v) %></strong><td></p>
+        <% colored = true %>
+        <% v.products.each do |p| %>
+          <% if colored then %>
+            <tr class="filled">
+          <% else %>
+            <tr>
+          <% end %>
+          <% colored = !colored %>
+              <td>&nbsp; &nbsp;<%= link_to p.name, recipe_product_path(@recipe,p) %></td>          
+              <td><%= p.volume %></td>
+              <td><%= p.price %> €</td>
+            </tr>
+        <% end %>
+     <% end %>
+
+   </table>

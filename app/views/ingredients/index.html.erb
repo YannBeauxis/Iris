@@ -1,2 +1,5 @@
-<% render 'list' %>
+<% content_for :nav_resume do %>
+  > <%= link_to 'Ingrédients', ingredients_path %>
+<% end %>
 
+<% render 'list' %>

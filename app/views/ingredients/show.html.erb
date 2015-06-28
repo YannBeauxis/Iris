@@ -1,18 +1,19 @@
-<%= render 'list' %>
+<%= render 'nav_resume' %>
 
-<%= render 'item_title' %>
+<%= render 'list_resume' %>
 
-<% content_for :item do %>
+<%= render 'header' %>
 
-  <%= render 'info' %>
+<%= render 'menu' %>
+
+<% content_for :item_content do %>
 
   <% if @ingredient.containers.count > 0 then %>
 
-    <h3>En stock pour cet ingrédient</h3>
+    En stock pour cet ingrédient
  
     <table>
       <tr>
-        <th>Owner email</th>
         <th>Volume d'achat</th>
         <th>Volume actuel</th>
         <th>Prix d'achat</th>
@@ -21,7 +22,6 @@
  
       <% @ingredient.containers.each do |c| %>
         <tr>
-          <td><%= c.user.email %></td>
           <td><%= c.volume_init.round(0) %></td>
           <td><%= if c.volume_actual? then c.volume_actual.round(0) end %></td>
           <td><%= c.price.round(2) %> €</td>
@@ -39,7 +39,5 @@
     <p><italic>Pas de stock pour cet ingrédient.</italic></p>
 
   <% end %>
-
-  <p><%= link_to 'Ajouter un sotck', new_ingredient_container_path(@ingredient) %></p>
 
 <% end %>

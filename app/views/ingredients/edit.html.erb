@@ -1,10 +1,14 @@
-<% render 'list' %>
+<%= render 'nav_resume' %>
 
-<% render 'item_title' %>
+<%= render 'list_resume' %>
 
-<% content_for :item do %>
+<%= render 'header' %>
 
-  <h3>Modifier l'ingrédient</h3>
+<%= render 'menu' %>
+
+<% content_for :item_content do %>
+
+  <p><strong>Modifier l'ingrédient</strong></p>
   <%= render 'form' %>
 
   <p><%= link_to 'Annuler', @ingredient %></p>

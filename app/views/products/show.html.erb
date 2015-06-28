@@ -1,10 +1,8 @@
-<%= render 'recipes/list' %>
+<%= render 'nav_resume' %>
+<%= render 'header' %>
+<%= render 'menu' %>
 
-<%= render 'recipes/item_title' %>
-
-<% content_for :item do %>
-
-  <%= render 'recipes/info' %>
+<% content_for :item_content do %>
 
   <h3>Produit <%= @product.name %></h3>
     <table class = "product">
@@ -17,16 +15,6 @@
               <tr><td>Prix : <%= @product.price %> €</td></tr>
             <% end %>
           </table>
-        </td>
-        <td>
-          <table>
-            <tr><td><%= link_to 'Modifier', edit_recipe_product_path %></td></tr>
-            <tr><td>
-              <%= link_to 'Supprimer', recipe_product_path(@recipe, @product),
-                      method: :delete,
-                      data: { confirm: 'Confirmer la suppression ?' } %>
-            </td></tr>
-           </table>
         </td></tr>
       <tr><th>Dosage</th></tr>
         <tr><td><table>

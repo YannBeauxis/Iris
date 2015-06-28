@@ -1,12 +1,12 @@
-<%= render 'ingredients/list' %>
+<%= render 'ingredients/nav_resume' %>
 
-<%= render 'ingredients/item_title' %>
+<%= render 'ingredients/header' %>
 
-<% content_for :item do %>
+<%= render 'ingredients/menu' %>
 
-  <%= render 'ingredients/info' %>
+<% content_for :item_content do %>
 
-    <h3>Modifier le contenant</h3>
+    <p><strong>Modifier le contenant</strong></p>
     <%= render 'form' %>
 
 <% end %>

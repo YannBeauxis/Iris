@@ -1,10 +1,12 @@
-<% render 'list' %>
-
-<% content_for :item_title do %>
-  Nouvel ingrédient
+<% content_for :nav_resume do %>
+  > <%= link_to 'Ingrédients', ingredients_path %>
 <% end %>
 
-<% content_for :item do %>
+<% content_for :content_header do %>
+  <span class="title">Nouvel ingrédient</span>
+<% end %>
+
+<% content_for :item_content do %>
 
   <%= render 'form' %>
 
