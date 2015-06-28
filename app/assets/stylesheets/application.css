@@ -15,10 +15,10 @@
  */
 
 body {
-  margin: 0 auto;
+  //margin: 0 auto;
   width: 580px;
   color : rgb(92,90,98);
-  overflow-y: scroll;
+  //overflow-y: scroll;
 }
 
 table.colored tr.filled {
