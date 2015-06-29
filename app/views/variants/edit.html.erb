@@ -3,7 +3,7 @@
 <%= render 'menu' %>
 
 <% content_for :content_menu do %>
-<br><%= link_to 'Retour variante', recipe_variant_path(@recipe,@variant) %>
+<br>> <%= link_to 'Retour variante', recipe_variant_path(@recipe,@variant) %>
 <% end %>
 
 <% content_for :item_content do %>
@@ -13,6 +13,7 @@
   <%= render 'form' %>
 
   <%= form_for @variant ,url: recipe_variant_update_proportions_path(@recipe,@variant), method:'patch' do |f| %>
+  <input type="hidden" name="variant[id]" step="any" type="number" value=<%= @variant.id %> />
   
   <p><strong>Modifier Proportions</strong></p>
   

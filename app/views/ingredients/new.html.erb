@@ -6,10 +6,10 @@
   <span class="title">Nouvel ingrédient</span>
 <% end %>
 
+<% content_for :content_menu do %>
+  > <%= link_to 'Annuler', ingredients_path %>
+<% end %>
+
 <% content_for :item_content do %>
-
   <%= render 'form' %>
-
-  <p><%= link_to 'Annuler', ingredients_path %></p>
-
 <% end %>

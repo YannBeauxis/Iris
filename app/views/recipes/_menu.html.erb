@@ -1,6 +1,6 @@
 <% content_for :content_menu do %>
-<%= link_to 'Modifier', edit_recipe_path(@recipe) %><br>
-<%= link_to 'Supprimer', ingredient_path(@recipe),
+  > <%= link_to 'Modifier', edit_recipe_path(@recipe) %><br>
+  > <%= link_to 'Supprimer', ingredient_path(@recipe),
               method: :delete,
               data: { confirm: 'Voulez-vous supprimer cette recette ?' } %>
 <% end %>

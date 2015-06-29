@@ -1,1 +1,39 @@
-<%= render 'list' %>
+<% content_for :nav_resume do %>
+  > <%= link_to 'Recettes', recipes_path %>
+<% end %>
+
+<% content_for :content_header do %>
+  <span class="title">Liste des recettes</span>
+<% end %>
+
+<% content_for :content_menu do %>
+  > <%= link_to 'Nouvelle recette', new_recipe_path %>
+<% end %>
+
+<% content_for :item_content do %>
+
+  <table class="colored">
+
+   <tr>
+     <th></th>
+     <th># produits</th>
+   </tr>
+
+    <% @recipe_types.sort_by {|r| r.name }.each do |rt| %>
+      <tr><td><strong><%= link_to rt.name, recipe_type_path(rt) %><strong><td></tr>
+      <% colored = true %>
+      <% @recipes.where(type: rt).sort_by {|r| r.name }.each do |r| %>
+          <% if colored then %>
+            <tr class="filled">
+          <% else %>
+            <tr>
+          <% end %>
+          <% colored = !colored %>
+          <td>&nbsp; &nbsp;<%= link_to r.name, recipe_path(r) %></td>
+          <td class="center"><%= r.products.count %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+
+<% end %>

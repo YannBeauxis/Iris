@@ -52,24 +52,16 @@
 <div id="Main_Content">
   <%= yield %>
   
-    <div id="Content_Header">
-    <table>
-      <tr>
-        <td class="main">
-          <% if content_for?(:content_header) %>
-            <%= yield( :content_header ) %>
-          <% end %>
-        </td>
-
-        <% if content_for?(:content_menu) %>
-          <td class="menu">
-            <div id="Content_Menu"><%= yield( :content_menu ) %></div>
-          </td>
-        <% end %>
-
-      </tr>
-    </table>
+  <div id="Content_Header">
+    <% if content_for?(:content_header) %>
+      <%= yield( :content_header ) %>
+    <% end %>
   </div>
+
+  <% if content_for?(:content_menu) %>
+      <div id="Content_Menu"><%= yield( :content_menu ) %></div>
+  <% end %>
+  
   <% if content_for?(:resume_list) %>
     <div id="Resume_List" >
       <%= yield(:resume_list) %>

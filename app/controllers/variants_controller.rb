@@ -1,5 +1,5 @@
 class VariantsController < ApplicationController
-  load_and_authorize_resource
+  #load_and_authorize_resource
   before_action :get_recipe
 
   def index
@@ -48,8 +48,8 @@ class VariantsController < ApplicationController
     end
   end
 
-  def destroy
-    @variant = Variant.find(params[:id])
+  def destroyd
+    @variant = Variant.find(:id)
     @variant.destroy
  
     redirect_to recipe_variants_path(@recipe)
@@ -57,6 +57,7 @@ class VariantsController < ApplicationController
 
   def update_proportions
     @variant = Variant.find(params[:variant_id])
+
 
     update_proportions_params[:proportion_attributes].each do |up|
        p = Proportion.find(up[:id])

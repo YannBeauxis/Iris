@@ -3,9 +3,9 @@
 <%= render 'menu' %>
 
 <% content_for :content_menu do %>
-<br> <%= link_to 'Ajouter ingrédient', recipe_ingredient_candidates_path(@recipe) %>
-<br> <%= link_to 'Ajouter variante', new_recipe_variant_path(@recipe) %>
-<br> <%= link_to 'Ajouter produit', new_recipe_product_path(@recipe) %>
+<br>> <%= link_to 'Ajouter ingrédient', recipe_ingredient_candidates_path(@recipe) %>
+<br>> <%= link_to 'Ajouter variante', new_recipe_variant_path(@recipe) %>
+<br>> <%= link_to 'Ajouter produit', new_recipe_product_path(@recipe) %>
 <% end %>
 
 <% content_for :item_content do %>

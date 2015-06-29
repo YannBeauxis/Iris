@@ -5,9 +5,12 @@
   <span class="subtitle"><%= @recipe.name %></span>
 <% end %>
 
+<%content_for :content_menu do%>
+  > <%= link_to 'Annuler', recipe_path(@recipe) %>
+<% end %>
+
 <% content_for :item_content do %>
 
   <%= render 'form' %>
-  <p><%= link_to 'Annuler', recipe_path(@recipe) %></p>
 
 <% end %>

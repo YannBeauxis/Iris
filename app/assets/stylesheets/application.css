@@ -128,10 +128,6 @@ a:hover {
   color: rgb(195,146,0); /*Color 4 */
 }
 
-#Content_Header table{
- width: 100%;
-}
-
 #Content_Header .title {
   font-size: 180%;
   color: rgb(53,38,203); /* Color 1 */
@@ -141,15 +137,17 @@ a:hover {
   font-style : italic;
 }
 
-#Content_Header .menu {
+#Content_Menu {
+  position: absolute;
+  z-index: 2;
   padding: 5px;
-  right: 0px;
+  right: 0;
   top: 0;
-  width: 140px;
+  width: 160px;
   background-color: rgb(255,251,227); /*Color 3 */
 }
 
-#Content_Header .menu a {
+#Content_Menu a {
   color: rgb(195,146,0); /*Color 4 */
 }
 
@@ -158,8 +156,9 @@ a:hover {
 }
 
 #Item_Content {
-  position: absolute;
-  top : 60px;
+  position: relative;
+  z-index: 1;
+  top : 5px;
   width: 100%;
   padding-bottom: 20px;
   border-bottom: 1px solid rgb(208,204,202); /*Color 3 */
