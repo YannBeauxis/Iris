@@ -15,10 +15,8 @@
  */
 
 body {
-  //margin: 0 auto;
   width: 580px;
-  color : rgb(92,90,98);
-  //overflow-y: scroll;
+  color : rgb(92,90,98); /*Color 3 */
 }
 
 table.colored tr.filled {
@@ -41,16 +39,12 @@ td.center {
   position: relative;
   top : 0px;
   left: 0px;
-  /*width: 630px;*/
   height: 70px;
-  border-bottom: 1px solid rgb(180,177,192);
-  /*padding: 10px;
-  background-color: rgb(250,250,250);
-  border: 1px solid black;*/
+  border-bottom: 1px solid rgb(208,204,202); /*Color 3 */
 }
 
-a {
-   color: rgb(112,91,192);
+ a {
+   color: rgb(53,38,203); /* Color 1 */
    text-decoration: none; 
 }
 
@@ -113,9 +107,11 @@ a:hover {
   position: relative;
   top : 2px;
   left: 0px;
-
   height: 20px;
-  //border: 1px solid black;
+}
+
+#Nav_Resume a {
+  color: rgb(195,146,0); /*Color 4 */
 }
 
 #Main_Content{
@@ -125,11 +121,11 @@ a:hover {
   left: 0px;
 }
 
-
 #Content_Header {
   position: relative;
   width: 100%;
   padding-bottom: 10px;
+  color: rgb(195,146,0); /*Color 4 */
 }
 
 #Content_Header table{
@@ -138,6 +134,7 @@ a:hover {
 
 #Content_Header .title {
   font-size: 180%;
+  color: rgb(53,38,203); /* Color 1 */
 }
 
 #Content_Header .subtitle {
@@ -145,13 +142,15 @@ a:hover {
 }
 
 #Content_Header .menu {
-  //position: absolute;
   padding: 5px;
   right: 0px;
   top: 0;
-  //text-align: right;
   width: 140px;
-  background-color: rgb(248,246,255);
+  background-color: rgb(255,251,227); /*Color 3 */
+}
+
+#Content_Header .menu a {
+  color: rgb(195,146,0); /*Color 4 */
 }
 
 #Resume_List {
@@ -161,7 +160,9 @@ a:hover {
 #Item_Content {
   position: absolute;
   top : 60px;
-  /*padding-left: 5px;*/
+  width: 100%;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgb(208,204,202); /*Color 3 */
 }
 
 #item {
