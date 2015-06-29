@@ -24,6 +24,7 @@ class ContainersController < ApplicationController
   def create
     #@ingredient = Ingredient.find(params[:ingredient_id])
     @container = @ingredient.containers.new(container_params)
+    @container.user = current_user
 
     if @container.save
       redirect_to @ingredient
