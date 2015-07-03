@@ -3,6 +3,14 @@ class RecipeType < ActiveRecord::Base
   has_and_belongs_to_many :ingredient_types
   validates :name, presence: true
 
+# density equal 1 by default
+  def density
+    if super.nil? then
+      1
+    else
+      super
+    end
+  end
 
   def nb_products
     nb=0

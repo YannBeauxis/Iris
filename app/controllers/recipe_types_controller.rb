@@ -58,7 +58,7 @@ class RecipeTypesController < ApplicationController
     end
 
     def recipe_type_params
-      params.require(:recipe_type).permit(:name, {:ingredient_type_ids => []})
+      params.require(:recipe_type).permit(:name, {:ingredient_type_ids => []}, :density)
     end
 
 end

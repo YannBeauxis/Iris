@@ -52,7 +52,7 @@ class IngredientTypesController < ApplicationController
     end
 
     def ingredient_type_params
-      params.require(:ingredient_type).permit(:name,:name_short, :mesure_unit)
+      params.require(:ingredient_type).permit(:name,:name_short, :mesure_unit, :density)
     end
 
 end

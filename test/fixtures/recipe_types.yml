@@ -19,3 +19,17 @@ ingredient_candidates:
 create_proportions:
   name: 'create_proportions'
   ingredient_types: create_proportions_1,create_proportions_2
+
+no_density:
+  name: no_density
+  ingredient_types: one
+  
+density_09:
+  name: no_density
+  ingredient_types: one
+  density: 0.9
+
+proportions:
+  name: proportions
+  ingredient_types: proportions_1, proportions_2
+  density: 0.9

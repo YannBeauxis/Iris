@@ -9,6 +9,10 @@
     <%= f.collection_check_boxes :ingredient_type_ids, @ingredient_types, :id, :name %>
   </p>
 
+  <p>
+    <%= f.label 'Densité' %><br>
+    <%= f.number_field :density, :step => 'any' %>
+  </p>
 
   <p>
     <%= f.submit 'Enregistrer' %>

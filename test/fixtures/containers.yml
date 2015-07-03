@@ -24,3 +24,24 @@ delete_with_user:
   volume_init: 10
   volume_actual: 5
   price: 5
+
+proportions_1:
+  user: one
+  ingredient: proportions_1
+  volume_init: 1
+  volume_actual: 1
+  price: 1
+
+proportions_2:
+  user: one
+  ingredient: proportions_2
+  volume_init: 1
+  volume_actual: 1
+  price: 2
+
+proportions_3:
+  user: one
+  ingredient: proportions_3
+  volume_init: 1
+  volume_actual: 1
+  price: 2

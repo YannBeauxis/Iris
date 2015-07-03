@@ -11,3 +11,7 @@ product_delete:
 variant2proportion_delete:
   name: 'variant2proportion_delete'
   recipe: one
+  
+proportions:
+  name: 'proportions'
+  recipe: proportions

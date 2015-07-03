@@ -11,6 +11,11 @@
   </p>
 
   <p>
+    <%= f.label 'Densité' %><br>
+    <%= f.number_field :density, :step => 'any' %>
+  </p>
+
+  <p>
     <%= f.submit 'Enregistrer'%>
   </p>
 <% end %>

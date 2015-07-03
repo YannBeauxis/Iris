@@ -23,20 +23,22 @@
                 <td><strong><%= it.name %></strong></td>
                 <td></td>
                 <td></td>
+                <td></td>
                 <td><i>en stock</i></td>
                 <tr>
               <% @recipe.ingredients.where(type: it).each do |i| %>
-                <% vol_ml = (@variant.composant_proportion(i) * @variant.composant_proportion(it) * @product.volume).round(2) %>
+                <% vol_ml = @product.ingredient_volume(i).round(2) %>
                 <% if vol_ml >0 then %>
                   <tr>
                     <td>- <%= i.name %></td>
                     <td class="center"><%= vol_ml %> ml</td>
+                    <td class="center"><%= @product.ingredient_mass(i).round(2) %> g</td>
                     <td class="center">
                       <% if it.name_short == 'HE' then (vol_ml*35).round(0) %>
                         <%= (vol_ml*35).round(0) %> gt.
                       <% end %>
                     </td>
-                    <td class="center"><%= i.volume_in_stock.round(0) %> ml</td>
+                    <td class="center"><%= i.volume_in_stock.round(2) %> ml</td>
                   </tr>
                 <% end %>
               <% end %>

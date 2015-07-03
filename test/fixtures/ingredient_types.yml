@@ -2,9 +2,9 @@
 
 one:
   name: 'Huile Essentielle'
-  mesure_unit : 'ml'
-  name_short : 'HE'
-  #recipe_types: one
+  mesure_unit: 'ml'
+  name_short: 'HE'
+  density: 1.2
 
 two:
   name: 'Huile Végétale'
@@ -41,3 +41,19 @@ create_proportions_2:
   name: 'create_proportions_2'
   mesure_unit : 'ml'
   name_short : 'CP2'
+  
+no_density:
+  name: 'no_density'
+  mesure_unit : 'ml'
+  name_short : 'ND'
+  
+proportions_1:
+  name: proportions_1
+  mesure_unit : 'ml'
+  name_short : 'P1'
+
+proportions_2:
+  name: proportions_2
+  mesure_unit : 'g'
+  name_short : 'P'
+

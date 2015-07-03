@@ -53,7 +53,7 @@ class IngredientsController < ApplicationController
     end
 
     def ingredient_params
-      params.require(:ingredient).permit(:name, :ingredient_type_id)
+      params.require(:ingredient).permit(:name, :ingredient_type_id, :density)
     end
 
 

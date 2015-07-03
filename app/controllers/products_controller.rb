@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @variant = @product.variant
+    @product.evaluate_proportions
   end 
 
   def new

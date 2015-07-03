@@ -28,5 +28,14 @@ class Ingredient < ActiveRecord::Base
       return false
     end
   end
+
+# density equal ingredient type density by default
+  def density
+    if super.nil? then
+      self.type.density
+    else
+      super
+    end
+  end
   
 end

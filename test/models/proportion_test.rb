@@ -7,4 +7,5 @@ class ProportionTest < ActiveSupport::TestCase
     v.destroy
     assert_not_includes Proportion.all, p
   end
+  
 end

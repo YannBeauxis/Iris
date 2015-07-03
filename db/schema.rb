@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150621152214) do
+ActiveRecord::Schema.define(version: 20150703191048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20150621152214) do
     t.string   "mesure_unit"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.float    "density"
   end
 
   create_table "ingredient_types_recipe_types", id: false, force: :cascade do |t|
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20150621152214) do
     t.integer  "ingredient_type_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.float    "density"
   end
 
   add_index "ingredients", ["ingredient_type_id"], name: "index_ingredients_on_ingredient_type_id", using: :btree
@@ -85,6 +87,7 @@ ActiveRecord::Schema.define(version: 20150621152214) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "density"
   end
 
   create_table "recipes", force: :cascade do |t|

@@ -2,11 +2,33 @@
 
 variant2proportion_delete:
   variant: variant2proportion_delete
-  composant_type: 'ingredient'
-  composant_id: ingredients(:one).id
+  composant: one(Ingredient)
+  #composant_type: 'Ingredient'
+  #composant_id: ingredients(:one).id
   value: 1
 
-#two:
-#  recipe_variant_id: 
-#  ingredient_id: 
-#  proportion: 1.5
+proportions_type_1:
+  variant: proportions
+  composant: proportions_1(IngredientType)
+  value: 0.75
+
+proportions_type_2:
+  variant: proportions
+  composant: proportions_2(IngredientType)
+  value: 0.25
+
+proportions_1:
+  variant: proportions
+  composant: proportions_1(Ingredient)
+  value: 0.8
+
+proportions_2:
+  variant: proportions
+  composant: proportions_2(Ingredient)
+  value: 0.2
+
+proportions_3:
+  variant: proportions
+  composant: proportions_3(Ingredient)
+  value: 1
+  

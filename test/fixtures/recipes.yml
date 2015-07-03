@@ -48,3 +48,10 @@ delete_with_user:
   name: 'One'
   type: one
   ingredients: one
+  
+proportions:
+  user: one
+  name: 'proportions'
+  type: proportions
+  ingredients: proportions_1, proportions_2, proportions_3
+  

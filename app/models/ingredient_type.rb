@@ -5,4 +5,14 @@ class IngredientType < ActiveRecord::Base
   validates :name,:name_short, presence: true
   validates :mesure_unit , inclusion: { in: %w(ml g),
     message: "%{value} is not a valid volmue unit" }, allow_nil: false
+    
+# density equal 1 by default
+  def density
+    if super.nil? then
+      1
+    else
+      super
+    end
+  end
+    
 end

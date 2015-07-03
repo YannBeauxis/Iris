@@ -5,6 +5,11 @@ variant_delete:
   variant: product_delete
   volume: 1
 
+proportions:
+  name: 'proportions'
+  variant: proportions
+  volume: 100
+
 #two:
 #  variant_id: 
 #  volume: 1.5
