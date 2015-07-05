@@ -5,7 +5,6 @@
       <tr>
         <th></th>
         <th>Volume</th>
-        <th>Prix</th>
       </tr>
       
       <% @recipe.variants.each do |v| %>
@@ -20,7 +19,6 @@
           <% colored = !colored %>
               <td>&nbsp; &nbsp;<%= link_to p.name, recipe_product_path(@recipe,p) %></td>          
               <td><%= p.volume %></td>
-              <td><%= p.price %> €</td>
             </tr>
         <% end %>
      <% end %>

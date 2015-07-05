@@ -20,7 +20,7 @@ body {
 }
 
 table.colored tr.filled {
-    background-color: rgb(248,246,255);
+    background-color: rgb(247,246,255);
 }
 
 table.colored {
@@ -33,6 +33,10 @@ td {
 
 td.center {
   text-align: center;
+}
+
+td.right {
+  text-align: right;
 }
 
 #Main_Header {

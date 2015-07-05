@@ -1,13 +1,18 @@
-<%= render 'list' %>
-
-<% content_for :item_title do %>
-  Nouveau type d'ingrédient
+<% content_for :nav_resume do %>
+  > <%= link_to 'Ingrédients', ingredients_path %>
+  > <%= link_to 'Types', ingredient_types_path %>
 <% end %>
 
-<% content_for :item do %>
+<% content_for :content_menu do %>
+  > <%= link_to 'Annuler', ingredients_path %>
+<%end%>
+
+<% content_for :content_header do %>
+  <span class="title">Nouveau type d'ingrédient</span>
+<% end %>
+
+<% content_for :item_content do %>
 
   <%= render 'form' %>
-
-  <%= link_to 'Annuler', ingredient_types_path %>
 
 <% end %>

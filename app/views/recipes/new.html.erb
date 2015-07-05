@@ -2,6 +2,10 @@
   > <%= link_to 'Recettes', recipes_path %>
 <% end %>
 
+<% content_for :content_menu do %>
+  > <%= link_to 'Annuler', recipes_path %>
+<%end%>
+
 <% content_for :content_header do %>
   <span class="title">Nouvelle recette</span>
 <% end %>
@@ -9,8 +13,6 @@
 <% content_for :item_content do %>
 
   <%= render 'form' %>
-
-  <p><%= link_to 'Annuler', recipes_path %></p>
 
 <% end %>
 

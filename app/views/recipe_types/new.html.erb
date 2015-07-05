@@ -1,11 +1,21 @@
-<% render 'list' %>
-
-<% content_for :item_title do %>
-  Nouveau type de recette
+<% content_for :nav_resume do %>
+  > <%= link_to 'Recettes', recipes_path %><br>
+  > <%= link_to 'Types', recipe_types_path %>
 <% end %>
 
-<% content_for :item do %>
+<% content_for :item_menu do %>
+  <br>> <%= link_to 'Annuler', @ingredient_type %>
+<%end%>
+
+
+<% content_for :content_header do %>
+  <span class="title">Nouveau type de recette</span>
+<% end %>
+
+<% content_for :item_content do %>
+
   <%= render 'form' %>
 
-  <p><%= link_to 'Annuler', recipe_types_path %></p>
+  <p><%= link_to 'Annuler', recipes_path %></p>
+
 <% end %>

@@ -21,11 +21,13 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user = current_user
 
     if @recipe.save
       #redirect_to recipes_path
       redirect_to recipe_path(@recipe)
     else
+      flash[:message] = 'Impossible de créer la recette'
       render 'new'
     end
   end

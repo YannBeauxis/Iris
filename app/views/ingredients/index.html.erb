@@ -7,7 +7,8 @@
 <% end %>
 
 <% content_for :content_menu do %>
-  > <%= link_to 'Nouvel ingrédient', new_ingredient_path %>
+  > <%= link_to 'Nouvel ingrédient', new_ingredient_path %><br>
+  > <%= link_to 'Nouveau type', new_ingredient_type_path %>
 <% end %>
 
 <% content_for :item_content do %>
