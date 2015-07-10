@@ -13,10 +13,12 @@ class ApplicationController < ActionController::Base
   #  params[resource] &&= send(method) if respond_to?(method, true)
   #end
 
-  #check_authorization  :unless => :devise_controller?
+  check_authorization  :unless => :devise_controller?
   
-  #rescue_from CanCan::AccessDenied do |exception|
-  #  redirect_to :back, :alert => exception.message
-  #end
+  load_and_authorize_resource  :unless => :devise_controller?
+  
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to :back, :alert => exception.message
+  end
   
 end

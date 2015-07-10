@@ -7,7 +7,9 @@
 <% end %>
 
 <% content_for :content_menu do %>
+<% if can? :create, @ingredient %>
   > <%= link_to 'Nouvel ingrédient', new_ingredient_path %><br>
+<% end %>
   > <%= link_to 'Nouveau type', new_ingredient_type_path %>
 <% end %>
 
