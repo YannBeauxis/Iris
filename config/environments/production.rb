@@ -78,7 +78,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # For sending emails
-  config.action_mailer.default_url_options = { :host => 'smtp.sendgrid.net'} 
+  config.action_mailer.default_url_options = { :host => 'igrec-iris.herokuapp.com'} 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
   :address        => 'smtp.sendgrid.net',
