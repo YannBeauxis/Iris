@@ -48,12 +48,13 @@ end
 gem 'devise'
 
   # For authorization
-gem "cancan"
-
+  #gem "cancan"
+  gem 'cancancan', '~> 1.10'
+  
   # For graph visualization of db schema
-group :development do
-  gem 'rails-erd'
-end
+  group :development do
+    gem 'rails-erd'
+  end
 
   # For change project name
 gem 'rename'
