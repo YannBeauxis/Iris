@@ -20,11 +20,15 @@ body {
 }
 
 table.colored tr.filled {
-    background-color: rgb(247,246,255);
+    background-color: rgb(247,246,255); /*Color 2 */
 }
 
 table.colored {
     border-collapse:collapse;
+}
+
+table.colored td {
+    padding-right: 10px;
 }
 
 td {
@@ -144,10 +148,10 @@ a:hover {
 #Content_Menu {
   position: absolute;
   z-index: 2;
-  padding: 5px;
   right: 0;
   top: 0;
   width: 160px;
+  padding: 5px;
   background-color: rgb(255,251,227); /*Color 3 */
 }
 

@@ -1,4 +1,5 @@
 <%= render 'variants/nav_resume' %>
 <% content_for :nav_resume do %>
+  > <%= link_to @variant.name, recipe_variant_path(@recipe,@variant) %> 
   > <%= link_to @product.name, recipe_product_path(@recipe,@product) %> 
 <% end %>

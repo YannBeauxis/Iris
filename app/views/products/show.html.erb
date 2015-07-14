@@ -2,6 +2,11 @@
 <%= render 'header' %>
 <%= render 'menu' %>
 
+<% content_for :content_menu do %>
+  <br>> <%= link_to 'Retour Variante', recipe_variant_path(@recipe, @variant) %>
+  <br>> <%= link_to 'Retour Recette', recipe_path(@recipe) %>
+<% end %>
+
 <% content_for :item_content do %>
 
   <h3>Produit <%= @product.name %></h3>
@@ -10,7 +15,7 @@
       <tr><td>
           <table>
             <tr><td>Variante : <%= link_to @product.variant.name, recipe_variant_path(@recipe,@product.variant) %></td></tr>
-            <tr><td>Volume total : <%= @product.volume.round(2) %> ml</td></tr>
+            <tr><td>Volume total : <%= @product.volume.display %> ml</td></tr>
             <% if not @product.price.nil? then %>
               <tr><td>Prix : <%= @product.price %> €</td></tr>
             <% end %>
@@ -25,12 +30,12 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><i>en stock</i></td>
+                <!-- <td><i>en stock</i></td> -->
                 <tr>
               <% colored = true %>
               <% @recipe.ingredients.where(type: it).each do |i| %>
 
-                <% vol_ml = @product.ingredient_volume(i).round(2) %>
+                <% vol_ml = @product.ingredient_volume(i).display %>
                 <% if vol_ml >0 then %>
                   <% if colored then %>
                     <tr class="filled">
@@ -39,21 +44,24 @@
                   <% end %>
                   <% colored = !colored %>
                     <td>&nbsp; &nbsp;<%= i.name %></td>
-                    <td class="right"><%= @product.ingredient_mass(i).round(2) %> g</td>
-                    <td class="right"><%= vol_ml %> ml</td>
+                    <td class="right"><%= @product.ingredient_mass(i).display %> g</td>
                     <td class="right">
-                      <% if it.name_short == 'HE' then (vol_ml*35).round(0) %>
-                        <%= (vol_ml*35).round(0) %> gt.
+                      <% if vol_ml >= 2 then %>  
+                        <%= vol_ml %> ml
+                      <% end %> </td>
+                    <td class="right">
+                      <% if vol_ml < 2 then %>  
+                        <% if it.name_short == 'HE' then %>
+                          <%= (vol_ml*35).round(0) %> gt.
+                        <% end %>
                       <% end %>
                     </td>
-                    <td class="center"><%= i.volume_in_stock.round(2) %> ml</td>
+                    <!-- <td class="center"><%= i.volume_in_stock.round(2) %> ml</td> -->
                   </tr>
                 <% end %>
               <% end %>
             <% end %>
           </table></td></tr>
     </table>
-
-  <p><%= link_to 'Retour Produits', recipe_products_path(@recipe) %></p>
 
 <% end %>

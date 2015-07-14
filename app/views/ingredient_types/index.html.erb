@@ -1,2 +1,34 @@
-<%= render 'list' %>
+<% content_for :nav_resume do %>
+  > <%= link_to 'Ingrédients', ingredients_path %>
+  > <%= link_to 'Types d\'ingrédients', ingredients_path %>
+<% end %>
 
+<% content_for :content_header do %>
+  <span class="title">Liste des types d'ingrédients</span>
+<% end %>
+
+<% content_for :content_menu do %>
+  > <%= link_to 'Nouveau type', new_ingredient_type_path %><br>
+<% end %>
+
+<% content_for :item_content do %>
+ 
+  <p><%= link_to 'Nouveau type', new_ingredient_type_path %></p>
+
+  <table>
+    <tr>
+      <th>Nom</th>
+      <th>Nom abrégé</th>
+      <th># ingrédients</th>
+    </tr>
+ 
+    <% @ingredient_types.each do |it| %>
+      <tr>
+        <td><%= link_to it.name, ingredient_type_path(it) %></td>
+        <td class="center"><%= it.name_short %></td>
+        <td class="center"><%= it.ingredients.count %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<% end %>

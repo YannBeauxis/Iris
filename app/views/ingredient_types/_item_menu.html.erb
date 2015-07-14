@@ -2,5 +2,6 @@
     > <%= link_to 'Modifier', edit_ingredient_type_path %><br>
     > <%= link_to 'Supprimer', ingredient_type_path(@ingredient_type),
                 method: :delete,
-                data: { confirm: 'Confirmer la suppression ?' } %>
+                data: { confirm: 'Confirmer la suppression ?' } %><br>
+    > <%= link_to 'Liste des types', ingredient_types_path %>
 <% end %>

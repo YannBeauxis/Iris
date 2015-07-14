@@ -4,15 +4,18 @@
 
 <%= render 'item_header' %>
 
-<%= render 'item_menu' %>
+<% content_for :content_menu do %>
+    > <%= link_to 'Annuler', @ingredient_type %><br>
+    > <%= link_to 'Supprimer', ingredient_type_path(@ingredient_type),
+                method: :delete,
+                data: { confirm: 'Confirmer la suppression ?' } %><br>
+<% end %>
 
 <% content_for :item_content do %>
 
   <p><strong>Modifier le type d'ingrédient</strong></p>
 
   <%= render 'form' %>
-
-  <%= link_to 'Annuler', @ingredient_type %>
 
 <% end %>
 
