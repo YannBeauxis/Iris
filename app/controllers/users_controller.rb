@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
- #load_and_authorize_resource
- def index
+
+  def index
     @users = User.all
   end
   
@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   end
   
   def update
+    
     @user = User.find(params[:id])
 
     if params[:user][:password].blank?
@@ -25,7 +26,10 @@ class UsersController < ApplicationController
   end
   
   def user_params
-    params.require(:user).permit(:admin,:approved)
+    list_params_allowed = [:name,:email]
+    list_params_allowed << :role_id << :approved << :admin if current_user.is_admin?
+    params.require(:user).permit(list_params_allowed)
   end
-    
+
+  
 end

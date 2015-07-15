@@ -1,3 +1,13 @@
-<h1>Gérer l'utilisateur'</h1>
-<%= render 'form' %>
-<p><%= link_to 'Annuler', users_path %></p>
+<% content_for :content_header do %>
+  <span class="title">Modifier utilisateur</span>
+<% end %>
+
+<% content_for :content_menu do %>
+  > <%= link_to 'Annluer', users_path %>
+  <br>
+  > <%= link_to 'Changer mot de passe', edit_user_registration_path %>
+<% end %>
+
+<% content_for :item_content do %>
+  <%= render 'form' %>
+<% end %>

@@ -1,29 +1,45 @@
-<h1>Gestion des utilisateurs</h1>
+<% content_for :content_header do %>
+  <span class="title">Gestion des utilisateurs</span>
+<% end %>
 
-<%= link_to 'Change my Password', edit_user_registration_path %>
+<% content_for :content_menu do %>
+  > <%= link_to 'Modifier informations', edit_user_path(current_user.id) %>
+  <br>
+  > <%= link_to 'Changer mot de passe', edit_user_registration_path %>
+<%end%>
 
-
-<% if current_user.admin? then %>
-<p>
-  <table>
-  	<tr>
-  		<th></th>
-  		<th>id</th>
-  		<th>email</th>
-  		<th>approved</th>
-  		<th>admin</th>
+<% content_for :item_content do %>
+  <% if current_user.admin? then %>
+  <p>
+    <table>
+    	<tr>
+    		<th></th>
+    		<th>id</th>
+        <th>Nom</th>
+    		<th>email</th>
+    		<th>approved</th>
+    		<th>admin</th>
+        <th>Rôle</th>
+    		
+    	</tr>
+    	<% @users.each do |u| %>
+    		<tr>
+    			<td><%= link_to 'Edit', edit_user_path(u.id) %></td>
+    			<td><%= u.id %></td>
+          <td><%= u.name %></td>
+    			<td><%= u.email %></td>
+    			<td><%= u.approved %></td>
+    			<td><%= u.admin %></td>
+          <td><%= u.role.name %></td>
+    		</tr>
+    	<% end %>
+    </table>
+  </p>
   
-  		
-  	</tr>
-  	<% @users.each do |u| %>
-  		<tr>
-  			<td><%= link_to 'Edit', edit_user_path(u.id) %></td>
-  			<td><%= u.id %></td>
-  			<td><%= u.email %></td>
-  			<td><%= u.approved %></td>
-  			<td><%= u.admin %></td>
-  		</tr>
-  	<% end %>
-  </table>
-</p>
+  <p>
+    <% Role.all.each do |r|%>
+    <%= r.id.to_s + ' - ' + r.name%><br>
+    <% end %>
+  </p>
+  <% end %>
 <% end %>

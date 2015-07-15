@@ -26,7 +26,7 @@
 	<div id="Manage_Session">
 
 			<% if user_signed_in? %>
-				<%= current_user.email %><br>
+				<%= link_to current_user.email, users_path %><br>
 				<%= link_to('Déconnexion', destroy_user_session_path, 
 						:method => :delete) %>
 			<%else%>			

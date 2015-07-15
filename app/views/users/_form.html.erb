@@ -1,6 +1,18 @@
 <%= form_for @user do |f| %>
 
   <p>
+    <%= f.label 'Nom' %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label 'email' %><br>
+    <%= f.text_field :email %>
+  </p>
+
+<% if current_user.is_admin? %>
+
+  <p>
     <%= f.label 'approved' %><br>
     <%= f.check_box :approved %>
   </p>
@@ -9,9 +21,17 @@
     <%= f.label 'admin' %><br>
     <%= f.check_box :admin %>
   </p>
-  
+
+  <p>
+    <%= f.label 'Role' %><br>
+    <%= f.collection_select(:role_id, Role.all, :id, :name) %>
+  </p>
+
+<% end %>
+
   <p>
     <%= f.submit 'Enregistrer'%>
   </p>
+
 
 <% end %>
