@@ -7,6 +7,7 @@ class UserTest < ActiveSupport::TestCase
      #u.name = "New User"
      u.email = "iris@test.com"
      u.password = "mdpdeiris"
+     u.name = "Test"
      assert u.save
    end
    

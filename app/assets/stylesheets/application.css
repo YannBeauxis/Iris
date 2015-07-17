@@ -92,12 +92,10 @@ a:hover {
 
 #Admin_Link {
   position: absolute;
-  float: right;
   top : 10px;
-  right: 220px;
+  left: 200px;
   width: 120px;
   height: 20px;
-  text-align: right;
 }
 
 #Message {
@@ -105,10 +103,11 @@ a:hover {
   float: right;
   top : 50px;
   right: 0px;
-  width: 470px;
+  width: 580px;
   height: 20px;
   text-align: right;
-  color : red;
+  color: red;
+  font-style: italic;
 }
 
 #Nav_Resume {

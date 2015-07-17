@@ -19,14 +19,17 @@
     > <%= link_to 'Recettes', recipes_path %>
   </div>
 
-	<div id="Admin_Link">
-    	<%= link_to 'Admin', users_path %>
-  </div>
-    
+  <% if user_signed_in? && current_user.admin? %>
+  	<div id="Admin_Link">
+      	> <%= link_to 'Administration', users_path %>
+    </div>
+  <% end %>
+
 	<div id="Manage_Session">
 
 			<% if user_signed_in? %>
-				<%= link_to current_user.email, users_path %><br>
+				<%= current_user.name %><br>
+        <%= link_to('Mes infos', user_path(current_user)) %> | 
 				<%= link_to('Déconnexion', destroy_user_session_path, 
 						:method => :delete) %>
 			<%else%>			
@@ -60,13 +63,6 @@
 
   <% if content_for?(:content_menu) %>
     <div id="Content_Menu"><%= yield( :content_menu ) %></div>
-  <% end %>
-
-  
-  <% if content_for?(:resume_list) %>
-    <div id="Resume_List" >
-      <%= yield(:resume_list) %>
-    </div>
   <% end %>
   
   <% if content_for?(:item_content) %>

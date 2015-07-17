@@ -1,0 +1,17 @@
+<% content_for :content_header do %>
+  <span class="title">Gestion de mes informations</span>
+<% end %>
+
+<% content_for :content_menu do %>
+  > <%= link_to 'Modifier informations', edit_user_path(current_user.id) %>
+  <br>
+  > <%= link_to 'Changer mot de passe', edit_user_registration_path %>
+<%end%>
+
+<% content_for :item_content do %>
+
+<p><b>Nom</b> : <%= @user.name %></p>
+<p><b>Email</b> : <%= @user.email %></p>
+<p><b>Rôle</b> : <%= @user.role.name %></p>
+
+<% end %>

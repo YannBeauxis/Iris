@@ -6,7 +6,8 @@
 <% content_for :item_content do %>
 
 <p>Ce projet a pour objectif de tester un prototype de site web 
-  d'aide à la conception de mélanges (recettes) de produits naturels (ingrédients), 
+  d'aide à la conception de mélanges (<%= link_to 'recettes', recipes_path %>) 
+  de produits naturels (<%= link_to 'ingrédients', ingredients_path %>), 
   en particulier les compositions à base d'huiles essentielles : diffuseur de parfum, huile de massage...</p>
 
 <% end %>

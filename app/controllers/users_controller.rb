@@ -4,6 +4,12 @@ class UsersController < ApplicationController
     @users = User.all
   end
   
+  def show
+    @users = User.all
+
+    @user = User.find(params[:id])
+  end
+  
   def edit
     @user = User.find(params[:id])
   end
@@ -25,9 +31,16 @@ class UsersController < ApplicationController
     
   end
   
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    
+    redirect_to users_path
+  end
+  
   def user_params
     list_params_allowed = [:name,:email]
-    list_params_allowed << :role_id << :approved << :admin if current_user.is_admin?
+    list_params_allowed << :role_id << :approved << :admin if current_user.admin?
     params.require(:user).permit(list_params_allowed)
   end
 

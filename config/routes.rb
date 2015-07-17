@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   get 'users/index'
 
   #devise_for :users
-  devise_for :users#, :controllers => {:registrations => "my_devise/registrations"}
-  scope "/admin" do
+  devise_for :users, :controllers => { registrations: 'registrations' }
+  #scope "/admin" do
     resources :users
-  end
+  #end
   #devise_scope :user do
   #  match '/sign-in' => "devise/sessions#new", :as => :login, via: :get
   #end

@@ -2,12 +2,6 @@
   <span class="title">Gestion des utilisateurs</span>
 <% end %>
 
-<% content_for :content_menu do %>
-  > <%= link_to 'Modifier informations', edit_user_path(current_user.id) %>
-  <br>
-  > <%= link_to 'Changer mot de passe', edit_user_registration_path %>
-<%end%>
-
 <% content_for :item_content do %>
   <% if current_user.admin? then %>
   <p>
@@ -18,7 +12,6 @@
         <th>Nom</th>
     		<th>email</th>
     		<th>approved</th>
-    		<th>admin</th>
         <th>Rôle</th>
     		
     	</tr>
@@ -29,7 +22,6 @@
           <td><%= u.name %></td>
     			<td><%= u.email %></td>
     			<td><%= u.approved %></td>
-    			<td><%= u.admin %></td>
           <td><%= u.role.name %></td>
     		</tr>
     	<% end %>

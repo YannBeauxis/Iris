@@ -1,0 +1,4 @@
+fr:
+  unauthorized:
+    manage:
+      all: "Vous n'avez pas les autorisations nécessaires pour effectuer cette opération"

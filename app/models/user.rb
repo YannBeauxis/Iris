@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
           :recoverable, 
          :rememberable, :trackable, :validatable
   before_create :set_default_info
-  #validates :name, presence: true
+  validates :name, presence: true
   
   def active_for_authentication? 
     super && approved? 
@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
     end 
   end
   
-  def is_admin?
+  def admin?
     self.role.name == 'admin'
   end
   
