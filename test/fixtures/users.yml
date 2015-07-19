@@ -6,38 +6,34 @@
 #
 one:
  email: 'igrecbis@yahoo.fr'
- admin: true
+ role: admin
  approved: true
 
 delete_container_recipe:
  email: 'delete_container_recipe@yahoo.fr'
- admin: false
+ role: prodcteur
  approved: true
  
 not_admin:
  email: 'not_admin@yahoo.fr'
- admin: false
  approved: true
  role: client
 
 client: 
  name: 'client'
  email: 'client@yahoo.fr'
- admin: false
  approved: true
  role: client
  
 admin: 
  name: 'admin'
  email: 'admin@yahoo.fr'
- admin: true
  approved: true
  role: admin
 
 client_to_producteur: 
  name: 'client_to_producteur'
  email: 'client_to_producteur@yahoo.fr'
- admin: false
  approved: true
  role: client
  

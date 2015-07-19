@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   
   def user_params
     list_params_allowed = [:name,:email]
-    list_params_allowed << :role_id << :approved << :admin if current_user.admin?
+    list_params_allowed << :role_id << :approved if current_user.admin?
     params.require(:user).permit(list_params_allowed)
   end
 

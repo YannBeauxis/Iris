@@ -1,16 +1,17 @@
 <%= render 'nav_resume' %>
 
-<%= render 'list_resume' %>
-
 <%= render 'header' %>
 
-<%= render 'menu' %>
+<% content_for :content_menu do %>
+  > <%= link_to 'Annuler', @ingredient %><br>
+  > <%= link_to 'Supprimer', ingredient_path(@ingredient),
+              method: :delete,
+              data: { confirm: 'Voulez-vous supprimer cet ingrédient ?' } %><br>
+<% end %>
 
 <% content_for :item_content do %>
 
   <p><strong>Modifier l'ingrédient</strong></p>
   <%= render 'form' %>
-
-  <p><%= link_to 'Annuler', @ingredient %></p>
 
 <% end %>

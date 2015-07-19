@@ -8,7 +8,7 @@ class UsersControllerTest < ActionController::TestCase
     sign_in a
     @request.headers["HTTP_REFERER"] = "http://test.host/users"
     patch(:update, id: ctp, user: {'role_id' => roles(:producteur)})
-    assert_redirected_to users_path
+    assert_redirected_to user_path(ctp)
     assert assigns['user'].role.name == 'producteur', assigns['user'].role.name
   end
  
@@ -17,7 +17,7 @@ class UsersControllerTest < ActionController::TestCase
     sign_in u
     @request.headers["HTTP_REFERER"] = "http://test.host/users"
     patch(:update, id: u, user: {'name' => 'Modified 2'})
-    assert_redirected_to users_path
+    assert_redirected_to user_path(u)
     assert assigns['user'].name == 'Modified 2', assigns['user'].name
     u = User.find(u.id)
     assert u.name == 'Modified 2', u.name
@@ -36,9 +36,9 @@ class UsersControllerTest < ActionController::TestCase
   test "client should not modify role params" do
     u = users(:client)
     sign_in u
-    @request.headers["HTTP_REFERER"] = "http://test.host/users"
+    @request.headers["HTTP_REFERER"] = "http://test.host/user/"
     patch(:update, id: u, user: {'role_id' => roles(:producteur)})
-    assert_redirected_to :back
+   #'assert_redirected_to :back
     assert_not assigns['user'].role.name == 'producteur', assigns['user'].role.name
   end
 

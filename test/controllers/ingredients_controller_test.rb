@@ -12,4 +12,12 @@ class IngredientsControllerTest < ActionController::TestCase
     assert_response 302
   end
 
+  test "should get edit" do
+    u = users(:one)
+    sign_in u
+    get :edit, id: u
+    assert_response :success
+  end
+
+
 end
