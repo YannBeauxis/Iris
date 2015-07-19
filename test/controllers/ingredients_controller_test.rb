@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class IngredientsControllerTest < ActionController::TestCase
+  
   test "should get index" do
     sign_in users(:one)
     get :index

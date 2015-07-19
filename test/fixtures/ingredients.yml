@@ -72,6 +72,16 @@ proportions_2:
   density: 1.2
 
 proportions_3:
-  name: 'proportions_3'
+  name: 'prop:rtions_3'
   type: 'proportions_2'
+  density: 1.2
+
+has_container_reference:
+  name: 'has_container_reference'
+  type: has_container_reference
+  density: 1.2
+
+not_has_container_reference:
+  name: 'not_has_container_reference'
+  type: not_has_container_reference
   density: 1.2

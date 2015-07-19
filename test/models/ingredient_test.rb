@@ -32,4 +32,11 @@ class IngredientTest < ActiveSupport::TestCase
     assert i_no.density == it.density, i_no.density.to_s + ' no get ingredient type density if not have self density'
     assert i_2.density == 2, 'no get self density'
   end
+  
+  test "Container reference" do
+    hcr = ingredients(:has_container_reference)
+    nhcr = ingredients(:not_has_container_reference)
+    assert_not hcr.container_references.blank?, hcr.container_references.count
+    assert nhcr.container_references.blank?, nhcr.container_references.count
+  end
 end

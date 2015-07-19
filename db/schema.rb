@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717212417) do
+ActiveRecord::Schema.define(version: 20150719182113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "container_references", force: :cascade do |t|
+    t.integer  "ingredient_type_id"
+    t.float    "volume"
+    t.float    "mass"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "container_references", ["ingredient_type_id"], name: "index_container_references_on_ingredient_type_id", using: :btree
 
   create_table "containers", force: :cascade do |t|
     t.integer  "ingredient_id"
@@ -141,6 +151,7 @@ ActiveRecord::Schema.define(version: 20150717212417) do
 
   add_index "variants", ["recipe_id"], name: "index_variants_on_recipe_id", using: :btree
 
+  add_foreign_key "container_references", "ingredient_types"
   add_foreign_key "containers", "ingredients"
   add_foreign_key "containers", "users"
   add_foreign_key "ingredients", "ingredient_types"

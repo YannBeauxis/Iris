@@ -7,6 +7,7 @@ class IngredientTypesController < ApplicationController
 
   def show
     @ingredient_type = IngredientType.find(params[:id])
+    @container_references = @ingredient_type.container_references
   end 
 
   def new

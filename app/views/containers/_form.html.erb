@@ -20,4 +20,22 @@
   </p>
 <% end %>
 
+<p><b>Modifier volume par la masse</b></p>
+
+<%= form_for @container,url: ingredient_container_update_with_mass_path(@ingredient,@container), method:'patch' do |f| %>
+  <input type="hidden" name="container[id]" step="any" type="number" value=<%= @container.id %> />
+
+
+  <p>
+    <%= f.label 'Masse totale' %><br>
+    <input name="container[mass]" 
+                  step="any" type="number" value=<%= @container.mass_total %> />
+  </p>
+  
+  <p>
+    <%= f.submit 'Enregistrer'%>
+  </p>
+<% end %>
+
+
 

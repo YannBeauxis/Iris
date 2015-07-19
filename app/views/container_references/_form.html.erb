@@ -1,0 +1,16 @@
+<%= form_for @container_reference, :url => url_for([@ingredient_type, @container_reference])  do |f| %>
+
+  <p>
+    <%= f.label 'Volume' %><br>
+    <%= f.number_field :volume, :step => 'any' %>
+  </p>
+
+  <p>
+    <%= f.label 'Masse' %><br>
+    <%= f.number_field :mass, :step => 'any' %>
+  </p>
+
+  <p>
+    <%= f.submit 'Enregistrer' %>
+  </p>
+<% end %>

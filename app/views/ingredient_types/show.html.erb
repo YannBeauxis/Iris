@@ -1,15 +1,15 @@
 <%= render 'nav_resume' %>
 
-<%= render 'ingredients/list_resume' %>
-
-<%= render 'item_header' %>
+<%= render 'header' %>
 
 <% content_for :content_menu do %>
     > <%= link_to 'Modifier', edit_ingredient_type_path %><br>
     > <%= link_to 'Supprimer', ingredient_type_path(@ingredient_type),
                 method: :delete,
                 data: { confirm: 'Confirmer la suppression ?' } %><br>
-    > <%= link_to 'Liste des types', ingredient_types_path %>
+    > <%= link_to 'Liste des types', ingredient_types_path %><br>
+    > <%= link_to 'Nouveau conteneur standard', 
+            new_ingredient_type_container_reference_path(@ingredient_type) %>
 <% end %>
 
 <% content_for :item_content do %>
@@ -34,6 +34,26 @@
      <% end %>
    </ul>
   </p>
-
+  
+  <% if @container_references.any? %>
+    <p><b>Liste des conteneurs standards</b></p>
+    <table>
+      <tr>
+        <th>Volume</th>
+        <th>Masse</th>
+        <th></th>
+      </tr>
+      <% @container_references.each do |cr| %>
+        <tr>
+          <td><%= cr.volume %>ml</td>
+          <td><%= cr.mass %>g</td>
+          <td><%= link_to 'Modifier', 
+                edit_ingredient_type_container_reference_path(@ingredient_type,cr) %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <p><i>Pas de conteneur standard pour ce type d'ingrédient</i></p>
+  <% end %>
 
 <% end %>

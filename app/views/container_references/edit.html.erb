@@ -1,0 +1,13 @@
+<% render 'ingredient_types/nav_resume' %>
+
+<%= render 'ingredient_types/header' %>
+
+<% content_for :content_menu do %>
+  > <%= link_to 'Annuler', @ingredient_type %>
+<% end %>
+
+<% content_for :item_content do %>
+  <p><strong>Modifier le contenant standard</strong></p>
+  <%= render 'form' %>
+<% end %>
+

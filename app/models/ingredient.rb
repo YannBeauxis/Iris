@@ -3,6 +3,7 @@ class Ingredient < ActiveRecord::Base
   belongs_to :type, :class_name => 'IngredientType', :foreign_key => 'ingredient_type_id'
   has_many :containers, :dependent => :restrict_with_error
   has_many :proportions, as: :composant, :dependent => :restrict_with_error
+  has_many :container_references, through: :type
   validates :type, :name, presence: true
   before_destroy :check_for_recipes
 

@@ -57,3 +57,17 @@ proportions_2:
   mesure_unit : 'g'
   name_short : 'P'
 
+has_container_reference:
+  name: 'has_container_reference'
+  mesure_unit : 'ml'
+  name_short : 'HCR'
+  
+not_has_container_reference:
+  name: 'not_has_container_reference'
+  mesure_unit : 'ml'
+  name_short : 'NHCR'
+
+delete_container_reference: 
+  name: 'delete_container_reference'
+  mesure_unit : 'ml'
+  name_short : 'DCR'

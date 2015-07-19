@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+has_container_reference:
+  ingredient_type: has_container_reference
+  volume: 30
+  mass: 5
+  
+delete_with_ingredient_type: 
+  ingredient_type: delete_container_reference
+  volume: 30
+  mass: 5 

@@ -45,3 +45,24 @@ proportions_3:
   volume_init: 1
   volume_actual: 1
   price: 2
+
+has_container_reference:
+  user: one
+  ingredient: has_container_reference
+  volume_init: 30
+  volume_actual: 20
+  price: 2
+  
+not_has_container_reference:
+  user: one
+  ingredient: not_has_container_reference
+  volume_init: 30
+  volume_actual: 20
+  price: 2
+  
+update_with_mass:
+  user: one
+  ingredient: has_container_reference
+  volume_init: 30
+  volume_actual: 20
+  price: 2

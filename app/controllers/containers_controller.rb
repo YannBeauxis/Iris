@@ -44,6 +44,15 @@ class ContainersController < ApplicationController
     end
   end
 
+  def update_with_mass
+    @container = Container.find(params[:container_id])
+    mass = update_with_mass_params[:mass].to_f
+    @container.update_with_mass(mass)
+    
+    #redirect_to edit_ingredient_container_path(@ingredient,@container)
+    redirect_to @ingredient
+  end
+
   def destroy
     #@ingredient = Ingredient.find(params[:ingredient_id])
     @container = Container.find(params[:id])
@@ -63,5 +72,8 @@ class ContainersController < ApplicationController
     def container_params
       params.require(:container).permit(:ingredient, :volume_init, :volume_actual, :price)
     end
-
+    
+    def update_with_mass_params
+      params.require(:container).permit(:id, :mass)
+    end
 end
