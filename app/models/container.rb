@@ -26,7 +26,7 @@ class Container < ActiveRecord::Base
 
   def update_with_mass(mass)
     if !mass_empty.nil? && mass >= mass_empty
-      self.volume_actual = (mass - mass_empty)/self.ingredient.density
+      self.volume_actual = ((mass - mass_empty)/self.ingredient.density).round(1)
       self.save
     end
   end
