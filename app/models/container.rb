@@ -21,7 +21,7 @@ class Container < ActiveRecord::Base
   end
 
   def mass_total
-    mass_net + mass_empty if !mass_empty.nil?
+    mass_net + mass_empty if !mass_empty.nil? && !mass_net.nil?
   end
 
   def update_with_mass(mass)
