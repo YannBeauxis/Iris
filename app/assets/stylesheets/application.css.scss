@@ -14,33 +14,72 @@
  *= require_self
  */
 
-body {
-  width: 580px;
-  color : rgb(92,90,98); /*Color 3 */
+@import "compass";
+@import "normalize";
+/*@import "compass/reset";
+@import "compass/reset/utilities";*/
+@import "compass/typography/vertical_rhythm";
+
+/*$base-font-size: 0.8em;
+$base-line-height: 0.8em;*/
+  
+$base-font-size: 14px;
+$base-line-height: 16px;
+
+$page_width: 580px;
+
+$color-base-text: rgb(92,90,98); 
+$color-base-line: rgb(208,204,202); 
+$color-primary-text: rgb(53,38,203); 
+$color-primary-background: rgb(247,246,255); 
+$color-secondary-text: rgb(195,146,0); 
+$color-secondary-background: rgb(255,251,227); 
+
+@mixin default_fonts {
+    /*font-family: Verdana, Geneva, sans-serif;*/
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: $base-font-size;
+    color: $color-base-text;
+    font-weight: normal;
 }
 
-table.colored tr.filled {
-    background-color: rgb(247,246,255); /*Color 2 */
+@mixin right_column_left_position($width) {
+  left: $page_width - $width;
+  width: $width - 10px;
+}
+
+body {
+  width: $page_width;
+
+  @include default_fonts;
+}
+
+ a {
+   color: $color-primary-text;
+   text-decoration: none; 
+   &:hover {
+      text-decoration: underline; 
+  }
 }
 
 table.colored {
     border-collapse:collapse;
-}
-
-table.colored td {
-    padding-right: 10px;
+    tr.filled {
+      background-color: $color-primary-background;
+    }
+    td {
+        padding-right: 10px;
+    }
 }
 
 td {
   vertical-align: top;
-}
-
-td.center {
-  text-align: center;
-}
-
-td.right {
-  text-align: right;
+   &.center {
+    text-align: center;
+  }
+  &.right {
+    text-align: right;
+  }
 }
 
 #Main_Header {
@@ -48,16 +87,7 @@ td.right {
   top : 0px;
   left: 0px;
   height: 70px;
-  border-bottom: 1px solid rgb(208,204,202); /*Color 3 */
-}
-
- a {
-   color: rgb(53,38,203); /* Color 1 */
-   text-decoration: none; 
-}
-
-a:hover {
-   text-decoration: underline; 
+  border-bottom: 1px solid $color-base-line;
 }
 
 #Main_Title {
@@ -65,11 +95,11 @@ a:hover {
   top: 3px;
   left: 6px;
   width: 100px;
-  font-size: 250%;
-}
-
-#Main_Title a:hover {
-  text-decoration: none
+  font-size: 280%;
+  padding: 3px;
+  a:hover {
+    text-decoration: none
+  }
 }
 
 #Main_Menu {
@@ -111,19 +141,21 @@ a:hover {
 }
 
 #Nav_Resume {
+  padding-left: 6px;
   position: relative;
   top : 2px;
   left: 0px;
   height: 20px;
-}
-
-#Nav_Resume a {
-  color: rgb(195,146,0); /*Color 4 */
+  a {
+    color: $color-secondary-text;
+  }
 }
 
 #Main_Content{
+  @include establish-baseline;
   position: relative;
   width: 100%;
+  padding-left: 6px;
   top : 3px;
   left: 0px;
 }
@@ -132,34 +164,28 @@ a:hover {
   position: relative;
   width: 100%;
   padding-bottom: 10px;
-  color: rgb(195,146,0); /*Color 4 */
-}
-
-#Content_Header .title {
-  font-size: 180%;
-  color: rgb(53,38,203); /* Color 1 */
-}
-
-#Content_Header .subtitle {
-  font-style : italic;
+  color: $color-secondary-text;
+  .title {
+    font-size: 180%;
+    color: $color-primary-text;
+  }
+  .subtitle {
+    font-style : italic;
+  }
 }
 
 #Content_Menu {
   position: absolute;
   z-index: 2;
-  right: 0;
+  /*right: 0;*/
+  @include right_column_left_position(160px);
   top: 0;
-  width: 160px;
+  /*width: 160px;*/
   padding: 5px;
-  background-color: rgb(255,251,227); /*Color 3 */
-}
-
-#Content_Menu a {
-  color: rgb(195,146,0); /*Color 4 */
-}
-
-#Resume_List {
-  display: none;
+  background-color: $color-secondary-background;
+   a {
+    color: $color-secondary-text;
+  }
 }
 
 #Item_Content {
@@ -168,9 +194,10 @@ a:hover {
   top : 5px;
   width: 100%;
   padding-bottom: 20px;
-  border-bottom: 1px solid rgb(208,204,202); /*Color 3 */
+  border-bottom: 1px solid $color-base-line;
 }
 
+/*
 #item {
   position: absolute;
   top : 80px;
@@ -212,4 +239,4 @@ td.recipe_menu {
 a.recipe_menu {
   text-decoration: none;
 }
-
+*/
