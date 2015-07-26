@@ -1,7 +1,7 @@
 @import "compass";
 @import "normalize";
-/*@import "compass/reset";
-@import "compass/reset/utilities";*/
+/*@import "compass/reset";*/
+/*@import "compass/reset/utilities";*/
 @import "compass/typography/vertical_rhythm";
 
 /*$base-font-size: 0.8em;
@@ -10,7 +10,8 @@ $base-line-height: 0.8em;*/
 $base-font-size: 14px;
 $base-line-height: 16px;
 
-$page_width: 580px;
+$page-width-max: 700px;
+$page-width-1: 480px;
 
 $color-base-text: rgb(92,90,98); 
 $color-base-line: rgb(208,204,202); 
@@ -25,4 +26,46 @@ $color-secondary-background: rgb(255,251,227);
     font-size: $base-font-size;
     color: $color-base-text;
     font-weight: normal;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  max-width: $page-width-max;
+  @include default_fonts;
+  margin: 0 auto;
+}
+
+ a {
+   color: $color-primary-text;
+   text-decoration: none; 
+   &:hover {
+      text-decoration: underline; 
+  }
+}
+
+table.colored {
+    border-collapse:collapse;
+    tr.filled {
+      background-color: $color-primary-background;
+    }
+    td {
+        padding-right: 10px;
+    }
+}
+
+td {
+  vertical-align: top;
+   &.center {
+    text-align: center;
+  }
+  &.right {
+    text-align: right;
+  }
+}
+
+.menu-link:before {
+  content: "> ";
 }

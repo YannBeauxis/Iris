@@ -5,40 +5,40 @@
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
+	<meta name="viewport" content="width=device-width" />
 </head>
 
 <body>
-<div id="All_Page">
   
-<div id="Main_Header">
-  <div id="Main_Title">
-    <span><%= link_to 'IRIS', root_path %></span>
-  </div>
-  <div id="Main_Menu">
-    > <%= link_to 'Ingrédients', ingredients_path %><br>
-    > <%= link_to 'Recettes', recipes_path %>
-  </div>
+<div id="Header">
+  <div class="main-content">
 
-  <% if user_signed_in? && current_user.admin? %>
-  	<div id="Admin_Link">
-      	> <%= link_to 'Administration', users_path %>
+    <div class="session-menu">
+        <% if user_signed_in? %>
+          <%= link_to(current_user.name, user_path(current_user)) %>
+          <%= link_to('Déconnexion', destroy_user_session_path, 
+              :method => :delete) %>
+        <%else%>      
+          Non connecté
+          <%= link_to('Se connecter', new_user_session_path) %>
+        <% end %>
     </div>
-  <% end %>
-
-	<div id="Manage_Session">
-
-			<% if user_signed_in? %>
-				<%= current_user.name %><br>
-        <%= link_to('Mes infos', user_path(current_user)) %> | 
-				<%= link_to('Déconnexion', destroy_user_session_path, 
-						:method => :delete) %>
-			<%else%>			
-				Non connecté<br>
-				<%= link_to('Se connecter', new_user_session_path) %>
-			<% end %>
-	</div>
-	
-	<div id="Message">
+    
+    <div class="title">
+      <%= link_to 'IRIS', root_path %>
+    </div>
+    
+    <div class="general-menu">
+      <span class="menu-link"><%= link_to 'Ingrédients', ingredients_path %></span>
+      <span class="menu-link"><%= link_to 'Recettes', recipes_path %></span>
+      <% if user_signed_in? && current_user.admin? %>
+        <span class="menu-link"><%= link_to 'Administration', users_path %></span>
+      <% end %>
+    </div>
+    
+  </div>	
+  
+	<div class="message">
 		<% flash.each do |name, msg| -%>
 			<%= content_tag :div, msg, class: name %>
 		<% end -%>
@@ -46,33 +46,38 @@
 
 </div>
 
-<div id="Nav_Resume">
-  <% if content_for?(:nav_resume) %>
-    <%= yield( :nav_resume ) %>
-  <% end %>
-</div>
+<div id="Main">
 
-<div id="Main_Content">
-  <%= yield %>
-  
-  <div id="Content_Header">
-    <% if content_for?(:content_header) %>
-      <%= yield( :content_header ) %>
+  <div class="nav-resume">
+    <% if content_for?(:nav_resume) %>
+      <%= yield( :nav_resume ) %>
     <% end %>
   </div>
-
-  <% if content_for?(:content_menu) %>
-    <div id="Content_Menu"><%= yield( :content_menu ) %></div>
-  <% end %>
   
-  <% if content_for?(:item_content) %>
-    <div id="Item_Content" >
-      <%= yield( :item_content ) %>
-      </div>
-  <% end %>
-  
+  <div class="main-content">
+    
+    <% if content_for?(:content_menu) %>
+      <div class="content-menu"><%= yield( :content_menu ) %></div>
+    <% end %>
+    
+    <%= yield %>
+    
+    <div class="content-header">
+      <% if content_for?(:content_header) %>
+        <%= yield( :content_header ) %>
+      <% end %>
+    </div>
+    
+    <% if content_for?(:item_content) %>
+      <div class="item-content" >
+        <%= yield( :item_content ) %>
+        </div>
+    <% end %>
+    
+  </div>
 </div>
 
-</div>
+<div id="Footer"></div>
+
 </body>
 </html>
