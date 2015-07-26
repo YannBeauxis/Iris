@@ -14,34 +14,7 @@
  *= require_self
  */
 
-@import "compass";
-@import "normalize";
-/*@import "compass/reset";
-@import "compass/reset/utilities";*/
-@import "compass/typography/vertical_rhythm";
-
-/*$base-font-size: 0.8em;
-$base-line-height: 0.8em;*/
-  
-$base-font-size: 14px;
-$base-line-height: 16px;
-
-$page_width: 580px;
-
-$color-base-text: rgb(92,90,98); 
-$color-base-line: rgb(208,204,202); 
-$color-primary-text: rgb(53,38,203); 
-$color-primary-background: rgb(247,246,255); 
-$color-secondary-text: rgb(195,146,0); 
-$color-secondary-background: rgb(255,251,227); 
-
-@mixin default_fonts {
-    /*font-family: Verdana, Geneva, sans-serif;*/
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: $base-font-size;
-    color: $color-base-text;
-    font-weight: normal;
-}
+@import "base";
 
 @mixin right_column_left_position($width) {
   left: $page_width - $width;

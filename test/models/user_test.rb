@@ -16,7 +16,7 @@ class UserTest < ActiveSupport::TestCase
     r = recipes(:delete_with_user)
     c = containers(:delete_with_user)
     u.destroy
-    assert_not_includes User.all, u
+    assert_not_includes User.all, u,
       'User should be destroy'
     assert_not_includes Recipe.all, r,
       'Recipe should be destroy when its user is'
