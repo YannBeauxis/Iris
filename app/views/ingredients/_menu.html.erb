@@ -1,6 +1,6 @@
 <% content_for :content_menu do %>
-  > <%= link_to 'Modifier', edit_ingredient_path(@ingredient) %><br>
-  > <%= link_to 'Supprimer', ingredient_path(@ingredient),
+  <span class="menu-link"><%= link_to 'Modifier', edit_ingredient_path(@ingredient) %></span>
+  <span class="menu-link"><%= link_to 'Supprimer', ingredient_path(@ingredient),
               method: :delete,
-              data: { confirm: 'Voulez-vous supprimer cet ingrédient ?' } %><br>
+              data: { confirm: 'Voulez-vous supprimer cet ingrédient ?' } %></span>
 <% end %>

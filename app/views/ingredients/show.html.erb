@@ -5,7 +5,7 @@
 <%= render 'menu' %>
 
 <% content_for :content_menu do %>
-  > <%= link_to 'Ajouter un stock', new_ingredient_container_path(@ingredient) %>
+  <span class="menu-link"><%= link_to 'Ajouter un stock', new_ingredient_container_path(@ingredient) %></span>
 <% end %>
 
 <% content_for :item_content do %>

@@ -1,4 +1,5 @@
 @import "compass";
+@import "compass/css3";
 @import "normalize";
 /*@import "compass/reset";*/
 /*@import "compass/reset/utilities";*/
@@ -12,6 +13,9 @@ $base-line-height: 16px;
 
 $page-width-max: 700px;
 $page-width-1: 480px;
+
+$header-min-height: 40px; /*for main content of header with no message*/
+$padding-step: 4px;
 
 $color-base-text: rgb(92,90,98); 
 $color-base-line: rgb(208,204,202); 
