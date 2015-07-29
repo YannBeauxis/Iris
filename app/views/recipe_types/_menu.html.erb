@@ -1,6 +1,5 @@
-<% content_for :content_menu do %>
-    > <%= link_to 'Modifier', edit_recipe_type_path %><br>
-    > <%= link_to 'Supprimer', recipe_type_path(@recipe_type),
-                method: :delete,
-                data: { confirm: 'Confirmer la suppression ?' } %>
-<% end %>
+<%= add_menu_item(menu: :content_menu, 
+     path: edit_recipe_type_path(@recipe_type), label: 'Modifier') %>
+<%= add_menu_item(menu: :content_menu, 
+     path: recipe_type_path(@recipe_type), label: 'Supprimer', 
+     link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet utilisteur ?' }}) %>

@@ -6,12 +6,10 @@
   <span class="title">Liste des ingrédients</span>
 <% end %>
 
-<% content_for :content_menu do %>
-<% if can? :create, @ingredient %>
-  > <%= link_to 'Nouvel ingrédient', new_ingredient_path %><br>
-<% end %>
-  > <%= link_to 'Nouveau type', new_ingredient_type_path %>
-<% end %>
+<%= add_menu_item(menu: :content_menu, 
+     path: new_ingredient_path, label: 'Nouvel ingrédient') %>
+<%= add_menu_item(menu: :content_menu, 
+     path: new_ingredient_type_path, label: 'Nouveau type') %>
 
 <% content_for :item_content do %>
 

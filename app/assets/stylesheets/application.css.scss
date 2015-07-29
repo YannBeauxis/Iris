@@ -28,7 +28,7 @@
 
     width: 100%;
     @media all and (min-width: $page-width-1) {
-      height: $header-min-height;
+      min-height: $header-min-height;
       display: flex;
       flex-flow: row nowrap;
       .general-menu {
@@ -39,10 +39,6 @@
         order: 3;
       }
     }
- /*   @media all and (max-width: $page-width-1) {
-      display: flex;
-      flex-flow: column nowrap;
-  }*/
     .title {
       vertical-align: text-top;
       width: 100px;
@@ -62,14 +58,8 @@
         padding-right: 7px;
         flex: 0 1 auto;  
       }
-
     }
-/*    @media all and (min-width: $page-width-1) {
-      & > .session-menu {
-        margin-left: auto;
-        order: 3;
-      }*/
-    }
+  }
     .session-menu {
       @media all and (max-width: $page-width-1) {
         float: right;
@@ -133,6 +123,8 @@
   .content-menu {
     @media all and (min-width: $page-width-1)
     {
+      display: flex;
+      flex-flow: column nowrap;
       float: right;
       width: 200px;
 

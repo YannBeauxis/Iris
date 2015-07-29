@@ -1,6 +1,5 @@
-<% content_for :content_menu do %>
-  > <%= link_to 'Modifier', edit_recipe_variant_path(@recipe, @variant) %><br>
-  > <%= link_to 'Supprimer', recipe_variant_path(@recipe, @variant),
-              method: :delete,
-              data: { confirm: 'Voulez-vous supprimer cette variante ?' } %>
-<% end %>
+<%= add_menu_item(menu: :content_menu, 
+     path: edit_recipe_variant_path(@recipe, @variant), label: 'Modifier') %>
+<%= add_menu_item(menu: :content_menu, 
+     path: recipe_variant_path(@recipe, @variant), label: 'Supprimer', 
+     link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cette variante  ?' }}) %>

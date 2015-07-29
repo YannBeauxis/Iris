@@ -2,18 +2,13 @@
   <span class="title">Modifier mon mot de passe</span>
 <% end %>
 
-<% content_for :content_menu do %>
-  > <%= link_to 'Annluer', user_path(@user) %>
-  <br>
-  > <%= link_to 'Supprimer mon compte', user_path(@user), 
-              method: :delete,
-              data: { confirm: 'Voulez-vous supprimer cet utilisteur ?' }  %>
-<% end %>
+<%= add_menu_item(menu: :content_menu, 
+     path: user_path(@user), label: 'Annuler') %>
+<%= add_menu_item(menu: :content_menu, 
+     path: user_path(@user), label: 'Supprimer compte', 
+     link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet utilisteur ?' }}) %>
 
 <% content_for :item_content do %>
-
-
-
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>

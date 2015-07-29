@@ -2,10 +2,10 @@
 <%= render 'header' %>
 <%= render 'menu' %>
 
-<% content_for :content_menu do %>
-  <br>> <%= link_to 'Retour Variante', recipe_variant_path(@recipe, @variant) %>
-  <br>> <%= link_to 'Retour Recette', recipe_path(@recipe) %>
-<% end %>
+<%= add_menu_item(menu: :content_menu, 
+     path: recipe_variant_path(@recipe, @variant) , label: 'Retour Variante') %>
+<%= add_menu_item(menu: :content_menu, 
+     path: recipe_path(@recipe), label: 'Retour Recette') %>
 
 <% content_for :item_content do %>
 

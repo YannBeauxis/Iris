@@ -5,9 +5,8 @@
   <span class="subtitle"><%= @recipe.name %></span>
 <% end %>
 
-<% content_for :content_menu do %>
-  > <%= link_to 'Annuler', :back %>
-<% end %>
+<%= add_menu_item(menu: :content_menu, 
+     path: :back, label: 'Annuler') %>
 
 <% content_for :item_content do %>
 

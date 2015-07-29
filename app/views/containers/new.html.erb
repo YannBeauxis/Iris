@@ -2,11 +2,7 @@
 
 <%= render 'ingredients/header' %>
 
-<%= render 'ingredients/menu' %>
-
-<% content_for :content_menu do %>
-  > <%= link_to 'Annuler', @ingredient %>
-<% end %>
+<%= render 'menu' %>
 
 <% content_for :item_content do %>
   <p><strong>Ajouter un contenant</strong></p>

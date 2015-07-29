@@ -2,11 +2,12 @@
 <%= render 'header' %>
 <%= render 'menu' %>
 
-<% content_for :content_menu do %>
-<br>> <%= link_to 'Ajouter ingrédient', recipe_ingredient_candidates_path(@recipe) %>
-<br>> <%= link_to 'Ajouter variante', new_recipe_variant_path(@recipe) %>
-<br>> <%= link_to 'Ajouter produit', new_recipe_product_path(@recipe) %>
-<% end %>
+<%= add_menu_item(menu: :content_menu, 
+     path: recipe_ingredient_candidates_path(@recipe), label: 'Ajouter ingrédient') %>
+<%= add_menu_item(menu: :content_menu, 
+     path: new_recipe_variant_path(@recipe), label: 'Ajouter variante') %>
+<%= add_menu_item(menu: :content_menu, 
+     path: new_recipe_product_path(@recipe), label: 'Ajouter produit') %>
 
 <% content_for :item_content do %>
 

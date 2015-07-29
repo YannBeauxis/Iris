@@ -6,10 +6,11 @@
   <span class="title">Liste des recettes</span>
 <% end %>
 
-<% content_for :content_menu do %>
-  > <%= link_to 'Nouvelle recette', new_recipe_path %><br>
-  > <%= link_to 'Nouveau type', new_recipe_type_path %>
-<% end %>
+
+<%= add_menu_item(menu: :content_menu, 
+     path: new_recipe_path, label: 'Nouvelle recette') %>
+<%= add_menu_item(menu: :content_menu, 
+     path: new_recipe_type_path, label: 'Nouveau type') %>
 
 <% content_for :item_content do %>
 

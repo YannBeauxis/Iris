@@ -1,6 +1,3 @@
-<% content_for :content_menu do %>
-  <span class="menu-link"><%= link_to 'Modifier', edit_ingredient_path(@ingredient) %></span>
-  <span class="menu-link"><%= link_to 'Supprimer', ingredient_path(@ingredient),
-              method: :delete,
-              data: { confirm: 'Voulez-vous supprimer cet ingrédient ?' } %></span>
-<% end %>
+<%= add_menu_item(menu: :content_menu, path: edit_ingredient_path(@ingredient), label: 'Modifier') %>
+<%= add_menu_item(menu: :content_menu, path: ingredient_path(@ingredient), label: 'Supprimer', 
+       link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet ingrédient ?' }}) %>

@@ -42,9 +42,9 @@ Rails.application.routes.draw do
     resources :recipes do
       get '/ingredient_candidates', to: 'recipes#ingredient_candidates', as: 'ingredient_candidates'
 
-      #resources :ingredients do
-      #   match '/add_ingredient', to: 'recipes#add_ingredient', via: :post
-      #end
+      resources :ingredients do
+         match '/add_ingredient', to: 'recipes#add_ingredient', via: :post
+      end
 
       match '/delete_ingredient', to: 'recipes#delete_ingredient', via: :post
 
