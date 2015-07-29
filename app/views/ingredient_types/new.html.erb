@@ -3,9 +3,8 @@
   > <%= link_to 'Types', ingredient_types_path %>
 <% end %>
 
-<% content_for :content_menu do %>
-  > <%= link_to 'Annuler', ingredients_path %>
-<%end%>
+<%= add_menu_item(menu: :content_menu, 
+     path: ingredients_path, label: 'Annuler') %>
 
 <% content_for :content_header do %>
   <span class="title">Nouveau type d'ingrédient</span>

@@ -2,15 +2,16 @@
 
 <%= render 'header' %>
 
-<% content_for :content_menu do %>
-    > <%= link_to 'Modifier', edit_ingredient_type_path %><br>
-    > <%= link_to 'Supprimer', ingredient_type_path(@ingredient_type),
-                method: :delete,
-                data: { confirm: 'Confirmer la suppression ?' } %><br>
-    > <%= link_to 'Liste des types', ingredient_types_path %><br>
-    > <%= link_to 'Nouveau conteneur standard', 
-            new_ingredient_type_container_reference_path(@ingredient_type) %>
-<% end %>
+
+<%= add_menu_item(menu: :content_menu, 
+     path: edit_ingredient_type_path, label: 'Modifier') %>
+<%= add_menu_item(menu: :content_menu, 
+     path: ingredient_type_path(@ingredient_type), label: 'Supprimer', 
+     link_param: {method: :delete, data: { confirm: 'Confirmer la suppression ?' }}) %>
+<%= add_menu_item(menu: :content_menu, 
+     path: ingredient_types_path, label: 'Liste des types') %>
+<%= add_menu_item(menu: :content_menu, 
+     path: new_ingredient_type_container_reference_path(@ingredient_type), label: 'Nouveau conteneur standard') %>
 
 <% content_for :item_content do %>
   <p>

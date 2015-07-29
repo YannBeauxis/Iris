@@ -2,12 +2,12 @@
 
 <%= render 'header' %>
 
-<% content_for :content_menu do %>
-    > <%= link_to 'Annuler', @ingredient_type %><br>
-    > <%= link_to 'Supprimer', ingredient_type_path(@ingredient_type),
-                method: :delete,
-                data: { confirm: 'Confirmer la suppression ?' } %><br>
-<% end %>
+<%= add_menu_item(menu: :content_menu, 
+     path: ingredient_type_path(@ingredient_type), label: 'Annuler') %>
+<%= add_menu_item(menu: :content_menu, 
+     path: ingredient_type_path(@ingredient_type), label: 'Supprimer', 
+     link_param: {method: :delete, data: { confirm: 'Confirmer la suppression ?' }}) %>
+
 
 <% content_for :item_content do %>
 
