@@ -6,37 +6,20 @@
   <span class="title">Liste des ingrédients</span>
 <% end %>
 
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: new_ingredient_path, label: 'Nouvel ingrédient') %>
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: new_ingredient_type_path, label: 'Nouveau type') %>
 
 <% content_for :item_content do %>
 
-    <table class="colored">
-
-     <tr>
-       <th></th>
-       <th>prix</th>
-       <th># recettes</th>
-     </tr>
-
-      <% @ingredient_types.each do |it| %>
-        <tr><td><strong><%= link_to it.name, ingredient_type_path(it) %></strong><td></p>
-        <% colored = true %>
-        <% @ingredients.where(type: it).sort_by {|i| i.name }.each do |i| %>
-          <% if colored then %>
-            <tr class="filled">
-          <% else %>
-            <tr>
-          <% end %>
-          <% colored = !colored %>
-            <td>&nbsp; &nbsp;<%= link_to i.name, ingredient_path(i) %></td>
-            <td class="center"><%= if !i.price_by_unit.nil?  then i.price_by_unit.round(2).to_s + ' €/' +i.type.mesure_unit else '-' end %></td>
-            <td class="center"><%= i.recipes.count %></td>
-          </tr>
-        <% end %>
-      <% end %>
-    </table>
+  <%= table_by_type(
+    types: @ingredient_types, 
+    items: @ingredients, 
+    columns: [
+      {name: 'prix', value: 'price_by_unit_display' },
+      {name: '#recettes', value: 'recipes_count'}
+    ]
+  ) %>
 
 <% end %>

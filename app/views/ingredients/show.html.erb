@@ -4,7 +4,7 @@
 
 <%= render 'menu' %>
 
-<%= add_menu_item(menu: :content_menu, path: new_ingredient_container_path(@ingredient), 
+<%= menu_item(menu: :content_menu, path: new_ingredient_container_path(@ingredient), 
     label: 'Ajouter un stock') %>
 
 <% content_for :item_content do %>

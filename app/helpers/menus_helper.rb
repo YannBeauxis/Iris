@@ -1,7 +1,7 @@
 module MenusHelper
   #attr_accessor :menu, :controller, :action, :label, :id
   
-  def add_menu_item(options = {})
+  def menu_item(options = {})
     if options.has_key?(:path) then
       path = options[:path]
     else

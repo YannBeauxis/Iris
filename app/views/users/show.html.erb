@@ -2,9 +2,9 @@
   <span class="title">Gestion de mes informations</span>
 <% end %>
 
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: edit_user_path(current_user.id), label: 'Modifier informations') %>
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: edit_user_registration_path, label: 'Changer mot de passe') %>
 
 <% content_for :item_content do %>

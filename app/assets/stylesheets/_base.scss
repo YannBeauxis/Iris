@@ -57,6 +57,13 @@ table.colored {
     }
     td {
         padding-right: 10px;
+      &.type {
+        font-weight: bold;   
+      }
+      &.item {
+        @include box-sizing(border-box);
+        padding-left: 4px;
+      }
     }
 }
 

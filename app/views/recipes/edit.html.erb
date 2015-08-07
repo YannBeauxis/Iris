@@ -1,7 +1,7 @@
 <%= render 'header' %>
 <%= render 'menu' %>
 
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: recipe_path(@recipe), label: 'Annuler') %>
 
 <% content_for :item_content do %>

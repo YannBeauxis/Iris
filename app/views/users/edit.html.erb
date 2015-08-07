@@ -2,14 +2,14 @@
   <span class="title">Modifier utilisateur</span>
 <% end %>
 
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: user_path(@user), label: 'Annuler') %>
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: edit_user_registration_path, label: 'Changer mot de passe') %>
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: user_path(@user), label: 'Supprimer compte', 
      link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet utilisteur ?' }}) %>
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: user_path(@user), label: 'Supprimer compte', 
      link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet utilisteur ?' }}) %>
 

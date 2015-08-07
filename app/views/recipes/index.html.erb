@@ -7,9 +7,9 @@
 <% end %>
 
 
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: new_recipe_path, label: 'Nouvelle recette') %>
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: new_recipe_type_path, label: 'Nouveau type') %>
 
 <% content_for :item_content do %>

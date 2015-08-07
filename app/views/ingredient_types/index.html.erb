@@ -7,7 +7,7 @@
   <span class="title">Liste des types d'ingrédients</span>
 <% end %>
 
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: new_ingredient_type_path, label: 'Nouveau type') %>
 
 <% content_for :item_content do %>

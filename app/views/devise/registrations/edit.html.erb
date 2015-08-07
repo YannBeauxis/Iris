@@ -2,9 +2,9 @@
   <span class="title">Modifier mon mot de passe</span>
 <% end %>
 
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: user_path(@user), label: 'Annuler') %>
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: user_path(@user), label: 'Supprimer compte', 
      link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet utilisteur ?' }}) %>
 

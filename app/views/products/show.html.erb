@@ -2,9 +2,9 @@
 <%= render 'header' %>
 <%= render 'menu' %>
 
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: recipe_variant_path(@recipe, @variant) , label: 'Retour Variante') %>
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: recipe_path(@recipe), label: 'Retour Recette') %>
 
 <% content_for :item_content do %>

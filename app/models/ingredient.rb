@@ -7,6 +7,22 @@ class Ingredient < ActiveRecord::Base
   validates :type, :name, presence: true
   before_destroy :check_for_recipes
 
+  def recipes_count
+    self.recipes.count
+  end
+
+  def price_by_unit_display
+    pbu = self.price_by_unit
+    if pbu.present? then
+      unit = self.type.mesure_unit
+      if unit = 'ml' then 
+        pbu = pbu*1000 
+        unit = 'l'
+      end
+      return pbu.display.to_s + ' €/' + unit
+    end
+  end
+
   def price_by_unit
    if containers.any? then
     pbu = containers.first.price_by_unit

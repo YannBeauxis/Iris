@@ -5,7 +5,7 @@
   <span class="subtitle"><%= @recipe.name %></span>
 <% end %>
 
-<%= add_menu_item(menu: :content_menu, 
+<%= menu_item(menu: :content_menu, 
      path: :back, label: 'Annuler') %>
 
 <% content_for :item_content do %>
