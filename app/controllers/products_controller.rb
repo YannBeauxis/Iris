@@ -61,7 +61,7 @@ class ProductsController < ApplicationController
     
     def check_user
       @recipe = Recipe.find(params[:recipe_id])
-      if current_user != @recipe.user then
+      if current_user != @recipe.user and !current_user.admin? then
         flash[:message] = "Vous n'avez pas les autorisations nécessaires"
         redirect_to recipe_path(@recipe)
       end

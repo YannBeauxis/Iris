@@ -5,7 +5,7 @@
 <%= menu_item(menu: :content_menu, 
      path: recipe_ingredient_candidates_path(@recipe), label: 'Ajouter ingrédient') %>
      
-<% if current_user == @recipe.user then%>
+<% if current_user == @recipe.user or current_user.admin? then%>
   <%= menu_item(menu: :content_menu, 
        path: new_recipe_variant_path(@recipe), label: 'Ajouter variante') %>
 <% end %>
