@@ -25,6 +25,13 @@ delete_with_user:
   volume_actual: 5
   price: 5
 
+proportions_0:
+  user: one
+  ingredient: proportions_0
+  volume_init: 1
+  volume_actual: 1
+  price: 0
+
 proportions_1:
   user: one
   ingredient: proportions_1

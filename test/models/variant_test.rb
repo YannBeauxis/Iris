@@ -19,7 +19,7 @@ class VariantTest < ActiveSupport::TestCase
     r.ingredients.destroy(i)
     r.save
     assert v.proportions.count == 2, 
-      v.proportions.count.to_s + 'Proportion associaated to an ingredient should be deleted when its ingredient is'
+      v.proportions.count.to_s + ' Proportion associated to an ingredient should be deleted when its ingredient is'
   end
 
   test "Create proportion" do

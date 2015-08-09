@@ -2,7 +2,8 @@ class Variant < ActiveRecord::Base
   belongs_to :recipe
   has_many :proportions, dependent: :destroy
   has_many :products, dependent: :destroy
-  has_many :ingredients, through: :recipe 
+  has_many :ingredients, through: :recipe
+  has_one :user, through: :recipe  
   validates :name, presence: true
   after_create :update_proportions
 

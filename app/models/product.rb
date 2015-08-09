@@ -1,7 +1,8 @@
 class Product < ActiveRecord::Base
   belongs_to :variant
   validates :name, :volume, presence: true
-
+  has_one :recipe, through: :variant  
+  
   def price
     if @product_price.nil? then
       price = 0

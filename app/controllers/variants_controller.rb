@@ -1,6 +1,7 @@
 class VariantsController < ApplicationController
   before_action :get_recipe
-
+  before_action :check_user, except: [:index, :show, :edit, :update, :destroy]
+  
   def index
     @variants = Variant.all
   end
@@ -47,11 +48,11 @@ class VariantsController < ApplicationController
     end
   end
 
-  def destroyd
-    @variant = Variant.find(:id)
+  def destroy
+    @variant = Variant.find(params[:id])
     @variant.destroy
  
-    redirect_to recipe_variants_path(@recipe)
+    redirect_to recipe_path(@recipe)
   end
 
   def update_proportions
@@ -71,18 +72,25 @@ class VariantsController < ApplicationController
 
   private
 
-    def get_recipe
-      @recipe_types = RecipeType.all
-      @recipes = Recipe.all
-      @recipe = Recipe.find(params[:recipe_id])
+  def get_recipe
+    @recipe_types = RecipeType.all
+    @recipes = Recipe.all
+    @recipe = Recipe.find(params[:recipe_id])
+  end
+  
+  def check_user
+    if current_user != @recipe.user then
+      flash[:message] = "Vous n'avez pas les autorisations nécessaires"
+      redirect_to recipe_path(@recipe)
     end
+  end
+  
+  def variant_params
+    params.require(:variant).permit(:name)
+  end
 
-    def variant_params
-      params.require(:variant).permit(:name)
-    end
-
-    def update_proportions_params
-      params.require(:variant).permit(:id, proportion_attributes: [:id, :value])
-    end
+  def update_proportions_params
+    params.require(:variant).permit(:id, proportion_attributes: [:id, :value])
+  end
 
 end

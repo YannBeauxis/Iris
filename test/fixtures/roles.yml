@@ -2,9 +2,12 @@
 
 admin:
   name: admin
+  rank: 1
 
 producteur:
   name: producteur
+  rank: 3
 
 client:
   name: client
+  rank: 4

@@ -13,7 +13,6 @@
     		<th>email</th>
     		<th>approved</th>
         <th>Rôle</th>
-    		
     	</tr>
     	<% @users.each do |u| %>
     		<tr>
@@ -30,7 +29,7 @@
   
   <p>
     <% Role.all.each do |r|%>
-    <%= r.id.to_s + ' - ' + r.name%><br>
+    <%= r.id.to_s + ' - ' + r.name + ' - ' + r.rank.to_s %><br>
     <% end %>
   </p>
   <% end %>

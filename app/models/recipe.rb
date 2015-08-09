@@ -22,4 +22,28 @@ class Recipe < ActiveRecord::Base
     self.variants.each { |v| v.update_proportions }
   end
 
+  def duplicate_variant(v_origin, name)
+    
+    v_copy = self.variants.create! do |v|
+      v.name = name
+    end
+   
+    v_copy.proportions.each do |p|
+      p_origin = v_origin.proportions.find_by(composant: p.composant)
+      if p_origin.value == 0 
+        #p.value = p_origin.value #Doesn't work, I don't nkow why ... 
+                                  #Unbale to reporduct bug with model test.
+        p.destroy #if destroy, recreate with update proportion with value = 0
+      else
+        p.value = p_origin.value
+        p.save
+      end
+    end
+
+    self.save
+
+    return v_copy
+
+  end
+
 end

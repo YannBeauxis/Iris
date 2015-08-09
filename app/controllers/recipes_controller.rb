@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
-  #load_and_authorize_resource
+  load_and_authorize_resource
   before_action :get_list
+  before_action :check_user, except: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   def index
   end
@@ -53,12 +54,22 @@ class RecipesController < ApplicationController
 
     @recipe = Recipe.find(params[:recipe_id])
 
-    ingredient_order = ['ingredient_types.name_short','name asc']
+    if current_user != @recipe.user then
+      
+      flash[:message] = "Vous n'avez pas les autorisations nécessaires"
+      redirect_to recipe_path(@recipe)
+    
+    else
 
-    @ingredient_candidates = @recipe.ingredient_candidates.order(ingredient_order)
-
-    render 'ingredient_candidates'
-    #render plain: @ingredient_candidates.inspect
+      ingredient_order = ['ingredient_types.name_short','name asc']
+  
+      @ingredient_candidates = @recipe.ingredient_candidates.order(ingredient_order)
+  
+      render 'ingredient_candidates'
+      #render plain: @ingredient_candidates.inspect
+      
+    end
+    
   end
  
   def add_ingredient
@@ -85,6 +96,15 @@ class RecipesController < ApplicationController
 
   end
 
+  def duplicate_variant
+    variant_origin = Variant.find(params[:variant_id])
+    @recipe = Recipe.find(params[:recipe_id])
+
+    v = @recipe.duplicate_variant(variant_origin, params[:variant_name])
+    
+    redirect_to recipe_variant_path(@recipe,v)
+    
+  end
 
   private
 
@@ -97,7 +117,20 @@ class RecipesController < ApplicationController
       @recipe_types = RecipeType.order(:name)
     end
 
-    def recipe_params
-      params.require(:recipe).permit(:name,:recipe_type_id, :ingredient_id)
+  def check_user
+    @recipe = Recipe.find(params[:recipe_id])
+    if current_user != @recipe.user then
+      flash[:message] = "Vous n'avez pas les autorisations nécessaires"
+      redirect_to recipe_path(@recipe)
     end
+  end
+
+    def recipe_params
+      params.require(:recipe).permit(:name,:recipe_type_id, :ingredient_id, :variant_id, :variant_name)
+    end
+
+   #def duplicate_variant_params
+   #   params.require(:recipe).permit(:recipe_id, :variant_id, :variant_name)
+   #end
+
 end

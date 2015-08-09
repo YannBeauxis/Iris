@@ -11,7 +11,7 @@ one:
 
 delete_container_recipe:
  email: 'delete_container_recipe@yahoo.fr'
- role: prodcteur
+ role: producteur
  approved: true
  
 not_admin:
@@ -37,3 +37,14 @@ client_to_producteur:
  approved: true
  role: client
  
+producteur: 
+ name: 'producteur'
+ email: 'producteur@yahoo.fr'
+ approved: true
+ role: producteur
+ 
+producteur_2: 
+ name: 'producteur_2'
+ email: 'producteur_2@yahoo.fr'
+ approved: true
+ role: producteur

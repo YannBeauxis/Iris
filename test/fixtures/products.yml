@@ -10,7 +10,7 @@ proportions:
   variant: proportions
   volume: 100
 
-#two:
-#  variant_id: 
-#  volume: 1.5
-#  detail: MyString
+not_to_be_duplicate:
+  name: 'not_to_be_duplicate'
+  variant: proportions
+  volume: 100

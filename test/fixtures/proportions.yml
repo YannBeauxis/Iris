@@ -31,4 +31,8 @@ proportions_3:
   variant: proportions
   composant: proportions_3(Ingredient)
   value: 1
-  
+
+proportions_0:
+  variant: proportions
+  composant: proportions_0(Ingredient)
+  value: 0

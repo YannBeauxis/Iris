@@ -5,6 +5,10 @@
 <%= render 'header' %>
 <%= render 'menu' %>
 
+<%= menu_item(menu: :content_menu, 
+     path: recipe_duplicate_variant_path(@recipe,variant_id: @variant, variant_name: 'Copie de ' + @variant.name), 
+     label: 'Dupliquer variante',link_param: {method: :patch}) %>
+
 <% content_for :item_content do %>
 
 <p><strong>Dosage ingrédients</strong></p>

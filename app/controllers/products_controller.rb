@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-  #load_and_authorize_resource
   before_action :get_list
-
+  before_action :check_user, except: [:index, :show, :edit, :update, :destroy]
+  
   def index
     @products = Product.all
   end 
@@ -58,7 +58,15 @@ class ProductsController < ApplicationController
       @recipes = Recipe.all
       @recipe = Recipe.find(params[:recipe_id])
     end
-
+    
+    def check_user
+      @recipe = Recipe.find(params[:recipe_id])
+      if current_user != @recipe.user then
+        flash[:message] = "Vous n'avez pas les autorisations nécessaires"
+        redirect_to recipe_path(@recipe)
+      end
+    end
+  
     def product_params
       params.require(:product).permit(:name, :variant_id, :volume, :detail)
     end

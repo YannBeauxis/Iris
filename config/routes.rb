@@ -33,7 +33,7 @@ Rails.application.routes.draw do
      end
 
      resources :ingredients do
-       match '/add_ingredient', to: 'recipes#add_ingredient', via: :post
+       #match '/add_ingredient', to: 'recipes#add_ingredient', via: :post
        resources :containers do
          match '/update_with_mass', to: 'containers#update_with_mass', via: :patch
        end
@@ -52,6 +52,8 @@ Rails.application.routes.draw do
         match '/update_proportions', to: 'variants#update_proportions', via: :patch
         match '/normalize_proportions', to: 'variants#normalize_proportions', via: :patch# , as: 'update_proportion'
       end
+
+      match '/duplicate_variant', to: 'recipes#duplicate_variant', via: :patch
 
       resources :products
 

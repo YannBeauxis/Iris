@@ -50,8 +50,9 @@ delete_with_user:
   ingredients: one
   
 proportions:
-  user: one
+  user: producteur
   name: 'proportions'
   type: proportions
-  ingredients: proportions_1, proportions_2, proportions_3
+  ingredients: proportions_0, proportions_1, proportions_2, proportions_3
+  
   

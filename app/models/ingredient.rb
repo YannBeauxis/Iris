@@ -15,7 +15,7 @@ class Ingredient < ActiveRecord::Base
     pbu = self.price_by_unit
     if pbu.present? then
       unit = self.type.mesure_unit
-      if unit = 'ml' then 
+      if unit == 'ml' then 
         pbu = pbu*1000 
         unit = 'l'
       end
