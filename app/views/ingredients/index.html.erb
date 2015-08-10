@@ -17,8 +17,8 @@
     types: @ingredient_types, 
     items: @ingredients, 
     columns: [
-      {name: 'prix', value: 'price_by_unit_display' },
-      {name: '#recettes', value: 'recipes_count'}
+      {name: 'prix', method: 'price_by_unit_display' },
+      {name: '#recettes', method: 'recipes_count' }
     ]
   ) %>
 

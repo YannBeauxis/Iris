@@ -23,6 +23,7 @@ class Ability
       can :manage, Recipe, :user_id => user.id
       can :manage, [Variant, Product], :recipe => {:user_id => user.id}
       can :create, [Variant, Product] #additional conditions in controller
+      can :manage, Container, :user_id => user.id
     end
 
     #

@@ -1,0 +1,32 @@
+<%= render 'nav_resume' %>
+<%= render 'header' %>
+<%= render 'menu' %>
+
+<%= menu_item(menu: :content_menu, 
+     path: recipe_path(@recipe), label: 'Annuler') %>
+
+<% content_for :item_content do %>
+
+  <p><strong>Retirer un ingrédient à la recette</strong></p>
+
+  <p></p>
+
+  <table>
+    <tr>
+      <th>Nom</th>
+      <th></th>
+    </tr>
+ 
+    <% @ingredients.each do |i| %>
+      <tr>
+        <td><%= i.name %></td>
+        <td><%= link_to 'Supprimer', 
+                  recipe_delete_ingredient_path(@recipe,:ingredient_id => i), 
+                  method: :post  
+        %></td>
+      </tr>
+    <% end %>
+  </table>
+
+
+<% end %>

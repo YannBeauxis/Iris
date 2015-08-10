@@ -8,6 +8,10 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @variants = @recipe.variants
+    @products = @recipe.products
+    @ingredients = @recipe.ingredients
+    @ingredient_types = @recipe.ingredient_types
   end 
 
   def new
@@ -84,6 +88,10 @@ class RecipesController < ApplicationController
 
   end
 
+  def delete_list
+    @recipe = Recipe.find(params[:recipe_id])
+    @ingredients = @recipe.ingredients
+  end
 
   def delete_ingredient
 
@@ -111,6 +119,8 @@ class RecipesController < ApplicationController
    def get_list
      @recipe_types = RecipeType.all
      @recipes = Recipe.all
+     @my_recipes = @recipes.where(user: current_user)
+     @my_recipe_types = @my_recipes.collect { |r| r.type }
    end
 
     def init_form

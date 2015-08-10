@@ -7,6 +7,10 @@ class Recipe < ActiveRecord::Base
   validates :user, :type, :name, presence: true
   after_save :update_proportions
 
+  def product_count
+    self.products.count
+  end
+
   def ingredient_types
     IngredientType.joins(ingredients: :recipes).where('recipe_id = '+ self.id.to_s).group('ingredient_types.id')
   end

@@ -4,8 +4,11 @@
 
 <%= menu_item(menu: :content_menu, 
      path: recipe_ingredient_candidates_path(@recipe), label: 'Ajouter ingrédient') %>
-     
-<% if current_user == @recipe.user or current_user.admin? then%>
+
+<%= menu_item(menu: :content_menu, 
+     path: recipe_delete_list_path(@recipe), label: 'Retirer ingrédient') %>
+   
+<% if can?(:update, @recipe) then%>
   <%= menu_item(menu: :content_menu, 
        path: new_recipe_variant_path(@recipe), label: 'Ajouter variante') %>
 <% end %>
@@ -15,8 +18,36 @@
 
 <% content_for :item_content do %>
 
-  <%= render 'products/list' %>
-  
-  <%= render 'ingredients' %>
+ <p><strong>Liste des produits par variante</strong></p>
+
+  <%= table_by_category(
+    category: {
+      name: :variant,
+      collection: @variants,
+      link_param: @recipe
+    },
+    item: {
+      collection: @products,
+      link_param: @recipe
+    },
+    columns: [
+      {name: 'volume', method: :volume }
+    ]
+  ) %>
+
+ <p><strong>Liste des ingrédients</strong></p>
+
+  <%= table_by_category(
+    category: {
+      name: :type,
+      collection: @ingredient_types
+    },
+    item: {
+      collection: @ingredients
+    },
+    columns: [
+      {name: 'Prix', method: :price_by_unit_display }
+    ]
+  ) %>
 
 <% end %>

@@ -14,28 +14,24 @@
 
 <% content_for :item_content do %>
 
-  <table class="colored">
+  <p> Mes recettes </p>
+  
+  <%= table_by_type(
+    types: @my_recipe_types, 
+    items: @my_recipes, 
+    columns: [
+      {name: '#produits', method: :product_count }
+    ]
+  ) %>
 
-   <tr>
-     <th></th>
-     <th># produits</th>
-   </tr>
+  <p> Toutes les recettes </p>
 
-    <% @recipe_types.sort_by {|r| r.name }.each do |rt| %>
-      <tr><td><strong><%= link_to rt.name, recipe_type_path(rt) %><strong><td></tr>
-      <% colored = true %>
-      <% @recipes.where(type: rt).sort_by {|r| r.name }.each do |r| %>
-          <% if colored then %>
-            <tr class="filled">
-          <% else %>
-            <tr>
-          <% end %>
-          <% colored = !colored %>
-          <td>&nbsp; &nbsp;<%= link_to r.name, recipe_path(r) %></td>
-          <td class="center"><%= r.products.count %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </table>
+  <%= table_by_type(
+    types: @recipe_types, 
+    items: @recipes, 
+    columns: [
+      {name: '#produits', method: 'product_count' }
+    ]
+  ) %>
 
 <% end %>
