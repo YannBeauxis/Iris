@@ -1,8 +1,17 @@
 class IngredientsController < ApplicationController
   #load_and_authorize_resource  
-  before_action :get_list
+  #before_action :get_list
   
   def index
+    if params[:scope] == 'My' then
+      @ingredients = Ingredient.joins(:containers)
+                        .where('user_id = ' + current_user.id.to_s).uniq
+      @ingredient_types = IngredientType.joins(ingredients: :containers)
+                        .where('user_id = ' + current_user.id.to_s).uniq
+    else
+      @ingredients = Ingredient.all
+      @ingredient_types = IngredientType.all
+    end
   end
 
   def show
@@ -53,7 +62,7 @@ class IngredientsController < ApplicationController
     end
 
     def ingredient_params
-      params.require(:ingredient).permit(:name, :ingredient_type_id, :density)
+      params.require(:ingredient).permit(:name, :ingredient_type_id, :density, :scope)
     end
 
 

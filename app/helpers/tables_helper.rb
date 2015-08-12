@@ -50,7 +50,11 @@ module TablesHelper
         #column values
         options[:columns].each do |column|
           if column.has_key?(:method) then
-            display = i.send(column[:method])
+            if column.has_key?(:method_params) then
+              display = i.send(column[:method], column[:method_params])
+            else 
+              display = i.send(column[:method])
+            end
           elsif column.has_key?(:value)
             display = column[:value]
           else

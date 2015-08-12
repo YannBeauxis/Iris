@@ -1,25 +1,30 @@
-<% content_for :nav_resume do %>
-  > <%= link_to 'Ingrédients', ingredients_path %>
-<% end %>
+<%= render 'nav_resume' %>
 
 <% content_for :content_header do %>
   <span class="title">Liste des ingrédients</span>
 <% end %>
 
-<%= menu_item(menu: :content_menu, 
-     path: new_ingredient_path, label: 'Nouvel ingrédient') %>
-<%= menu_item(menu: :content_menu, 
-     path: new_ingredient_type_path, label: 'Nouveau type') %>
+<%= render 'menu' %>
 
 <% content_for :item_content do %>
 
-  <%= table_by_type(
-    types: @ingredient_types, 
-    items: @ingredients, 
-    columns: [
-      {name: 'prix', method: 'price_by_unit_display' },
-      {name: '#recettes', method: 'recipes_count' }
-    ]
+  <% if @ingredients.any? then %>
+  
+    <%= table_by_category(
+    category: {
+      name: :type,
+      collection: @ingredient_types
+    },
+    item: {
+      collection: @ingredients
+    },
+      columns: [
+        {name: 'prix', method: 'price_by_unit_display' },
+        {name: '#recettes', method: 'recipes_count' },
+        {name: 'stock', method: :quantity_in_stock, method_params: current_user }
+      ]
   ) %>
+  
+  <% end %>
 
 <% end %>

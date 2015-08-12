@@ -33,9 +33,9 @@ class Ingredient < ActiveRecord::Base
    end
   end
 
-  def volume_in_stock
+  def quantity_in_stock(user)
     vol=0
-    self.containers.each { |c| if (not c.volume_actual.nil?) then vol += c.volume_actual end }
+    self.containers.each { |c| if (not c.volume_actual.nil? and c.user == user) then vol += c.volume_actual end }
     return vol
   end
 

@@ -3,9 +3,9 @@ module MenusHelper
   
   def menu_item(options = {})
 
-    if options.has_key?(:can_show) then
-      can_show_options = options[:can_show]
-      show = can?(can_show_options[:action], can_show_options[:object])
+    if options.has_key?(:can_condition) then
+      conditions = options[:can_condition]
+      show = can?(conditions[:action], conditions[:object])
     else
       show = true
     end

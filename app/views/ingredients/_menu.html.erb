@@ -1,3 +1,27 @@
-<%= menu_item(menu: :content_menu, path: edit_ingredient_path(@ingredient), label: 'Modifier') %>
-<%= menu_item(menu: :content_menu, path: ingredient_path(@ingredient), label: 'Supprimer', 
-       link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet ingrédient ?' }}) %>
+<% if params[:action] == 'index' then %>
+  <% if params[:scope] != 'My' then%>
+    <%= menu_item(menu: :content_menu, 
+         label: 'Ingrédients en stock', path: ingredients_path(scope: 'My'), 
+         can_condition: {action: :create, object: Container}) 
+    %>
+  <% else %>
+      <%= menu_item(menu: :content_menu, 
+         label: 'Tous les ingrédients', path: ingredients_path(scope: 'All'), 
+         can_condition: {action: :create, object: Container}) 
+    %>
+  <% end %>
+  <%= menu_item(menu: :content_menu, 
+       path: new_ingredient_path, label: 'Nouvel ingrédient',
+       can_condition: {action: :create, object: Ingredient}) 
+  %>
+  <%= menu_item(menu: :content_menu, 
+       path: new_ingredient_type_path, label: 'Nouveau type',
+       can_condition: {action: :create, object: IngredientType}) 
+  %>
+<% end %>
+
+<% if params[:action] == 'show' then %>
+  <%= menu_item(menu: :content_menu, path: edit_ingredient_path(@ingredient), label: 'Modifier') %>
+  <%= menu_item(menu: :content_menu, path: ingredient_path(@ingredient), label: 'Supprimer', 
+         link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet ingrédient ?' }}) %>
+<% end %>

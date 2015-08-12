@@ -1,5 +1,7 @@
-<% content_for :nav_resume do %>
-  <span class="menu-link"><%= link_to 'Ingrédients', ingredients_path %></span>
-  <span class="menu-link"><%= link_to @ingredient.type.name, ingredient_type_path(@ingredient.type) %></span>
-  <span class="menu-link"><%= link_to @ingredient.name, ingredient_path(@ingredient) %></span>
+<%= menu_item(menu: :nav_resume, 
+     label: 'Ingrédients', path: ingredients_path)%>
+
+<% if params[:action] == 'show' then %>
+  <%= menu_item(menu: :nav_resume, 
+       label: @ingredient.type.name, path: ingredient_type_path(@ingredient.type)) %>
 <% end %>
