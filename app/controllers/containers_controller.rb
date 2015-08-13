@@ -70,7 +70,11 @@ class ContainersController < ApplicationController
     end
 
     def container_params
-      params.require(:container).permit(:ingredient, :volume_init, :volume_actual, :price)
+      p = [:ingredient, :volume_init, :volume_actual, :price]
+      if current_user.admin? then
+        p << :user_id
+      end
+      params.require(:container).permit(p)
     end
     
     def update_with_mass_params

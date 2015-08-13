@@ -14,7 +14,14 @@
     <%= f.label 'Volume actuel' %><br>
     <%= f.number_field :volume_actual, :step => 'any' %>
   </p>
-
+      
+  <% if current_user.admin? then%>
+    <p>
+      <%= f.label 'Propriétaire' %><br>
+      <%= f.collection_select(:user_id, User.all, :id, :name) %>
+    </p>
+  <% end %>
+  
   <p>
     <%= f.submit 'Enregistrer'%>
   </p>
