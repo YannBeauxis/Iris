@@ -1,0 +1,28 @@
+<% render 'menu' %>
+
+<% content_for :content_header do %>
+  <span class="title">Gestion des stocks</span>
+<% end %>
+
+<% content_for :item_content do %>
+
+  <table>
+    <tr>
+      <th>Type</th>
+      <th>ingrédient</th>
+      <th>Volume actuel</th>
+      <th>User</th>
+    </tr>
+    <% @containers.each do |c| %>
+      <tr>      
+        <td><%= c.ingredient.type.name_short %></td>
+        <td><%= c.ingredient.name %></td>
+        <td><%= c.volume_actual %></td>
+        <td><%= c.user.name %></td>
+        <td><%= link_to 'Edit', edit_ingredient_container_path(c.ingredient,c)%></td>
+     </tr>
+
+    <% end %>
+  </table>
+
+<% end %>

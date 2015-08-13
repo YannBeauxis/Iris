@@ -32,7 +32,7 @@
       <span class="menu-link"><%= link_to 'Ingrédients', ingredients_path %></span>
       <span class="menu-link"><%= link_to 'Recettes', recipes_path %></span>
       <% if user_signed_in? && current_user.admin? %>
-        <span class="menu-link"><%= link_to 'Administration', users_path %></span>
+        <span class="menu-link"><%= link_to 'Administration', admin_users_path %></span>
       <% end %>
     </div>
     

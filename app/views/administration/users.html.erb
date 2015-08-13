@@ -1,3 +1,5 @@
+<% render 'menu' %>
+
 <% content_for :content_header do %>
   <span class="title">Gestion des utilisateurs</span>
 <% end %>
@@ -6,24 +8,24 @@
   <% if current_user.admin? then %>
   <p>
     <table>
-    	<tr>
-    		<th></th>
-    		<th>id</th>
+      <tr>
+        <th></th>
+        <th>id</th>
         <th>Nom</th>
-    		<th>email</th>
-    		<th>approved</th>
+        <th>email</th>
+        <th>approved</th>
         <th>Rôle</th>
-    	</tr>
-    	<% @users.each do |u| %>
-    		<tr>
-    			<td><%= link_to 'Edit', edit_user_path(u.id) %></td>
-    			<td><%= u.id %></td>
+      </tr>
+      <% @users.each do |u| %>
+        <tr>
+          <td><%= link_to 'Edit', edit_user_path(u.id) %></td>
+          <td><%= u.id %></td>
           <td><%= u.name %></td>
-    			<td><%= u.email %></td>
-    			<td><%= u.approved %></td>
+          <td><%= u.email %></td>
+          <td><%= u.approved %></td>
           <td><%= u.role.name %></td>
-    		</tr>
-    	<% end %>
+        </tr>
+      <% end %>
     </table>
   </p>
   

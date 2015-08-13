@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
 
-  get 'users/index'
+  # You can have the root of your site routed with "root"
+  root 'welcome#index'
+
+  #get 'users/index'
+
+  scope :admin do
+    get '/users', to: 'administration#users',as: :admin_users
+    get '/containers', to: 'administration#containers',as: :admin_containers
+  end
 
   #devise_for :users
   devise_for :users, :controllers => { registrations: 'registrations' }
@@ -15,9 +23,6 @@ Rails.application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

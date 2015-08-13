@@ -25,6 +25,13 @@
                       step="any" type="number" value=<%= @container.mass_total.display %> />
       </p>
       
+      <% if current_user.admin? then%>
+        <p>
+  
+          <%= f.label 'Propriétaire' %><br>
+          <%= f.collection_select(:user_id, User.all, :id, :name) %>
+      <% end %>
+
       <p>
         <%= f.submit 'Enregistrer'%>
       </p>
