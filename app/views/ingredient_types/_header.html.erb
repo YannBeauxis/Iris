@@ -1,4 +1,14 @@
-<% content_for :content_header do %>
-  <span class="title"><%= @ingredient_type.name %></span><br>
-  <span class="subtitle"><%= @ingredient_type.name_short %></span>
+<% if ['show', 'edit'].include?(params[:action]) then%>
+  <% content_for :content_header do %>
+    <span class="title"><%= @ingredient_type.name %></span><br>
+    <span class="subtitle"><%= @ingredient_type.name_short %></span>
+  <% end %>
+<% elsif params[:action] == 'index' %>
+  <% content_for :content_header do %>
+    <span class="title"><%= 'Liste des types d\'ingrédients' %></span>
+  <% end %>
+<% elsif params[:action] == 'new'  then %>
+  <% content_for :content_header do %>
+    <span class="title">Nouveau type d'ingrédient</span>
+  <% end %>
 <% end %>

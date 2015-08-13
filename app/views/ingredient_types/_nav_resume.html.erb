@@ -1,4 +1,7 @@
-<% content_for :nav_resume do %>
-  > <%= link_to 'Ingrédients', ingredients_path %> 
-  > <%= link_to @ingredient_type.name, ingredient_type_path(@ingredient_type) %>
-<% end %>
+<%= menu_item(menu: :nav_resume, 
+    label: 'Ingrédients', path: ingredients_path
+)%>
+
+<%= menu_item(menu: :nav_resume, 
+    label: 'Types d\'ingrédients', path: ingredient_types_path
+)%>

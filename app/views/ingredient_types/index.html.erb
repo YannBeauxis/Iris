@@ -1,18 +1,8 @@
-<% content_for :nav_resume do %>
-  > <%= link_to 'Ingrédients', ingredients_path %>
-  > <%= link_to 'Types d\'ingrédients', ingredients_path %>
-<% end %>
-
-<% content_for :content_header do %>
-  <span class="title">Liste des types d'ingrédients</span>
-<% end %>
-
-<%= menu_item(menu: :content_menu, 
-     path: new_ingredient_type_path, label: 'Nouveau type') %>
+<%= render 'nav_resume' %>
+<%= render 'menu' %>
+<%= render 'header' %>
 
 <% content_for :item_content do %>
- 
-  <p><%= link_to 'Nouveau type', new_ingredient_type_path %></p>
 
   <table>
     <tr>

@@ -82,6 +82,7 @@
 
 #Main {
   padding-top: $padding-step * 1;
+  min-height: 220px;
   .nav-resume {
     @include box-sizing(border-box);
     padding-left: $padding-step * 1;
@@ -107,10 +108,11 @@
     left: 0px;
   }
   .content-header {
-    width: 100%;
+    width: $page-width-1;
     @include box-sizing(border-box);
     padding-left: $padding-step * 2;
     margin-bottom: $padding-step * 1;
+    min-height: 44px;
     color: $color-secondary-text;
     .title {
       font-size: 180%;
@@ -127,7 +129,8 @@
       flex-flow: column nowrap;
       float: right;
       width: 200px;
-
+      @include box-sizing(border-box);
+      margin-top: -50px;
     }
     @media all and (max-width: $page-width-1)
     {
