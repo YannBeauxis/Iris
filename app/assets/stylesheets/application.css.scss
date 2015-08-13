@@ -108,7 +108,7 @@
     left: 0px;
   }
   .content-header {
-    width: $page-width-1;
+    width: 100%;
     @include box-sizing(border-box);
     padding-left: $padding-step * 2;
     margin-bottom: $padding-step * 1;
