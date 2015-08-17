@@ -1,10 +1,27 @@
-<%= menu_item(menu: :content_menu, 
-     path: edit_recipe_path(@recipe), label: 'Modifier',
-     can_condition: {action: :update, object: @recipe}
- ) %>
+<% if params[:action] == 'index' then %>
+  <% if params[:scope] != 'My' then%>
+    <%= menu_item(menu: :content_menu, 
+         label: 'Mes recettes', path: recipes_path(scope: 'My'), 
+         can_condition: {action: :create, object: Recipe}) 
+    %>
+  <% else %>
+      <%= menu_item(menu: :content_menu, 
+         label: 'Toutes les recettes', path: recipes_path(scope: 'All'), 
+         can_condition: {action: :create, object: Recipe}) 
+    %>
+  <% end %>
+  <%= menu_item(menu: :content_menu, 
+       path: new_recipe_path, label: 'Nouvelle recette',
+       can_condition: {action: :create, object: Recipe}) 
+  %>
+  <%= menu_item(menu: :content_menu, 
+       path: recipe_types_path, label: 'Gérer les types',
+       can_condition: {action: :create, object: RecipeType}) 
+  %>
+<% end %>
 
-<%= menu_item(menu: :content_menu, 
-     path: recipe_path(@recipe), label: 'Supprimer', 
-     link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet utilisteur ?' }},
-     can_condition: {action: :delete, object: @recipe}
- ) %>
+<% if params[:action] == 'show' then %>
+  <%= menu_item(menu: :content_menu, path: edit_recipe_path(@recipe), label: 'Modifier') %>
+  <%= menu_item(menu: :content_menu, path: recipe_path(@recipe), label: 'Supprimer', 
+         link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cette recette ?' }}) %>
+<% end %>

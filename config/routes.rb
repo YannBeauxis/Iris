@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   scope :admin do
     get '/users', to: 'administration#users',as: :admin_users
     get '/containers', to: 'administration#containers',as: :admin_containers
+    get '/recipes', to: 'administration#recipes',as: :admin_recipes
   end
 
   #devise_for :users

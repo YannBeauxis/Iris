@@ -1,0 +1,26 @@
+<% render 'menu' %>
+
+<% content_for :content_header do %>
+  <span class="title">Gestion des recettes</span>
+<% end %>
+
+<% content_for :item_content do %>
+
+  <table>
+    <tr>
+      <th>Type</th>
+      <th>Recette</th>
+      <th>User</th>
+    </tr>
+    <% @recipes.each do |r| %>
+      <tr>      
+        <td><%= r.type.name %></td>
+        <td><%= r.name %></td>
+        <td><%= r.user.name %></td>
+        <td><%= link_to 'Edit', edit_recipe_path(r)%></td>
+     </tr>
+
+    <% end %>
+  </table>
+
+<% end %>

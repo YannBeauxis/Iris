@@ -1,6 +1,7 @@
 <% [
     {label: 'Users', action: 'users', path: admin_users_path }, 
-    {label: 'Containers', action: 'containers', path: admin_containers_path }
+    {label: 'Containers', action: 'containers', path: admin_containers_path },
+    {label: 'Recipes', action: 'recipes', path: admin_recipes_path }
   ].each do |m| %>
     <%= menu_item(menu: :content_menu, 
       label: m[:label], path: m[:path]) 

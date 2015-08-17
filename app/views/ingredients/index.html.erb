@@ -1,9 +1,5 @@
 <%= render 'nav_resume' %>
-
-<% content_for :content_header do %>
-  <span class="title">Liste des ingrédients</span>
-<% end %>
-
+<%= render 'header' %>
 <%= render 'menu' %>
 
 <% content_for :item_content do %>
@@ -20,8 +16,8 @@
     },
       columns: [
         {name: 'prix', method: 'price_by_unit_display' },
-        {name: '#recettes', method: 'recipes_count' },
-        {name: 'stock', method: :quantity_in_stock, method_params: current_user }
+        {name: '#recettes', method: 'recipes_count', method_params: current_user },
+        {name: 'stock', method: 'quantity_in_stock', method_params: current_user }
       ]
   ) %>
   

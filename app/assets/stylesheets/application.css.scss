@@ -159,6 +159,14 @@
     @include box-sizing(border-box);
     padding-left: $padding-step * 1;
     padding-bottom: $padding-step * 3;
+    .subcontent {
+      .title {
+        font-weight: bold;
+        color: $color-base-text;
+        @include box-sizing(border-box);
+        margin: 5px 0 5px 0;
+      }
+    }
   }
 }
 

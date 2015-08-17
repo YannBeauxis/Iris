@@ -1,37 +1,20 @@
-<% content_for :nav_resume do %>
-  > <%= link_to 'Recettes', recipes_path %>
-<% end %>
-
+<%= render 'nav_resume' %>
 <% content_for :content_header do %>
   <span class="title">Liste des recettes</span>
 <% end %>
-
-
-<%= menu_item(menu: :content_menu, 
-     path: new_recipe_path, label: 'Nouvelle recette') %>
-<%= menu_item(menu: :content_menu, 
-     path: new_recipe_type_path, label: 'Nouveau type') %>
+<%= render 'menu' %>
 
 <% content_for :item_content do %>
 
-  <p> Mes recettes </p>
-  
-  <%= table_by_type(
-    types: @my_recipe_types, 
-    items: @my_recipes, 
-    columns: [
-      {name: '#produits', method: :product_count }
-    ]
-  ) %>
-
-  <p> Toutes les recettes </p>
-
-  <%= table_by_type(
-    types: @recipe_types, 
-    items: @recipes, 
-    columns: [
-      {name: '#produits', method: 'product_count' }
-    ]
+    <%= table_by_category(
+    category: {
+      name: :type,
+      collection: @recipe_types
+    },
+    item: {
+      collection: @recipes
+    },
+      columns: @columns
   ) %>
 
 <% end %>

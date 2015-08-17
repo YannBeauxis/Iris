@@ -2,13 +2,6 @@
 <%= render 'menu' %>
 <%= render 'header' %>
 
-<%= menu_item(menu: :content_menu, 
-     path: ingredient_type_path(@ingredient_type), label: 'Annuler') %>
-<%= menu_item(menu: :content_menu, 
-     path: ingredient_type_path(@ingredient_type), label: 'Supprimer', 
-     link_param: {method: :delete, data: { confirm: 'Confirmer la suppression ?' }}) %>
-
-
 <% content_for :item_content do %>
 
   <p><strong>Modifier le type d'ingrédient</strong></p>

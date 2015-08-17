@@ -9,5 +9,9 @@ class AdministrationController < ApplicationController
     def containers
       @containers = Container.all
     end
-  
+
+    def recipes
+      @recipes = Recipe.all
+    end
+
 end

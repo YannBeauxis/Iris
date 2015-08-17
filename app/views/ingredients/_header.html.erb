@@ -1,4 +1,27 @@
-<% content_for :content_header do %>
-  <span class="title"><%= @ingredient.name %></span><br>
-  <span class="subtitle"><%= @ingredient.type.name %></span>
+<% if params[:action] != 'index' then %>
+  <% content_for :content_header do %>
+    <div class="title"><%= @ingredient.name %></div>
+  <% end %>
+<% end %>
+
+<% if params[:controller] == 'ingredients' then %>
+  <%= render '/shared/item_content_subtitle'%>
+  <% if params[:action] == 'index' then %>
+    <% content_for :content_header do %>
+      <div class="title">Liste des ingrédients</div>
+      <% if params[:scope] == 'My' then%>
+        <div class="subtitle">Ingrédients en stock</div>
+      <% else %>
+        <div class="subtitle">Tous les ingrédients</div>
+      <% end %>
+    <% end %>
+  <% end %>
+<% elsif params[:controller] == 'containers' %>
+  <% content_for :content_header do %>
+    <% if params[:action] == 'new' then %>
+      <div class="subtitle">Ajouter un stock</div>
+    <% elsif params[:action] == 'edit' then %>
+      <div class="subtitle">Modifier le stock</div>
+    <% end %>
+  <% end %>
 <% end %>

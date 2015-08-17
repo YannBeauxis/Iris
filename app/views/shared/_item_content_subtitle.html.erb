@@ -1,0 +1,7 @@
+<% content_for :content_header do %>
+  <% if params[:action] == 'show' then%>
+      <div class="subtitle">Caractéristiques</div>
+  <% elsif params[:action] == 'edit' then %>
+      <div class="subtitle">Modifier</div>
+  <% end %>
+<% end %>

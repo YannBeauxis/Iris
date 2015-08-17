@@ -12,7 +12,7 @@ module TablesHelper
     cat_params = options[:category]
     item_params = options[:item]
     
-    cat_params[:collection].each do |category|
+    cat_params[:collection].order(:name).each do |category|
 
       # line for type
       str += content_tag :tr do
@@ -29,7 +29,7 @@ module TablesHelper
       
       # lines for item in type
       colored = true
-      item_params[:collection].where(cat_params[:name] => category).sort_by {|i| i.name }.each do |i|
+      item_params[:collection].where(cat_params[:name] => category).order(:name).each do |i|
         if colored then
           cl = "filled"
         else

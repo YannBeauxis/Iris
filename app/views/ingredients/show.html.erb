@@ -1,7 +1,5 @@
 <%= render 'nav_resume' %>
-
 <%= render 'header' %>
-
 <%= render 'menu' %>
 
 <%= menu_item(menu: :content_menu, path: new_ingredient_container_path(@ingredient), 
@@ -9,36 +7,39 @@
 
 <% content_for :item_content do %>
 
-  <% if @ingredient.containers.count > 0 then %>
+  <div class="subcontent">
+    <div class="title">informations</div>
+    <span class="highlight">Densité : </span>
+    <%= @ingredient.density %>
+    <br>
+  </div>
 
-    En stock pour cet ingrédient
- 
-    <table>
-      <tr>
-        <th>Volume d'achat</th>
-        <th>Volume actuel</th>
-        <th>Prix d'achat</th>
-        <th>Prix au <%= @ingredient.type.mesure_unit %></th>
-      </tr>
- 
-      <% @ingredient.containers.each do |c| %>
+  <div class="subcontent">
+    <div class="title">Stocks pour l'ingrédient</div>
+    <% if @ingredient.containers.count > 0 then %>
+   
+      <table>
         <tr>
-          <td><%= c.volume_init.display %></td>
-          <td><%= if c.volume_actual? then c.volume_actual.display end %></td>
-          <td><%= c.price.round(2) %> €</td>
-          <td><%= c.price_by_unit.round(2) %> €</td>
-          <td><%= link_to 'Modifier', edit_ingredient_container_path(@ingredient,c) %></td>
-          <td><%= link_to 'Supprimer', ingredient_container_path(@ingredient,c),
-                    method: :delete,
-                    data: { confirm: 'Voulez-vous supprimer ce contenant ?' } %></td>
+          <th>Volume d'achat</th>
+          <th>Volume actuel</th>
+          <th>Prix au <%= @ingredient.type.mesure_unit %></th>
         </tr>
-      <% end %>
-    </table>
-
-  <% else %>
-
-    <p><italic>Pas de stock pour cet ingrédient.</italic></p>
-
-  <% end %>
+   
+        <% @containers.each do |c| %>
+          <tr>
+            <td><%= c.volume_init.display %></td>
+            <td><%= if c.volume_actual? then c.volume_actual.display end %></td>
+            <td><%= c.price_by_unit.round(2) %> €</td>
+            <td><%= link_to 'Modifier', edit_ingredient_container_path(@ingredient,c) %></td>
+          </tr>
+        <% end %>
+      </table>
+  
+    <% else %>
+  
+      <i>Pas de stock pour cet ingrédient.</i>
+  
+    <% end %>
+  </div>
 
 <% end %>

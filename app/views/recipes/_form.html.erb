@@ -9,6 +9,13 @@
     <%= f.collection_select :recipe_type_id, @recipe_types, :id, :name %>
   </p>
 
+  <% if current_user.admin? then%>
+    <p>
+      <%= f.label 'Propriétaire' %><br>
+      <%= f.collection_select(:user_id, User.all, :id, :name) %>
+    </p>
+  <% end %>
+
   <p>
     <%= f.submit 'Enregistrer'%>
   </p>

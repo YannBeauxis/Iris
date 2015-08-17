@@ -7,6 +7,10 @@ class Recipe < ActiveRecord::Base
   validates :user, :type, :name, presence: true
   after_save :update_proportions
 
+  def user_name
+    self.user.name
+  end
+
   def product_count
     self.products.count
   end

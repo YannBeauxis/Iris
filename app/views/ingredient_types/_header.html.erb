@@ -1,14 +1,29 @@
-<% if ['show', 'edit'].include?(params[:action]) then%>
-  <% content_for :content_header do %>
-    <span class="title"><%= @ingredient_type.name %></span><br>
-    <span class="subtitle"><%= @ingredient_type.name_short %></span>
+<% if params[:controller] == 'ingredient_types' then%>
+  <% if ['show', 'edit'].include?(params[:action]) then%>
+    <% content_for :content_header do %>
+      <div class="title"><%= @ingredient_type.name %></div>
+    <% end %>
+  <% elsif params[:action] == 'index' %>
+    <% content_for :content_header do %>
+      <div class="title"><%= 'Liste des types d\'ingrédients' %></div>
+    <% end %>
+  <% elsif params[:action] == 'new'  then %>
+    <% content_for :content_header do %>
+      <div class="title">Nouveau type d'ingrédient</div>
+    <% end %>
   <% end %>
-<% elsif params[:action] == 'index' %>
+  <%= render '/shared/item_content_subtitle' %>
+  
+<% elsif params[:controller] == 'container_references' then%>
   <% content_for :content_header do %>
-    <span class="title"><%= 'Liste des types d\'ingrédients' %></span>
+    <div class="title"><%= @ingredient_type.name %></div>
+    <% if params[:action] == 'new' then %>
+      <div class="subtitle">Ajouter un conteneur standard</div>
+    <% elsif params[:action] == 'edit' then %>
+      <div class="subtitle">Modifier le contenant standard</div>
+    <% end %>
   <% end %>
-<% elsif params[:action] == 'new'  then %>
-  <% content_for :content_header do %>
-    <span class="title">Nouveau type d'ingrédient</span>
-  <% end %>
+  
 <% end %>
+
+

@@ -2,58 +2,67 @@
 <%= render 'menu' %>
 <%= render 'header' %>
 
-<%= menu_item(menu: :content_menu, 
-     path: edit_ingredient_type_path, label: 'Modifier') %>
-<%= menu_item(menu: :content_menu, 
-     path: ingredient_type_path(@ingredient_type), label: 'Supprimer', 
-     link_param: {method: :delete, data: { confirm: 'Confirmer la suppression ?' }}) %>
-<%= menu_item(menu: :content_menu, 
-     path: ingredient_types_path, label: 'Liste des types') %>
-<%= menu_item(menu: :content_menu, 
-     path: new_ingredient_type_container_reference_path(@ingredient_type), label: 'Nouveau conteneur standard') %>
-
 <% content_for :item_content do %>
-  <p>
-    <strong>Unité de mesure : </strong>
-    <%= @ingredient_type.mesure_unit %>
-  </p>
 
-  <p>
-  <strong>Types de recettes associées</strong>
+  <div class="subcontent">
+    <div class="title">
+      Infos
+    </div>
+    <span class="highlight">Nom abrégé : </span>
+    <%= @ingredient_type.name_short %>
+    <br>
+    <span class="highlight">Unité de mesure : </span>
+    <%= @ingredient_type.mesure_unit %>
+    <br>
+    <span class="highlight">Densité : </span>
+    <%= @ingredient_type.density %>
+  </div>
+
+  <div class="subcontent">
+    <div class="title">
+      Types de recettes associées
+    </div>
     <ul>
       <% @ingredient_type.recipe_types.each do |rt| %>
         <li> <%= link_to rt.name, rt %> </li>
      <% end %>
    </ul>
-  </p>
+  </div>
 
-  <strong>Ingrédients disponibles</strong>
+  <div class="subcontent">
+    <div class="title">
+      Ingrédients disponibles
+    </div>
     <ul>
       <% @ingredient_type.ingredients.each do |i| %>
         <li> <%= link_to i.name, i %> </li>
      <% end %>
-   </ul>
-  </p>
+    </ul>
+  </div>
   
-  <% if @container_references.any? %>
-    <p><b>Liste des conteneurs standards</b></p>
-    <table>
-      <tr>
-        <th>Volume</th>
-        <th>Masse</th>
-        <th></th>
-      </tr>
-      <% @container_references.each do |cr| %>
+  <div class="subcontent">
+    <div class="title">
+      Liste des conteneurs standards
+    </div>
+    <% if @container_references.any? %>
+      <table>
         <tr>
-          <td><%= cr.volume %>ml</td>
-          <td><%= cr.mass %>g</td>
-          <td><%= link_to 'Modifier', 
-                edit_ingredient_type_container_reference_path(@ingredient_type,cr) %></td>
+          <th>Volume</th>
+          <th>Masse</th>
+          <th></th>
         </tr>
-      <% end %>
-    </table>
-  <% else %>
-    <p><i>Pas de conteneur standard pour ce type d'ingrédient</i></p>
-  <% end %>
-
+        <% @container_references.each do |cr| %>
+          <tr>
+            <td><%= cr.volume %>ml</td>
+            <td><%= cr.mass %>g</td>
+            <td><%= link_to 'Modifier', 
+                  edit_ingredient_type_container_reference_path(@ingredient_type,cr) %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <i>Pas de conteneur standard pour ce type d'ingrédient</i>
+    <% end %>
+  </div>
+  
 <% end %>

@@ -1,22 +1,35 @@
-<% if ['new', :edit].include?(params[:action]) then %>
+<% if params[:action] == 'new' then %>
   <%= menu_item(menu: :content_menu, 
        path: ingredient_types_path, label: 'Annuler') %>
-<% else %>
+<% elsif params[:action] != 'edit'  %>
   <%= menu_item(menu: :content_menu, 
        path: new_ingredient_type_path, label: 'Nouveau type',
        can_condition: {action: :create, object: @ingredient_type}
   ) %>
 <% end %>
 
-<% if (params[:action]) == :show then%>
+<% if params[:action] == 'edit' then %>
   <%= menu_item(menu: :content_menu, 
-      label: 'Modifier', path: edit_ingredient_type_path,
-       can_condition: {action: :update, object: @ingredient_type}
+       path: ingredient_type_path(@ingredient_type), label: 'Annuler') %>
+<% end %>
+
+<% if (params[:action]) == 'show' then%>
+  <%= menu_item(menu: :content_menu, 
+    label: 'Modifier', path: edit_ingredient_type_path,
+    can_condition: {action: :update, object: @ingredient_type}
   )%>
-  
   <%= menu_item(menu: :content_menu, 
-       path: ingredient_type_path(@ingredient_type), label: 'Supprimer', 
-       link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet utilisteur ?' }},
-       can_condition: {action: :delete, object: @ingredient_type}
+     path: new_ingredient_type_container_reference_path(@ingredient_type), 
+     label: 'Nouveau conteneur standard',
+     can_condition: {action: :update, object: @ingredient_type} 
+  )%>
+
+<% end %>
+
+<% if ['show', 'edit'].include?(params[:action]) then %>
+  <%= menu_item(menu: :content_menu, 
+     path: ingredient_type_path(@ingredient_type), label: 'Supprimer', 
+     link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer ce type d\'ingrédient ?' }},
+     can_condition: {action: :delete, object: @ingredient_type}
   )%>
 <% end %>

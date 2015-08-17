@@ -7,8 +7,16 @@ class Ingredient < ActiveRecord::Base
   validates :type, :name, presence: true
   before_destroy :check_for_recipes
 
-  def recipes_count
-    self.recipes.count
+  def recipes_count(*user)
+    if user.any? then
+      result = self.recipes.where(user: user).count
+    else
+      result = self.recipes.count
+    end
+    if result == 0 then
+      result = nil
+    end
+    return result
   end
 
   def price_by_unit_display
@@ -35,7 +43,11 @@ class Ingredient < ActiveRecord::Base
 
   def quantity_in_stock(user)
     vol=0
-    self.containers.each { |c| if (not c.volume_actual.nil? and c.user == user) then vol += c.volume_actual end }
+    self.containers.each { 
+      |c| if (not c.volume_actual.nil? and c.user == user) then vol += c.volume_actual end }
+    if vol == 0 then
+      vol = nil
+    end
     return vol
   end
 

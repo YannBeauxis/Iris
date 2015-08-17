@@ -1,9 +1,18 @@
 class RecipesController < ApplicationController
   load_and_authorize_resource
-  before_action :get_list
   before_action :check_user, except: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   def index
+    @columns = [{name: '#produits', method: 'product_count' }]
+    if params[:scope] == 'My' then
+      @recipes = @recipes.where(user: current_user)
+      @recipe_types = RecipeType.joins(:recipes)
+                  .where('user_id = ' + current_user.id.to_s).uniq
+    else
+      @recipes = Recipe.all
+      @recipe_types = RecipeType.all
+      @columns << {name: 'Propriétaire', method: 'user_name' }
+    end
   end
 
   def show
@@ -116,13 +125,6 @@ class RecipesController < ApplicationController
 
   private
 
-   def get_list
-     @recipe_types = RecipeType.all
-     @recipes = Recipe.all
-     @my_recipes = @recipes.where(user: current_user)
-     @my_recipe_types = @my_recipes.collect { |r| r.type }
-   end
-
     def init_form
       @recipe_types = RecipeType.order(:name)
     end
@@ -136,11 +138,11 @@ class RecipesController < ApplicationController
   end
 
     def recipe_params
-      params.require(:recipe).permit(:name,:recipe_type_id, :ingredient_id, :variant_id, :variant_name)
+      p = [:name,:recipe_type_id, :ingredient_id, :variant_id, :variant_name]
+      if current_user.admin? then
+        p << :user_id
+      end
+      params.require(:recipe).permit(p)
     end
-
-   #def duplicate_variant_params
-   #   params.require(:recipe).permit(:recipe_id, :variant_id, :variant_name)
-   #end
 
 end

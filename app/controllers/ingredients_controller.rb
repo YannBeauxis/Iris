@@ -16,6 +16,7 @@ class IngredientsController < ApplicationController
 
   def show
     @ingredient = Ingredient.find(params[:id])
+    @containers = @ingredient.containers.where(user: current_user)
   end 
 
   def new
