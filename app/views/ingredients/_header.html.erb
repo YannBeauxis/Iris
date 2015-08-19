@@ -1,21 +1,23 @@
-<% if params[:action] != 'index' then %>
+<% if (!['index', 'new'].include?(params[:action]) or params[:controller] == 'containers') then %>
   <% content_for :content_header do %>
-    <div class="title"><%= @ingredient.name %></div>
+      <div class="title"><%= @ingredient.name %></div>
   <% end %>
 <% end %>
-
+  
 <% if params[:controller] == 'ingredients' then %>
-  <%= render '/shared/item_content_subtitle'%>
-  <% if params[:action] == 'index' then %>
-    <% content_for :content_header do %>
-      <div class="title">Liste des ingrédients</div>
-      <% if params[:scope] == 'My' then%>
-        <div class="subtitle">Ingrédients en stock</div>
-      <% else %>
-        <div class="subtitle">Tous les ingrédients</div>
-      <% end %>
+  <% content_for :content_header do %>
+    <% if params[:action] == 'index' then %>
+        <div class="title">Liste des ingrédients</div>
+        <% if params[:scope] == 'My' then%>
+          <div class="subtitle">Ingrédients en stock</div>
+        <% else %>
+          <div class="subtitle">Tous les ingrédients</div>
+        <% end %>
+    <% elsif params[:action] == 'new' then %>
+      <div class="title">Nouvel ingrédient</div>
     <% end %>
   <% end %>
+  <%= render '/shared/item_content_subtitle'%>
 <% elsif params[:controller] == 'containers' %>
   <% content_for :content_header do %>
     <% if params[:action] == 'new' then %>

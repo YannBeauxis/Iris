@@ -1,13 +1,6 @@
-<% content_for :nav_resume do %>
-  > <%= link_to 'Ingrédients', ingredients_path %>
-<% end %>
-
-<% content_for :content_header do %>
-  <span class="title">Nouvel ingrédient</span>
-<% end %>
-
-<%= menu_item(menu: :content_menu, 
-     path: ingredients_path, label: 'Annuler') %>
+<%= render 'nav_resume' %>
+<%= render 'header' %>
+<%= render 'menu' %>
 
 <% content_for :item_content do %>
   <%= render 'form' %>

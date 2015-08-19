@@ -1,13 +1,6 @@
-<% content_for :nav_resume do %>
-  > <%= link_to 'Recettes', recipes_path %>
-<% end %>
-
-<%= menu_item(menu: :content_menu, 
-     path: recipes_path, label: 'Annuler') %>
-
-<% content_for :content_header do %>
-  <span class="title">Nouvelle recette</span>
-<% end %>
+<%= render 'nav_resume' %>
+<%= render 'menu' %>
+<%= render 'header' %>
 
 <% content_for :item_content do %>
 

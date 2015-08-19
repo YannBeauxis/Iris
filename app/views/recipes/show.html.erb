@@ -2,20 +2,6 @@
 <%= render 'header' %>
 <%= render 'menu' %>
 
-<%= menu_item(menu: :content_menu, 
-     path: recipe_ingredient_candidates_path(@recipe), label: 'Ajouter ingrédient') %>
-
-<%= menu_item(menu: :content_menu, 
-     path: recipe_delete_list_path(@recipe), label: 'Retirer ingrédient') %>
-   
-<% if can?(:update, @recipe) then%>
-  <%= menu_item(menu: :content_menu, 
-       path: new_recipe_variant_path(@recipe), label: 'Ajouter variante') %>
-<% end %>
-
-<%= menu_item(menu: :content_menu, 
-     path: new_recipe_product_path(@recipe), label: 'Ajouter produit') %>
-
 <% content_for :item_content do %>
 
  <p><strong>Liste des produits par variante</strong></p>

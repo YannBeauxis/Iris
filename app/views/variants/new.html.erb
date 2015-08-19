@@ -1,9 +1,6 @@
 <%= render 'nav_resume' %>
 
-<% content_for :content_header do %>
-  <span class="title">Nouvelle Variante</span><br>
-  <span class="subtitle"><%= @recipe.name %></span>
-<% end %>
+<%= render 'recipes/header' %>
 
 <%= menu_item(menu: :content_menu, 
      path: recipe_path(@recipe), label: 'Annuler') %>

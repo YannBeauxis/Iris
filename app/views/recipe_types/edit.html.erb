@@ -2,12 +2,7 @@
 <%= render 'header' %>
 <%= render 'menu' %>
 
-<%= menu_item(menu: :content_menu, 
-     path: recipe_type_path(@recipe_type), label: 'Annuler') %>
-
 <% content_for :item_content do %>
-
-<p><strong>Modifier le type de recette</strong></p>
 
   <%= render 'form' %>
 

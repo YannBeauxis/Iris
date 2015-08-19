@@ -1,1 +1,5 @@
 <%= render 'recipes/nav_resume' %>
+<% if params[:action] != 'new' then %>
+  <%= menu_item(menu: :nav_resume, 
+     label: @recipe.name, path: recipe_path(@recipe))%>
+<% end %>

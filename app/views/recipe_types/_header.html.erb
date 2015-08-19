@@ -1,3 +1,14 @@
-<% content_for :content_header do %>
-  <span class="title"><%= @recipe_type.name %></span><br>
+<% if ['show', 'edit'].include?(params[:action]) then%>
+  <% content_for :content_header do %>
+    <div class="title"><%= @recipe_type.name %></div>
+  <% end %>
+<% elsif params[:action] == 'index' %>
+  <% content_for :content_header do %>
+    <div class="title"><%= 'Liste des types de recettes' %></div>
+  <% end %>
+<% elsif params[:action] == 'new'  then %>
+  <% content_for :content_header do %>
+    <div class="title">Nouveau type de recette</div>
+  <% end %>
 <% end %>
+<%= render '/shared/item_content_subtitle' %>

@@ -1,3 +1,23 @@
-<% render 'list' %>
+<%= render 'nav_resume' %>
+<%= render 'menu' %>
+<%= render 'header' %>
 
+<% content_for :item_content do %>
 
+  <table>
+    <tr>
+      <th>Nom</th>
+      <th># recettes</th>
+      <th># produits</th>
+    </tr>
+ 
+    <% @recipe_types.each do |rt| %>
+      <tr>
+        <td><%= link_to rt.name, recipe_type_path(rt) %></td>
+        <td class="center"><%= rt.recipes.count %></td>
+        <td class="center"><%= rt.nb_products %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<% end %>

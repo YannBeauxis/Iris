@@ -1,4 +1,31 @@
-<% content_for :content_header do %>
-  <span class="title"><%= @recipe.name %></span><br>
-  <span class="subtitle"><%= @recipe.type.name %></span>
+<% if (!['index', 'new'].include?(params[:action]) or params[:controller] != 'recipes') then %>
+  <% content_for :content_header do %>
+    <div class="title"><%= @recipe.name %></div>
+  <% end %>
+<% end %>
+
+<% if params[:controller] == 'recipes' then %>
+  <% content_for :content_header do %>
+    <% if params[:action] == 'index' then %>
+      <div class="title">Liste des recettes</div>
+      <% if params[:scope] == 'My' then%>
+        <div class="subtitle">Mes recettes</div>
+      <% else %>
+        <div class="subtitle">Toutes les recettes</div>
+      <% end %>
+    <% elsif params[:action] == 'new' then %>
+      <div class="title">Nouvelle recette</div>
+    <% elsif params[:action] == 'ingredient_candidates' then %>
+      <div class="subtitle">Ajouter ingrédient</div>
+    <% elsif params[:action] == 'delete_list' then %>
+      <div class="subtitle">Retirer ingrédient</div>
+    <% end %>
+  <% end %>
+  <%= render '/shared/item_content_subtitle'%>
+  <% elsif params[:controller] == 'variants' then %>
+    <% content_for :content_header do %>
+      <% if params[:action] == 'new' then %>
+        <div class="subtitle">Nouvelle variante</div>
+    <% end %>
+  <% end %>
 <% end %>

@@ -22,6 +22,20 @@
 
 <% if params[:action] == 'show' then %>
   <%= menu_item(menu: :content_menu, path: edit_ingredient_path(@ingredient), label: 'Modifier') %>
-  <%= menu_item(menu: :content_menu, path: ingredient_path(@ingredient), label: 'Supprimer', 
-         link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet ingrédient ?' }}) %>
+<% end %>
+
+<% if ['show','edit'].include?(params[:action]) then %>
+    <%= menu_item(menu: :content_menu, path: ingredient_path(@ingredient), label: 'Supprimer', 
+        link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet ingrédient ?' }},
+        can_condition: {action: :update, object: @ingredient}) %>
+<% end %>
+
+<% if params[:action] == 'new' then %>
+  <%= menu_item(menu: :content_menu, 
+     path: ingredients_path, label: 'Annuler') %>
+<% end %>
+
+<% if params[:action] == 'edit' then %>
+  <%= menu_item(menu: :content_menu, 
+     path: ingredient_path(@ingredient), label: 'Annuler') %>
 <% end %>

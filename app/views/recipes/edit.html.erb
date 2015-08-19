@@ -1,11 +1,8 @@
+<%= render 'nav_resume' %>
 <%= render 'header' %>
 <%= render 'menu' %>
 
-<%= menu_item(menu: :content_menu, 
-     path: recipe_path(@recipe), label: 'Annuler') %>
-
 <% content_for :item_content do %>
- <h3>Modifier la recette</h3>
 
   <%= render 'form' %>
 

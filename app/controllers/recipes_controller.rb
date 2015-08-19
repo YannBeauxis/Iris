@@ -66,22 +66,12 @@ class RecipesController < ApplicationController
   def ingredient_candidates
 
     @recipe = Recipe.find(params[:recipe_id])
-
-    if current_user != @recipe.user then
-      
-      flash[:message] = "Vous n'avez pas les autorisations nécessaires"
-      redirect_to recipe_path(@recipe)
     
-    else
-
       ingredient_order = ['ingredient_types.name_short','name asc']
   
       @ingredient_candidates = @recipe.ingredient_candidates.order(ingredient_order)
   
       render 'ingredient_candidates'
-      #render plain: @ingredient_candidates.inspect
-      
-    end
     
   end
  

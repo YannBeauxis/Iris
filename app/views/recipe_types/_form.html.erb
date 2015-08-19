@@ -6,7 +6,13 @@
 
   <p>
     <%= f.label 'Types d\'ingrédients' %><br>
-    <%= f.collection_check_boxes :ingredient_type_ids, @ingredient_types, :id, :name %>
+    <%= f.collection_check_boxes(:ingredient_type_ids, @ingredient_types, 
+          :id, :name) do |b| %>
+      <div class="line">
+        <%= b.check_box %>
+        <%= b.label %>
+      </div>
+    <% end %>
   </p>
 
   <p>

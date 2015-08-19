@@ -1,5 +1,29 @@
-<%= menu_item(menu: :content_menu, 
-     path: edit_recipe_type_path(@recipe_type), label: 'Modifier') %>
-<%= menu_item(menu: :content_menu, 
+<% if params[:action] == 'new' then %>
+  <%= menu_item(menu: :content_menu, 
+       path: recipe_types_path, label: 'Annuler') %>
+<% elsif params[:action] != 'edit'  %>
+  <%= menu_item(menu: :content_menu, 
+       path: new_recipe_type_path, label: 'Nouveau type',
+       can_condition: {action: :create, object: @recipe_type}
+  ) %>
+<% end %>
+
+<% if params[:action] == 'edit' then %>
+  <%= menu_item(menu: :content_menu, 
+       path: recipe_type_path(@recipe_type), label: 'Annuler') %>
+<% end %>
+
+<% if (params[:action]) == 'show' then%>
+  <%= menu_item(menu: :content_menu, 
+    label: 'Modifier', path: edit_recipe_type_path,
+    can_condition: {action: :update, object: @recipe_type}
+  )%>
+<% end %>
+
+<% if ['show', 'edit'].include?(params[:action]) then %>
+  <%= menu_item(menu: :content_menu, 
      path: recipe_type_path(@recipe_type), label: 'Supprimer', 
-     link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet utilisteur ?' }}) %>
+     link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer ce type de recette ?' }},
+     can_condition: {action: :delete, object: @recipe_type}
+  )%>
+<% end %>
