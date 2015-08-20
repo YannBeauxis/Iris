@@ -69,7 +69,7 @@ class Ingredient < ActiveRecord::Base
   
   def proportion_variant(variant)
     p = Proportion.find_by(variant: variant, composant: self)
-    return (p.value*100).to_s + '%'
+    return (p.value*100).round(1).to_s + '%'
   end
   
   def product_mass(product)
