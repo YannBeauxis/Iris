@@ -2,9 +2,6 @@
 <%= render 'header' %>
 <%= render 'menu' %>
 
-<%= menu_item(menu: :content_menu, path: new_ingredient_container_path(@ingredient), 
-    label: 'Ajouter un stock') %>
-
 <% content_for :item_content do %>
 
   <div class="subcontent">
@@ -16,7 +13,7 @@
 
   <div class="subcontent">
     <div class="title">Stocks pour l'ingrédient</div>
-    <% if @ingredient.containers.count > 0 then %>
+    <% if @containers.any? then %>
    
       <table>
         <tr>
