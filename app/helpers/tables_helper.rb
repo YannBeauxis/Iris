@@ -15,17 +15,37 @@ module TablesHelper
     cat_params[:collection].order(:name).each do |category|
 
       # line for type
-      str += content_tag :tr do
+      #str = ''
+      #str += content_tag :tr do
         if cat_params.has_key?(:link_param) then
           path = url_for([cat_params[:link_param],category])
         else
           path = url_for(category)
         end
-        concat content_tag(:td, 
+        strval = content_tag(:td, 
           link_to(category.name, path), 
           class: "type"
-        ).to_s.html_safe
+        )
+        #concat content_tag(:td, 
+        #  link_to(category.name, path), 
+        #  class: "type"
+        #).to_s.html_safe
+      #end
+      options[:columns].each do |column|
+        if column.has_key?(:cat_method) then
+          if column.has_key?(:cat_method_params) then
+            display = category.send(column[:cat_method], column[:cat_method_params])
+          else 
+            display = category.send(column[:cat_method])
+          end
+        elsif column.has_key?(:value)
+          display = column[:value]
+        else
+          display = nil
+        end
+      strval += content_tag(:td, display, class: 'center')
       end
+      str += content_tag(:tr, strval, class: "type")
       
       # lines for item in type
       colored = true
@@ -62,14 +82,16 @@ module TablesHelper
           end
           strval += content_tag(:td, display, class: 'center')
         end
-        
-        str += content_tag :tr, strval, class: cl
+        str += content_tag(:tr, strval, class: cl)
       end
 
     end
     
     content_tag :table, str, class: "colored"
   end
+
+
+##################
 
   def table_by_type(options = {})
     

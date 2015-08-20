@@ -2,34 +2,39 @@
 <%= render 'header' %>
 <%= render 'menu' %>
 
-<%= menu_item(menu: :content_menu, 
-     path: recipe_duplicate_variant_path(@recipe,variant_id: @variant, variant_name: 'Copie de ' + @variant.name), 
-     label: 'Dupliquer variante',link_param: {method: :patch}) %>
-
 <% content_for :item_content do %>
 
-<p><strong>Dosage ingrédients</strong></p>
+  <div class="subcontent">
+    <div class="title">Dosage ingrédients</div>
 
-<table>
+    <%= table_by_category(
+      category: {
+        name: :type,
+        collection: @ingredient_types
+      },
+      item: {
+        collection: @ingredients
+      },
+      columns: [{name: 'type',
+                  cat_method: 'proportion_variant', 
+                  cat_method_params: @variant },
+                {name: 'ingredient', 
+                  method: 'proportion_variant', 
+                  method_params: @variant}]
+    ) %>
+  
+  </div>
 
-  <% @variant.proportions.where(composant_type: 'IngredientType').each do |itp| %>
-       <% if itp.composant.nil? then %>
-    <tr>
-         <td>Pb <%= itp.id %> </td> 
-       <% else %>
-    <tr>
-       <td><strong><%= itp.composant.name %></strong></td>
-       <td><strong><%= number_to_percentage(itp.value*100, precision: 1) %></strong></td>
-    </tr>
-    <% @variant.proportions_for_type(itp.composant).each do |ip| %>
-      <tr>
-        <td>- <%= ip.composant.name %></td>
-        <td><%= number_to_percentage(ip.value*100, precision: 1) %></td>
-      </tr>
-    <% end %>
-       <% end %>
-  <% end %>
-</table>
+  <div class="subcontent">
+    <div class="title">Produits</div>
+  
+    <ul>
+      <% @variant.products.each do |p| %>
+        <li><%= link_to p.name, recipe_product_path(@recipe,p)%></li>
+      <% end %>
+    </ul>
+  
+  </div>
 
 <% end %>
 

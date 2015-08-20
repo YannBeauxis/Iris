@@ -1,5 +1,29 @@
-<%= menu_item(menu: :content_menu, 
-     path: edit_recipe_product_path(@recipe, @product), label: 'Modifier') %>
-<%= menu_item(menu: :content_menu, 
-     path: recipe_product_path(@recipe, @product), label: 'Supprimer', 
-     link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer ce produit ?' }}) %>
+<% if params[:action] == 'new' then %>
+  <%= menu_item(menu: :content_menu, 
+       path: recipe_path(@recipe), label: 'Annuler') 
+  %>
+       
+<% elsif params[:action] == 'show' then %>
+  <%= menu_item(menu: :content_menu, 
+       path: edit_recipe_product_path(@recipe, @product), label: 'Modifier', 
+         can_condition: {action: :update, object: @product}) 
+  %>
+  <%= menu_item(menu: :content_menu, 
+       path: recipe_variant_path(@recipe, @variant) , label: 'Voir Variante') %>
+  <%= menu_item(menu: :content_menu, 
+       path: recipe_path(@recipe), label: 'Retour Recette') %>
+      
+  <% elsif params[:action] == 'edit' then %>    
+    <%= menu_item(menu: :content_menu, 
+          path: recipe_product_path(@recipe,@product), label: 'Annuler') 
+    %>
+  
+<% end%> 
+
+<% if ['show', 'edit'].include?(params[:action]) then%>
+    <%= menu_item(menu: :content_menu, 
+       path: recipe_product_path(@recipe, @product), label: 'Supprimer', 
+       link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cee produit ?' }}, 
+         can_condition: {action: :delete, object: @product}) 
+  %> 
+<% end %>

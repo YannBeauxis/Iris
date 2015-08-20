@@ -15,5 +15,10 @@ class IngredientType < ActiveRecord::Base
       super
     end
   end
-    
+
+  def proportion_variant(variant)
+    p = Proportion.find_by(variant: variant, composant: self)
+    return (p.value*100).to_s + '%'
+  end
+
 end

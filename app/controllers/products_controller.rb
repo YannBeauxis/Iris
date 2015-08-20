@@ -9,6 +9,9 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @variant = @product.variant
+    @ingredients = @recipe.ingredients
+    @ingredient_types = @recipe.ingredient_types
+    
     @product.evaluate_proportions
   end 
 

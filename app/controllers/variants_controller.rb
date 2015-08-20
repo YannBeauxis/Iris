@@ -8,6 +8,8 @@ class VariantsController < ApplicationController
 
   def show
     @variant = Variant.find(params[:id])
+    @ingredients = @variant.ingredients
+    @ingredient_types = @variant.ingredient_types
     #@variant.clean_proportion
   end 
 

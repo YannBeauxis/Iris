@@ -2,9 +2,6 @@
 <%= render 'header' %>
 <%= render 'menu' %>
 
-<%= menu_item(menu: :content_menu, 
-     path: recipe_product_path(@recipe, @product), label: 'Annuler') %>
-
 <% content_for :item_content do %>
 
   <p><strong>Modifier le produit</strong></p>

@@ -1,9 +1,6 @@
 <%= render 'nav_resume' %>
 <%= render 'header' %>
 <%= render 'menu' %>
-
-<%= menu_item(menu: :content_menu, 
-     path: recipe_variant_path(@recipe,@variant), label: 'Retour variante') %>
      
 <% content_for :item_content do %>
 
@@ -46,7 +43,7 @@
       <% end %>
     <% end %>
   </table>
-  <%= f.submit 'Enregistrer' %>
+  <%= f.submit 'Modifier proportions' %>
   <% end %>
 
 <% end %>
