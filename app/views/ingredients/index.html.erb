@@ -9,16 +9,15 @@
     <%= table_by_category(
     category: {
       name: :type,
-      collection: @ingredient_types
-    },
+      collection: @ingredient_types},
     item: {
-      collection: @ingredients
-    },
+      collection: @ingredients,
       columns: [
-        {name: 'prix', method: 'price_by_unit_display' },
-        {name: '#recettes', method: 'recipes_count', method_params: current_user },
-        {name: 'stock', method: 'quantity_in_stock', method_params: current_user }
-      ]
+        {method: 'price_by_unit_display' },
+        {method: 'recipes_count', method_params: current_user },
+        {method: 'quantity_in_stock', method_params: current_user }]},
+    columns_header: ['prix', '#recettes', 'stock']
+
   ) %>
   
   <% end %>

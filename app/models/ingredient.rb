@@ -72,30 +72,4 @@ class Ingredient < ActiveRecord::Base
     return (p.value*100).round(1).to_s + '%'
   end
   
-  def product_mass(product)
-    product.ingredient_mass(self).display
-  end
-
-  def product_mass_display(product)
-    product_mass(product).to_s + ' g'
-  end
-
-  def product_volume(product)
-    product.ingredient_volume(self).display
-  end
-  
-  def product_volume_display(product)
-    vol = product_volume(product)
-    if vol>=2 then
-      return vol.to_s + ' ml'
-    end
-  end
-
-  def product_quantity(product)
-    vol = product_volume(product)
-    if self.type.name_short == 'HE' then
-      return (vol*35).round(0).to_s + ' gt.'
-    end
-  end
-  
 end

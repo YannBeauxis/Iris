@@ -2,52 +2,24 @@ module TablesHelper
 
   def table_by_category(options = {})
     
+  # table headers
     str = content_tag :thead do
       content_tag :tr do
         concat content_tag(:th).to_s.html_safe 
-        options[:columns].collect {|column|  concat content_tag(:th,column[:name])}.join().html_safe   
+        if options.has_key?(:columns_header) then
+          options[:columns_header].collect {|column| concat content_tag(:th,column)}.join().html_safe  
+        end
       end
     end
 
     cat_params = options[:category]
     item_params = options[:item]
     
+  # categories
     cat_params[:collection].order(:name).each do |category|
-
-      # line for type
-      #str = ''
-      #str += content_tag :tr do
-        if cat_params.has_key?(:link_param) then
-          path = url_for([cat_params[:link_param],category])
-        else
-          path = url_for(category)
-        end
-        strval = content_tag(:td, 
-          link_to(category.name, path), 
-          class: "type"
-        )
-        #concat content_tag(:td, 
-        #  link_to(category.name, path), 
-        #  class: "type"
-        #).to_s.html_safe
-      #end
-      options[:columns].each do |column|
-        if column.has_key?(:cat_method) then
-          if column.has_key?(:cat_method_params) then
-            display = category.send(column[:cat_method], column[:cat_method_params])
-          else 
-            display = category.send(column[:cat_method])
-          end
-        elsif column.has_key?(:value)
-          display = column[:value]
-        else
-          display = nil
-        end
-      strval += content_tag(:td, display, class: 'center')
-      end
+      strval = row_content(category, cat_params, "category")
       str += content_tag(:tr, strval, class: "type")
-      
-      # lines for item in type
+    # lines for item in category
       colored = true
       item_params[:collection].where(cat_params[:name] => category).order(:name).each do |i|
         if colored then
@@ -56,95 +28,56 @@ module TablesHelper
           cl= "blank"
         end
         colored = !colored
-        
-        #title with link
-        if item_params.has_key?(:link_param) then
-          path = url_for([item_params[:link_param],i])
-        else
-          path = url_for(i)
-        end
-        strval = content_tag(:td, 
-            link_to(i.name, path), 
-            class: "item"
-          )
-        #column values
-        options[:columns].each do |column|
-          if column.has_key?(:method) then
-            if column.has_key?(:method_params) then
-              display = i.send(column[:method], column[:method_params])
-            else 
-              display = i.send(column[:method])
-            end
-          elsif column.has_key?(:value)
-            display = column[:value]
-          else
-            display = nil
-          end
-          strval += content_tag(:td, display, class: 'center')
-        end
+        strval = row_content(i, item_params, "item")
         str += content_tag(:tr, strval, class: cl)
       end
-
     end
     
+  # return content table
     content_tag :table, str, class: "colored"
+    
   end
 
-
-##################
-
-  def table_by_type(options = {})
+  def row_content(row, params, css_class)
     
-    str = content_tag :thead do
-      content_tag :tr do
-        concat content_tag(:th).to_s.html_safe 
-        options[:columns].collect {|column|  concat content_tag(:th,column[:name])}.join().html_safe   
-      end
+  # first column : name with link
+    if params.has_key?(:link_param) then
+      path = url_for([params[:link_param],row])
+    else
+      path = url_for(row)
     end
-
-    options[:types].each do |type|
-
-      # line for type
-      str += content_tag :tr do
-        concat content_tag(:td, 
-          link_to(type.name, type), 
-          class: "type"
-        ).to_s.html_safe
-      end
-      
-      # lines for item in type
-      colored = true
-      options[:items].where(type: type).sort_by {|i| i.name }.each do |i|
-        if colored then
-          cl = "filled"
+    str_row = content_tag(:td, 
+      link_to(row.name, path), 
+      class: css_class)
+    
+  # other columns content
+    if params.has_key?(:columns) then
+      params[:columns].each do |column|
+        if column.has_key?(:instance) then
+          instance = column[:instance]
         else
-          cl= "blank"
+          instance = row
         end
-        colored = !colored
-        
-        #title with link
-        strval = content_tag(:td, 
-            link_to(i.name, url_for(i)), 
-            class: "item"
-          )
-        #column values
-        options[:columns].each do |column|
-          if column.has_key?(:method) then
-            display = i.send(column[:method])
-          elsif column.has_key?(:value)
-            display = column[:value]
-          else
-            display = nil
+        if column.has_key?(:method) then
+          if column.has_key?(:method_params) then
+            #method_params = column[:method_params].collect { |p| if (p == "row"); row else p; end; }
+            method_params = column[:method_params]
+            if column[:method_params] == "row" then
+              method_params = row
+            elsif method_params.kind_of?(Array)
+              method_params = column[:method_params].collect { |p| if (p == "row"); row else p; end; }
+            end
+            display = instance.send(column[:method], *method_params)
+          else 
+            display = instance.send(column[:method])
           end
-          strval += content_tag(:td, display, class: 'center')
+        else
+          display = nil
         end
-        
-        str += content_tag :tr, strval, class: cl
+        str_row += content_tag(:td, display, class: 'center')          
       end
-
-    end
-    
-    content_tag :table, str, class: "colored"
+    end  
+    return str_row
   end
 
 end

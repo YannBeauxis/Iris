@@ -10,17 +10,15 @@
     <%= table_by_category(
       category: {
         name: :type,
-        collection: @ingredient_types
-      },
+        collection: @ingredient_types,
+        columns: [
+          {method: 'proportion_variant', method_params: @variant }]},
       item: {
-        collection: @ingredients
-      },
-      columns: [{name: 'type',
-                  cat_method: 'proportion_variant', 
-                  cat_method_params: @variant },
-                {name: 'ingredient', 
-                  method: 'proportion_variant', 
-                  method_params: @variant}]
+        collection: @ingredients,
+        columns: [
+          {},
+          {method: 'proportion_variant', method_params: @variant}]},
+      columns_header: ['type', 'ingredient']
     ) %>
   
   </div>

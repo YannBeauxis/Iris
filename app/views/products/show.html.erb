@@ -9,9 +9,6 @@
           <table>
             <tr><td>Variante : <%= link_to @product.variant.name, recipe_variant_path(@recipe,@product.variant) %></td></tr>
             <tr><td>Volume total : <%= @product.volume.display %> ml</td></tr>
-            <% if not @product.price.nil? then %>
-              <tr><td>Prix : <%= @product.price %> €</td></tr>
-            <% end %>
           </table>
   </div>
 
@@ -21,21 +18,21 @@
     <%= table_by_category(
       category: {
         name: :type,
-        collection: @ingredient_types
-      },
+        collection: @ingredient_types},
       item: {
-        collection: @ingredients
-      },
-      columns: [{name: 'Poids',
-                  method: 'product_mass_display', 
-                  method_params: @product },
-                {name: 'volume', 
-                  method: 'product_volume_display', 
-                  method_params: @product},
-                {name: 'quantité', 
-                  method: 'product_quantity', 
-                  method_params: @product}]
-    ) %>
+        collection: @ingredients,
+        columns: [
+          {instance: @product.quantities,
+            method: 'display', 
+            method_params: [:mass,'row']},
+          {instance: @product.quantities,
+            method: 'display', 
+            method_params: [:volume,'row']},
+          {instance: @product.quantities,
+            method: 'display', 
+            method_params: [:volume,'row','unit']}]},       
+      columns_header: ['Poids','volume','quantité']
+    )%>
     
   </div>
     

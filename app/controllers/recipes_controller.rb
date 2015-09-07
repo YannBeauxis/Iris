@@ -3,7 +3,8 @@ class RecipesController < ApplicationController
   before_action :check_user, except: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   def index
-    @columns = [{name: '#produits', method: 'product_count' }]
+    @columns = [{method: 'product_count' }]
+    @columns_header = ['#produits']
     if params[:scope] == 'My' then
       @recipes = @recipes.where(user: current_user)
       @recipe_types = RecipeType.joins(:recipes)
@@ -12,6 +13,7 @@ class RecipesController < ApplicationController
       @recipes = Recipe.all
       @recipe_types = RecipeType.all
       @columns << {name: 'Propriétaire', method: 'user_name' }
+      @columns_header << 'Propriétaire'
     end
   end
 

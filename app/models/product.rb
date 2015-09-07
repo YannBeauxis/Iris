@@ -3,6 +3,16 @@ class Product < ActiveRecord::Base
   validates :name, :volume, presence: true
   has_one :recipe, through: :variant  
   
+  after_initialize :get_quantities
+  
+  def get_quantities
+    @quantities = ProductQuantity.new(self)
+  end
+  
+  def quantities
+    @quantities
+  end
+
   def price
     if @product_price.nil? then
       price = 0
@@ -12,11 +22,7 @@ class Product < ActiveRecord::Base
   end
 
   def ingredient_mass(i)
-    if @i_mass.nil? then
-      ingredient_mass = 0
-    else
-    @i_mass[i]
-    end
+    @quantities.get_quantity(:mass,i)
   end
 
   def ingredient_volume(i)

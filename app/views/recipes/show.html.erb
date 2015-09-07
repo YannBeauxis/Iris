@@ -14,11 +14,9 @@
     },
     item: {
       collection: @products,
-      link_param: @recipe
-    },
-    columns: [
-      {name: 'volume', method: :volume }
-    ]
+      link_param: @recipe,
+      columns: [{ method: :volume }]},
+    columns_header: ['volume']
   ) %>
 
  <p><strong>Liste des ingrédients</strong></p>
@@ -26,14 +24,9 @@
   <%= table_by_category(
     category: {
       name: :type,
-      collection: @ingredient_types
-    },
+      collection: @ingredient_types},
     item: {
-      collection: @ingredients
-    },
-    columns: [
-      {name: 'Prix', method: :price_by_unit_display }
-    ]
+      collection: @ingredients}
   ) %>
 
 <% end %>
