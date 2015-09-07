@@ -11,8 +11,6 @@ class ProductsController < ApplicationController
     @variant = @product.variant
     @ingredients = @recipe.ingredients
     @ingredient_types = @recipe.ingredient_types
-    
-    @product.evaluate_proportions
   end 
 
   def new

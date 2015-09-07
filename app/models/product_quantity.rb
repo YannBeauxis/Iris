@@ -19,6 +19,10 @@ class ProductQuantity
     return @quantities[quantity][ingredient]
   end
   
+  def product_price
+    @product_price
+  end
+  
   def compute_quantities
 
      d = @product.variant.recipe.type.density
