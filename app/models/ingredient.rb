@@ -19,8 +19,8 @@ class Ingredient < ActiveRecord::Base
     return result
   end
 
-  def price_by_unit_display
-    pbu = self.price_by_unit
+  def price_by_unit_display(user)
+    pbu = self.price_by_unit(user)
     if pbu.present? then
       unit = self.type.mesure_unit
       if unit == 'ml' then 
@@ -31,24 +31,21 @@ class Ingredient < ActiveRecord::Base
     end
   end
 
-  def price_by_unit
-   if containers.any? then
-    pbu = containers.first.price_by_unit
-    self.containers.each { |c| if (pbu.to_f > c.price_by_unit.to_f) then pbu = c.price_by_unit end }
+  def price_by_unit(*user)
+    if user.any? then
+      u = user[0]
+      w = Warehouse.new('ingredient_for_user',{user: u, ingredient: self})
+      list = w.list
+    else 
+      list = self.containers
+    end
+   if list.any? then
+    pbu = list.first.price_by_unit
+    list.each { |c| if (pbu.to_f > c.price_by_unit.to_f) then pbu = c.price_by_unit end }
     return pbu
    else 
     return nil
    end
-  end
-
-  def quantity_in_stock(user)
-    vol=0
-    self.containers.each { 
-      |c| if (not c.volume_actual.nil? and c.user == user) then vol += c.volume_actual end }
-    if vol == 0 then
-      vol = nil
-    end
-    return vol
   end
 
   def check_for_recipes

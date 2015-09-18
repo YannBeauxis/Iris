@@ -10,7 +10,17 @@ class User < ActiveRecord::Base
          :rememberable, :trackable, :validatable
   before_create :set_default_info
   validates :name, presence: true
-  
+
+  after_initialize :get_warehouse
+
+  def get_warehouse
+    @warehouse = Warehouse.new('user',{user: self})
+  end
+
+  def warehouse
+    @warehouse
+  end
+
   def active_for_authentication? 
     super && approved? 
   end 

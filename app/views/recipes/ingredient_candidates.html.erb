@@ -22,7 +22,7 @@
       <tr>
         <td><%= link_to i.name, recipe_ingredient_add_ingredient_path(@recipe,i) , method: :post %></td>
         <td><%= i.type.name_short %></td>
-        <td><%= if i.price_by_unit != nil  then i.price_by_unit.round(2).to_s + ' €/' +i.type.mesure_unit end %></td>
+        <td><%= if i.price_by_unit(current_user) != nil  then i.price_by_unit(current_user).round(2).to_s + ' €/' +i.type.mesure_unit end %></td>
       </tr>
     <% end %>
   </table>

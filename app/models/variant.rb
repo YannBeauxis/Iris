@@ -31,12 +31,6 @@ class Variant < ActiveRecord::Base
                    .where('ingredients.ingredient_type_id = ' + type.id.to_s)
   end
 
-  def clean_proportion
-    self.proportions.each do |p|
-      if p.composant.nil? then self.proportions.delete(p) end
-    end
-  end
-
   def composant_proportion(c)
     rech = self.proportions.where(composant_type: c.class.name).find_by(composant: c)
      if rech.blank?
