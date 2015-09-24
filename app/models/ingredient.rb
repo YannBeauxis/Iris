@@ -44,20 +44,6 @@ class Ingredient < ActiveRecord::Base
   def price_by_unit(user)
     self.get_warehouse(user)
     @warehouse.price_by_unit
-   #if user.any? then
-   #   u = user[0]
-   #   w = Warehouse.new('ingredient_for_user',{user: u, ingredient: self})
-   #   list = w.list
-   # else 
-   #   list = self.containers
-   # end
-   #if list.any? then
-   # pbu = list.first.price_by_unit
-   # list.each { |c| if (pbu.to_f > c.price_by_unit.to_f) then pbu = c.price_by_unit end }
-   # return pbu
-   #else 
-   # return nil
-   #end
   end
 
   def check_for_recipes
