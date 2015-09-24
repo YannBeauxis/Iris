@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   def admin?
     self.role.name == 'admin'
   end
-  
+
   private
   def set_default_info
     self.role ||= Role.find_by_name('client')

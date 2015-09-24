@@ -16,7 +16,8 @@ class IngredientsController < ApplicationController
 
   def show
     @ingredient = Ingredient.find(params[:id])
-    @containers = @ingredient.containers.where(user: current_user)
+    w = Warehouse.new('ingredient_for_user', {user: current_user, ingredient: @ingredient})
+    @containers = w.list
   end 
 
   def new

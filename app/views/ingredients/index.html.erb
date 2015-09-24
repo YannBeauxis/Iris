@@ -15,7 +15,7 @@
       columns: [
         {method: 'price_by_unit_display', method_params: current_user },
         {method: 'recipes_count', method_params: current_user },
-        {instance: current_user.warehouse, method: 'quantity_for_ingredient', method_params: 'row' }]},
+        {method: 'quantity_in_stock', method_params: current_user }]},
     columns_header: ['prix', '#recettes', 'stock']
 
   ) %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150809200111) do
+ActiveRecord::Schema.define(version: 20150924195550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,11 +28,11 @@ ActiveRecord::Schema.define(version: 20150809200111) do
 
   create_table "containers", force: :cascade do |t|
     t.integer  "ingredient_id"
-    t.float    "volume_init"
-    t.float    "volume_actual"
+    t.float    "quantity_init"
+    t.float    "quantity_actual"
     t.float    "price"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "user_id"
   end
 

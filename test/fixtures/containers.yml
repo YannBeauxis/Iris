@@ -2,74 +2,74 @@
 
 one:
   ingredient: one
-  volume_init: 10
-  volume_actual: 5
+  quantity_init: 10
+  quantity_actual: 5
   price: 5
 
 two:
   ingredient: three
-  volume_init: 100
-  volume_actual: 100
+  quantity_init: 100
+  quantity_actual: 100
   price: 10
 
 three:
   ingredient: four
-  volume_init: 100
-  volume_actual: 100
+  quantity_init: 100
+  quantity_actual: 100
   price: 10
 
 delete_with_user:
   user: delete_container_recipe
   ingredient: one
-  volume_init: 10
-  volume_actual: 5
+  quantity_init: 10
+  quantity_actual: 5
   price: 5
 
 proportions_0:
   user: one
   ingredient: proportions_0
-  volume_init: 1
-  volume_actual: 1
+  quantity_init: 1
+  quantity_actual: 1
   price: 0
 
 proportions_1:
   user: one
   ingredient: proportions_1
-  volume_init: 1
-  volume_actual: 1
+  quantity_init: 1
+  quantity_actual: 1
   price: 1
 
 proportions_2:
   user: one
   ingredient: proportions_2
-  volume_init: 1
-  volume_actual: 1
+  quantity_init: 1
+  quantity_actual: 1
   price: 2
 
 proportions_3:
   user: one
   ingredient: proportions_3
-  volume_init: 1
-  volume_actual: 1
+  quantity_init: 1
+  quantity_actual: 1
   price: 2
 
 has_container_reference:
   user: one
   ingredient: has_container_reference
-  volume_init: 30
-  volume_actual: 20
+  quantity_init: 30
+  quantity_actual: 20
   price: 2
   
 not_has_container_reference:
   user: one
   ingredient: not_has_container_reference
-  volume_init: 30
-  volume_actual: 20
+  quantity_init: 30
+  quantity_actual: 20
   price: 2
   
 update_with_mass:
   user: one
   ingredient: has_container_reference
-  volume_init: 30
-  volume_actual: 20
+  quantity_init: 30
+  quantity_actual: 20
   price: 2

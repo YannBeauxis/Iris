@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @product.quantities.compute_prices(current_user)
     @variant = @product.variant
     @ingredients = @recipe.ingredients
     @ingredient_types = @recipe.ingredient_types

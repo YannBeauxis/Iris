@@ -45,25 +45,34 @@ class ProductQuantity
   
        @masses[i] = m_i.round(6)
        @volumes[i] = v_i.round(6)
+          
+    end
+    
+  end
+
+  def compute_prices(user)
+     
+     p = 0
+     p_missing = false
+     
+     @product.variant.ingredients.each do |i|
        
-      if i.price_by_unit.nil? then
+      if i.price_by_unit(user).nil? then
         p_missing = true
         @prices[i] = nil
       else
         if i.type.mesure_unit == 'g' then
-            px_i = i.price_by_unit * m_i
+            px_i = i.price_by_unit(user) * @masses[i]
         elsif i.type.mesure_unit == 'ml'
-            px_i = i.price_by_unit * v_i
+            px_i = i.price_by_unit(user) * @volumes[i]
         end
         @prices[i] = px_i.round(6)
         p += px_i         
       end
         
     end
- 
+
     if !p_missing then
-    #  @product_price = nil
-    #else
       @product_price = p.round(2)
     end
    

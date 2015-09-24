@@ -10,10 +10,12 @@
     <%= f.text_field :name %>
   </p>
 
-  <p>
-    <%= f.label 'Densité' %><br>
-    <%= f.number_field :density, :step => 'any' %>
-  </p>
+  <% if @ingredient.type.mesure_unit != 'g' then %>
+    <p>
+      <%= f.label 'Densité' %><br>
+      <%= f.number_field :density, :step => 'any' %>
+    </p>
+  <% end %>
 
   <p>
     <%= f.submit 'Enregistrer'%>

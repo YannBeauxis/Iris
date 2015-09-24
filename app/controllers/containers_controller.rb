@@ -3,26 +3,15 @@ class ContainersController < ApplicationController
 
   before_action :get_list
 
-  #def index
-  #  @containers = Container.find_by ingredient_id: :ingredient_id
-  #end
-
-  #def show
-  #  @container = Container.find(params[:id])
-  #end 
-
   def new
-    #@ingredient = Ingredient.find(params[:ingredient_id])
     @container = @ingredient.containers.new
   end
 
   def edit
-    #@ingredient = Ingredient.find(params[:ingredient_id])
     @container = Container.find(params[:id])
   end
 
   def create
-    #@ingredient = Ingredient.find(params[:ingredient_id])
     @container = @ingredient.containers.new(container_params)
     @container.user = current_user
 
@@ -34,7 +23,6 @@ class ContainersController < ApplicationController
   end
 
   def update
-    #@ingredient = Ingredient.find(params[:ingredient_id])
     @container = Container.find(params[:id])
  
     if @container.update(container_params)
@@ -49,12 +37,10 @@ class ContainersController < ApplicationController
     mass = update_with_mass_params[:mass].to_f
     @container.update_with_mass(mass)
     
-    #redirect_to edit_ingredient_container_path(@ingredient,@container)
     redirect_to @ingredient
   end
 
   def destroy
-    #@ingredient = Ingredient.find(params[:ingredient_id])
     @container = Container.find(params[:id])
     @container.destroy
  
@@ -70,7 +56,7 @@ class ContainersController < ApplicationController
     end
 
     def container_params
-      p = [:ingredient, :volume_init, :volume_actual, :price]
+      p = [:ingredient, :quantity_init, :quantity_actual, :price]
       if current_user.admin? then
         p << :user_id
       end

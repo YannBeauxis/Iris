@@ -30,8 +30,11 @@
             method_params: [:volume,'row']},
           {instance: @product.quantities,
             method: 'display', 
-            method_params: [:volume,'row','unit']}]},       
-      columns_header: ['Poids','volume','quantité']
+            method_params: [:volume,'row','unit']},   
+          {instance: @product.quantities,
+            method: 'display', 
+            method_params: [:price,'row']}]},       
+      columns_header: ['Poids','volume','quantité','prix']
     )%>
     
   </div>

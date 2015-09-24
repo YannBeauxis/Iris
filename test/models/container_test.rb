@@ -6,7 +6,7 @@ class ContainerTest < ActiveSupport::TestCase
     c = Container.new
     c.ingredient = ingredients(:one)
     c.user = users(:one)
-    c.volume_init = 10
+    c.quantity_init = 10
     c.price = 5
     assert c.save
   end
@@ -33,13 +33,13 @@ class ContainerTest < ActiveSupport::TestCase
   test "update with mass" do
     c = containers(:update_with_mass)
     c.update_with_mass(20)
-    assert c.volume_actual == 12.5, c.volume_actual
+    assert c.quantity_actual == 12.5, c.quantity_actual
   end
 
   test "not update with mass if mass < mass_empty" do
     c = containers(:update_with_mass)
     c.update_with_mass(2)
-    assert c.volume_actual == 20, c.volume_actual
+    assert c.quantity_actual == 20, c.quantity_actual
   end
 
 end

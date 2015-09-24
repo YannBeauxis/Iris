@@ -2,7 +2,7 @@
 
   <p>
     <%= f.label 'Volume intial' %><br>
-    <%= f.number_field :volume_init, :step => 'any' %>
+    <%= f.number_field :quantity_init, :step => 'any' %>
   </p>
 
   <p>
@@ -12,7 +12,7 @@
 
   <p>
     <%= f.label 'Volume actuel' %><br>
-    <%= f.number_field :volume_actual, :step => 'any' %>
+    <%= f.number_field :quantity_actual, :step => 'any' %>
   </p>
       
   <% if current_user.admin? then%>

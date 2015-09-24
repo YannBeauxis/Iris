@@ -54,7 +54,7 @@ proportions_1:
 
 proportions_2:
   name: proportions_2
-  mesure_unit : 'g'
+  mesure_unit : 'ml'
   name_short : 'P'
 
 has_container_reference:

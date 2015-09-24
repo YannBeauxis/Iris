@@ -24,8 +24,8 @@
    
         <% @containers.each do |c| %>
           <tr>
-            <td><%= c.volume_init.display %></td>
-            <td><%= if c.volume_actual? then c.volume_actual.display end %></td>
+            <td><%= c.quantity_init.display %></td>
+            <td><%= if c.quantity_actual? then c.quantity_actual?.display end %></td>
             <td><%= c.price_by_unit.round(2) %> €</td>
             <td><%= link_to 'Modifier', edit_ingredient_container_path(@ingredient,c) %></td>
           </tr>
