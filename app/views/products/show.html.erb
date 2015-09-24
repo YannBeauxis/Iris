@@ -10,10 +10,10 @@
             <tr><td>Variante : <%= link_to @product.variant.name, recipe_variant_path(@recipe,@product.variant) %></td></tr>
             <tr><td>Volume total : <%= @product.volume.display %> ml</td></tr>
             <% if !@product.price.nil? then %>
-              <tr><td>Prix : <%= @product.price %> ml</td></tr>
+              <tr><td>Prix : <%= @product.price %> €</td></tr>
             <% end %>
           </table>
-  </div>
+  </di
 
   <div class="subcontent">
     <div class="title">Dosage</div>  
