@@ -6,7 +6,9 @@ class Product < ActiveRecord::Base
   after_initialize :get_quantities
   
   def get_quantities
-    @quantities = ProductQuantity.new(self)
+    if !self.recipe.nil? then
+      @quantities = ProductQuantity.new(self)
+    end
   end
   
   def quantities

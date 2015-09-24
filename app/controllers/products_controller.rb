@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
   end 
 
   def new
+    @recipe = Recipe.find(params[:recipe_id])
     @product = Product.new
   end
 
