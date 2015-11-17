@@ -9,9 +9,6 @@
 <%= menu_item(menu: :content_menu, 
      path: user_path(@user), label: 'Supprimer compte', 
      link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet utilisteur ?' }}) %>
-<%= menu_item(menu: :content_menu, 
-     path: user_path(@user), label: 'Supprimer compte', 
-     link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet utilisteur ?' }}) %>
 
 <% content_for :item_content do %>
   <%= render 'form' %>

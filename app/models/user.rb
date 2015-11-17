@@ -12,6 +12,23 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   after_initialize :get_warehouse
+  after_create :send_new_user_alert
+  
+  def send_new_user_alert
+    CustomMailer.new_user_alert(self).deliver_now
+  end
+  #def approved?
+  #  super or (self.role == Role.find_by_name('client'))
+  #end
+
+  def role
+    if self.approved? then
+      r = super
+    else
+      r = Role.find_by_name('client')
+    end
+    return r
+  end
 
   def get_warehouse
     @warehouse = Warehouse.new('user',{user: self})
@@ -21,9 +38,9 @@ class User < ActiveRecord::Base
     @warehouse
   end
 
-  def active_for_authentication? 
-    super && approved? 
-  end 
+  #def active_for_authentication? 
+  #  super && approved? 
+  #end 
 
   def inactive_message 
     if !approved? 

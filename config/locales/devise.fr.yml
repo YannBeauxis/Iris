@@ -17,6 +17,7 @@ fr:
       timeout: "Votre session est expirée. Veuillez vous reconnecter pour continuer."
       unauthenticated: "Vous devez vous connecter ou vous inscrire pour continuer."
       unconfirmed: "Vous devez confirmer votre compte pour continuer."
+      not_approved: "Votre compte est en attente d'approbation par l'administrateur."
     mailer:
       confirmation_instructions:
         subject: "Instructions de confirmation"
@@ -24,6 +25,8 @@ fr:
         subject: "Instructions pour changer le mot de passe"
       unlock_instructions:
         subject: "Instructions pour déverrouiller le compte"
+      new_user_alert:
+        subject: "Nouvel utilisateur créé"
     omniauth_callbacks:
       failure: "Nous n'avons pas pu vous authentifier via %{kind} : '%{reason}'."
       success: 'Authentifié avec succès via %{kind}.'
