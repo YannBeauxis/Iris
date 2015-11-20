@@ -14,7 +14,7 @@
     <%= f.text_field :mesure_unit %>
   </p>
 
-  <% if @ingredient.type.mesure_unit != 'g' then %>
+  <% if @ingredient_type.mesure_unit != 'g' then %>
     <p>
       <%= f.label 'Densité' %><br>
       <%= f.number_field :density, :step => 'any' %>
