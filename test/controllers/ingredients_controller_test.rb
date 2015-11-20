@@ -32,7 +32,7 @@ class IngredientsControllerTest < ActionController::TestCase
     assert i.name == 'iep_main updated', i.name
   end
 
-  test "ingredient is not editable if shared use" do
+  test "ingredient is not editable if shared use recipe" do
     u = users(:iep_main)
     sign_in u
     i = ingredients(:iep_shared)
@@ -42,4 +42,14 @@ class IngredientsControllerTest < ActionController::TestCase
     assert_not i.name == 'iep_shared updated', i.name
   end
 
+  test "ingredient is not editable if shared use container" do
+    u = users(:iep_main)
+    sign_in u
+    i = ingredients(:iep_shared_container)
+    @request.headers["HTTP_REFERER"] = "http://test.host/ingredients"
+    patch(:update, id: i, ingredient: {name: 'iep_shared_container updated'})
+    i = Ingredient.find(i.id)
+    assert_not i.name == 'iep_shared_container updated', i.name
+  end
+  
 end

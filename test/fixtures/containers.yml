@@ -73,3 +73,10 @@ update_with_mass:
   quantity_init: 30
   quantity_actual: 20
   price: 2
+  
+iep_shared_container:
+  user: iep_other
+  ingredient: iep_shared_container
+  quantity_init: 30
+  quantity_actual: 20
+  price: 2

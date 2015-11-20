@@ -20,8 +20,8 @@ class Ingredient < ActiveRecord::Base
     return result
   end
 
-  def other_users_count(user)
-    self.recipes.where.not(user: user).count
+  def used_by_other_users?(user)
+    (self.recipes.where.not(user: user).count > 0) or (self.containers.where.not(user: user).count > 0)
   end
 
   def get_warehouse(user)

@@ -58,7 +58,7 @@ class IngredientsController < ApplicationController
 
     def is_used_by_other
       @ingredient = Ingredient.find(params[:id])
-      if (@ingredient.other_users_count(current_user) > 0) and (current_user.role.rank  > 2) then
+      if @ingredient.used_by_other_users?(current_user) and (current_user.role.rank  > 2) then
         redirect_to :back, 
           :flash => { :error => "Vous ne pouvez modifier cet ingrédient car il est utilisé par d'autres utilisateurs" }
       end

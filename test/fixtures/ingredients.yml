@@ -100,3 +100,8 @@ iep_shared:
   name: 'iep_shared'
   type: one
   density: 1
+  
+iep_shared_container:
+  name: 'iep_shared_container'
+  type: one
+  density: 1
