@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
   #load_and_authorize_resource  
-  #before_action :get_list
+  before_action :is_used_by_other, only: [:edit, :update, :destroy]
   
   def index
     if params[:scope] == 'My' then
@@ -25,7 +25,7 @@ class IngredientsController < ApplicationController
   end
 
   def edit
-    @ingredient = Ingredient.find(params[:id])
+
   end
 
   def create
@@ -39,7 +39,6 @@ class IngredientsController < ApplicationController
   end
 
   def update
-    @ingredient = Ingredient.find(params[:id])
  
     if @ingredient.update(ingredient_params)
       redirect_to @ingredient
@@ -49,7 +48,7 @@ class IngredientsController < ApplicationController
   end
 
   def destroy
-    @ingredient = Ingredient.find(params[:id])
+    #@ingredient = Ingredient.find(params[:id])
     @ingredient.destroy
  
     redirect_to ingredients_path
@@ -57,10 +56,12 @@ class IngredientsController < ApplicationController
 
   private
 
-    def get_list
-      #@ingredients = Ingredient.all.sort_by {|i| [i.type,i.name] }
-      @ingredients = Ingredient.all
-      @ingredient_types = IngredientType.all.sort_by {|it| -1*it.ingredients.count }
+    def is_used_by_other
+      @ingredient = Ingredient.find(params[:id])
+      if (@ingredient.other_users_count(current_user) > 0) and (current_user.role.rank  > 2) then
+        redirect_to :back, 
+          :flash => { :error => "Vous ne pouvez modifier cet ingrédient car il est utilisé par d'autres utilisateurs" }
+      end
     end
 
     def ingredient_params

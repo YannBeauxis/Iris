@@ -48,3 +48,15 @@ producteur_2:
  email: 'producteur_2@yahoo.fr'
  approved: true
  role: producteur
+ 
+iep_main: 
+ name: 'iep_main'
+ email: 'iep_main@yahoo.fr'
+ approved: true
+ role: producteur
+ 
+iep_other: 
+ name: 'iep_other'
+ email: 'iep_other@yahoo.fr'
+ approved: true
+ role: producteur

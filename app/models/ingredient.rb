@@ -20,6 +20,10 @@ class Ingredient < ActiveRecord::Base
     return result
   end
 
+  def other_users_count(user)
+    self.recipes.where.not(user: user).count
+  end
+
   def get_warehouse(user)
     @warehouse = Warehouse.new('ingredient_for_user',{user: user, ingredient: self})
   end

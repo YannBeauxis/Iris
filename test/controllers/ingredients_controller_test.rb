@@ -16,9 +16,30 @@ class IngredientsControllerTest < ActionController::TestCase
   test "should get edit" do
     u = users(:one)
     sign_in u
+    @request.headers["HTTP_REFERER"] = "http://test.host/ingredients"
     get :edit, id: u
     assert_response :success
   end
 
+# for fixtures iep means "Ingredient Edited by Producteur"
+  test "ingredient is editable if solo use" do
+    u = users(:iep_main)
+    sign_in u
+    i = ingredients(:iep_solo)
+    @request.headers["HTTP_REFERER"] = "http://test.host/ingredients"
+    patch(:update, id: i, ingredient: {name: 'iep_main updated'})
+    i = Ingredient.find(i.id)
+    assert i.name == 'iep_main updated', i.name
+  end
+
+  test "ingredient is not editable if shared use" do
+    u = users(:iep_main)
+    sign_in u
+    i = ingredients(:iep_shared)
+    @request.headers["HTTP_REFERER"] = "http://test.host/ingredients"
+    patch(:update, id: i, ingredient: {name: 'iep_shared updated'})
+    i = Ingredient.find(i.id)
+    assert_not i.name == 'iep_shared updated', i.name
+  end
 
 end

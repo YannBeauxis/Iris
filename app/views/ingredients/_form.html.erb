@@ -10,7 +10,7 @@
     <%= f.text_field :name %>
   </p>
 
-  <% if @ingredient.type.mesure_unit != 'g' then %>
+  <% if !@ingredient.type.nil? and @ingredient.type.mesure_unit != 'g' then %>
     <p>
       <%= f.label 'Densité' %><br>
       <%= f.number_field :density, :step => 'any' %>

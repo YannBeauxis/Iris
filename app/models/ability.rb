@@ -16,7 +16,7 @@ class Ability
     can :manage, User, :id => user.id
     
     if user.role.rank <= 2 #Permissions for 'gerant'
-      can :manage, [IngredientType, Ingredient, RecipeType]
+      can :manage, [IngredientType, RecipeType]
     end
 
     if user.role.rank  <= 3 #Permissions for 'producteur'
@@ -24,6 +24,7 @@ class Ability
       can :manage, [Variant, Product], :recipe => {:user_id => user.id}
       can :create, [Variant, Product] #additional conditions in controller
       can :manage, Container, :user_id => user.id
+      can :manage, Ingredient
     end
 
     #

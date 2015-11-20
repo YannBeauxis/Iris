@@ -90,3 +90,13 @@ not_has_container_reference:
   name: 'not_has_container_reference'
   type: not_has_container_reference
   density: 1.2
+  
+iep_solo:
+  name: 'iep_solo'
+  type: one
+  density: 1
+  
+iep_shared:
+  name: 'iep_shared'
+  type: one
+  density: 1

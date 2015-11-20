@@ -12,7 +12,7 @@
   <% if current_user.admin? then%>
     <p>
       <%= f.label 'Propriétaire' %><br>
-      <%= f.collection_select(:user_id, User.all, :id, :name) %>
+      <%= f.collection_select(:user_id, User.all, :id, :name, {:selected => current_user.id}) %>
     </p>
   <% end %>
 

@@ -54,5 +54,17 @@ proportions:
   name: 'proportions'
   type: proportions
   ingredients: proportions_0, proportions_1, proportions_2, proportions_3
+
+iep_main:
+  user: iep_main
+  name: 'iep_main'
+  type: one
+  ingredients: iep_solo, iep_shared
   
+iep_other:
+  user: iep_other
+  name: 'iep_other'
+  type: one
+  ingredients: iep_shared
+
   
