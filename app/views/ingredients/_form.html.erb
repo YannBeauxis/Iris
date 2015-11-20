@@ -1,21 +1,21 @@
 <%= form_for @ingredient do |f| %>
 
-  <p>
-    <%= f.label 'Type d\'ingrédient' %><br>
-    <%= f.collection_select(:ingredient_type_id, IngredientType.all, :id, :name) %>
-  </p>
-
+  <% if @ingredient.type.nil? then %>
+    <p>
+      <%= f.label 'Type d\'ingrédient' %><br>
+      <%= f.collection_select(:ingredient_type_id, IngredientType.all, :id, :name) %>
+    </p>
+  <% end %>
+  
   <p>
     <%= f.label 'Nom' %><br>
     <%= f.text_field :name %>
   </p>
 
-  <% if !@ingredient.type.nil? and @ingredient.type.mesure_unit != 'g' then %>
-    <p>
-      <%= f.label 'Densité' %><br>
-      <%= f.number_field :density, :step => 'any' %>
-    </p>
-  <% end %>
+  <p>
+    <%= f.label 'Densité' %><br>
+    <%= f.number_field :density, :step => 'any' %>
+  </p>
 
   <p>
     <%= f.submit 'Enregistrer'%>
