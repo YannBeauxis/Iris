@@ -3,7 +3,9 @@
 <%= render 'menu' %>
 
 <% content_for :item_content do %>
-
+  
+  <div id = "TableContent"></div>
+  
   <% if @ingredients.any? then %>
   
     <%= table_by_category(
@@ -21,5 +23,6 @@
   ) %>
   
   <% end %>
+
 
 <% end %>

@@ -60,7 +60,6 @@ module TablesHelper
         end
         if column.has_key?(:method) then
           if column.has_key?(:method_params) then
-            #method_params = column[:method_params].collect { |p| if (p == "row"); row else p; end; }
             method_params = column[:method_params]
             if column[:method_params] == "row" then
               method_params = row

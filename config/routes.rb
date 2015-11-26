@@ -38,8 +38,10 @@ Rails.application.routes.draw do
        resources :container_references
      end
 
+     get 'ingredients/get_table', to: 'ingredients#get_table'
+
      resources :ingredients do
-       #match '/add_ingredient', to: 'recipes#add_ingredient', via: :post
+       match '/add_ingredient', to: 'recipes#add_ingredient', via: :post
        resources :containers do
          match '/update_with_mass', to: 'containers#update_with_mass', via: :patch
        end
@@ -50,7 +52,7 @@ Rails.application.routes.draw do
       get '/delete_list', to: 'recipes#delete_list', as: 'delete_list'
       
       resources :ingredients do
-         match '/add_ingredient', to: 'recipes#add_ingredient', via: :post
+         #match '/add_ingredient', to: 'recipes#add_ingredient', via: :post
       end
 
       match '/delete_ingredient', to: 'recipes#delete_ingredient', via: :post

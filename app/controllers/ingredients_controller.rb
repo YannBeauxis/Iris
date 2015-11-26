@@ -12,6 +12,7 @@ class IngredientsController < ApplicationController
       @ingredients = Ingredient.all
       @ingredient_types = IngredientType.all
     end
+    
   end
 
   def show
@@ -52,6 +53,24 @@ class IngredientsController < ApplicationController
     @ingredient.destroy
  
     redirect_to ingredients_path
+  end
+
+  def get_table
+    
+    ct = CategoryTable.new(
+    category: {
+      name: :type,
+      collection: IngredientType.all},
+    item: {
+      collection: Ingredient.all,
+      columns: [
+        {method: 'price_by_unit_display', method_params: current_user },
+        {method: 'recipes_count', method_params: current_user },
+        {method: 'quantity_in_stock', method_params: current_user }]},
+      columns_header: ['prix', '#recettes', 'stock'])
+    
+    render :json => ct.display_table
+    
   end
 
   private
