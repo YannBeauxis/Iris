@@ -3,6 +3,7 @@ class IngredientsController < ApplicationController
   before_action :is_used_by_other, only: [:edit, :update, :destroy]
   
   def index
+    
     if params[:scope] == 'My' then
       @ingredients = Ingredient.joins(:containers)
                         .where('user_id = ' + current_user.id.to_s).uniq
@@ -16,7 +17,12 @@ class IngredientsController < ApplicationController
   end
 
   def show
-    @ingredient = Ingredient.find(params[:id])
+    begin
+      @ingredient = Ingredient.find(params[:id])
+    rescue #ActiveRecord::RecordNotFound  
+      redirect_to ingredients_path
+      return
+    end
     w = Warehouse.new('ingredient_for_user', {user: current_user, ingredient: @ingredient})
     @containers = w.list
   end 

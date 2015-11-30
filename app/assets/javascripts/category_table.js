@@ -1,30 +1,32 @@
-function display_table(data, id) {
+function display_table(data, id, col_visible) {
   var color = true;
   var colorclass;
   var host = "http://" + location.host;
   
   var tb = document.createElement('table');  
   tb.setAttribute("class", "colored");
-  document.getElementById(id).appendChild(tb);
   
-  if (data.hasOwnProperty('header')) {
+  var has_header = data.hasOwnProperty('header');
+  
+  if (has_header) {
     var thead = document.createElement('thead');
     tb.appendChild(thead);
     var row  = create_row(thead, "type");
     var col = create_col(row, "none");
     for (index = 0; index < data.header.length; ++index) {
       var col = create_col(row, "none", 'th');
+      $(col).hide();
       col.innerHTML = data.header[index];
     }
   }
   
-    for (index = 0; index < data.content.length; ++index ) {
+    for (var index = 0; index < data.content.length; ++index ) {
       var cat = data.content[index];
       var row  = create_row(tb, "type");
       var col = create_col (row, "category");
       create_link(col, host + cat.url, cat.name);
       var items = cat.items;
-      for (ind = 0; ind < items.length; ++ind ) {
+      for (var ind = 0; ind < items.length; ++ind ) {
         var item = items[ind];
         if (color) {
           colorclass = "filled";
@@ -37,13 +39,33 @@ function display_table(data, id) {
         var col = create_col (row, "item");
         create_link(col, host + item.url, item.name);
         if (item.hasOwnProperty('content')) {
-          for (ind3 = 0; ind3 < item.content.length; ++ind3 ) {
+          for (var ind3 = 0; ind3 < item.content.length; ++ind3 ) {
             var col = create_col (row, 'value');
+            if (has_header) {
+              col.setAttribute("col_name", data.header[ind3]);              
+            }
+            $(col).hide();
             col.innerHTML = item.content[ind3];
           }
         }
       }
     }
+  if (has_header) {
+    var index_col = data.header.indexOf(col_visible);
+    if ( index_col > -1){
+      var col_set_visible = thead.firstChild.childNodes[index_col +1];
+      $(col_set_visible).show();
+      $(tb).find("[col_name='" + col_visible + "']").show();
+    }
+  }
+
+  var div_target = document.getElementById(id);
+
+  while (div_target.firstChild) {
+      div_target.removeChild(div_target.firstChild);
+  }
+  div_target.appendChild(tb);
+
 }
 
 function create_row (parent, rowclass) {

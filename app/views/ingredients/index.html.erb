@@ -4,11 +4,11 @@
 
 <% content_for :item_content do %>
   
-  <div id = "TableContent"></div>
+  <div id = "TableContent"><p>Chargement de la liste ...</p></div>
   
-  <% if @ingredients.any? then %>
+  <% if @ingredients.any? && false then %>
   
-    <%= table_by_category(
+    <% table_by_category(
     category: {
       name: :type,
       collection: @ingredient_types},

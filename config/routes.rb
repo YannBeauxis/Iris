@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  #Erros 404 and 500 custom pages
+  get "/404" => "errors#not_found"
+  get "/500" => "errors#internal_server_error"
+
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 

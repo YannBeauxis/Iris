@@ -29,8 +29,8 @@ class UsersControllerTest < ActionController::TestCase
     sign_in u
     @request.headers["HTTP_REFERER"] = "http://test.host/users"
     patch(:update, id: o, user: {'name' => 'Modified 2'})
-    assert_redirected_to :back
     assert_not assigns['user'].name == 'Modified 2', assigns['user'].name
+    assert_redirected_to :back
   end
  
   test "client should not modify role params" do
