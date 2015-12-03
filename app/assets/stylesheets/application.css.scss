@@ -134,7 +134,10 @@
     left: 0px;
   }
   .content-header {
-    max-width: $main-content-header-width;
+    @media all and (max-width: $page-width-1 + 180px ){
+      max-width: $page-width-1 - 180px;
+      }
+    width: 100%;
     @include box-sizing(border-box);
     padding-left: $padding-step * 2;
     margin-bottom: $padding-step * 1;
@@ -155,7 +158,7 @@
       display: flex;
       flex-flow: column nowrap;
       float: right;
-      width: 200px;
+      width: 180px;
       @include box-sizing(border-box);
       margin-top: -64px;
     }
