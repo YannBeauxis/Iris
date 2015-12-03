@@ -68,18 +68,27 @@
       @media all and (max-width: $page-width-1) {
         float: right;
       }
-    flex-grow: 0;     /* no grow */
+    flex-grow: 0;      /*no grow */
     flex-shrink: 0;   /* no shrink */
-    flex-basis: 180px;/* length */
-      width: 180px;
+    flex-basis: 220px;/* length */
+
+      /*min-width: 180px;*/
       padding-top: 7px;
       /*display: flex;
       flex-flow: column nowrap;
       align-items: flex-end;*/
-     .disabled {
+
+     .btn-group {
+        float: right;
+       .disabled {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
        background-color: $color-primary-background;
        color: $color-primary-text;
        border: 1px solid #ccc;
+       max-width: 130px;
+       } 
      }
     }
 
@@ -125,7 +134,7 @@
     left: 0px;
   }
   .content-header {
-    width: 100%;
+    max-width: $main-content-header-width;
     @include box-sizing(border-box);
     padding-left: $padding-step * 2;
     margin-bottom: $padding-step * 1;
