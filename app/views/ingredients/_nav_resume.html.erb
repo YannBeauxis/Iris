@@ -4,4 +4,6 @@
 <% if ['show', 'edit'].include?(params[:action]) then %>
   <%= menu_item(menu: :nav_resume, 
        label: @ingredient.type.name, path: ingredient_type_path(@ingredient.type)) %>
+  <%= menu_item(menu: :nav_resume, active: true,
+       label: @ingredient.name) %>
 <% end %>

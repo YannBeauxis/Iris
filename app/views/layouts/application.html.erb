@@ -15,28 +15,37 @@
   <div class="main-content">
 
     <div class="session-menu">
+      <div class="btn-group" role="group" aria-label="...">
         <% if user_signed_in? %>
-          <%= link_to(current_user.name, user_path(current_user)) %>
-          <%= link_to('Déconnexion', destroy_user_session_path, 
-              :method => :delete) %>
+          <%= content_tag(:button, current_user.name, {type: :button, class: "btn disabled"}) %>
+          <%= link_to(
+                content_tag(:span, nil, class: "glyphicon glyphicon-pencil"),
+                user_path(current_user), {type: :button, class: "btn btn-default"}) %>
+          <%= link_to(
+                content_tag(:span, nil, class: "glyphicon glyphicon-off"),
+                destroy_user_session_path, 
+                {:method => :delete, type: :button, class: "btn btn-default"}) %>
         <%else%>      
           Non connecté
-          <%= link_to('Se connecter', new_user_session_path) %>
+          <%= link_to('Se connecter', new_user_session_path, {type: :button, class: "btn btn-default"}) %>
         <% end %>
+      </div>       
     </div>
     
     <div class="title">
       <%= link_to 'IRIS', root_path %>
     </div>
-    
+
+
     <div class="general-menu">
-      <span class="menu-link"><%= link_to 'Ingrédients', ingredients_path %></span>
-      <span class="menu-link"><%= link_to 'Recettes', recipes_path %></span>
-      <% if user_signed_in? && current_user.admin? %>
-        <span class="menu-link"><%= link_to 'Administration', admin_users_path %></span>
-      <% end %>
-    </div>
-    
+      <div class="nav nav-pills">
+        <li role="presentation"><%= link_to 'Ingrédients', ingredients_path %></li>
+        <li role="presentation"><%= link_to 'Recettes', recipes_path %></li>
+        <% if user_signed_in? && current_user.admin? %>
+          <li role="presentation"><%= link_to 'Administration', admin_users_path %></li>
+        <% end %>
+      </div>
+    </div>   
   </div>	
   
 	<div class="message">
@@ -50,9 +59,14 @@
 <div id="Main">
 
   <div class="nav-resume">
-    <% if content_for?(:nav_resume) %>
-      <%= yield( :nav_resume ) %>
-    <% end %>
+    <ol class="breadcrumb">
+      <% if content_for?(:nav_resume) %>
+        <li><%= link_to 'Home', root_path %></li>
+        <%= yield( :nav_resume ) %>
+      <% else %>
+        <li class="active">Home</li>
+      <% end %>
+    </ol>
   </div>
   
   <div class="main-content">
@@ -66,7 +80,11 @@
     </div>
     
     <% if content_for?(:content_menu) %>
-      <div class="content-menu"><%= yield( :content_menu ) %></div>
+      <div class="content-menu">
+
+          <%= yield( :content_menu ) %>
+
+      </div>
     <% end %>
     
     <%= yield %>
