@@ -134,9 +134,9 @@
     left: 0px;
   }
   .content-header {
-    @media all and (max-width: $page-width-1 + 180px ){
-      max-width: $page-width-1 - 180px;
-      }
+    /*@media all and (max-width: $page-width-1 + 180px ){
+      max-width: $page-width-1; - 180px;
+    }*/
     width: 100%;
     @include box-sizing(border-box);
     padding-left: $padding-step * 2;
@@ -160,14 +160,14 @@
       float: right;
       width: 180px;
       @include box-sizing(border-box);
-      margin-top: -64px;
+      margin-top: 0px;
     }
     @media all and (max-width: $page-width-1)
     {
       width: 100%;
       margin-bottom: $padding-step * 1;
       display: flex;
-      flex-flow: row wrap;
+      flex-flow: row wrap; 
       .menu-link {
         padding-right: 3px;
         &:before {
@@ -184,6 +184,7 @@
       line-height: 1;
       border-radius: 0;
       border: 1px solid transparent;
+      margin: 1px;
       &:hover {
         border-color: $color-secondary-text;
       }

@@ -4,6 +4,8 @@
 
 <% content_for :item_content do %>
 
+<div id="TableContent">
+
   <%= table_by_category(
     category: {
       name: :type,
@@ -13,5 +15,7 @@
       columns: @columns},
       columns_header: @columns_header
   ) %>
+
+</div>
 
 <% end %>

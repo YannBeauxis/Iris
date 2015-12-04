@@ -4,30 +4,47 @@ function display_table(data, id, col_visible) {
   var host = "http://" + location.host;
   
   var tb = document.createElement('table');  
-  tb.setAttribute("class", "colored");
+  tb.setAttribute("class", "table");
   
   var has_header = data.hasOwnProperty('header');
+  var col_id = [];
   
   if (has_header) {
     var thead = document.createElement('thead');
     tb.appendChild(thead);
-    var row  = create_row(thead, "type");
-    var col = create_col(row, "none");
+    var row  = create_row(thead, "title");
+    var col = create_col(row, "none", 'th');
+    //col.innerText = "Titre";
     for (index = 0; index < data.header.length; ++index) {
       var col = create_col(row, "none", 'th');
       $(col).hide();
-      col.innerHTML = data.header[index];
+      col.innerHTML = data.header[index].header;
+      col_id[index] = data.header[index].id;
     }
   }
   
-    for (var index = 0; index < data.content.length; ++index ) {
-      var cat = data.content[index];
-      var row  = create_row(tb, "type");
+  var tbody = document.createElement('tbody');
+  tb.appendChild(tbody);
+  
+  // category rows
+    for (var ind1 = 0; ind1 < data.content.length; ++ind1 ) {
+      var cat = data.content[ind1];
+      var row  = create_row(tbody, "type");
       var col = create_col (row, "category");
       create_link(col, host + cat.url, cat.name);
+      // category columns
+      if (has_header) {
+           for (ind2 = 0; ind2 < data.header.length; ++ind2) {
+            var col = create_col(row, "none", 'td');
+            $(col).hide();
+            //col.innerHTML = "";
+            col.setAttribute("col_id", data.header[ind2].id);    
+          }          
+        }
       var items = cat.items;
-      for (var ind = 0; ind < items.length; ++ind ) {
-        var item = items[ind];
+      // items rows
+      for (var ind3 = 0; ind3 < items.length; ++ind3 ) {
+        var item = items[ind3];
         if (color) {
           colorclass = "filled";
         }
@@ -35,27 +52,27 @@ function display_table(data, id, col_visible) {
           colorclass = "blank";
         }
         color = !color;
-        var row  = create_row(tb, colorclass);
-        var col = create_col (row, "item");
-        create_link(col, host + item.url, item.name);
-        if (item.hasOwnProperty('content')) {
-          for (var ind3 = 0; ind3 < item.content.length; ++ind3 ) {
+        var row  = create_row(tbody, colorclass);
+        var col = create_col(row, "item");
+        link = create_link(col, host + item.url, item.name);
+        if (item.hasOwnProperty('columns')) {
+          for (var ind4 = 0; ind4 < item.columns.length; ++ind4 ) {
             var col = create_col (row, 'value');
             if (has_header) {
-              col.setAttribute("col_name", data.header[ind3]);              
+              col.setAttribute("col_id", data.header[ind4].id);              
             }
             $(col).hide();
-            col.innerHTML = item.content[ind3];
+            col.innerHTML = item.columns[ind4];
           }
         }
       }
     }
   if (has_header) {
-    var index_col = data.header.indexOf(col_visible);
+    var index_col = col_id.indexOf(col_visible);
     if ( index_col > -1){
       var col_set_visible = thead.firstChild.childNodes[index_col +1];
       $(col_set_visible).show();
-      $(tb).find("[col_name='" + col_visible + "']").show();
+      $(tb).find("[col_id='" + col_visible + "']").show();
     }
   }
 

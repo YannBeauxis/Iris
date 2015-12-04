@@ -64,16 +64,22 @@ class IngredientsController < ApplicationController
   def get_table
     
     ct = CategoryTable.new(
-    category: {
-      name: :type,
-      collection: IngredientType.all},
-    item: {
-      collection: Ingredient.all,
+      categories: {
+        name: :type,
+        collection: IngredientType.all},
+      items: Ingredient.all,
       columns: [
-        {method: 'price_by_unit_display', method_params: current_user },
-        {method: 'recipes_count', method_params: current_user },
-        {method: 'quantity_in_stock', method_params: current_user }]},
-      columns_header: ['prix', '#recettes', 'stock'])
+        { id: 'price',
+          header: 'prix',
+          #category: {method: 'price_by_unit_display', method_params: current_user },
+          item: {method: 'price_by_unit_display', params: current_user }},
+        { id: 'recipes',
+          header: '#recettes',
+          item: {method: 'recipes_count', params: current_user }},
+        { id: 'stock',
+          header: 'stock',
+          item: {method: 'quantity_in_stock', params: current_user }}]
+    )
     
     render :json => ct.display_table
     

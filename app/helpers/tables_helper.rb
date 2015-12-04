@@ -12,12 +12,14 @@ module TablesHelper
       end
     end
 
+  col_count = options.has_key?(:columns_header) ? options[:columns_header].count : 0
+
     cat_params = options[:category]
     item_params = options[:item]
     
   # categories
     cat_params[:collection].order(:name).each do |category|
-      strval = row_content(category, cat_params, "category")
+      strval = row_content(category, cat_params, "category", col_count)
       str += content_tag(:tr, strval, class: "type")
     # lines for item in category
       colored = true
@@ -28,17 +30,17 @@ module TablesHelper
           cl= "blank"
         end
         colored = !colored
-        strval = row_content(i, item_params, "item")
+        strval = row_content(i, item_params, "item", col_count)
         str += content_tag(:tr, strval, class: cl)
       end
     end
     
   # return content table
-    content_tag :table, str, class: "colored"
+    content_tag :table, str, class: "table"
     
   end
 
-  def row_content(row, params, css_class)
+  def row_content(row, params, css_class, col_count)
     
   # first column : name with link
     if params.has_key?(:link_param) then
@@ -73,8 +75,12 @@ module TablesHelper
         else
           display = nil
         end
-        str_row += content_tag(:td, display, class: 'center')          
+        str_row += content_tag(:td, display, class: 'value')          
       end
+    else
+      col_count.times do
+        str_row += content_tag(:td, nil, class: 'value')   
+      end   
     end  
     return str_row
   end
