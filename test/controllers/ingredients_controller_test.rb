@@ -21,6 +21,12 @@ class IngredientsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get get_table for client" do
+    sign_in users(:client)
+    get :get_table
+    assert_response :success
+  end
+
 # for fixtures iep means "Ingredient Edited by Producteur"
   test "ingredient is editable if solo use" do
     u = users(:iep_main)

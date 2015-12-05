@@ -11,6 +11,7 @@ class Ability
     else
       can :read, :all
       cannot :read, User
+      can :get_table, Ingredient
     end
     
     can :manage, User, :id => user.id

@@ -37,6 +37,12 @@ client_to_producteur:
  approved: true
  role: client
  
+gerant: 
+ name: 'gerant'
+ email: 'gerant@yahoo.fr'
+ approved: true
+ role: gerant
+ 
 producteur: 
  name: 'producteur'
  email: 'producteur@yahoo.fr'

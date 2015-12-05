@@ -4,6 +4,10 @@ admin:
   name: admin
   rank: 1
 
+gerant:
+  name: gerant
+  rank: 2
+
 producteur:
   name: producteur
   rank: 3

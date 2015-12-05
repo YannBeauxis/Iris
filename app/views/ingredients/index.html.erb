@@ -8,24 +8,7 @@
 <% content_for :item_content do %>
   
   <div id = "TableContent"><p>Chargement de la liste ...</p></div>
-  
-  <% if @ingredients.any? && false then %>
-  
-    <% table_by_category(
-    category: {
-      name: :type,
-      collection: @ingredient_types},
-    item: {
-      collection: @ingredients,
-      columns: [
-        {method: 'price_by_unit_display', method_params: current_user },
-        {method: 'recipes_count', method_params: current_user },
-        {method: 'quantity_in_stock', method_params: current_user }]},
-    columns_header: ['prix', '#recettes', 'stock']
-
-  ) %>
-  
-  <% end %>
-
+ 
+ <%= link_to('Test get table', ingredients_get_table_path)%>
 
 <% end %>

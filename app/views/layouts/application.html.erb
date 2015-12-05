@@ -28,7 +28,6 @@
                 destroy_user_session_path, 
                 {:method => :delete, type: :button, class: "btn btn-default"}) %>
         <%else%>      
-          Non connecté
           <%= link_to('Se connecter', new_user_session_path, {type: :button, class: "btn btn-default"}) %>
         <% end %>
       </div>       
