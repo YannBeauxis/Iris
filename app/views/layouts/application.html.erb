@@ -76,27 +76,31 @@
     </ol>
   </div>
   
-  <div class="main-content">
-    
- 
-    
-    <div class="content-header">
-      <% if content_for?(:content_header) %>
-        <%= yield( :content_header ) %>
-      <% end %>
+  <div class="main-content row">
+      <div class="content-header col-xs-10">
+        <% if content_for?(:content_header) %>
+          <%= yield( :content_header ) %>
+        <% end %>
+      </div>
+      <div class="col-xs-2">
+        <% if content_for?(:content_menu) %>  
+          <button class="menu-button" data-toggle="collapse" data-target="#content-menu">Menu</button>
+        <% end %>   
+      </div>
     </div>
     
-    <% if content_for?(:content_menu) %>
-      <div class="content-menu">
-
+    <div id="content-menu" class="collapse">
+      <% if content_for?(:content_menu) %>  
+        <div class="btn-group" role="group" aria-label="...">
           <%= yield( :content_menu ) %>
-
-      </div>
-    <% end %>
+        </div>
+      <% end %>  
+    </div>
     
     <%= yield %>
        
     <% if content_for?(:item_content) %>
+    
       <div class="item-content" >
         <%= yield( :item_content ) %>
         </div>
