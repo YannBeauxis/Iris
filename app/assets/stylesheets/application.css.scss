@@ -16,89 +16,64 @@
 
 @import "base";
 
-/*$header-message-height:*/
-
 #Header {
+  .main-content {
+    border-bottom: 1px solid $color-base-line;
+  }
   @include box-sizing(border-box);
-  padding-left: $padding-step * 1;
-  padding-right: $padding-step * 1;
   width: 100%;
   border-bottom: 1px solid $color-base-line;
-  .main-content{
-
-    width: 100%;
-    @media all and (min-width: $page-width-1) {
-      min-height: $header-min-height;
-      display: flex;
-      flex-flow: row nowrap;
-      .general-menu {
-        /*height: $header-min-height;*/
-      }
-      & > .session-menu {
-        margin-left: auto;
-        order: 3;
-      }
-    }
+  .title-and-session {
+    padding-left: $padding-step * 1;
+    padding-right: $padding-step * 1;
     .title {
-      vertical-align: text-top;
-      width: 100px;
+      padding: 0;
       font-size: 280%;
+      line-height: 1;
       a:hover {
       text-decoration: none
       }
     }
-    .general-menu {
-      padding-top: 5px;
-      /*flex: 1;
-      display: flex;
-      flex-flow: row wrap;
-      align-items: flex-start;*/
-      a {
-        color: $color-secondary-text;
-        /*align-self: flex-start;
-        flex: 0 1 auto;*/
-        padding: 8px 15px;
-        &:hover {
-          background-color: $color-secondary-background;
-        }
+    .session {
+      padding-top: 4px;
+      .btn-group {
+        float: right
+      }
+     .disabled {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background-color: $color-primary-background;
+      color: $color-primary-text;
+      border: 1px solid #ccc;
+      max-width: 130px;
+      } 
+    }
+  }
+  
+  .general-menu {
+    padding-top: 5px;
+    a {
+      border-bottom: 0;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      color: $color-secondary-text;
+      /*align-self: flex-start;
+      flex: 0 1 auto;*/
+      padding: 8px 15px;
+      &:hover {
+        background-color: $color-secondary-background;
       }
     }
   }
-    .session-menu {
-      @media all and (max-width: $page-width-1) {
-        float: right;
-      }
-    flex-grow: 0;      /*no grow */
-    flex-shrink: 0;   /* no shrink */
-    flex-basis: 220px;/* length */
 
-      /*min-width: 180px;*/
-      padding-top: 7px;
-      /*display: flex;
-      flex-flow: column nowrap;
-      align-items: flex-end;*/
-
-     .btn-group {
-        float: right;
-       .disabled {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-       background-color: $color-primary-background;
-       color: $color-primary-text;
-       border: 1px solid #ccc;
-       max-width: 130px;
-       } 
-     }
-    }
-
-  .message {
-    width: 100%;
-    min-height: 20px;
+  .alert {
     text-align: right;
-    color: red;
-    font-style: italic;
+    border-radius: 0;
+    margin-bottom: 0;
+    padding: 5px;
   }
+    
 }
 
 #Main {
@@ -209,5 +184,5 @@
 }
 
 #Footer {
-    border-bottom: 1px solid $color-base-line;
+    border-top: 1px solid $color-base-line;
 }

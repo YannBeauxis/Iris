@@ -15,45 +15,51 @@
   
 <div id="Header">
   <div class="main-content">
+    
+    <div class="title-and-session row">
+    
+      <div class="title col-xs-4">
+        <%= link_to 'IRIS', root_path %>
+      </div>
+      
+      <div class="session col-xs-8">
+        <div class="btn-group" role="group" aria-label="...">
+          <% if user_signed_in? %>
+            <%= content_tag(:button, current_user.name, {type: :button, class: "btn disabled"}) %>
+            <%= link_to(
+                  content_tag(:span, nil, class: "glyphicon glyphicon-pencil"),
+                  user_path(current_user), {type: :button, class: "btn btn-default"}) %>
+            <%= link_to(
+                  content_tag(:span, nil, class: "glyphicon glyphicon-off"),
+                  destroy_user_session_path, 
+                  {:method => :delete, type: :button, class: "btn btn-default"}) %>
+          <%else%>      
+            <%= link_to('Se connecter', new_user_session_path, {type: :button, class: "btn btn-default"}) %>
+          <% end %>
+        </div>
+      </div>
 
-    <div class="session-menu">
-      <div class="btn-group" role="group" aria-label="...">
-        <% if user_signed_in? %>
-          <%= content_tag(:button, current_user.name, {type: :button, class: "btn disabled"}) %>
-          <%= link_to(
-                content_tag(:span, nil, class: "glyphicon glyphicon-pencil"),
-                user_path(current_user), {type: :button, class: "btn btn-default"}) %>
-          <%= link_to(
-                content_tag(:span, nil, class: "glyphicon glyphicon-off"),
-                destroy_user_session_path, 
-                {:method => :delete, type: :button, class: "btn btn-default"}) %>
-        <%else%>      
-          <%= link_to('Se connecter', new_user_session_path, {type: :button, class: "btn btn-default"}) %>
-        <% end %>
-      </div>       
     </div>
     
-    <div class="title">
-      <%= link_to 'IRIS', root_path %>
-    </div>
-
-
-    <div class="general-menu">
-      <div class="nav nav-pills">
-        <li role="presentation"><%= link_to 'Ingrédients', ingredients_path %></li>
-        <li role="presentation"><%= link_to 'Recettes', recipes_path %></li>
-        <% if user_signed_in? && current_user.admin? %>
-          <li role="presentation"><%= link_to 'Administration', admin_users_path %></li>
-        <% end %>
-      </div>
+    <div class="general-menu btn-group">
+      <%= link_to 'Ingrédients', ingredients_path, {type: :button, class: "btn btn-default"} %>
+      <%= link_to 'Recettes', recipes_path, {type: :button, class: "btn btn-default"} %>
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to 'Administration', admin_users_path, {type: :button, class: "btn btn-default"} %>
+      <% end %>
     </div>   
-  </div>	
   
-	<div class="message">
-		<% flash.each do |name, msg| -%>
-			<%= content_tag :div, msg, class: name %>
-		<% end -%>
-	</div>
+  <% if flash.any? %>
+		<% flash.each do |name, msg| %>
+  		<% if name == 'alert' %>
+  		  <%= content_tag :div, msg, {class: 'alert alert-danger', role: 'alert'} %>
+      <% elsif name == 'notice' %>
+        <%= content_tag :div, msg, {class: 'alert alert-success', role: 'alert'} %>
+      <% else %>
+        <%= content_tag :div, name + ":" + msg, {class: 'alert alert-info', role: 'alert'} %>
+      <% end %>
+		<% end %>
+	<%end%>
 
 </div>
 
