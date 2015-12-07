@@ -4,39 +4,40 @@
 
 <% content_for :item_content do %>
 
-  <div class="subcontent">
-    <div class="title">informations</div>
-    <span class="highlight">Densité : </span>
-    <%= @ingredient.density %>
-    <br>
+  <div class="panel panel-default">
+    <div class="panel-heading">informations</div>
+    <div class="panel-body">
+      <span class="highlight">Densité : </span>
+      <%= @ingredient.density %>
+    </div>
   </div>
 
-  <div class="subcontent">
-    <div class="title">Stocks pour l'ingrédient</div>
-    <% if @containers.any? then %>
-   
-      <table>
-        <tr>
-          <th>Volume d'achat</th>
-          <th>Volume actuel</th>
-          <th>Prix au <%= @ingredient.type.mesure_unit %></th>
-        </tr>
+<div class="panel panel-default">
+  <div class="panel-heading">Stocks pour l'ingrédient</div>
+
+  <% if @containers.any? then %>
+
+    <table class="table">
+      <tr>
+        <th>Volume d'achat</th>
+        <th>Volume actuel</th>
+        <th></th>
+      </tr>
    
         <% @containers.each do |c| %>
-          <tr>
-            <td><%= c.quantity_init.display %></td>
-            <td><%= if c.quantity_actual? then c.quantity_actual?.display end %></td>
-            <td><%= c.price_by_unit.round(2) %> €</td>
-            <td><%= link_to 'Modifier', edit_ingredient_container_path(@ingredient,c) %></td>
-          </tr>
-        <% end %>
-      </table>
+        <tr>
+          <td><%= c.quantity_init.display %></td>
+          <td><%= if c.quantity_actual? then c.quantity_actual?.display end %></td>
+          <td><%= link_to 'Modifier', edit_ingredient_container_path(@ingredient,c) %></td>
+        </tr>
+      <% end %>
+    </table>
+
+  <% else %>
   
-    <% else %>
-  
-      <i>Pas de stock pour cet ingrédient.</i>
-  
-    <% end %>
-  </div>
+    <div class="panel-body"><i>Pas de stock pour cet ingrédient.</i></div>
+      
+  <% end %>
+</div>
 
 <% end %>

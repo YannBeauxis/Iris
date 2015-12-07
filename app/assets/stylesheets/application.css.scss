@@ -108,6 +108,7 @@
   }
   
   .item-content {
+    margin-top: 10px;
     z-index: 1;
     width: 100%;
     @include box-sizing(border-box);
