@@ -66,7 +66,7 @@ Rails.application.routes.draw do
         match '/normalize_proportions', to: 'variants#normalize_proportions', via: :patch# , as: 'update_proportion'
       end
 
-      match '/duplicate_variant', to: 'recipes#duplicate_variant', via: :patch
+      match '/duplicate_variant', to: 'recipes#duplicate_variant', via: :get
 
       resources :products
 

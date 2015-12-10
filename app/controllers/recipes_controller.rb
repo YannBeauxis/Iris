@@ -106,8 +106,11 @@ class RecipesController < ApplicationController
   end
 
   def duplicate_variant
+    #p params
+    #render plain: params
     variant_origin = Variant.find(params[:variant_id])
     @recipe = Recipe.find(params[:recipe_id])
+
 
     v = @recipe.duplicate_variant(variant_origin, params[:variant_name])
     

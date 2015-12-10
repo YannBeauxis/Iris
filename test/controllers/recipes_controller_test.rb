@@ -30,12 +30,12 @@ class RecipesControllerTest < ActionController::TestCase
     r = recipes(:proportions)
     v_origin = variants(:proportions)
     @request.headers["HTTP_REFERER"] = "http://test.host/recipes"
-    # Difference between test env and dev env
-    #patch(:duplicate_variant, recipe_id: r.id, 
-    #    recipe: {variant_id: v_origin.id, variant_name: 'Copy of variant'})
-    #v_copy = Variant.find_by_name('Copy of variant')
-    #assert_not v_copy.nil?
-    #assert_redirected_to recipe_variant_path(r, v_copy)
+    get :duplicate_variant,
+        variant_id: v_origin.id, variant_name: 'Copy of variant',
+        recipe_id: r.id
+    v_copy = Variant.find_by_name('Copy of variant')
+    assert_not v_copy.nil?
+    assert_redirected_to recipe_variant_path(r, v_copy)
   end
   
 end
