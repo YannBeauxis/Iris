@@ -14,3 +14,8 @@ not_to_be_duplicate:
   name: 'not_to_be_duplicate'
   variant: proportions
   volume: 100
+  
+to_be_delete:
+  name: 'to_be_delete'
+  variant: proportions
+  volume: 100
