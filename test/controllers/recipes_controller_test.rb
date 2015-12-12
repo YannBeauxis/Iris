@@ -38,4 +38,17 @@ class RecipesControllerTest < ActionController::TestCase
     assert_redirected_to recipe_variant_path(r, v_copy)
   end
   
+  test "create_variant_base_at_creation" do
+    u = users(:producteur)
+    sign_in u
+    r = Recipe.create! do |rn|
+      rn.name = 'Auto Variant'
+      rn.user = u
+      rn.type = recipe_types(:one)
+    end
+    
+    assert r.variants.count > 0, 'Variant base not created at recipe creation'
+    
+  end
+  
 end

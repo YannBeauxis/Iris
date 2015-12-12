@@ -1,11 +1,40 @@
 class Recipe < ActiveRecord::Base
   has_and_belongs_to_many :ingredients, -> { uniq }
-  has_many :variants, dependent: :destroy, autosave: :true#, :class_name => 'Variant', :foreign_key => 'recipe_id', 
+  has_many :variants, dependent: :destroy, autosave: :true 
   has_many :products, through: :variants
   belongs_to :type, :class_name => 'RecipeType', :foreign_key => 'recipe_type_id'
   belongs_to :user
   validates :user, :type, :name, presence: true
   after_save :update_proportions
+
+  after_create :variant_base_create
+
+  def variant_base
+    Variant.find_by(id: self.variant_base_id)
+  end
+
+  def variant_base=(variant)
+    self.variant_base_id = variant.id
+  end
+
+  def variant_base_create
+    v = Variant.create! do |vb|
+      vb.name='Base'
+      vb.recipe = self
+      self.variant_base = vb
+    end
+    self.save
+  end
+
+  def variant_base_set
+  # Add variant_base if not exist
+      if self.variants.any?
+        self.variant_base = self.variants.first
+      else
+        v = variant_base_create
+      end
+      self.save
+  end
 
   def user_name
     self.user.name
