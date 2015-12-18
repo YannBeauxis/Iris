@@ -1,4 +1,4 @@
-App.Collections.IngredientTypeList = Backbone.Collection.extend({
+App.Collections.IngredientTypes = Backbone.Collection.extend({
   
   model: App.Models.IngredientType,
   

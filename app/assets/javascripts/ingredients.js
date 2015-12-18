@@ -1,5 +1,12 @@
  //$(document).ready(function() {
 
+var backbone_display = function() {
+ 
+  App.ingredientsApp = new App.Views.Ingredients();
+  
+};
+
+
 var ready = function() {
   //alert('C est parti !');
   old_display();
@@ -22,18 +29,3 @@ var old_display = function() {
 };  
 
 $(document).ready(ready);
-
-var backbone_display = function() {
-  
-  //var app = new IngredientTypeRouter();
-  //Backbone.history.start();
-  
-  App.ingredient_type_list = new App.Collections.IngredientTypeList();
-  App.index_ingredient_type = new App.Views.IndexIngredientView({collection: App.ingredient_type_list});
-  
-  //App.itl = new App.Collections.IngredientTypeList();
-  //App.itl.fetch({
-    //success: function() {alert(App.itl.length);}
-  //});
-  //alert(App.itl.length);
-};

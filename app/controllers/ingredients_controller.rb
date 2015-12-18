@@ -1,5 +1,5 @@
 class IngredientsController < ApplicationController
-  #load_and_authorize_resource  
+  respond_to :html, :xml, :json
   before_action :is_used_by_other, only: [:edit, :update, :destroy]
   
   def index
@@ -13,6 +13,8 @@ class IngredientsController < ApplicationController
       @ingredients = Ingredient.all
       @ingredient_types = IngredientType.all
     end
+    
+    respond_with(@ingredients)
     
   end
 
