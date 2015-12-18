@@ -4,6 +4,47 @@
 
 <% content_for :item_content do %>
 
+<div class="panel panel-default">
+  <div class="panel-heading">Produit de référence</div>
+
+  <% if !@product.nil? then %>
+
+    <div class="panel-body">
+      Volume total : <%= @product.volume.display %> ml</br>
+        <% if !@product.price.nil? then %>
+          Prix : <%= @product.price %> €
+        <% end %>
+    </div>
+
+    <%= table_by_category(
+      category: {
+        name: :type,
+        collection: @ingredient_types},
+      item: {
+        collection: @ingredients,
+        columns: [
+          {instance: @product.quantities,
+            method: 'display', 
+            method_params: [:mass,'row']},
+          {instance: @product.quantities,
+            method: 'display', 
+            method_params: [:volume,'row']},
+          {instance: @product.quantities,
+            method: 'display', 
+            method_params: [:volume,'row','unit']},   
+          {instance: @product.quantities,
+            method: 'display', 
+            method_params: [:price,'row']}]},       
+      columns_header: ['Poids','volume','quantité','prix']
+    )%>
+
+  <% else %>
+  
+    <div class="panel-body"><i>Pas produit de référence.</i></div>
+      
+  <% end %>
+</div>
+
  <p><strong>Liste des produits par variante</strong></p>
 
   <%= table_by_category(

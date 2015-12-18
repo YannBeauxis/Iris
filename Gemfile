@@ -21,6 +21,11 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Backbone
+gem 'underscore-rails'
+gem 'backbone-on-rails', '~> 1.2'
+gem 'ejs', '~> 1.1', '>= 1.1.1'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

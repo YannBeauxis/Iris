@@ -28,12 +28,12 @@ class Recipe < ActiveRecord::Base
 
   def variant_base_set
   # Add variant_base if not exist
-      if self.variants.any?
-        self.variant_base = self.variants.first
-      else
-        v = variant_base_create
-      end
-      self.save
+    if self.variants.any?
+      self.variant_base = self.variants.first
+    else
+      v = variant_base_create
+    end
+    self.save
   end
 
   def user_name
@@ -42,6 +42,10 @@ class Recipe < ActiveRecord::Base
 
   def product_count
     self.products.count
+  end
+
+  def product_reference
+    self.variant_base.products.first
   end
 
   def ingredient_types

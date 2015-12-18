@@ -1,13 +1,23 @@
 class IngredientTypesController < ApplicationController
+  respond_to :html, :xml, :json
   #load_and_authorize_resource
   before_action :get_list
 
   def index
+    #respond_to do |format|
+    #  format.json { render :json => @ingredient_types }
+    #  format.html
+    #end
+    respond_with(@ingredient_types)
   end
 
   def show
     @ingredient_type = IngredientType.find(params[:id])
     @container_references = @ingredient_type.container_references
+    respond_to do |format|
+      format.json { render :json => @ingredient_type }
+      format.html
+    end
   end 
 
   def new

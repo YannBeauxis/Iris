@@ -14,3 +14,18 @@
 //= require jquery_ujs
 // not turbolinks
 //= require bootstrap-sprockets
+//= require underscore
+//= require backbone
+//= require iris
+//= require_self
+//= require_tree ../templates
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./views
+//= require_tree ./routers
+
+window.App = {
+  Models: {},
+  Collections: {},
+  Views: {}
+};

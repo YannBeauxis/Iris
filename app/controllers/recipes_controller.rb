@@ -23,6 +23,9 @@ class RecipesController < ApplicationController
     @products = @recipe.products
     @ingredients = @recipe.ingredients
     @ingredient_types = @recipe.ingredient_types
+    
+    @product = @recipe.product_reference
+    @product.quantities.compute_prices(current_user) if  !@product.nil?
   end 
 
   def new

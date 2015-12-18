@@ -1,20 +1,12 @@
-/*
-$(document).ready ->
-    $.ajax({
-      type: "GET",
-      url: "/ingredients/get_table",
-      dataType: "json"
-      success:(data) ->
-        t = display_table(data, "TableContent", "stock")      
-        return true
-      error:(data) ->
-        return false
-    })
-*/
-   
-//$(document).ready(function() {
+ //$(document).ready(function() {
 
 var ready = function() {
+  //alert('C est parti !');
+  old_display();
+  backbone_display();
+};
+  
+var old_display = function() {
       $.ajax({
        url : '/ingredients/get_table',
        type : 'GET',
@@ -30,4 +22,18 @@ var ready = function() {
 };  
 
 $(document).ready(ready);
-//$(document).on('page:load', ready);
+
+var backbone_display = function() {
+  
+  //var app = new IngredientTypeRouter();
+  //Backbone.history.start();
+  
+  App.ingredient_type_list = new App.Collections.IngredientTypeList();
+  App.index_ingredient_type = new App.Views.IndexIngredientView({collection: App.ingredient_type_list});
+  
+  //App.itl = new App.Collections.IngredientTypeList();
+  //App.itl.fetch({
+    //success: function() {alert(App.itl.length);}
+  //});
+  //alert(App.itl.length);
+};
