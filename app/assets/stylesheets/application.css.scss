@@ -17,11 +17,8 @@
 @import "base";
 
 #Header {
-  @include box-sizing(border-box);
-  width: 100%;
+  padding: $padding-step;
   .title-and-session {
-    padding-left: $padding-step * 1;
-    padding-right: $padding-step * 1;
     .title {
       padding: 0;
       font-size: 280%;
@@ -31,8 +28,6 @@
       }
     }
     .session {
-      padding-top: 6px;
-      padding-right: 0;
       .btn-group {
         float: right
       }
@@ -47,81 +42,68 @@
       } 
     }
   }
-  
-  .general-menu {
-    padding-top: 5px;
-    a {
-      border-bottom: 0;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      color: $color-secondary-text;
-      padding: 8px 15px;
-      &:hover {
-        background-color: $color-secondary-background;
-      }
+}
+
+#MainMenu {
+  a {
+    border-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    color: $color-secondary-text;
+    padding: 8px 15px;
+    &:hover {
+      background-color: $color-secondary-background;
     }
   }
+}
 
-    .breadcrumb {
-        padding: 4px 12px;
-        margin-bottom: 0;
-        border-radius: 0px;
-        border-top: 1px solid $color-base-line;
-    }
+#NavBar{
+  .breadcrumb {
+      padding: 4px 12px;
+      margin-bottom: 0;
+      border-radius: 0px;
+      border-top: 1px solid $color-base-line;
+  }
+}
 
+#MainMessage {
   .alert {
-    text-align: right;
+    text-align: center;
     border-radius: 0;
     margin-bottom: 0;
     padding: 5px;
   }
-    
 }
 
-#Main {
-  min-height: 220px;
-  .nav-resume {
-    @include box-sizing(border-box);
+#ContextMenu {
+  nav {
+    background-color: $color-secondary-background;
+    border : 0;
+    min-height: 20px;
+    margin-bottom: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
     a {
+      color: $color-secondary-text;
+      padding: $padding-step;
+    }
+  }
+}
+
+#MainContent {
+  padding: $padding-step;
+  .header{
+    .title {
+      font-size: 180%;
       color: $color-primary-text;
     }
-  }
-  .main-header{
-      .title {
-        font-size: 180%;
-        color: $color-primary-text;
-      }
-      .subtitle {
-        font-style : italic;
-        color: $color-secondary-text;
-      }
-  }
-  
-  .item-menu{
-     margin: 4px 4px 0 0;
-    .dropdown-toggle {
-     background-color: $color-secondary-background;
-    }
-    .dropdown-menu {
-      background-color: $color-secondary-background;
+    .subtitle {
+      font-style : italic;
+      color: $color-secondary-text;
     }
   }
-  
-  .item-content {
-    margin-top: 10px;
-    z-index: 1;
-    width: 100%;
-    @include box-sizing(border-box);
-    padding-left: $padding-step * 1;
-    padding-bottom: $padding-step * 3;
-    .subcontent {
-      .title {
-        font-weight: bold;
-        color: $color-base-text;
-        @include box-sizing(border-box);
-        margin: 5px 0 5px 0;
-      }
-    }
+  .content {
+    padding-top: $padding-step;
   }
 }
 
