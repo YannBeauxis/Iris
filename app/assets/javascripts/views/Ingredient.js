@@ -1,9 +1,9 @@
 App.Views.Ingredient= Backbone.View.extend({
   
-  tagName: 'li',
+  tagName: 'tr',
   //className: 'hide',
   
-  //template: JST['ingredient_type'],
+  template: JST['ingredient_row'],
 
   initialize: function() {
     
@@ -12,7 +12,7 @@ App.Views.Ingredient= Backbone.View.extend({
   },
 
   render: function() {
-      this.$el.text(this.model.get('name'));//this.template(this.model.toJSON()));
+      this.$el.html(this.template(this.model.toJSON()));
       return this;
   },
   

@@ -2,7 +2,7 @@ App.Views.Ingredients = Backbone.View.extend({
   
   initialize: function() {
     
-    this.$el = $('#IngredientTypeGrid'),
+    this.$el = $('#CategoryGrid'),
     
     App.ingredients = new App.Collections.Ingredients();
     App.ingredient_types = new App.Collections.IngredientTypes();
@@ -24,12 +24,12 @@ App.Views.Ingredients = Backbone.View.extend({
   addOneType: function(ingredient_type) {
     var view = new App.Views.IngredientType({model: ingredient_type});
     var it = this.$el.append(view.render().el);
-    it.find('ul.ingredients').hide();
+    it.find('table.ingredients').hide();
   },
 
   addOneIngredient: function(ingredient) {
     var view = new App.Views.Ingredient({model: ingredient});
-    view.parent_el.find('ul.ingredients').append(view.render().el);
+    view.parent_el.find('table.ingredients').find('tbody').append(view.render().el);
   }
   
 });

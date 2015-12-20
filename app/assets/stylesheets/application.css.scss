@@ -28,6 +28,7 @@
       }
     }
     .session {
+      padding: 0;
       .btn-group {
         float: right
       }
@@ -51,14 +52,16 @@
     border-bottom-right-radius: 0;
     color: $color-secondary-text;
     padding: 8px 15px;
+    background-color: $color-secondary-background;
     &:hover {
-      background-color: $color-secondary-background;
+      background-color: $color-secondary-background-dark;
     }
   }
 }
 
 #NavBar{
   .breadcrumb {
+      font-size: 80%;
       padding: 4px 12px;
       margin-bottom: 0;
       border-radius: 0px;
@@ -68,6 +71,7 @@
 
 #MainMessage {
   .alert {
+    font-size: 80%;
     text-align: center;
     border-radius: 0;
     margin-bottom: 0;
@@ -77,15 +81,31 @@
 
 #ContextMenu {
   nav {
+    .navbar-nav {
+      margin: 0;
+    }
+    .container-fluid {
+      padding: 0;
+    }
     background-color: $color-secondary-background;
     border : 0;
-    min-height: 20px;
+    min-height: 0;
     margin-bottom: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     a {
       color: $color-secondary-text;
+      background-color: $color-secondary-background;
       padding: $padding-step;
+      &:focus {
+        background-color: $color-secondary-background-dark;
+      }
+      &:hover {
+        background-color: $color-secondary-background-dark;
+      }
+    }
+    li ul{
+      background-color: $color-secondary-background;
     }
   }
 }
@@ -104,6 +124,22 @@
   }
   .content {
     padding-top: $padding-step;
+  }
+  #CategoryGrid {
+    .category {
+      margin: 0;
+      padding: $padding-step;
+      .panel {
+        margin: 0;
+        .panel-body {
+          padding: 0;
+        }
+        .table {
+          width: 100%;
+          /*margin-top: $padding-step;*/
+        }
+      }
+    }
   }
 }
 

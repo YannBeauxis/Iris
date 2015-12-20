@@ -6,7 +6,7 @@ App.Views.IngredientType = Backbone.View.extend({
     return 'ingredient-type-' + this.model.get('id');
   },
   
-  className: 'ingredient-type col-xs-6 col-sm-4 panel panel-default',
+  className: 'category col-xs-6 col-sm-4',
   
   template: JST['ingredient_type'],
 
@@ -27,8 +27,7 @@ App.Views.IngredientType = Backbone.View.extend({
     var p = this.$el.position().top;
     //window.scrollBy(0,pdiff);
     $(window).scrollTop(p - 20);
-    this.$el.find('ul.ingredients').slideToggle();
-
+    this.$el.find('table.ingredients').slideToggle();
   }
   
 });
