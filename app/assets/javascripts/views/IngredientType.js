@@ -25,15 +25,24 @@ App.Views.IngredientType = Backbone.View.extend({
   },
   
   displayIngredients: function() {
+    this.$el.toggleClass('col-xs-6 col-sm-4 col-xs-12');
+    //this.$el.toggleClass('col-xs-12');
     var p = this.$el.position().top;
-    this.$el.find('.default-hidden').slideToggle();
-    this.$el.toggleClass('col-xs-6 col-sm-4');
-    this.$el.toggleClass('col-xs-12');
-    var pdiff = this.$el.position().top - p;
-    var p = this.$el.position().top;
-    //window.scrollBy(0,pdiff);
-    $(window).scrollTop(p - 20);
+    $('html, body').animate({
+      scrollTop:this.$el.offset().top
+      }, 'slow');
+    //$(window).scrollTop(p - 10);
+    this.$el.find('.default-hidden')
+      .slideToggle();
+      //.slideToggle('normal', function(){$(window).scrollTop(p-10);});
 
+
+    //$(window).scrollTop(p - 5);
+  },
+  
+  scrollAnim: function(p){
+    console.log(p);
+    $(window).scrollTop(p - 5);
   }
   
 });
