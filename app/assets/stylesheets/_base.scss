@@ -21,13 +21,14 @@ $header-min-height: 40px; /*for main content of header with no message*/
 $padding-step: 6px;
 
 $color-base-text: rgb(92,90,98); 
-$color-base-line: rgb(208,204,202); 
-$color-base-background: #f5f5f5;
-$color-primary-text: rgb(58,90,134); 
-$color-primary-background: rgb(247,246,255); 
+$color-base-line: #E8EBF3;
+$color-base-background: #F1F4F8; 
+$color-primary-text: #325A86;
+$color-primary-background: #E9F3FD;
+$color-primary-background-dark: #dfe8f2;
 $color-secondary-text: rgb(195,146,0); 
-$color-secondary-background: rgb(255,255,247); 
-$color-secondary-background-dark: rgb(255,251,227); 
+$color-secondary-background: #FFFFF7;
+$color-secondary-background-dark: #FFFFE4;
 
 @mixin default_fonts {
     /*font-family: Verdana, Geneva, sans-serif;*/

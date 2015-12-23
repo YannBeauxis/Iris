@@ -1,6 +1,13 @@
 <% content_for :javascript_includes do %>
   <%= javascript_include_tag "ingredients.js" %>
 <% end %>
+
+<% content_for :data_js do %>
+  App.ingredientTypesRaw = <%= @ingredient_types.to_json.html_safe %>
+  App.ingredientsRaw = <%= @ingredients.to_json.html_safe %>
+<% end %>
+
+
 <%= render 'nav_resume' %>
 <%= render 'header' %>
 <%= render 'menu' %>
@@ -8,7 +15,5 @@
 <% content_for :item_content do %>
   
   <div id="CategoryGrid" class="row"></div>
-  
-  <div id = "TableContent"><p>Chargement de la liste ...</p></div>
 
 <% end %>

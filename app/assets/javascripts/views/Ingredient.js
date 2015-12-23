@@ -11,8 +11,17 @@ App.Views.Ingredient= Backbone.View.extend({
     this.parent_el = $('#ingredient-type-' + this.parent_id);
   },
 
+  href: function (){
+    //this.set('href', this.url + '/' + this.get('id'));
+    return this.model.url + '/' + this.model.get('id');
+  },
+
+  displayStock: function(){
+    return this.model.get('stock');
+  },
+
   render: function() {
-      this.$el.html(this.template(this.model.toJSON()));
+      this.$el.html(this.template(this));//.toJSON()
       return this;
   },
   

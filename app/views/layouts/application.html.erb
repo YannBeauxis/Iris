@@ -31,7 +31,7 @@
                   destroy_user_session_path, 
                   {:method => :delete, type: :button, class: "btn btn-default"}) %>
           <%else%>      
-            <%= link_to('Se connecter', new_user_session_path, {type: :button, class: "btn btn-default"}) %>
+            <%= link_to('Se connecter', new_user_session_path, {type: :button, class: "btn btn-default connect"}) %>
           <% end %>
         </div>
       </div>
@@ -109,6 +109,11 @@
     
   </div>
 </div>
+
+<script id="DataJS">
+  <%= yield( :data_js ) %>
+</script>
+
 
 <div id="Footer"></div>
 

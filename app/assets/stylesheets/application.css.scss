@@ -38,9 +38,13 @@
       text-overflow: ellipsis;
       background-color: $color-primary-background;
       color: $color-primary-text;
-      border: 1px solid #ccc;
+      border: 1px solid $color-base-line;
       max-width: 130px;
       } 
+      .connect {
+        background-color: $color-base-background;
+        border: 1px solid $color-base-line;
+      }
     }
   }
 }
@@ -50,9 +54,10 @@
     border-bottom: 0;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    border-color: $color-base-line;
     color: $color-secondary-text;
     padding: 8px 15px;
-    background-color: $color-secondary-background;
+    /*background-color: $color-secondary-background;*/
     &:hover {
       background-color: $color-secondary-background-dark;
     }
@@ -65,7 +70,9 @@
       padding: 4px 12px;
       margin-bottom: 0;
       border-radius: 0px;
-      border-top: 1px solid $color-base-line;
+      border: 1px solid $color-base-line;
+      background-color: $color-base-background;
+      color: $color-primary-text;
   }
 }
 
@@ -76,6 +83,10 @@
     border-radius: 0;
     margin-bottom: 0;
     padding: 5px;
+    border-left: 1px solid $color-base-line;
+    border-right: 1px solid $color-base-line;
+    border-bottom: 1px solid $color-base-line;
+    border-top: 0;
   }
 }
 
@@ -87,16 +98,23 @@
     .container-fluid {
       padding: 0;
     }
-    background-color: $color-secondary-background;
-    border : 0;
+    background-color: transparent;/*$color-secondary-background;*/
     min-height: 0;
-    margin-bottom: 0;
+    border-color: $color-base-line;
+    border-top: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     a {
       color: $color-secondary-text;
-      background-color: $color-secondary-background;
+      background-color: transparent;/*$color-secondary-background;*/
       padding: $padding-step;
+      &.dropdown-toggle {
+        margin: 0 $padding-step;
+        border-left: 1px solid $color-base-line;
+        border-right: 1px solid $color-base-line;
+        border-top: 0 ;
+        border-bottom: 0;
+      }
       &:focus {
         background-color: $color-secondary-background-dark;
       }
@@ -131,12 +149,26 @@
       padding: $padding-step;
       .panel {
         margin: 0;
+        border-color: $color-base-line;
+        .panel-heading {
+          background-color: $color-primary-background-dark;
+          cursor: pointer;
+          .badge {
+            float: right;
+          }
+        }
         .panel-body {
-          padding: 0;
+          padding: $padding-step;
         }
         .table {
           width: 100%;
-          /*margin-top: $padding-step;*/
+          padding-top: $padding-step;
+          td, th { 
+            border-color: $color-base-line;
+          }
+          tr:nth-child(odd) td {
+            background-color: $color-primary-background;
+          }
         }
       }
     }

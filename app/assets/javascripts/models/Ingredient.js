@@ -1,5 +1,7 @@
 App.Models.Ingredient = Backbone.Model.extend({
   
-  url:'/ingredients',
+  url:'/ingredients'
   
+  //initialize: function (){
+
 });

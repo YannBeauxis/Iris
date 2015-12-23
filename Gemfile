@@ -13,6 +13,13 @@ gem "compass-rails", github: "Compass/compass-rails", branch: "master"
 gem 'compass-normalize', '~> 1.5'
 #Bootstrap
 gem 'bootstrap-sass', '~> 3.2.0'
+#Simple_form
+gem 'simple_form'
+
+#  Inside your views, use the 'simple_form_for' with one of the Bootstrap form
+#  classes, '.form-horizontal' or '.form-inline', as the following:
+#    = simple_form_for(@user, html: { class: 'form-horizontal' }) do |form|
+
 gem 'autoprefixer-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
