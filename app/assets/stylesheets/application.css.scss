@@ -29,6 +29,9 @@
     }
     .session {
       padding: 0;
+      .btn {
+        border: 1px solid $color-base-line;
+      }
       .btn-group {
         float: right
       }
@@ -38,7 +41,6 @@
       text-overflow: ellipsis;
       background-color: $color-primary-background;
       color: $color-primary-text;
-      border: 1px solid $color-base-line;
       max-width: 130px;
       } 
       .connect {
@@ -59,7 +61,7 @@
     padding: 8px 15px;
     /*background-color: $color-secondary-background;*/
     &:hover {
-      background-color: $color-secondary-background-dark;
+      background-color: $color-secondary-background;
     }
   }
 }
@@ -95,6 +97,9 @@
     .navbar-nav {
       margin: 0;
     }
+    &.navbar {
+      margin-bottom: 0;
+    }
     .container-fluid {
       padding: 0;
     }
@@ -110,20 +115,18 @@
       padding: $padding-step;
       &.dropdown-toggle {
         margin: 0 $padding-step;
-        border-left: 1px solid $color-base-line;
-        border-right: 1px solid $color-base-line;
         border-top: 0 ;
         border-bottom: 0;
       }
       &:focus {
-        background-color: $color-secondary-background-dark;
+        //background-color: $color-secondary-background-dark;
       }
       &:hover {
-        background-color: $color-secondary-background-dark;
+        background-color: $color-secondary-background;
       }
     }
     li ul{
-      background-color: $color-secondary-background;
+      //background-color: $color-secondary-background;
     }
   }
 }
@@ -153,8 +156,10 @@
         .panel-heading {
           background-color: $color-primary-background-dark;
           cursor: pointer;
+          //color: $color-primary-text;
           .badge {
-            /*float: right;*/
+            float: right;
+            background-color: $color-primary-text;
           }
         }
         .panel-body {

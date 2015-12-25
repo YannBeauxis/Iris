@@ -6,7 +6,11 @@ App.Views.IngredientType = Backbone.View.extend({
     return 'ingredient-type-' + this.model.get('id');
   },
   
-  className: 'category col-xs-6 col-sm-4',
+  className: function(){
+    this.closedClass = 'col-xs-12 col-sm-6 col-md-4 closed';
+    this.openClass = 'col-xs-12 open';
+    return 'category ' + this.closedClass;
+    },
   
   template: JST['ingredient_type'],
 
@@ -20,24 +24,20 @@ App.Views.IngredientType = Backbone.View.extend({
 
   render: function() {
       this.$el.html(this.template(this.model.toJSON()));
-      this.$el.find('.panel-heading').append(this.badgeView.$el);
+      this.$el.find('.panel-heading').prepend(this.badgeView.$el);
       return this;
   },
   
   displayIngredients: function() {
-    this.$el.toggleClass('col-xs-6 col-sm-4 col-xs-12');
-    //this.$el.toggleClass('col-xs-12');
+    this.$el.toggleClass(this.closedClass);
+    this.$el.toggleClass(this.openClass);
     var p = this.$el.position().top;
     $('html, body').animate({
       scrollTop:this.$el.offset().top
       }, 'slow');
-    //$(window).scrollTop(p - 10);
     this.$el.find('.default-hidden')
       .slideToggle();
-      //.slideToggle('normal', function(){$(window).scrollTop(p-10);});
 
-
-    //$(window).scrollTop(p - 5);
   },
   
   scrollAnim: function(p){

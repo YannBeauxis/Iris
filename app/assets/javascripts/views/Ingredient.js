@@ -1,18 +1,17 @@
 App.Views.Ingredient= Backbone.View.extend({
   
   tagName: 'tr',
-  //className: 'hide',
+  
+  className: 'selected',
   
   template: JST['ingredient_row'],
 
   initialize: function() {
-    
     this.parent_id =  this.model.get('ingredient_type_id');
     this.parent_el = $('#ingredient-type-' + this.parent_id);
   },
 
   href: function (){
-    //this.set('href', this.url + '/' + this.get('id'));
     return this.model.url + '/' + this.model.get('id');
   },
 
@@ -21,7 +20,7 @@ App.Views.Ingredient= Backbone.View.extend({
   },
 
   render: function() {
-      this.$el.html(this.template(this));//.toJSON()
+      this.$el.html(this.template(this));
       return this;
   },
   

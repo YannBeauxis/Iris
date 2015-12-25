@@ -1,16 +1,17 @@
 App.Views.IngredientTypeBadge = Backbone.View.extend({
   
-  tagName: 'span',
+  tagName: 'div',
   
   className: 'badge',
  
-  initialize: function(){
+  initialize: function() {
     this.listenTo(this.collection, 'add reset remove', this.render);
   },
  
   render: function(){
-    this.$el.text(this.collection.where({ingredient_type_id: this.model.id}).length);
+    this.parent_id =  this.model.get('id');
+    this.parent_el = $('#ingredient-type-' + this.parent_id);
+    this.$el.text(this.parent_el.find('table.ingredients').find('tbody').find('tr.selected').length);
     return this;
   }
-  
 });
