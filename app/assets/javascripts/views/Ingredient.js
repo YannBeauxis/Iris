@@ -5,9 +5,11 @@ App.Views.Ingredient= Backbone.View.extend({
   id: function(){
     return 'ingredient-' + this.model.get('id');
   },
-  
-  className: 'selected',
-  
+
+  attributes: function(){
+      return {name: this.model.get('name')};
+    },
+
   template: JST['ingredient_row'],
 
   initialize: function() {

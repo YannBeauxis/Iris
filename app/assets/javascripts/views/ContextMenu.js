@@ -18,6 +18,7 @@ App.Views.ContextMenu= Backbone.View.extend({
        subTitle.text(status[1]);
     }
     btn.toggleClass('active');
+    App.ingredients.trigger('sortByName');
   },
   
 });

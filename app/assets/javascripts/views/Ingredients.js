@@ -2,6 +2,17 @@ App.Views.Ingredients = Backbone.View.extend({
   
   initialize: function() {
     
+    App.sortByName = function(elTarget) {
+      elTarget.append(
+          elTarget.children().sort(function (a,b) {
+          aName = $(a).attr('name');
+          bName = $(b).attr('name');
+          return (aName < bName) ? -1 : (bName < aName) ? 1 : 0;
+        })
+      );
+      return elTarget;
+    };
+    
     this.$el = $('#CategoryGrid'),
     this.$el.hide();
     
@@ -16,14 +27,28 @@ App.Views.Ingredients = Backbone.View.extend({
     App.ingredientTypes.add(App.ingredientTypesRaw);
     App.ingredients.add(App.ingredientsRaw);    
 
-    this.$el.show();
+    App.ingredients.trigger('sortByName');
+    App.sortByName(this.$el).show();
     
   },
   
   addOneType: function(ingredient_type) {
-    var view = new App.Views.IngredientType({model: ingredient_type});
+    var view = new App.Views.IngredientType({
+                      model: ingredient_type
+                    });
     var it = this.$el.append(view.render().el);
     it.find('.default-hidden').hide();
   },
+  
+  sortByName: function() {
+    this.$el.append(
+        this.$el.children().sort(function (a,b) {
+        aName = $(a).attr('name');
+        bName = $(b).attr('name');
+        return (aName < bName) ? -1 : (bName < aName) ? 1 : 0;
+      })
+    );
+    return this.$el;
+  }
   
 });

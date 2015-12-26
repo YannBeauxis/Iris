@@ -6,6 +6,10 @@ App.Views.IngredientType = Backbone.View.extend({
     return 'ingredient-type-' + this.model.get('id');
   },
   
+  attributes: function(){
+      return {name: this.model.get('name')};
+    },
+  
   className: function(){
     this.closedClass = 'col-xs-12 col-sm-6 col-md-4 closed';
     this.openClass = 'col-xs-12 open';
@@ -15,6 +19,7 @@ App.Views.IngredientType = Backbone.View.extend({
   template: JST['ingredient_type'],
 
   initialize: function() {
+    
     this.collection = new App.Collections.Ingredients();
     this.listenTo(App.ingredients, 'add', this.addIngredient);
 
@@ -23,8 +28,12 @@ App.Views.IngredientType = Backbone.View.extend({
         model: this.model, 
         collection: this.collection
       });
+      
     this.badgeView = 
       new App.Views.IngredientTypeBadge({model: this.model, collection: this.collection});
+
+    //console.log(App.ingredientsApp);
+    this.listenTo(App.ingredients, 'sortByName', this.sortByName);
 
   },
 
@@ -51,7 +60,6 @@ App.Views.IngredientType = Backbone.View.extend({
     }
   },
 
-
   removeIngredient: function(ingredient) {
     this.collection.remove(ingredient);
   },
@@ -63,6 +71,10 @@ App.Views.IngredientType = Backbone.View.extend({
       this.$el.find('.panel-heading').prepend(this.badgeView.render().el);
       
       return this;
+  },
+  
+  sortByName: function() {
+    App.sortByName(this.ingredientsTableView.$el.find('tbody'));
   },
   
   displayIngredients: function() {
