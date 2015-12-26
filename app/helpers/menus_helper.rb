@@ -25,10 +25,7 @@ module MenusHelper
           end
         elsif options[:menu] == :content_menu
           opt = options[:link_param] ||= {}
-          #opt[:class] = "btn btn-default hidden-menu collapse"
-          #opt[:role] = :button        
           content_tag(:li,link_to(options[:label], path, opt))  
-          #content_tag(:button, options[:label], type: "button", class: "list-group-item")    
         else
           content_tag(:span, link_to(options[:label], path, options[:link_param]), class: "menu-link")
         end

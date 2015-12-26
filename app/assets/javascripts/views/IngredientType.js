@@ -15,16 +15,53 @@ App.Views.IngredientType = Backbone.View.extend({
   template: JST['ingredient_type'],
 
   initialize: function() {
-    this.badgeView = new App.Views.IngredientTypeBadge({model: this.model, collection: App.ingredients});
+    this.collection = new App.Collections.Ingredients();
+    this.listenTo(App.ingredients, 'add', this.addIngredient);
+
+    this.ingredientsTableView = 
+      new App.Views.IngredientsTable({
+        model: this.model, 
+        collection: this.collection
+      });
+    this.badgeView = 
+      new App.Views.IngredientTypeBadge({model: this.model, collection: this.collection});
+
   },
 
-    events: {
-      "click .panel-heading":  "displayIngredients",
-    },
+  events: {
+    "click .panel-heading":  "displayIngredients",
+  },
+
+  addIngredient: function(ingredient) {
+    if (ingredient.get('ingredient_type_id') == this.model.get('id'))
+      {
+        this.showIngredient(ingredient);
+        this.listenTo(ingredient, 'hide', this.removeIngredient);
+        this.listenTo(ingredient, 'show', this.showIngredient);
+      }
+  },
+
+  showIngredient: function(ingredient) {
+    if (!this.collection.findWhere({id: ingredient.id})) {
+      this.collection.add(ingredient);
+      var view = new App.Views.Ingredient({
+        model: ingredient
+      });
+      this.$el.find('.ingredients-table').find('tbody').append(view.render().el);
+    }
+  },
+
+
+  removeIngredient: function(ingredient) {
+    this.collection.remove(ingredient);
+  },
 
   render: function() {
+    
       this.$el.html(this.template(this.model.toJSON()));
-      this.$el.find('.panel-heading').prepend(this.badgeView.$el);
+      this.$el.find('.default-hidden').append(this.ingredientsTableView.render().el);
+      this.$el.find('.panel-heading').prepend(this.badgeView.render().el);
+      
       return this;
   },
   

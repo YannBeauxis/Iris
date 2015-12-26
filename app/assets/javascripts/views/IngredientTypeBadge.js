@@ -9,9 +9,7 @@ App.Views.IngredientTypeBadge = Backbone.View.extend({
   },
  
   render: function(){
-    this.parent_id =  this.model.get('id');
-    this.parent_el = $('#ingredient-type-' + this.parent_id);
-    this.$el.text(this.parent_el.find('table.ingredients').find('tbody').find('tr.selected').length);
+    this.$el.text(this.collection.length);
     return this;
   }
 });

@@ -1,7 +1,8 @@
 <% if params[:action] == 'index' then %>
   <% if params[:scope] != 'My' then%>
     <%= menu_item(menu: :content_menu, 
-         label: 'Ingrédients en stock', path: ingredients_path(scope: 'My'), 
+         #label: 'Ingrédients en stock', path: ingredients_path(scope: 'My'), 
+         label: 'Ingrédients en stock', path: '#', link_param: {class: 'in-stock-toggle'},
          can_condition: {action: :create, object: Container}) 
     %>
   <% else %>
