@@ -36,7 +36,9 @@ App.Views.Ingredient= Backbone.View.extend({
   },  
   
   displayDetails: function() {
-    this.$el.find('.detail').slideToggle();
+    // to open sub line for action
+    //this.$el.find('.detail').slideToggle();
+    window.location = this.href();
   }
   
 });
