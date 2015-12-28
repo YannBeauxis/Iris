@@ -154,7 +154,7 @@
         margin: 0;
         border-color: $color-base-line;
         .panel-heading {
-          background-color: $color-primary-background-dark;
+          //background-color: $color-primary-background-dark;
           cursor: pointer;
           //color: $color-primary-text;
           .badge {
@@ -173,6 +173,9 @@
           }
           tr:nth-child(odd) td {
             background-color: $color-primary-background;
+          }
+          tbody tr {
+            cursor: pointer;
           }
         }
       }

@@ -56,6 +56,12 @@ body {
   }
 }
 
+.panel-default{
+  .panel-heading {
+    background-color: $color-base-background;
+  }
+}
+
 table.colored {
     border-collapse:collapse;
     tr.filled {

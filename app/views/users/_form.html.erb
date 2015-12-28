@@ -1,32 +1,43 @@
-<%= form_for @user do |f| %>
+<div class="panel panel-default">
 
-  <p>
-    <%= f.label 'Nom' %><br>
-    <%= f.text_field :name %>
-  </p>
+  <div class="panel-heading">
+    <%= @user.name %>
+  </div>
+  
+  <div class="panel-body">
 
-  <p>
-    <%= f.label 'email' %><br>
-    <%= f.text_field :email %>
-  </p>
+<%= simple_form_for @user, 
+      html: { class: 'form-horizontal' },  
+      wrapper: :horizontal_form,
+      wrapper_mappings: {
+        check_boxes: :horizontal_radio_and_checkboxes,
+        radio_buttons: :horizontal_radio_and_checkboxes,
+        file: :horizontal_file_input,
+        boolean: :horizontal_boolean
+      } do |f|%>
 
-<% if current_user.admin? %>
+  <%= f.error_notification %>
 
-  <p>
-    <%= f.label 'approved' %><br>
-    <%= f.check_box :approved %>
-  </p>
+  <%= f.input :name, label: 'Nom' %>
 
-  <p>
-    <%= f.label 'Role' %><br>
-    <%= f.collection_select(:role_id, Role.all, :id, :name) %>
-  </p>
+  <%= f.input :email, placeholder: 'user@domain.com' %>
 
+  <% if current_user.admin? %>
+  
+    <%= f.input :approved, inline_label: 'Approved' %>
+    
+    <%= f.input :role_id, collection: Role.all%>
+  
+  <% end %>
+  
+  <div class="form-group"> 
+    <div class="col-sm-offset-3 col-sm-9">
+      <%= f.button :submit, 'Enregistrer' %>
+      <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+    </div>
+  </div>
+  
 <% end %>
 
-  <p>
-    <%= f.submit 'Enregistrer'%>
-  </p>
-
-
-<% end %>
+  </div>
+</div>

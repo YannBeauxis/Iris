@@ -9,8 +9,17 @@
 
 <% content_for :item_content do %>
 
-<p><b>Nom</b> : <%= @user.name %></p>
-<p><b>Email</b> : <%= @user.email %></p>
-<p><b>Rôle</b> : <%= @user.role.name %></p>
-
+  <div class="panel panel-default">
+  
+    <div class="panel-heading">
+      <%= @user.name %>
+    </div>
+    
+    <div class="panel-body">
+      <p><b>Nom</b> : <%= @user.name %></p>
+      <p><b>Email</b> : <%= @user.email %></p>
+      <p><b>Rôle</b> : <%= @user.role.name %></p>
+    </div>
+  </div>
+  
 <% end %>

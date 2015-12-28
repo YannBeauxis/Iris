@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
           :recoverable, 
          :rememberable, :trackable, :validatable
   before_create :set_default_info
-  validates :name, presence: true
+  validates :name, :email, presence: true
 
   after_initialize :get_warehouse
   after_create :send_new_user_alert

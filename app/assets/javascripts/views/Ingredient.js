@@ -16,6 +16,11 @@ App.Views.Ingredient= Backbone.View.extend({
     this.listenTo(this.model, 'hide', this.remove);  
   },
 
+  events: {
+    "click a":  "noDisplayDetails",
+    "click":  "displayDetails"
+  },
+
   href: function (){
     return this.model.url + '/' + this.model.get('id');
   },
@@ -24,5 +29,14 @@ App.Views.Ingredient= Backbone.View.extend({
     this.$el.html(this.template(this));
     return this;
   },
+  
+  noDisplayDetails: function (e) {
+    e.stopPropagation();
+    return true;
+  },  
+  
+  displayDetails: function() {
+    this.$el.find('.detail').slideToggle();
+  }
   
 });

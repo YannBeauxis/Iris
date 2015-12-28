@@ -1,2 +1,9 @@
-<td><a href="<%= this.href() %>"><%= this.model.get('name') %></a></td>
+<td>
+  <a href="<%= this.href() %>"><%= this.model.get('name') %></a>
+  <div class="detail" style="display: none;">
+    <a href="<%= this.href() %>">
+      <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    </a>
+  </div>
+</td>
 <td><%= this.model.get('stock') %></td>
