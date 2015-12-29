@@ -1,9 +1,5 @@
 <div class="panel panel-default">
 
-  <div class="panel-heading">
-    <%= @user.name %>
-  </div>
-  
   <div class="panel-body">
 
 <%= simple_form_for @user, 
@@ -26,7 +22,7 @@
   
     <%= f.input :approved, inline_label: 'Approved' %>
     
-    <%= f.input :role_id, collection: Role.all%>
+    <%= f.input :role_id, collection: Role.all, include_blank: false %>
   
   <% end %>
   

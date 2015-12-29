@@ -3,15 +3,7 @@ class IngredientsController < ApplicationController
   before_action :is_used_by_other, only: [:edit, :update, :destroy]
   
   def index
-    
-    #if params[:scope] == 'My' then
-    #  @ingredients = Ingredient.joins(:containers)
-    #                    .where('user_id = ' + current_user.id.to_s).uniq
-    #  @ingredient_types = IngredientType.joins(ingredients: :containers)
-    #                    .where('user_id = ' + current_user.id.to_s).uniq
-    #else
-    
-    #@ingredients = Ingredient.all
+
     @ingredient_types = IngredientType.all
     
     @ingredients = []
@@ -23,7 +15,6 @@ class IngredientsController < ApplicationController
         ingredient_type_id: i.ingredient_type_id,
         stock: i.quantity_in_stock(current_user)}
     end
-    #end
     
     #respond_with(@ingredients)
     

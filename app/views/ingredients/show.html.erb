@@ -27,7 +27,7 @@
         <% @containers.each do |c| %>
         <tr>
           <td><%= c.quantity_init.display %></td>
-          <td><%= if c.quantity_actual? then c.quantity_actual?.display end %></td>
+          <td><%= if c.quantity_actual? then c.quantity_actual.display end %></td>
           <td><%= link_to 'Modifier', edit_ingredient_container_path(@ingredient,c) %></td>
         </tr>
       <% end %>

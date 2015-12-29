@@ -3,7 +3,6 @@ class Container < ActiveRecord::Base
   belongs_to :user
   validates :ingredient, :user, :quantity_init, :price, presence: true
   validates :quantity_init, :numericality => { :greater_than => 0 }
-  #, :volume_actual
 
   def mass_net
     if !self.quantity_actual.blank?

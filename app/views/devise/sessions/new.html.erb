@@ -5,26 +5,25 @@
 <%= render "devise/shared/links" %>
 
 <% content_for :item_content do %>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true %>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    
+      <%= f.input :email, placeholder: 'user@domain.com' %>
+    
+      <%= f.input :password, label: 'Mot de passe', autocomplete: "off" %>
+    
+      <% if devise_mapping.rememberable? -%>
+        <%= f.input :remember_me, as: :boolean, inline_label: 'Se souvenir de moi' %>
+      <% end -%>
+    
+      <%= f.button :submit, 'Se connecter' %>
+    
+      <% end %>
+      
     </div>
+  </div>
   
-    <div class="field">
-      <%= f.label 'Mot de passe' %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
-  
-    <% if devise_mapping.rememberable? -%>
-      <div class="field">
-        <%= f.check_box :remember_me %>
-        <%= f.label 'Se souvenir de moi' %>
-      </div>
-    <% end -%>
-  
-    <div class="actions">
-      <%= f.submit "Se connecter" %>
-    </div>
-  <% end %>
 <% end %>
