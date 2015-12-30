@@ -40,9 +40,11 @@
         
   <div id="MainMenu">
     <div class="general-menu btn-group">
-      <%= link_to 'Ingrédients', ingredients_path, {type: :button, class: "btn btn-default"} %>
-      <%= link_to 'Recettes', recipes_path, {type: :button, class: "btn btn-default"} %>
-      <% if user_signed_in? && current_user.admin? %>
+      <%= link_to 'Ingrédients', ingredients_path, 
+            {type: :button, class: "btn btn-default", title: 'Ingrédients'} %>
+      <%= link_to 'Recettes', recipes_path, 
+            {type: :button, class: "btn btn-default", title: 'Recettes'} %>
+      <% if user_signed_in? && current_user.admin? %>itle
         <%= link_to 'Administration', admin_users_path, {type: :button, class: "btn btn-default"} %>
       <% end %>
     </div>   
@@ -77,14 +79,19 @@
     <% if content_for?(:content_menu) %>  
       <nav class="navbar navbar-default">
         <div class="container-fluid">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Action<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <%= yield( :content_menu ) %>
-              </ul>
-            </li>
-          </ul>
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ContextMenuNav" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+          <div class="collapse navbar-collapse" id="ContextMenuNav">
+            <ul class="nav navbar-nav">
+              <%= yield( :content_menu ) %>
+            </ul>
+          </div>
         </div>
       </nav>
     <% end %>   
