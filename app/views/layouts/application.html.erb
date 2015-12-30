@@ -41,9 +41,9 @@
   <div id="MainMenu">
     <div class="general-menu btn-group">
       <%= link_to 'Ingrédients', ingredients_path, 
-            {type: :button, class: "btn btn-default", title: 'Ingrédients'} %>
+            {type: :button, class: "btn btn-default", name: 'Ingrédients'} %>
       <%= link_to 'Recettes', recipes_path, 
-            {type: :button, class: "btn btn-default", title: 'Recettes'} %>
+            {type: :button, class: "btn btn-default", name: 'Recettes'} %>
       <% if user_signed_in? && current_user.admin? %>itle
         <%= link_to 'Administration', admin_users_path, {type: :button, class: "btn btn-default"} %>
       <% end %>

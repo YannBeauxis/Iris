@@ -65,7 +65,7 @@
     }
     &::after {
       display:block;
-      content:attr(title);
+      content:attr(name);
       font-weight:bold;
       height:1px;
       color:transparent;
@@ -80,7 +80,7 @@
       font-size: 90%;
       padding: 4px 12px;
       margin-bottom: 0;
-      border-radius: 0px;
+      border-radius: 0;
       border: 1px solid $color-base-line;
       background-color: $color-base-background;
       color: $color-primary-text;
@@ -106,14 +106,17 @@
     .navbar-header{
       margin: 0;
       .navbar-toggle{
+        margin: 0;
+        border: 0;
+        border-radius: 0;
         .icon-bar {
           background-color: $color-secondary-text;
         }
         &:hover {
-          background-color: $color-secondary-background;
+          background-color: transparent;
         }
         &:focus {
-          background-color: $color-secondary-background;
+          background-color: transparent;
         }
       }
     }
@@ -150,7 +153,7 @@
       }
       &::after {
         display:block;
-        content:attr(title);
+        content:attr(name);
         font-weight:bold;
         height:1px;
         color:transparent;

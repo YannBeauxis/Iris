@@ -25,7 +25,7 @@ module MenusHelper
           end
         elsif options[:menu] == :content_menu
           opt = options[:link_param] ||= {}
-          opt[:title] = options[:label]
+          opt[:name] = options[:label]
           content_tag(:li,link_to(options[:label], path, opt))  
         else
           content_tag(:span, link_to(options[:label], path, options[:link_param]), class: "menu-link")
