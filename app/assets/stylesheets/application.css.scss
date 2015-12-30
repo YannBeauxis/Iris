@@ -59,7 +59,6 @@
     border-color: $color-base-line;
     color: $color-secondary-text;
     padding: 8px 15px;
-    //background-color: $color-secondary-background;
     &:hover {
       background-color: $color-secondary-background;
       font-weight: bold;
@@ -107,14 +106,21 @@
     .navbar-header{
       margin: 0;
       .navbar-toggle{
-        background-color: $color-secondary-background;
-        color: $color-secondary-text;
+        .icon-bar {
+          background-color: $color-secondary-text;
+        }
         &:hover {
-          background-color: $color-secondary-background-dark;
+          background-color: $color-secondary-background;
+        }
+        &:focus {
+          background-color: $color-secondary-background;
         }
       }
     }
     .navbar-nav{
+      margin: 0;
+    }
+    .navbar-collapse{
       margin: 0;
     }
     &.navbar {
@@ -123,7 +129,7 @@
     .container-fluid {
       padding: 0;
     }
-    background-color: transparent;/*$color-secondary-background;*/
+    background-color: transparent;
     min-height: 0;
     border-color: $color-base-line;
     border-top: 0;
@@ -132,19 +138,15 @@
     a {
       color: $color-secondary-text;
       font-size: 80%;
-      background-color: transparent;/*$color-secondary-background;*/
+      background-color: transparent;
       padding: $padding-step;
       &.dropdown-toggle {
         margin: 0 $padding-step;
         border-top: 0 ;
         border-bottom: 0;
       }
-      &:focus {
-        //background-color: $color-secondary-background-dark;
-      }
       &:hover {
         font-weight: bold;
-        //background-color: $color-secondary-background;
       }
       &::after {
         display:block;
@@ -155,9 +157,6 @@
         overflow:hidden;
         visibility:hidden;
       }
-    }
-    li ul{
-      //background-color: $color-secondary-background;
     }
   }
 }
@@ -185,9 +184,7 @@
         margin: 0;
         border-color: $color-base-line;
         .panel-heading {
-          //background-color: $color-primary-background-dark;
           cursor: pointer;
-          //color: $color-primary-text;
           .badge {
             float: right;
             background-color: $color-primary-text;
