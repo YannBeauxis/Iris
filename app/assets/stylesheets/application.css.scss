@@ -77,7 +77,7 @@
 
 #NavBar{
   .breadcrumb {
-      font-size: 80%;
+      font-size: 90%;
       padding: 4px 12px;
       margin-bottom: 0;
       border-radius: 0px;
@@ -89,7 +89,7 @@
 
 #MainMessage {
   .alert {
-    font-size: 80%;
+    font-size: 90%;
     text-align: center;
     border-radius: 0;
     margin-bottom: 0;
@@ -137,7 +137,7 @@
     border-top-right-radius: 0;
     a {
       color: $color-secondary-text;
-      font-size: 80%;
+      font-size: 90%;
       background-color: transparent;
       padding: $padding-step;
       &.dropdown-toggle {
