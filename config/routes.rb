@@ -56,7 +56,7 @@ Rails.application.routes.draw do
       get '/delete_list', to: 'recipes#delete_list', as: 'delete_list'
       
       resources :ingredients do
-         #match '/add_ingredient', to: 'recipes#add_ingredient', via: :post
+         match '/add_ingredient', to: 'recipes#add_ingredient', via: :post
       end
 
       match '/delete_ingredient', to: 'recipes#delete_ingredient', via: :post

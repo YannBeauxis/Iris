@@ -1,18 +1,17 @@
-App.Views.Ingredient= Backbone.View.extend({
+App.Views.Item= Backbone.View.extend({
   
   tagName: 'tr',
-  
-  id: function(){
-    return 'ingredient-' + this.model.get('id');
-  },
 
   attributes: function(){
       return {name: this.model.get('name')};
     },
 
-  template: JST['ingredient_row'],
-
-  initialize: function() {
+  initialize: function(options) {
+    
+    this.options = options.options;
+    
+    this.template = JST[this.options.templates['item']];
+    
     this.listenTo(this.model, 'hide', this.remove);  
   },
 

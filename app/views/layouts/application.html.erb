@@ -44,7 +44,7 @@
             {type: :button, class: "btn btn-default", name: 'Ingrédients'} %>
       <%= link_to 'Recettes', recipes_path, 
             {type: :button, class: "btn btn-default", name: 'Recettes'} %>
-      <% if user_signed_in? && current_user.admin? %>itle
+      <% if user_signed_in? && current_user.admin? %>
         <%= link_to 'Administration', admin_users_path, {type: :button, class: "btn btn-default"} %>
       <% end %>
     </div>   

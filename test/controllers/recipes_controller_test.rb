@@ -51,4 +51,20 @@ class RecipesControllerTest < ActionController::TestCase
     
   end
   
+  test "show_recipe" do
+    u = users(:one)
+    sign_in u
+    r = recipes(:one)
+    get :show, id: r.id
+    assert_response :success
+  end
+
+  test "get_ingredients_candidates" do
+    u = users(:one)
+    sign_in u
+    r = recipes(:one)
+    get :ingredient_candidates, recipe_id: r.id
+    assert_response :success
+  end
+
 end

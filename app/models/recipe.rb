@@ -45,7 +45,7 @@ class Recipe < ActiveRecord::Base
   end
 
   def product_reference
-    self.variant_base.products.first
+    !self.variant_base.nil? ? self.variant_base.products.first : nil
   end
 
   def ingredient_types

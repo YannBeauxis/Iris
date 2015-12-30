@@ -3,18 +3,20 @@ class RecipesController < ApplicationController
   before_action :check_user, except: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   def index
-    @columns = [{method: 'product_count' }]
-    @columns_header = ['#produits']
-    if params[:scope] == 'My' then
-      @recipes = @recipes.where(user: current_user)
-      @recipe_types = RecipeType.joins(:recipes)
-                  .where('user_id = ' + current_user.id.to_s).uniq
-    else
-      @recipes = Recipe.all
-      @recipe_types = RecipeType.all
-      @columns << {name: 'Propriétaire', method: 'user_name' }
-      @columns_header << 'Propriétaire'
+    
+    @recipe_types = RecipeType.all
+    
+    @recipes = []
+    
+    Recipe.all.find_each do |r|
+      @recipes << {
+        id: r.id,
+        name: r.name,
+        recipe_type_id: r.recipe_type_id,
+        owner: r.user.name,
+        is_current_user: r.user == current_user}
     end
+    
   end
 
   def show

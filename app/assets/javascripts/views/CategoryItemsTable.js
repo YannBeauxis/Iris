@@ -1,12 +1,15 @@
-App.Views.IngredientsTable = Backbone.View.extend({
+App.Views.CategoryItemsTable = Backbone.View.extend({
   
   tagName: 'table',
   
-  className: 'table ingredients-table table-striped',
- 
-  template: JST['ingredients_table'],
+  className: 'table items-table table-striped',
 
-  initialize: function() {
+  initialize: function(options) {
+
+    this.options = options.options;
+    
+    this.template = JST[this.options.templates['categoryItemsTable']];
+    
     this.listenTo(this.collection, 'add reset remove', this.isShow);
   },
 

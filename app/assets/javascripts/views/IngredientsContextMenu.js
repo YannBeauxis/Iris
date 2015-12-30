@@ -1,4 +1,8 @@
-App.Views.ContextMenu= Backbone.View.extend({
+App.Views.IngredientsContextMenu= Backbone.View.extend({
+  
+  initialize: function(options) {
+    this.options = options.options;
+  },
   
   events: {
     "click .in-stock-toggle":  "toggleStock",
@@ -18,7 +22,7 @@ App.Views.ContextMenu= Backbone.View.extend({
        subTitle.text(status[1]);
     }
     btn.toggleClass('active');
-    App.ingredients.trigger('sortByName');
+    this.options.mainView.items.trigger('sortByName');
   },
   
 });

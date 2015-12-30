@@ -1,4 +1,4 @@
-App.Views.IngredientTypeBadge = Backbone.View.extend({
+App.Views.CategoryBadge = Backbone.View.extend({
   
   tagName: 'div',
   

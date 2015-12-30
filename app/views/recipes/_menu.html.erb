@@ -1,7 +1,8 @@
 <% if params[:action] == 'index' then %>
   <% if params[:scope] != 'My' then%>
     <%= menu_item(menu: :content_menu, 
-         label: 'Mes recettes', path: recipes_path(scope: 'My'), 
+         #label: 'Mes recettes', path: recipes_path(scope: 'My'), 
+         label: 'Mes recettes', path: '#', link_param: {class: 'current-user-toggle'},
          can_condition: {action: :create, object: Recipe}) 
     %>
   <% else %>
