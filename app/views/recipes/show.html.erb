@@ -16,28 +16,29 @@
         <% end %>
     </div>
 
-    <%= table_by_category(
-      category: {
-        name: :type,
-        collection: @ingredient_types},
-      item: {
-        collection: @ingredients,
-        columns: [
-          {instance: @product.quantities,
-            method: 'display', 
-            method_params: [:mass,'row']},
-          {instance: @product.quantities,
-            method: 'display', 
-            method_params: [:volume,'row']},
-          {instance: @product.quantities,
-            method: 'display', 
-            method_params: [:volume,'row','unit']},   
-          {instance: @product.quantities,
-            method: 'display', 
-            method_params: [:price,'row']}]},       
-      columns_header: ['Poids','volume','quantité','prix']
-    )%>
-
+    <div class="table-responsive">
+      <%= table_by_category(
+        category: {
+          name: :type,
+          collection: @ingredient_types},
+        item: {
+          collection: @ingredients,
+          columns: [
+            {instance: @product.quantities,
+              method: 'display', 
+              method_params: [:mass,'row']},
+            {instance: @product.quantities,
+              method: 'display', 
+              method_params: [:volume,'row']},
+            {instance: @product.quantities,
+              method: 'display', 
+              method_params: [:volume,'row','unit']},   
+            {instance: @product.quantities,
+              method: 'display', 
+              method_params: [:price,'row']}]},       
+        columns_header: ['Poids','volume','quantité','prix']
+      )%>
+    </div>
   <% else %>
   
     <div class="panel-body"><i>Pas produit de référence.</i></div>
