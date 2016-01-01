@@ -10,7 +10,7 @@
   <% if !@product.nil? then %>
 
     <div class="panel-body">
-      Volume total : <%= @product.volume.display %> ml</br>
+      Volume total : <%= @product.volume*0.01.display %> ml</br>
         <% if !@product.price.nil? then %>
           Prix : <%= @product.price %> €
         <% end %>

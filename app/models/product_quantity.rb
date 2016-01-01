@@ -26,7 +26,7 @@ class ProductQuantity
   def compute_quantities
 
      d = @product.recipe.type.density
-     v = @product.volume
+     v = @product.volume/100
      m = d * v
      
      p = 0

@@ -8,7 +8,7 @@
     <div class="title">Résumé</div>
           <table>
             <tr><td>Variante : <%= link_to @product.variant.name, recipe_variant_path(@recipe,@product.variant) %></td></tr>
-            <tr><td>Volume total : <%= @product.volume.display %> ml</td></tr>
+            <tr><td>Volume total : <%= @product.volume*0.01.display %> ml</td></tr>
             <% if !@product.price.nil? then %>
               <tr><td>Prix : <%= @product.price %> €</td></tr>
             <% end %>
