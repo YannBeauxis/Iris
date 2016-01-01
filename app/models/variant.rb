@@ -36,7 +36,7 @@ class Variant < ActiveRecord::Base
      if rech.blank?
        return 0
      else
-       return rech.value
+       return rech.value*1.0/(10000)
      end
   end
 

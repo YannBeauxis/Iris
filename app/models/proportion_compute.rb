@@ -35,15 +35,17 @@ class ProportionCompute
                  .where(composant_type: 'IngredientType')
       pt_count = pt.count
       if pt_count>0 then
-        pt_sum=0
+        pt_sum = 0
         pt.each { |p| pt_sum += p.value }
         pt.each do |p| 
           if pt_sum == 0 then
-            p.value = 1.0/pt_count
+            p_tmp = 1.0/pt_count
+            #p.value = 1.0/pt_count
           else
-            p.value = p.value/pt_sum
+            p_tmp = p.value*1.0/pt_sum
           end
-          p.value = p.value.round(3)
+          #p.value = p.value.round(3)
+          p.value = p_tmp*10000.round
           p.save
         end
       end
@@ -61,11 +63,12 @@ class ProportionCompute
           pi.each { |p| pi_sum += p.value }
           pi.each do |p| 
             if pi_sum == 0 then
-              p.value = 1.0/pi_count
+              p_tmp= 1.0/pi_count
             else
-              p.value = p.value/pi_sum
+              p_tmp = p.value*1.0/pi_sum
             end
-              p.value = p.value.round(3)
+              #p.value = p.value.round(3)
+              p.value = p_tmp*10000.round
               p.save
           end
         end

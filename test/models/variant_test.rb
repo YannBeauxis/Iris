@@ -31,8 +31,8 @@ class VariantTest < ActiveSupport::TestCase
       'proportions.count error'
     s = 0
     v.proportions.all.each { |p| s+=p.value }
-    assert s == 3,
-      'proportions sum error'
+    assert s == 30000,
+      'proportions sum error ' + s.to_s
   end
   
 end
