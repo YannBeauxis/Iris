@@ -3,6 +3,7 @@
 <% end %>
 
 <% content_for :data_js do %>
+  App.launch = 'recipeGrid'
   App.recipeTypesRaw = <%= @recipe_types.to_json.html_safe %>
   App.recipesRaw = <%= @recipes.to_json.html_safe %>
 <% end %>

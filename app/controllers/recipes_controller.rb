@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
         owner: r.user.name,
         is_current_user: r.user == current_user}
     end
-    
+
   end
 
   def show
@@ -28,7 +28,32 @@ class RecipesController < ApplicationController
     
     @product = @recipe.product_reference
     @product.quantities.compute_prices(current_user) if  !@product.nil?
+    
+    @product_generator = product_generator
+    
   end 
+
+  def product_generator
+    result = {ingredientTypes: [], ingredients: [], variants: []}
+
+    @recipe.ingredient_types.each do |i|
+      result[:ingredientTypes] <<  { id: i.id, name: i.name}
+    end
+ 
+    @recipe.ingredients.each do |i|
+      result[:ingredients] <<  { id: i.id, name: i.name, ingredient_type_id: i.type.id}
+    end
+    
+    product = Product.new do |p|
+      p.volume = 100
+    end
+    @recipe.variants.each do |v|
+      product.variant = v
+      product.quantities.compute_prices(current_user)
+      result[:variants] << product.quantities.product_generator
+    end
+    result
+  end
 
   def new
     @recipe = Recipe.new

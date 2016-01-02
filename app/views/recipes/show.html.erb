@@ -1,8 +1,60 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "recipes.js" %>
+<% end %>
+
+<% content_for :data_js do %>
+  App.launch = 'productGenerator'
+  App.productGeneratorRaw = <%= @product_generator.to_json.html_safe %>
+<% end %>
+
 <%= render 'nav_resume' %>
 <%= render 'header' %>
 <%= render 'menu' %>
 
 <% content_for :item_content do %>
+
+<div class="panel panel-default product-generator">
+  <div class="panel-heading">Quantités</div>
+
+  <div class="panel-body">
+
+  <form class="simple_form form-horizontal" novalidate="novalidate" >
+    
+    <div class="form-group select required product_variant_id">
+      <label class="select required col-sm-3 control-label" for="product_variant_id">
+        Variant
+      </label>
+      <div class="col-sm-9">
+        <select class="select form-control" id="product_variant_id">
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group string required product_volume">
+      <label class="string required col-sm-3 control-label" for="product_volume">
+        Volume
+      </label>
+      <div class="col-sm-9">
+        <input type="number" min="0" step="1" class="string required form-control" id="product_volume" >
+      </div>
+    </div>
+      
+  </form>
+
+  </div>
+  
+  <div class="table-responsive">
+    <table class="table table-quantities">
+      <thead><tr>
+        <th></th>
+        <th>Proportion</th>
+        <th>Volume</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+</div>
 
 <div class="panel panel-default">
   <div class="panel-heading">Produit de référence</div>

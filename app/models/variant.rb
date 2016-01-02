@@ -10,6 +10,10 @@ class Variant < ActiveRecord::Base
 
   after_initialize :init_computation
   
+  def base?
+    self == self.recipe.variant_base
+  end
+  
   def init_computation
     @computation = ProportionCompute.new(self)
   end

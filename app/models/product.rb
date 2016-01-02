@@ -7,7 +7,17 @@ class Product < ActiveRecord::Base
     @quantities = nil
     super
   end
-  
+
+  def variant=(v)
+    @quantities = nil
+    super
+  end
+
+  def volume=(v)
+    @quantities = nil
+    super
+  end
+
   def quantities
     @quantities ||= self.recipe.nil? ? nil : ProductQuantity.new(self)
   end

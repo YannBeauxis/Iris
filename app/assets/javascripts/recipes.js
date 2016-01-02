@@ -1,5 +1,18 @@
 var ready = function() {
- 
+
+  switch(App.launch) {
+    case 'recipeGrid':
+      recipeGrid();
+      break;
+    case 'productGenerator':
+      productGenerator();
+      break;
+  }
+
+};
+
+var recipeGrid = function() {
+
   var options = {
     mainEl: '#CategoryGrid', 
     category: {
@@ -24,6 +37,12 @@ var ready = function() {
   
   App.recipesApp = new App.Views.CategoryGrid(options);
   
+};
+
+var productGenerator = function() {
+    App.productGenerator = new App.Views.ProductGenerator({
+      el: $('.product-generator').get(0)
+    });
 };
 
 $(document).ready(ready);

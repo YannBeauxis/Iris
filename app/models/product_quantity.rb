@@ -23,6 +23,36 @@ class ProductQuantity
     @product_price
   end
   
+  def product_generator
+    variant = @product.variant
+    result = {
+      id: variant.id,
+      name: variant.name,
+      selected: variant.base?,
+      ingredientTypes: {}, 
+      ingredients: {}
+    }
+    variant.ingredient_types.each do |i|
+      result[:ingredientTypes][i.id] = {
+        proportion: @product.variant.composant_proportion(i)
+      }
+    end
+    @product.variant.ingredients.each do |i|
+      result[:ingredients][i.id] = {
+        proportion: @product.variant.composant_proportion(i),
+        mass: @quantities[:mass][i],
+        volume: @quantities[:volume][i],
+        price: @quantities[:price][i],
+        quantity: conv_to_quantity(i)
+      }
+    end
+    result
+  end
+  
+  def conv_to_quantity(ingredient)
+    (@quantities[:volume][ingredient]*35.0) if ingredient.type.name_short == 'HE'
+  end
+  
   def compute_quantities
 
      d = @product.recipe.type.density/100.0
