@@ -58,6 +58,7 @@ class ProductQuantity
      d = @product.recipe.type.density/100.0
      v = @product.volume/100.0
      m = d * v
+     v_computed = 0
      
      p = 0
      p_missing = false
@@ -75,8 +76,14 @@ class ProductQuantity
   
        @masses[i] = m_i.round(6)
        @volumes[i] = v_i.round(6)
+       v_computed += @volumes[i]
           
     end
+    
+      if v_computed > 0
+        @volumes.each{ |key, value| @volumes[key] = (value*v/v_computed).round(2)}
+        @masses.each{ |key, value| @masses[key] = (value*v/v_computed).round(2)}
+      end
     
   end
 

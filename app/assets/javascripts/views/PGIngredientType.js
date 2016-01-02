@@ -2,6 +2,8 @@ App.Views.PGIngredientType = Backbone.View.extend({
   
   tagName: 'tr',
   
+  className: 'category',
+  
   template: JST['pg_ingredient_type'],
   
   initialize: function(options) {
@@ -30,7 +32,7 @@ App.Views.PGIngredientType = Backbone.View.extend({
         .findWhere({
           id: parseInt(options.variant_id)
         }).toJSON().ingredientTypes[this.model.id];
-    this.$el.find('td.proportion').text(values.proportion);
+    this.$el.find('td.proportion').text(values.proportion + ' %');
   },
 
   computeValues: function(options) {
@@ -42,17 +44,21 @@ App.Views.PGIngredientType = Backbone.View.extend({
     if (test) {
       
       volume = 0;
+      mass = 0;
      //reset okToCangeType
       this.collection.forEach(function(ingredient, index) {
         if (ingredient.get('ingredient_type_id') == type_id) {
           volume += ingredient.get('volume');
+          mass += ingredient.get('mass');
           ingredient.set('okToChangeType', false);
         }
       });
       
       this.$el.find('td.volume').text(
-        Math.round(volume*100)/100);
-       
+        Math.round(volume*100)/100 + ' ml');
+        
+      this.$el.find('td.mass').text(
+        Math.round(mass*100)/100 + ' g');    
     }
 
   },

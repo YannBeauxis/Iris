@@ -24,7 +24,7 @@ $color-base-text: rgb(92,90,98);
 $color-base-line: #E8EBF3;
 $color-base-background: #F1F4F8; 
 $color-primary-text: #325A86;
-$color-primary-background: #E9F3FD;
+$color-primary-background: #F6FAFD; // E9F3FD
 $color-primary-background-dark: #dfe8f2;
 $color-secondary-text: rgb(195,146,0); 
 $color-secondary-background: #FFFFF7;
@@ -85,8 +85,21 @@ table.colored {
 }
 
 table.table {
-   /*width: auto !important;*/
-    tr.filled {
+  td.spacing {
+    background-color: $color-base-background !important;
+    border-top: 0;
+    border-right: 1px solid #ddd;
+  }     
+  &.table-striped {
+    tr:nth-child(odd) td {
+      background-color: $color-primary-background;
+    }
+    tr.category td {
+      background-color: $color-base-background !important;
+      font-weight: bold;
+    }
+  }
+  tr.filled {
     background-color: $color-primary-background;
   }
   tr.type {
