@@ -34,7 +34,7 @@ class Variant < ActiveRecord::Base
   def composant_proportion(c)
     rech = self.proportions.where(composant_type: c.class.name).find_by(composant: c)
      if rech.blank?
-       return 0
+       return 0.0
      else
        return rech.value*1.0/(10000)
      end

@@ -2,81 +2,81 @@
 
 one:
   ingredient: one
-  quantity_init: 10
-  quantity_actual: 5
-  price: 5
+  quantity_init: 1000
+  quantity_actual: 500
+  price: 500
 
 two:
   ingredient: three
-  quantity_init: 100
-  quantity_actual: 100
-  price: 10
+  quantity_init: 10000
+  quantity_actual: 10000
+  price: 1000
 
 three:
   ingredient: four
-  quantity_init: 100
-  quantity_actual: 100
-  price: 10
+  quantity_init: 10000
+  quantity_actual: 10000
+  price: 1000
 
 delete_with_user:
   user: delete_container_recipe
   ingredient: one
-  quantity_init: 10
-  quantity_actual: 5
-  price: 5
+  quantity_init: 1000
+  quantity_actual: 500
+  price: 500
 
 proportions_0:
   user: one
   ingredient: proportions_0
-  quantity_init: 1
-  quantity_actual: 1
+  quantity_init: 100
+  quantity_actual: 100
   price: 0
 
 proportions_1:
   user: one
   ingredient: proportions_1
-  quantity_init: 1
-  quantity_actual: 1
-  price: 1
+  quantity_init: 100
+  quantity_actual: 100
+  price: 100
 
 proportions_2:
   user: one
   ingredient: proportions_2
-  quantity_init: 1
-  quantity_actual: 1
-  price: 2
+  quantity_init: 100
+  quantity_actual: 100
+  price: 200
 
 proportions_3:
   user: one
   ingredient: proportions_3
-  quantity_init: 1
-  quantity_actual: 1
-  price: 2
+  quantity_init: 100
+  quantity_actual: 100
+  price: 200
 
 has_container_reference:
   user: one
   ingredient: has_container_reference
-  quantity_init: 30
-  quantity_actual: 20
-  price: 2
+  quantity_init: 3000
+  quantity_actual: 2000
+  price: 200
   
 not_has_container_reference:
   user: one
   ingredient: not_has_container_reference
-  quantity_init: 30
-  quantity_actual: 20
-  price: 2
+  quantity_init: 3000
+  quantity_actual: 2000
+  price: 200
   
 update_with_mass:
   user: one
   ingredient: has_container_reference
-  quantity_init: 30
-  quantity_actual: 20
-  price: 2
+  quantity_init: 3000
+  quantity_actual: 2000
+  price: 200
   
 iep_shared_container:
   user: iep_other
   ingredient: iep_shared_container
-  quantity_init: 30
-  quantity_actual: 20
-  price: 2
+  quantity_init: 3000
+  quantity_actual: 2000
+  price: 200

@@ -6,7 +6,7 @@ class Container < ActiveRecord::Base
 
   def mass_net
     if !self.quantity_actual.blank?
-      self.ingredient.density * self.quantity_actual
+      self.ingredient.density/100.0 * self.quantity_actual
     end
   end
 
@@ -25,13 +25,13 @@ class Container < ActiveRecord::Base
 
   def update_with_mass(mass)
     if !mass_empty.nil? && mass >= mass_empty
-      self.quantity_actual = ((mass - mass_empty)/self.ingredient.density).round(1)
+      self.quantity_actual = ((mass - mass_empty)/(self.ingredient.density/100.0))
       self.save
     end
   end
 
   def price_by_unit
-    self.price / self.quantity_init
+    1.0*self.price / self.quantity_init
   end
 
 end

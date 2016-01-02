@@ -16,8 +16,8 @@ class RecipeTypeTest < ActiveSupport::TestCase
   test "Density" do
     rt_d_09 = recipe_types(:density_09)
     rt_no_d = recipe_types(:no_density)
-    assert rt_d_09.density == 0.9, 'not get self density'
-    assert rt_no_d.density == 1, 'not get default density' 
+    assert rt_d_09.density == 90, 'not get self density'
+    assert rt_no_d.density == 100, 'not get default density' 
   end
   
 end

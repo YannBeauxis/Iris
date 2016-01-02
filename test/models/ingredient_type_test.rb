@@ -39,8 +39,8 @@ class IngredientTypeTest < ActiveSupport::TestCase
   test "density" do
     it_has_density = ingredient_types(:one)
     it_no_density = ingredient_types(:no_density)   
-    assert it_has_density.density == 1.2, 'Not get self density'
-    assert it_no_density.density == 1, 'Not get default density'
+    assert it_has_density.density == 120, 'Not get self density'
+    assert it_no_density.density == 100, 'Not get default density'
   end
   
 end

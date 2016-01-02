@@ -30,7 +30,7 @@ class IngredientTest < ActiveSupport::TestCase
     i_2 = ingredients(:density_2)
     it = ingredient_types(:one)
     assert i_no.density == it.density, i_no.density.to_s + ' no get ingredient type density if not have self density'
-    assert i_2.density == 2, 'no get self density'
+    assert i_2.density == 200, 'no get self density'
   end
   
   test "Container reference" do

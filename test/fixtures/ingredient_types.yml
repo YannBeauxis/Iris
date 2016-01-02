@@ -4,7 +4,7 @@ one:
   name: 'Huile Essentielle'
   mesure_unit: 'ml'
   name_short: 'HE'
-  density: 1.2
+  density: 120
 
 two:
   name: 'Huile Végétale'

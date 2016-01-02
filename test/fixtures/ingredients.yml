@@ -59,49 +59,49 @@ no_density:
 density_2:
   name: 'no_density'
   type: 'one'
-  density: 2
+  density: 200
 
 proportions_1:
   name: 'proportions_1'
   type: 'proportions_1'
-  density: 0.8
+  density: 80
   
 proportions_2:
   name: 'proportions_2'
   type: 'proportions_1'
-  density: 1.2
+  density: 120
 
 proportions_3:
   name: 'proportions_3'
   type: 'proportions_2'
-  density: 1.2
+  density: 120
 
 proportions_0:
   name: 'proportions_0'
   type: 'proportions_1'
-  density: 1.2
+  density: 120
 
 has_container_reference:
   name: 'has_container_reference'
   type: has_container_reference
-  density: 1.2
+  density: 120
 
 not_has_container_reference:
   name: 'not_has_container_reference'
   type: not_has_container_reference
-  density: 1.2
+  density: 120
   
 iep_solo:
   name: 'iep_solo'
   type: one
-  density: 1
+  density: 100
   
 iep_shared:
   name: 'iep_shared'
   type: one
-  density: 1
+  density: 100
   
 iep_shared_container:
   name: 'iep_shared_container'
   type: one
-  density: 1
+  density: 100

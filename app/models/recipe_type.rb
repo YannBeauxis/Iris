@@ -6,7 +6,7 @@ class RecipeType < ActiveRecord::Base
 # density equal 1 by default
   def density
     if super.nil? then
-      1
+      100
     else
       super
     end

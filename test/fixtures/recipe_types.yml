@@ -27,9 +27,9 @@ no_density:
 density_09:
   name: no_density
   ingredient_types: one
-  density: 0.9
+  density: 90
 
 proportions:
   name: proportions
   ingredient_types: proportions_1, proportions_2
-  density: 0.9
+  density: 90

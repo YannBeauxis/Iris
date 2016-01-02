@@ -25,8 +25,8 @@ class ProductQuantity
   
   def compute_quantities
 
-     d = @product.recipe.type.density
-     v = @product.volume/100
+     d = @product.recipe.type.density/100.0
+     v = @product.volume/100.0
      m = d * v
      
      p = 0
@@ -34,13 +34,13 @@ class ProductQuantity
      
      @product.variant.ingredients.each do |i|
        p_i = @product.variant.composant_proportion(i)*@product.variant.composant_proportion(i.type)
-       d_i = i.density
+       d_i = i.density/100.0
        if p_i > 0 then
-         m_i = m * p_i
-         v_i = m_i / d_i 
+         m_i = m * p_i * 1.0
+         v_i = m_i / d_i
        else
-         m_i = 0
-         v_i = 0       
+         m_i = 0.0
+         v_i = 0.0     
        end
   
        @masses[i] = m_i.round(6)

@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160101213632) do
+ActiveRecord::Schema.define(version: 20160102101649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "container_references", force: :cascade do |t|
     t.integer  "ingredient_type_id"
-    t.float    "volume"
-    t.float    "mass"
+    t.integer  "volume"
+    t.integer  "mass"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20160101213632) do
 
   create_table "containers", force: :cascade do |t|
     t.integer  "ingredient_id"
-    t.float    "quantity_init"
-    t.float    "quantity_actual"
-    t.float    "price"
+    t.integer  "quantity_init"
+    t.integer  "quantity_actual"
+    t.integer  "price"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "user_id"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20160101213632) do
     t.string   "mesure_unit"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.float    "density"
+    t.integer  "density"
   end
 
   create_table "ingredient_types_recipe_types", id: false, force: :cascade do |t|
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20160101213632) do
     t.integer  "ingredient_type_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.float    "density"
+    t.integer  "density"
   end
 
   add_index "ingredients", ["ingredient_type_id"], name: "index_ingredients_on_ingredient_type_id", using: :btree
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20160101213632) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float    "density"
+    t.integer  "density"
   end
 
   create_table "recipes", force: :cascade do |t|
