@@ -32,7 +32,7 @@ App.Views.PGIngredientType = Backbone.View.extend({
         .findWhere({
           id: parseInt(options.variant_id)
         }).toJSON().ingredientTypes[this.model.id];
-    this.$el.find('td.proportion').text(values.proportion + ' %');
+    this.$el.find('td.proportion').text(Math.round(values.proportion*10000)/100 + ' %');
   },
 
   computeValues: function(options) {
