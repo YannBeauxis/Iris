@@ -41,7 +41,7 @@ var recipeGrid = function() {
 
 var productGenerator = function() {
     App.productGenerator = new App.Views.ProductGenerator({
-      el: $('.product-generator').get(0)
+      el: $('#ProductGenerator').get(0)
     });
 };
 

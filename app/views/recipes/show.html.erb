@@ -13,30 +13,26 @@
 
 <% content_for :item_content do %>
 
-<div class="panel panel-default product-generator">
+<div class="panel panel-default" id="ProductGenerator">
   <div class="panel-heading">Quantités</div>
 
   <div class="panel-body">
 
-  <form class="simple_form form-horizontal" novalidate="novalidate" >
+  <form class="simple_form form-inline" novalidate="novalidate" >
     
     <div class="form-group select required product_variant_id">
-      <label class="select required col-sm-3 control-label" for="product_variant_id">
+      <label class="select required control-label" for="product_variant_id">
         Variante
       </label>
-      <div class="col-sm-9">
         <select class="select form-control" id="product_variant_id">
         </select>
-      </div>
     </div>
 
     <div class="form-group string required product_volume">
-      <label class="string required col-sm-3 control-label" for="product_volume">
+      <label class="string required control-label" for="product_volume">
         Volume
       </label>
-      <div class="col-sm-9">
         <input type="number" min="0" step="1" class="string required form-control" id="product_volume" >
-      </div>
     </div>
       
   </form>
