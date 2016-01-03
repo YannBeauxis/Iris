@@ -74,15 +74,15 @@ class ProductQuantity
          v_i = 0.0     
        end
   
-       @masses[i] = m_i.round(6)
-       @volumes[i] = v_i.round(6)
+       @masses[i] = m_i
+       @volumes[i] = v_i
        v_computed += @volumes[i]
           
     end
     
       if v_computed > 0
-        @volumes.each{ |key, value| @volumes[key] = (value*v/v_computed).round(2)}
-        @masses.each{ |key, value| @masses[key] = (value*v/v_computed).round(2)}
+        @volumes.each{ |key, value| @volumes[key] = (value*v/v_computed).round(6)}
+        @masses.each{ |key, value| @masses[key] = (value*v/v_computed).round(6)}
       end
     
   end
