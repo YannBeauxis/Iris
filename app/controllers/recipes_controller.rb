@@ -34,7 +34,7 @@ class RecipesController < ApplicationController
   end 
 
   def product_generator
-    result = {ingredientTypes: [], ingredients: [], variants: []}
+    result = {recipeId: @recipe.id, ingredientTypes: [], ingredients: [], variants: []}
 
     @recipe.ingredient_types.each do |i|
       result[:ingredientTypes] <<  { id: i.id, name: i.name}
