@@ -1,21 +1,39 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 variant_delete:
-  name: 'prodcut delete'
+  description: 'prodcut delete'
   variant: product_delete
   volume: 100
 
 proportions:
-  name: 'proportions'
+  description: 'proportions'
   variant: proportions
   volume: 10000
 
 not_to_be_duplicate:
-  name: 'not_to_be_duplicate'
+  description: 'not_to_be_duplicate'
   variant: proportions
   volume: 10000
   
 to_be_delete:
-  name: 'to_be_delete'
+  description: 'to_be_delete'
   variant: proportions
+  volume: 10000
+
+product_index_is:
+  user: one
+  description: 'product_index_is'
+  variant: product_index
+  volume: 10000
+
+product_index_is_not_recipe:
+  user: one
+  description: 'product_index_is_not_recipe'
+  variant: one
+  volume: 10000
+
+product_index_is_not_user:
+  user: not_one
+  description: 'product_index_is_not_user'
+  variant: product_index
   volume: 10000

@@ -1,5 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+one:
+  name: 'one'
+  recipe: one
+
 recipe_delete:
   name: 'recipe_delete'
   recipe: variant_delete
@@ -15,3 +19,7 @@ variant2proportion_delete:
 proportions:
   name: 'proportions'
   recipe: proportions
+  
+product_index:
+  name: 'product_index'
+  recipe: product_index

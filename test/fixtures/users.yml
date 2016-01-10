@@ -9,6 +9,11 @@ one:
  role: admin
  approved: true
 
+not_one:
+ email: 'not_one@yahoo.fr'
+ role: producteur
+ approved: true
+
 delete_container_recipe:
  email: 'delete_container_recipe@yahoo.fr'
  role: producteur

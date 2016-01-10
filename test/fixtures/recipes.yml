@@ -67,4 +67,8 @@ iep_other:
   type: one
   ingredients: iep_shared
 
-  
+product_index:
+  user: one
+  name: 'product_index'
+  type: one 
+  ingredients: one

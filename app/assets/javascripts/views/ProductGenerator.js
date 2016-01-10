@@ -9,6 +9,9 @@ App.Views.ProductGenerator = Backbone.View.extend({
     this.ingredientTypes = new App.Collections.IngredientTypes(); 
     this.ingredients = new App.Collections.Ingredients(); 
     this.variants = new App.Collections.Variants(); 
+    this.products = new App.Collections.Products({
+      url: '/recipes/' + App.productGeneratorRaw.recipeId + '/products'
+    }); 
 
   // Variants
 
@@ -29,10 +32,19 @@ App.Views.ProductGenerator = Backbone.View.extend({
         }
       });
 
+    //Products
+    tableEl = this.$el.find('.table-products');
+    this.productsTable= 
+      new App.Views.PGProductsTable({
+        el: tableEl, 
+        collection: this.products
+      });
+
     //populate collections
     this.ingredientTypes.add(App.productGeneratorRaw.ingredientTypes);
     this.ingredients.add(App.productGeneratorRaw.ingredients);
     this.variants.add(App.productGeneratorRaw.variants);
+    this.products.fetch();
     
   //default parameters
     this.volume = 10;

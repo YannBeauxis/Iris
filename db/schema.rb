@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160102101649) do
+ActiveRecord::Schema.define(version: 20160110182457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,13 +72,18 @@ ActiveRecord::Schema.define(version: 20160102101649) do
 
   create_table "products", force: :cascade do |t|
     t.integer  "variant_id"
-    t.string   "name"
+    t.string   "container"
     t.integer  "volume"
-    t.string   "detail"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "description"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "number_produced"
+    t.datetime "production_date"
+    t.datetime "expiration_date"
+    t.integer  "user_id"
   end
 
+  add_index "products", ["user_id"], name: "index_products_on_user_id", using: :btree
   add_index "products", ["variant_id"], name: "index_products_on_variant_id", using: :btree
 
   create_table "proportions", force: :cascade do |t|
@@ -157,6 +162,7 @@ ActiveRecord::Schema.define(version: 20160102101649) do
   add_foreign_key "containers", "ingredients"
   add_foreign_key "containers", "users"
   add_foreign_key "ingredients", "ingredient_types"
+  add_foreign_key "products", "users"
   add_foreign_key "products", "variants"
   add_foreign_key "proportions", "variants"
   add_foreign_key "recipes", "recipe_types"

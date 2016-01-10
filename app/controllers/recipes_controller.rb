@@ -21,16 +21,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @variants = @recipe.variants
-    @products = @recipe.products
-    @ingredients = @recipe.ingredients
-    @ingredient_types = @recipe.ingredient_types
-    
-    @product = @recipe.product_reference
-    @product.quantities.compute_prices(current_user) if  !@product.nil?
-    
     @product_generator = product_generator
-    
   end 
 
   def product_generator

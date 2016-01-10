@@ -3,7 +3,8 @@ class ProductsController < ApplicationController
   before_action :check_user, except: [:index, :show, :edit, :update, :destroy]
   
   def index
-    @products = Product.all
+    @products = @recipe.products.where('user_id = ?', current_user)
+    render json: @products.to_json(:include => { :variant => { :only => :name } })
   end 
 
   def show
@@ -72,7 +73,7 @@ class ProductsController < ApplicationController
     end
   
     def product_params
-      params.require(:product).permit(:name, :variant_id, :volume, :detail)
+      params.require(:product).permit(:variant_id, :volume, :description)
     end
 
 

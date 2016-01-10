@@ -18,12 +18,48 @@ Rails.application.routes.draw do
   #devise_for :users
   devise_for :users, :controllers => { registrations: 'registrations' }
   #scope "/admin" do
-    resources :users
+  resources :users
   #end
   #devise_scope :user do
   #  match '/sign-in' => "devise/sessions#new", :as => :login, via: :get
   #end
   
+   resources :ingredient_types do
+     resources :container_references
+   end
+
+   get 'ingredients/get_table', to: 'ingredients#get_table'
+
+   resources :ingredients do
+     match '/add_ingredient', to: 'recipes#add_ingredient', via: :post
+     resources :containers do
+       match '/update_with_mass', to: 'containers#update_with_mass', via: :patch
+     end
+   end
+
+  resources :recipes do
+    get '/ingredient_candidates', to: 'recipes#ingredient_candidates', as: 'ingredient_candidates'
+    get '/delete_list', to: 'recipes#delete_list', as: 'delete_list'
+    
+    resources :ingredients do
+       match '/add_ingredient', to: 'recipes#add_ingredient', via: :post
+    end
+
+    match '/delete_ingredient', to: 'recipes#delete_ingredient', via: :post
+
+    resources :variants do
+      match '/update_proportions', to: 'variants#update_proportions', via: :patch
+      match '/normalize_proportions', to: 'variants#normalize_proportions', via: :patch# , as: 'update_proportion'
+    end
+
+    match '/duplicate_variant', to: 'recipes#duplicate_variant', via: :get
+
+    resources :products
+
+  end
+
+  resources :recipe_types
+
   #get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -36,43 +72,6 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-
-  
-     resources :ingredient_types do
-       resources :container_references
-     end
-
-     get 'ingredients/get_table', to: 'ingredients#get_table'
-
-     resources :ingredients do
-       match '/add_ingredient', to: 'recipes#add_ingredient', via: :post
-       resources :containers do
-         match '/update_with_mass', to: 'containers#update_with_mass', via: :patch
-       end
-     end
-
-    resources :recipes do
-      get '/ingredient_candidates', to: 'recipes#ingredient_candidates', as: 'ingredient_candidates'
-      get '/delete_list', to: 'recipes#delete_list', as: 'delete_list'
-      
-      resources :ingredients do
-         match '/add_ingredient', to: 'recipes#add_ingredient', via: :post
-      end
-
-      match '/delete_ingredient', to: 'recipes#delete_ingredient', via: :post
-
-      resources :variants do
-        match '/update_proportions', to: 'variants#update_proportions', via: :patch
-        match '/normalize_proportions', to: 'variants#normalize_proportions', via: :patch# , as: 'update_proportion'
-      end
-
-      match '/duplicate_variant', to: 'recipes#duplicate_variant', via: :get
-
-      resources :products
-
-    end
-
-    resources :recipe_types
 
   # Example resource route with options:
   #   resources :products do

@@ -215,6 +215,9 @@
   #ProductGenerator {
     .form-group {
       padding-right: 8px;
+      #product_volume {
+        max-width: 90px;
+      }
     }
   }
 }
