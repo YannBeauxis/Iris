@@ -1,5 +1,7 @@
 <% content_for :content_header do %>
-  <span class="title">Produit <%= @product.name %></span><br>
+  <span class="title">
+    Produit <%= @product.container + ' ' + (@product.volume/100).round.to_s + 'ml' %>
+  </span><br>
 <% end %>
 
 <%= render '/shared/item_content_subtitle'%>

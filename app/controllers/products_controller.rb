@@ -23,6 +23,7 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find(params[:id])
     @variant = @product.variant
+    @variants = @product.recipe.variants
   end
 
   def create
@@ -41,7 +42,8 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
  
     if @product.update(product_params)
-      redirect_to recipe_product_path(@recipe,@product)
+      redirect_to recipe_path(@recipe)
+      #redirect_to recipe_product_path(@recipe,@product)
     else
       render 'edit'
     end
@@ -73,7 +75,11 @@ class ProductsController < ApplicationController
     end
   
     def product_params
-      params.require(:product).permit(:variant_id, :volume, :description)
+      params.require(:product).permit(
+          :variant_id, :volume, :container, 
+          :description, :production_date, :expiration_date, 
+          :number_produced
+      )
     end
 
 

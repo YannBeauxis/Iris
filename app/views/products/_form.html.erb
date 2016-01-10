@@ -1,26 +1,43 @@
-<%= form_for @product, :url => url_for([@recipe, @product]) do |f| %>
-  <p>
-    <%= f.label 'Nom' %><br>
-    <%= f.text_field :name %>
-  </p>
+<%= simple_form_for [@recipe, @product], 
+      html: { class: 'form-horizontal' },  
+      wrapper: :horizontal_form,
+      wrapper_mappings: {
+        check_boxes: :horizontal_radio_and_checkboxes,
+        radio_buttons: :horizontal_radio_and_checkboxes,
+        file: :horizontal_file_input,
+        boolean: :horizontal_boolean,
+        date: :horizontal_form
+      } do |f|%>
 
-  <p>
-    <%= f.label 'Variante' %><br>
-    <%= f.collection_select(:variant_id, @recipe.variants, :id, :name) %>
-  </p>
+  <%= f.error_notification %>
 
-  <p>
-    <%= f.label 'Volume' %><br>
-    <%= f.number_field :volume, :step => 'any' %>
-  </p>
+  <%= f.input :variant_id, collection: @variants, include_blank: false, label: 'Variante' %>
 
-  <p>
-    <%= f.label 'Détail' %><br>
-    <%= f.text_field :detail %>
-  </p>
+  <%= f.input :volume, label: 'Volume' %>
 
-  <p>
-    <%= f.submit 'Enregistrer' %>
-  </p>
+  <%= f.input :container, label: 'Contenant' %>
 
+  <%= f.input :description, label: 'Description' %>
+
+  <%= f.input :number_produced, label: 'nombre d\'unité produites' %>
+
+  <%= f.input :production_date, 
+        label: 'Date de production',
+        as: :date,
+        wrapper_html: { class: 'date-horizontal' }
+    %>
+
+  <%= f.input :expiration_date, 
+        label: 'Date de péremption',
+        as: :date,
+        wrapper_html: { class: 'date-horizontal' }
+   %>
+
+  <div class="form-group"> 
+    <div class="col-sm-offset-3 col-sm-9">
+      <%= f.button :submit, 'Enregistrer' %>
+      <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+    </div>
+  </div>
+  
 <% end %>
