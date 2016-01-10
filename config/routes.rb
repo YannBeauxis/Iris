@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get '/users', to: 'administration#users',as: :admin_users
     get '/containers', to: 'administration#containers',as: :admin_containers
     get '/recipes', to: 'administration#recipes',as: :admin_recipes
+    get '/products', to: 'administration#products',as: :admin_products
   end
 
   #devise_for :users

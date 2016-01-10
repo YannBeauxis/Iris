@@ -1,0 +1,28 @@
+<% render 'menu' %>
+
+<% content_for :content_header do %>
+  <span class="title">Gestion des produits</span>
+<% end %>
+
+<% content_for :item_content do %>
+
+  <table>
+    <tr>
+      <th>Recette</th>
+      <th>Variante</th>
+      <th>Volume</th>
+      <th>User</th>
+    </tr>
+    <% @products.each do |p| %>
+      <tr>      
+        <td><%= p.recipe.name %></td>
+        <td><%= p.variant.name %></td>
+        <td><%= p.volume %></td>
+        <td><%= p.user.name %></td>
+        <td><%= link_to 'Edit', edit_recipe_product_path(p.recipe, p)%></td>
+     </tr>
+
+    <% end %>
+  </table>
+
+<% end %>

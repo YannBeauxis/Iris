@@ -14,4 +14,8 @@ class AdministrationController < ApplicationController
       @recipes = Recipe.all
     end
 
+    def products
+      @products = Product.all
+    end
+
 end
