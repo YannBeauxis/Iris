@@ -1,5 +1,4 @@
 class RecipesController < ApplicationController
-  load_and_authorize_resource
   before_action :check_user, except: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   def index
@@ -22,6 +21,7 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @product_generator = product_generator
+    @product = Product.new
   end 
 
   def product_generator

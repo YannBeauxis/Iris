@@ -1,43 +1,60 @@
-<%= simple_form_for [@recipe, @product], 
-      html: { class: 'form-horizontal' },  
-      wrapper: :horizontal_form,
-      wrapper_mappings: {
-        check_boxes: :horizontal_radio_and_checkboxes,
-        radio_buttons: :horizontal_radio_and_checkboxes,
-        file: :horizontal_file_input,
-        boolean: :horizontal_boolean,
-        date: :horizontal_form
-      } do |f|%>
+<%= simple_form_for [@recipe, @product] do |f|%>
 
-  <%= f.error_notification %>
-
-  <%= f.input :variant_id, collection: @variants, include_blank: false, label: 'Variante' %>
-
-  <%= f.input :volume, label: 'Volume' %>
-
-  <%= f.input :container, label: 'Contenant' %>
-
-  <%= f.input :description, label: 'Description' %>
-
-  <%= f.input :number_produced, label: 'nombre d\'unité produites' %>
-
-  <%= f.input :production_date, 
-        label: 'Date de production',
-        as: :date,
-        wrapper_html: { class: 'date-horizontal' }
-    %>
-
-  <%= f.input :expiration_date, 
-        label: 'Date de péremption',
-        as: :date,
-        wrapper_html: { class: 'date-horizontal' }
-   %>
-
-  <div class="form-group"> 
-    <div class="col-sm-offset-3 col-sm-9">
-      <%= f.button :submit, 'Enregistrer' %>
-      <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+  <div class="row">
+    <div class="col-md-2">
+      <label class="integer optional control-label" for="product_variant_id">
+        Variante
+      </label>
+    </div>
+    <div class="col-md-7">
+      <select class="select form-control" name="product[variant_id]" id="product_variant_id">
+      </select>
+    </div>
+    <div class="col-md-3">
+      <button class="btn btn-default" type="button" id="modify_variant" >Modifier proportions</button>
     </div>
   </div>
   
+  <div class="row">
+    <div class="col-md-2">
+      <label class="integer required control-label" for="product_volume">
+        <abbr title="required">*</abbr> Volume
+      </label>
+    </div>
+    <div class="col-md-7">
+      <input class="numeric integer required form-control" type="number" step="1" name="product[volume]" id="product_volume">
+    </div>
+    <div class="col-md-3">
+        <button class="btn btn-default" type="button" id="create_product" >Créer produit ...</button>
+    </div>
+  </div>
+
+
+  <div id="ProductInfo" style="display: none;">
+
+    <%= f.input :container, label: 'Contenant' %>
+  
+    <%= f.input :description, label: 'Description' %>
+  
+    <%= f.input :number_produced, label: 'nombre d\'unité produites' %>
+  
+    <%= f.input :production_date, 
+          label: 'Date de production',
+          as: :date,
+          wrapper_html: { class: 'date-horizontal' }
+      %>
+  
+    <%= f.input :expiration_date, 
+          label: 'Date de péremption',
+          as: :date,
+          wrapper_html: { class: 'date-horizontal' }
+     %>
+  
+    <div class="form-group"> 
+      <div class="col-sm-offset-3 col-sm-9">
+        <%= f.button :submit, 'Enregistrer' %>
+        <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+      </div>
+    </div>
+  </div>
 <% end %>

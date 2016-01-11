@@ -53,7 +53,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.destroy
  
-    redirect_to recipe_products_path(@recipe)
+    redirect_to recipe_path(@recipe)
   end
 
   private

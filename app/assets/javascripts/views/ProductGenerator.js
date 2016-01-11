@@ -58,7 +58,8 @@ App.Views.ProductGenerator = Backbone.View.extend({
     "change #product_variant_id":  "compute",
     //"keydown #product_volume":  "isNumberKey",
     "keyup #product_volume":  "changeVolume",
-    "click #modify_variant":  "modifyVariant"
+    "click #modify_variant":  "modifyVariant",
+    "click #create_product":  "createProduct"
   },
 
   compute: function() {
@@ -88,7 +89,10 @@ App.Views.ProductGenerator = Backbone.View.extend({
     var variant_id = this.variantSelect.$el.val();
     var url = '/recipes/' + App.productGeneratorRaw.recipeId + '/variants/' + variant_id + '/edit';
     window.location = url;
-    //console.log(url);
+  },
+
+  createProduct: function() {
+    this.$el.find('#ProductInfo').slideToggle();
   },
 
   render: function() {
