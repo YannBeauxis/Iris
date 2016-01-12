@@ -7,6 +7,7 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'bootstrap-datetimepicker';
 
 /*$base-font-size: 0.8em;
 $base-line-height: 0.8em;*/
@@ -121,24 +122,6 @@ table.table {
   }
 }
 
-td {
-  vertical-align: top;
-   &.center {
-    text-align: center;
-  }
-  &.right {
-    text-align: right;
-  }
-}
-
-.menu-link:before {
-  content: "> ";
-}
-
 .row {
   margin: 0;
-}
-
-.date-horizontal .col-sm-9 {
-  display: inline-flex;
 }

@@ -98,7 +98,6 @@
   </div>
 
   <div id="MainContent">
-
     <div class="header">
       <% if content_for?(:content_header) %>
         <%= yield( :content_header ) %>
@@ -109,20 +108,19 @@
        
     <% if content_for?(:item_content) %>
     
-      <div class="content" >
+      <div class="content">
         <%= yield( :item_content ) %>
-        </div>
+      </div>
     <% end %>
-    
   </div>
-</div>
 
-<script id="DataJS">
-  <%= yield( :data_js ) %>
-</script>
+  <script id="DataJS">
+    <%= yield( :data_js ) %>
+  </script>
 
 
 <div id="Footer"></div>
+
 
 </body>
 </html>

@@ -58,8 +58,9 @@ App.Views.ProductGenerator = Backbone.View.extend({
     "change #product_variant_id":  "compute",
     //"keydown #product_volume":  "isNumberKey",
     "keyup #product_volume":  "changeVolume",
-    "click #modify_variant":  "modifyVariant",
-    "click #create_product":  "createProduct"
+    "click #modify-variant":  "modifyVariant",
+    "click #create-product-form":  "createProduct",
+    "click #cancel-create-product":  "createProduct"
   },
 
   compute: function() {
@@ -93,6 +94,9 @@ App.Views.ProductGenerator = Backbone.View.extend({
 
   createProduct: function() {
     this.$el.find('#ProductInfo').slideToggle();
+    this.$el.find('#cancel-create-product').toggle();
+    this.$el.find('#save-product').toggle();
+    this.$el.find('#create-product-form').toggle();
   },
 
   render: function() {

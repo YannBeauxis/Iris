@@ -14,6 +14,8 @@
 //= require jquery_ujs
 // not turbolinks
 //= require bootstrap-sprockets
+//= require moment
+//= require bootstrap-datetimepicker
 //= require underscore
 //= require backbone
 //= require iris

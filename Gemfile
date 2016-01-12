@@ -13,6 +13,8 @@ gem "compass-rails", github: "Compass/compass-rails", branch: "master"
 gem 'compass-normalize', '~> 1.5'
 #Bootstrap
 gem 'bootstrap-sass', '~> 3.2.0'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 #Simple_form
 gem 'simple_form'
 
