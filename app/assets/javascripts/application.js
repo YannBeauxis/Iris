@@ -31,3 +31,21 @@ window.App = {
   Collections: {},
   Views: {}
 };
+
+App.convertDate = function (inputFormat) {
+  function pad(s) { return (s < 10) ? '0' + s : s; }
+  var d = new Date(inputFormat);
+  if (inputFormat != null) {
+    return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
+  } else {
+    return null;
+  }
+};
+
+App.invertDate = function (d) {
+  if (d != null) {
+    return [d.slice(6,10), d.slice(3,5), d.slice(0,2)].join('/');
+  } else {
+    return null;
+  }
+};

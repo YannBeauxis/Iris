@@ -40,13 +40,7 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
- 
-    if @product.update(product_params)
-      redirect_to recipe_path(@recipe)
-      #redirect_to recipe_product_path(@recipe,@product)
-    else
-      render 'edit'
-    end
+    render :json => { :success => @product.update(product_params) }
   end
 
   def destroy

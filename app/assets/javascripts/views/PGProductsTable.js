@@ -11,6 +11,11 @@ App.Views.PGProductsTable = Backbone.View.extend({
                     model: p,
                   });
     this.$el.append(pView.render().el);
+    this.listenTo(pView, 'displayProduct', this.displayProduct);
   },
+
+  displayProduct: function(model) {
+    this.trigger('displayProduct',model);
+  }
 
 });

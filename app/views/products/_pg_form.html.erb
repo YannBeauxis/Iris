@@ -1,68 +1,71 @@
-<form class="form-horizontal pg-product-form">
+<form class="form-horizontal pg__product__form">
   <div class="form-group">
-    <label class="control-label col-sm-2" for="product_variant_id">
+    <label class="control-label col-sm-2" for="product__variant">
       Variante
     </label>
     <div class="col-sm-6">
-      <select class="select form-control" id="product_variant_id">
+      <select class="select form-control" id="product__variant">
       </select>
     </div>
-    <label class="integer required control-label col-sm-2" for="product_volume">
+    <label class="integer required control-label col-sm-2" for="product__volume">
       <abbr title="required">*</abbr> Volume
     </label>
     <div class="col-sm-2">
-      <input class="numeric integer required form-control" type="number" step="1" name="product[volume]" id="product_volume">
+      <input class="numeric integer required form-control" type="number" step="10" id="product__volume">
     </div>
   </div>
 
-  <div id="ProductInfo" style="display: none;">
+  <div id="product__details" style="display: none;">
  
-      <div class="form-group string optional product_container">
-        <label class="string optional control-label col-sm-2" for="product_container">Contenant</label>
-        <div class="col-sm-5">
-          <input class="string5optional form-control" type="text" id="product_container">
-        </div>
-  
-        <label class="integer optional control-label col-sm-3" for="product_number_produced">Nb produit</label>
-        <div class="col-sm-2">
-          <input class="numeric integer optional form-control" type="number" step="1" id="product_number_produced"> 
-        </div>
+    <div class="form-group">
+      <label class="string required control-label col-sm-2" for="product__container">
+        <abbr title="required">*</abbr>Contenant
+      </label>
+      <div class="col-sm-5">
+        <input class="string required form-control" type="text" id="product__container">
       </div>
-  
-      <div class="form-group string optional product_description">
-        <label class="string optional control-label col-sm-2" for="product_description">Description</label>
-        <div class="col-sm-10">
-          <textarea rows="2" class="string optional form-control" type="text" id="product_description"></textarea>
-        </div>
+      <label class="integer optional control-label col-sm-3" for="product__number-produced">Nb produit</label>
+      <div class="col-sm-2">
+        <input class="numeric integer optional form-control" type="number" step="1" id="product__number-produced"> 
       </div>
-      
-      <div class="form-group">
-        <label for="creation-date-input" class="col-sm-2">Création</label>
-        <div class="col-sm-4">
-          <div class='input-group date' id='creation-date'>
-            <input type='text' class="form-control" id='creation-date-input' />
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-          </div>
-        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="string optional control-label col-sm-2" for="product__description">Description</label>
+      <div class="col-sm-10">
+        <textarea rows="2" class="string optional form-control" type="text" id="product__description"></textarea>
+      </div>
+    </div>
     
-        <label for="peremption-date-input" class="col-sm-2">Péremption</label>
-        <div class="col-sm-4">
-          <div class='input-group date' id='peremption-date'>
-            <input type='text' class="form-control" id='peremption-date-input' />
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-          </div> 
-        </div>  
+    <div class="form-group">
+      <label for="production-date__input" class="col-sm-2">Création</label>
+      <div class="col-sm-4">
+        <div class='input-group date' id='production-date'>
+          <input type='text' class="form-control" id='production-date__input' />
+          <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
       </div>
+  
+      <label for="expiration-date__input" class="col-sm-2">Péremption</label>
+      <div class="col-sm-4">
+        <div class='input-group date' id='expiration-date'>
+          <input type='text' class="form-control" id='expiration-date__input' />
+          <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div> 
+      </div>  
+    </div>
   </div>
   <div class="form-group">
-    <div class="col-sm-offset-8 col-sm-4">
-        <button class="btn btn-default" type="button" id="cancel-create-product" style="display: none;" >Annuler</button>
-        <button class="btn btn-default" type="button" id="create-product-form" >Créer produit</button>
-        <button class="btn btn-default" type="button" id="save-product" style="display: none;">Créer produit</button>
+    <div class="col-sm-offset-2 col-sm-4">
+        <button class="btn btn-default" type="button" id="btn--product--details" >Créer produit</button>
+        <button class="btn btn-default" type="button" id="btn--product--new--initiate" style="display: none;">Nouveau produit</button>
+    </div>
+    <div class="col-sm-offset-2 col-sm-4">
+      <button class="btn btn-default" type="button" id="btn--product--new--save" style="display: none;">Enregistrer</button>
     </div>
   </div>      
   </form>

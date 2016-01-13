@@ -5,7 +5,6 @@ App.Views.ProductGenerator = Backbone.View.extend({
   initialize: function() {
 
   // Create collections
-
     this.ingredientTypes = new App.Collections.IngredientTypes(); 
     this.ingredients = new App.Collections.Ingredients(); 
     this.variants = new App.Collections.Variants(); 
@@ -14,8 +13,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
     }); 
 
   // Variants
-
-    var variantSelectEl = this.$el.find('#product_variant_id');
+    var variantSelectEl = this.$el.find('#product__variant');
     this.variantSelect= new App.Views.PGVariantSelect({el: variantSelectEl, collection: this.variants});
     //select the base variant
     this.variantSelect.focusBase();
@@ -33,34 +31,46 @@ App.Views.ProductGenerator = Backbone.View.extend({
       });
 
     //Products
+    this.productMode = 'new';
     tableEl = this.$el.find('.table-products');
     this.productsTable= 
       new App.Views.PGProductsTable({
         el: tableEl, 
         collection: this.products
       });
+    this.listenTo(this.productsTable, 'displayProduct', this.displayProduct);
 
     //populate collections
     this.ingredientTypes.add(App.productGeneratorRaw.ingredientTypes);
     this.ingredients.add(App.productGeneratorRaw.ingredients);
     this.variants.add(App.productGeneratorRaw.variants);
     this.products.fetch();
-    
-  //default parameters
+
+    //default parameters
     this.volume = 10;
-    this.$el.find('#product_volume').val(this.volume);
+    this.$el.find('#product__volume').val(this.volume);
+    this.$el.find('#product__number-produced').val(1);
+    //initiate date pickers
+    $('#production-date').datetimepicker({format: 'DD/MM/YYYY'});
+    var today = new Date();
+    $('#production-date__input').datetimepicker({format: 'DD/MM/YYYY', defaultDate: today});
+    $('#expiration-date__input').datetimepicker({format: 'DD/MM/YYYY'});
+    $('#expiration-date').datetimepicker({format: 'DD/MM/YYYY'});
+
     
     this.compute();
     
   },
 
   events: {
-    "change #product_variant_id":  "compute",
-    //"keydown #product_volume":  "isNumberKey",
-    "keyup #product_volume":  "changeVolume",
+    "change #product__variant":  "compute",
+    //"keydown #product__volume":  "isNumberKey",
+    "keyup #product__volume":  "changeVolume",
+    "change #product__volume":  "changeVolume",
     "click #modify-variant":  "modifyVariant",
-    "click #create-product-form":  "createProduct",
-    "click #cancel-create-product":  "createProduct"
+    "click #btn--product--details":  "productDetails",
+    "click #btn--product--new--initiate":  "productNewInitate",
+    "click #btn--product--new--save":  "productSave"
   },
 
   compute: function() {
@@ -92,11 +102,88 @@ App.Views.ProductGenerator = Backbone.View.extend({
     window.location = url;
   },
 
-  createProduct: function() {
-    this.$el.find('#ProductInfo').slideToggle();
-    this.$el.find('#cancel-create-product').toggle();
-    this.$el.find('#save-product').toggle();
-    this.$el.find('#create-product-form').toggle();
+  productDetails: function() {
+    this.$el.find('#product__details').slideToggle();
+    if (this.productMode == 'new') {this.$el.find('#btn--product--new--save').toggle();}
+    var btnDetail = this.$el.find('#btn--product--details');
+    switch (btnDetail.text()) {
+      case "Créer produit":
+        btnDetail.text('Annuler');
+        break;
+      case "Annuler":
+        btnDetail.text('Créer produit');
+        break;
+    }
+    this.$el.find('#btn--product--details').blur();
+  },
+
+  displayProduct: function(model) {
+
+    this.productMode = 'display';
+    this.currentProduct = model;
+    
+    // set the value
+    this.$el.find('#product__volume').val(model.get('volume')/100);
+    this.$el.find('#product__volume').attr('disabled','');
+    this.$el.find('#product__variant').val(model.get('variant_id'));
+    this.$el.find('#product__variant').attr('disabled','');
+    this.$el.find('#product__container').val(model.get('container'));
+    this.$el.find('#product__number-produced').val(model.get('number_produced'));
+    this.$el.find('#product__number-produced').attr('disabled','');
+    this.$el.find('#product__description').val(model.get('description'));
+    this.$el.find('#production-date__input').val(App.convertDate(model.get('production_date')));
+    this.$el.find('#production-date__input').attr('disabled','');
+    this.$el.find('#expiration-date__input').val(App.convertDate(model.get('expiration_date')));
+
+    //date pickers
+
+    
+    // toggle the buttons
+    this.$el.find('#btn--product--new--initiate').show();
+    this.$el.find('#btn--product--details').hide();
+    this.$el.find('#btn--product--new--save').show();  
+    this.$el.find('#btn--product--new--save').text('Enregistrer modifications');  
+    
+    // display details
+    this.$el.find('#product__details').slideDown();
+    
+    // scroll to product info
+        $('html, body').animate({
+      scrollTop:this.$el.offset().top - 8
+      }, 'slow');
+      
+  },
+
+  productNewInitate: function(model) {
+    
+    this.productMode = 'new';
+    this.$el.find('#product__volume').removeAttr('disabled');
+    this.$el.find('#product__variant').removeAttr('disabled','');
+    this.$el.find('#product__number-produced').removeAttr('disabled','');
+    this.$el.find('#production-date__input').removeAttr('disabled','');
+    this.$el.find('#btn--product--details').show();
+    this.$el.find('#btn--product--details').text('Annuler');
+    this.$el.find('#btn--product--new--initiate').hide();
+    this.$el.find('#btn--product--new--save').text('Enregistrer nouveau produit');  
+    //this.$el.find('#btn--product--new--save').toggle();  
+    
+  },
+
+  productSave: function() {
+
+    if (this.productMode == 'display') {
+      var expDate = this.$el.find('#expiration-date__input').val();
+      (expDate != '') ? expDate = App.invertDate(expDate) : expDate = null;
+      var params = {
+        container: this.$el.find('#product__container').val(),
+        description: this.$el.find('#product__description').val(),
+        expiration_date: expDate
+      };
+      this.currentProduct.save(params);
+      this.displayProduct(this.currentProduct);
+      this.$el.find('#btn--product--new--save').blur();
+    }
+    
   },
 
   render: function() {
@@ -105,6 +192,5 @@ App.Views.ProductGenerator = Backbone.View.extend({
 
     return this;
   },
-  
   
 });

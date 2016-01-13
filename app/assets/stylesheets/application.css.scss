@@ -222,8 +222,10 @@
     #modify-variant {
       float: right;
     }
-    .pg-product-form {
-      //button {float: right;}
+    #Products {
+      tr.product {
+        cursor: pointer;
+      }
     }
   }
 }
