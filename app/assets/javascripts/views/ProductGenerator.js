@@ -119,7 +119,6 @@ App.Views.ProductGenerator = Backbone.View.extend({
 
   displayProduct: function(model) {
 
-    console.log('ok display product');
     this.productMode = 'display';
     this.currentProduct = model;
     
@@ -179,12 +178,13 @@ App.Views.ProductGenerator = Backbone.View.extend({
         description: this.$el.find('#product__description').val(),
         expiration_date: expDate
       };
+      var self = this;
       this.currentProduct.save(params, {
         success: function() {
           $('.product--save--alert')
               .text('Produit enregistré avec succès')
               .addClass('alert-success').slideDown();
-            this.displayProduct(this.currentProduct);
+            self.displayProduct(self.currentProduct);
         }, 
         error: function() {
           $('.product--save--alert')
@@ -208,7 +208,6 @@ App.Views.ProductGenerator = Backbone.View.extend({
         production_date: prodDate,
         expiration_date: expDate
       };
-      console.log(params);
       var self = this;
       this.currentProduct = this.products.create(params, {
         success: function() {

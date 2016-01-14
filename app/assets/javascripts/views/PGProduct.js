@@ -6,14 +6,13 @@ App.Views.PGProduct = Backbone.View.extend({
   
   template: JST['pg_product'],
 
+  initialize: function() {
+      this.model.bind('change', this.render, this);
+  },
+
   events: {
     "click":  "displayProduct",
     "click .product--delete":  "deleteProduct"
-  },
-
-  render: function () {
-    this.$el.html(this.template(this.model));
-    return this;
   },
 
   displayProduct: function() {
@@ -29,7 +28,11 @@ App.Views.PGProduct = Backbone.View.extend({
         self.remove();
       }
     });
-    //console.log(this.el);
+  },
+
+  render: function () {
+    this.$el.html(this.template(this.model));
+    return this;
   }
 
 });
