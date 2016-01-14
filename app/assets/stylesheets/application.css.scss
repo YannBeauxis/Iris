@@ -213,6 +213,9 @@
     }
   }
   #ProductGenerator {
+    .panel-body {
+      padding-bottom: 0;
+    }
     .product--save--alert {
       border-radius: 0;
       border: 0;
@@ -226,6 +229,9 @@
       #product_volume {
         max-width: 90px;
       }
+    }
+    .btn--product button {
+      margin-bottom: 6px;
     }
     #modify-variant {
       float: right;
