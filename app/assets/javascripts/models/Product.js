@@ -1,7 +1,12 @@
 App.Models.Product = Backbone.Model.extend({
   
   initialize: function() {
-    this.url = this.collection.url + '/' + this.id;
+    //this.updateUrl();
+  },
+
+  updateUrl: function() {
+    this.url = this.collection.url + '/' + this.get('id');
+    //console.log(this.url);
   },
 
   productionDateDisplay: function() {

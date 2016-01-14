@@ -119,6 +119,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
 
   displayProduct: function(model) {
 
+    console.log('ok display product');
     this.productMode = 'display';
     this.currentProduct = model;
     
@@ -135,8 +136,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
     this.$el.find('#production-date__input').attr('disabled','');
     this.$el.find('#expiration-date__input').val(App.convertDate(model.get('expiration_date')));
 
-    //date pickers
-
+    this.compute();
     
     // toggle the buttons
     this.$el.find('#btn--product--new--initiate').show();
@@ -161,16 +161,16 @@ App.Views.ProductGenerator = Backbone.View.extend({
     this.$el.find('#product__variant').removeAttr('disabled','');
     this.$el.find('#product__number-produced').removeAttr('disabled','');
     this.$el.find('#production-date__input').removeAttr('disabled','');
-    this.$el.find('#btn--product--details').show();
-    this.$el.find('#btn--product--details').text('Annuler');
+    this.$el.find('#btn--product--details').text('Annuler').show();
     this.$el.find('#btn--product--new--initiate').hide();
     this.$el.find('#btn--product--new--save').text('Enregistrer nouveau produit');  
+    this.$el.find('.product--save--alert')
+            .text('').slideUp();
     //this.$el.find('#btn--product--new--save').toggle();  
     
   },
 
   productSave: function() {
-
     if (this.productMode == 'display') {
       var expDate = this.$el.find('#expiration-date__input').val();
       (expDate != '') ? expDate = App.invertDate(expDate) : expDate = null;
@@ -179,16 +179,58 @@ App.Views.ProductGenerator = Backbone.View.extend({
         description: this.$el.find('#product__description').val(),
         expiration_date: expDate
       };
-      this.currentProduct.save(params);
-      this.displayProduct(this.currentProduct);
+      this.currentProduct.save(params, {
+        success: function() {
+          $('.product--save--alert')
+              .text('Produit enregistré avec succès')
+              .addClass('alert-success').slideDown();
+            this.displayProduct(this.currentProduct);
+        }, 
+        error: function() {
+          $('.product--save--alert')
+            .text('Erreur dans l\'enregisterement du produit')
+            .addClass('alert-danger').slideDown();
+        }
+      });
       this.$el.find('#btn--product--new--save').blur();
+    } else if (this.productMode == 'new') {
+      var prodDate = this.$el.find('#production-date__input').val();
+      (prodDate != '') ? prodDate = App.invertDate(prodDate) : prodDate = null;
+      var expDate = this.$el.find('#expiration-date__input').val();
+      (expDate != '') ? expDate = App.invertDate(expDate) : expDate = null;
+      var params = {
+        variant_id: parseInt(this.$el.find('#product__variant').val()),
+        variant: {name: this.$el.find('#product__variant option:selected').text()},
+        volume: this.$el.find('#product__volume').val()*100,
+        container: this.$el.find('#product__container').val(),
+        number_produced: parseInt(this.$el.find('#product__number-produced').val()),
+        description: this.$el.find('#product__description').val(),
+        production_date: prodDate,
+        expiration_date: expDate
+      };
+      console.log(params);
+      var self = this;
+      this.currentProduct = this.products.create(params, {
+        success: function() {
+          $('.product--save--alert')
+            .text('Produit enregistré avec succès')
+            .addClass('alert-success').slideDown();
+          self.displayProduct(self.currentProduct);
+        }, 
+        error: function(err) {
+          $('.product--save--alert')
+            .text('Erreur dans l\'enregisterement du produit')
+            .addClass('alert-danger').slideDown();
+            console.log(err);
+            App.test = false;
+        }
+      });
     }
-    
   },
 
+  
+
   render: function() {
-    
-    //this.$el.html(this.template(this.model.toJSON()));
 
     return this;
   },

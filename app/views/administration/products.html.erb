@@ -18,7 +18,7 @@
         <td><%= p.recipe.name %></td>
         <td><%= p.variant.name %></td>
         <td><%= p.volume %></td>
-        <td><%= p.user.name %></td>
+        <td><%= p.user.nil? ? nil : p.user.name%></td>
         <td><%= link_to 'Edit', edit_recipe_product_path(p.recipe, p)%></td>
      </tr>
 

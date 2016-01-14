@@ -213,6 +213,14 @@
     }
   }
   #ProductGenerator {
+    .product--save--alert {
+      border-radius: 0;
+      border: 0;
+      margin: 0;
+      padding: 8px;
+      text-align: center;
+      display: none;
+    }
     .form-group {
       padding-right: 8px;
       #product_volume {

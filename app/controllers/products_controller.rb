@@ -28,14 +28,17 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @product.user = current_user
     @variant = @product.variant#Variant.find(id: params[:variant_id])
     @variant.products << @product
 
-    if @variant.save
-      redirect_to recipe_product_path(@recipe,@product)
-    else
-      render 'new'
-    end
+    render :json => { :success => @product.save && @variant.save }
+  
+    #if @variant.save
+    #  redirect_to recipe_product_path(@recipe,@product)
+    #else
+    #  render 'new'
+    #end
   end
 
   def update
@@ -46,8 +49,10 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
- 
-    redirect_to recipe_path(@recipe)
+    
+    render :json => { :success => @product.destroy }
+    
+    #redirect_to recipe_path(@recipe)
   end
 
   private

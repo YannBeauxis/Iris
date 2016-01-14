@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
   belongs_to :variant
   belongs_to :user
-  validates :volume, presence: true
+  validates :volume, :user, :container, :number_produced, presence: true
   has_one :recipe, through: :variant
   
   def recipe=(r)
