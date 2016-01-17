@@ -7,7 +7,12 @@ class IngredientTypesController < ApplicationController
     #  format.json { render :json => @ingredient_types }
     #  format.html
     #end
-    respond_with(@ingredient_types)
+    render json: IngredientType.all.to_json
+    #respond_with(@ingredient_types)
+  end
+
+  def index_category_grid
+    render json: IngredientType.all.to_json
   end
 
   def show

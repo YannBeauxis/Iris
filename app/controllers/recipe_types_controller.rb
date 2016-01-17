@@ -3,6 +3,7 @@ class RecipeTypesController < ApplicationController
   before_action :get_list
 
   def index
+    render json: RecipeType.all.to_json
   end
 
   def show

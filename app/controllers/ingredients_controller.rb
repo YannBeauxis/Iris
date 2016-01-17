@@ -3,21 +3,19 @@ class IngredientsController < ApplicationController
   before_action :is_used_by_other, only: [:edit, :update, :destroy]
   
   def index
-
-    @ingredient_types = IngredientType.all
-    
-    @ingredients = []
-    
-    Ingredient.all.find_each do |i|
-      @ingredients << {
-        id: i.id,
-        name: i.name,
-        ingredient_type_id: i.ingredient_type_id,
-        stock: i.quantity_in_stock(current_user)}
+    respond_to do |format|
+      format.html
+      format.json { 
+        @ingredients = []
+        Ingredient.all.find_each do |i|
+          @ingredients << {
+            id: i.id,
+            name: i.name,
+            ingredient_type_id: i.ingredient_type_id,
+            stock: i.quantity_in_stock(current_user)}
+        end
+        render :json => @ingredients }
     end
-    
-    #respond_with(@ingredients)
-    
   end
 
   def show
@@ -63,30 +61,6 @@ class IngredientsController < ApplicationController
     @ingredient.destroy
  
     redirect_to ingredients_path
-  end
-
-  def get_table
-    
-    ct = CategoryTable.new(
-      categories: {
-        name: :type,
-        collection: IngredientType.all},
-      items: Ingredient.all,
-      columns: [
-        { id: 'price',
-          header: 'prix',
-          #category: {method: 'price_by_unit_display', method_params: current_user },
-          item: {method: 'price_by_unit_display', params: current_user }},
-        { id: 'recipes',
-          header: '#recettes',
-          item: {method: 'recipes_count', params: current_user }},
-        { id: 'stock',
-          header: 'stock',
-          item: {method: 'quantity_in_stock', params: current_user }}]
-    )
-    
-    render :json => ct.display_table
-    
   end
 
   private

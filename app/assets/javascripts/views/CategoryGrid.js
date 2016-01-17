@@ -31,11 +31,19 @@ App.Views.CategoryGrid = Backbone.View.extend({
     this.listenTo(this.options.mainView.categories, 'add', this.addOneCategory);
     //this.listenTo(this.options.mainView.items, 'add', this.addOneItem);    
 
-    this.categories.add(this.options.category.rawData);
-    this.items.add(this.options.item.rawData);    
+    var self = this;
+    this.categories.fetch({success: function() {
+      self.items.fetch({success: function() {
+        self.items.trigger('sortByName');
+        self.sortByName(this.$el).show();
+      }});
+    }});
 
-    this.items.trigger('sortByName');
-    this.sortByName(this.$el).show();
+    //this.categories.add(this.options.category.rawData);
+    //this.items.add(this.options.item.rawData);    
+
+
+   
     
   },
   

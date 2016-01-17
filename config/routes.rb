@@ -24,12 +24,10 @@ Rails.application.routes.draw do
   #devise_scope :user do
   #  match '/sign-in' => "devise/sessions#new", :as => :login, via: :get
   #end
-  
+
    resources :ingredient_types do
      resources :container_references
    end
-
-   get 'ingredients/get_table', to: 'ingredients#get_table'
 
    resources :ingredients do
      match '/add_ingredient', to: 'recipes#add_ingredient', via: :post

@@ -2,20 +2,20 @@ class RecipesController < ApplicationController
   before_action :check_user, except: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   def index
-    
-    @recipe_types = RecipeType.all
-    
-    @recipes = []
-    
-    Recipe.all.find_each do |r|
-      @recipes << {
-        id: r.id,
-        name: r.name,
-        recipe_type_id: r.recipe_type_id,
-        owner: r.user.name,
-        is_current_user: r.user == current_user}
+    respond_to do |format|
+      format.html
+      format.json { 
+        @recipes = []
+        Recipe.all.find_each do |r|
+          @recipes << {
+            id: r.id,
+            name: r.name,
+            recipe_type_id: r.recipe_type_id,
+            owner: r.user.name,
+            is_current_user: r.user == current_user}
+        end
+        render :json => @recipes }
     end
-
   end
 
   def show
