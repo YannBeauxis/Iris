@@ -3,11 +3,18 @@ class IngredientTypesController < ApplicationController
   before_action :get_list
 
   def index
-    #respond_to do |format|
-    #  format.json { render :json => @ingredient_types }
-    #  format.html
-    #end
-    render json: IngredientType.all.to_json
+    if params.has_key?(:recipe_type_id)
+      @ingredient_types = IngredientType
+        .joins(:recipe_types)
+        .where('ingredient_types_recipe_types.recipe_type_id = ?', params[:recipe_type_id])
+    else
+      @ingredient_types = Ingredient.all
+    end
+    respond_to do |format|
+      format.json { render :json => @ingredient_types }
+      format.html
+    end
+    #render json: @ingredient_types.to_json
     #respond_with(@ingredient_types)
   end
 

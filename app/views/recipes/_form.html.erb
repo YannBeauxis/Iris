@@ -1,23 +1,38 @@
-<%= form_for @recipe do |f| %>
-  <p>
-    <%= f.label 'Nom' %><br>
-    <%= f.text_field :name %>
-  </p>
+<%= simple_form_for @recipe, 
+  html: { class: 'form-horizontal' },  
+  wrapper: :horizontal_form  do |f| %>
 
-  <p>
-    <%= f.label 'Type de recette' %><br>
-    <%= f.collection_select :recipe_type_id, @recipe_types, :id, :name %>
-  </p>
+  <%= f.input :name, label: 'Nom'%>
+
+  <%= f.input :recipe_type_id, 
+    collection: RecipeType.all, 
+    include_blank: false, 
+    label: 'Type de recette', 
+    disabled: !@recipe_type_select
+  %>
 
   <% if current_user.admin? then%>
+    <%= f.input :user_id, collection: User.all, include_blank: false, label: 'Propriétaire' %>
     <p>
       <%= f.label 'Propriétaire' %><br>
       <%= f.collection_select(:user_id, User.all, :id, :name, {:selected => current_user.id}) %>
     </p>
   <% end %>
 
-  <p>
-    <%= f.submit 'Enregistrer'%>
-  </p>
+  <% if @variant_base_select %>
+    <%= f.input :variant_base_id, 
+      collection: @variants, 
+      include_blank: false, 
+      label: 'Variante de base', 
+      disabled: !@variant_base_select 
+    %>
+  <% end %>
+  
+  <div class="form-group"> 
+    <div class="col-sm-offset-3 col-sm-9">
+      <%= f.button :submit, 'Enregistrer' %>
+      <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+    </div>
+  </div>
 
 <% end %>

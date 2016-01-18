@@ -22,7 +22,7 @@
 <% end %>
 
 <% if params[:action] == 'show' then %>
-  <%= menu_item(menu: :content_menu, path: edit_recipe_path(@recipe), label: 'Modifier',
+  <%= menu_item(menu: :content_menu, path: edit_recipe_path(@recipe), label: 'Paramètres',
        can_condition: {action: :update, object: @recipe}) %>
   <%= menu_item(menu: :content_menu, path: recipe_path(@recipe), label: 'Supprimer', 
          link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cette recette ?' }},
@@ -36,17 +36,4 @@
     <%= menu_item(menu: :content_menu, 
          path: new_recipe_variant_path(@recipe), label: 'Ajouter variante',
        can_condition: {action: :update, object: @recipe}) %>
-  <%= menu_item(menu: :content_menu, 
-       path: new_recipe_product_path(@recipe), label: 'Ajouter produit',
-       can_condition: {action: :update, object: @recipe}) %>
-<% end %>
-
-<% if params[:action] == 'new' then %>
-  <%= menu_item(menu: :content_menu, 
-     path: recipes_path, label: 'Annuler') %>
-<% end %>
-
-<% if params[:action] == 'edit' then %>
-  <%= menu_item(menu: :content_menu, 
-     path: recipe_path(@recipe), label: 'Annuler') %>
 <% end %>

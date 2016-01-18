@@ -2,6 +2,8 @@ App.Views.CategoryGrid = Backbone.View.extend({
   
   initialize: function(options) {
     
+    App.currentGrid = this;
+    
     this.options = options;
     this.options['mainView'] = this;
 
@@ -30,21 +32,40 @@ App.Views.CategoryGrid = Backbone.View.extend({
     
     this.listenTo(this.options.mainView.categories, 'add', this.addOneCategory);
     //this.listenTo(this.options.mainView.items, 'add', this.addOneItem);    
+   
+    this.loadData();
+   
+   
+  },
+  
+    events: {
+    "change #recipe_recipe_type_id":  "this.loadData"
+  },
 
-    var self = this;
-    this.categories.fetch({success: function() {
-      self.items.fetch({success: function() {
-        self.items.trigger('sortByName');
-        self.sortByName(this.$el).show();
-      }});
-    }});
-
-    //this.categories.add(this.options.category.rawData);
-    //this.items.add(this.options.item.rawData);    
-
-
+  
+  loadData : function() {
    
     
+    if (App.categoryFitler != null) {
+      //categoryParams = {data: {}};
+      var categoryParams = {};
+      categoryParams[App.categoryFitler.param] =
+        $(App.categoryFitler.selector).val();
+     categoryParams = $.param(categoryParams);
+    }
+    
+    var self = App.currentGrid;
+    self.$el.hide().children().remove();
+    self.categories.reset();
+    self.items.reset();
+    self.categories.fetch({
+      data: categoryParams, 
+      success: function() {
+        self.items.fetch({success: function() {
+          self.items.trigger('sortByName');
+          self.sortByName(self.$el).show();
+        }});
+    }});
   },
   
   addOneCategory: function(category) {

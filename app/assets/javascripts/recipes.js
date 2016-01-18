@@ -1,8 +1,11 @@
 var ready = function() {
 
   switch(App.launch) {
-    case 'recipeGrid':
-      recipeGrid();
+    case 'recipeIndex':
+      recipeIndex();
+      break;
+    case 'recipeNew':
+      recipeNew();
       break;
     case 'productGenerator':
       productGenerator();
@@ -11,19 +14,17 @@ var ready = function() {
 
 };
 
-var recipeGrid = function() {
+var recipeIndex = function() {
 
   var options = {
     mainEl: '#CategoryGrid', 
     category: {
       collection: App.Collections.RecipeTypes,
       model: App.Models.RecipeType,
-      rawData: App.recipeTypesRaw
     },
     item: {
       collection: App.Collections.Recipes,
       model: App.Models.Recipe,
-      rawData: App.recipesRaw
     },
     templates: {
       category: 'category_panel_std',
@@ -33,9 +34,32 @@ var recipeGrid = function() {
     contextMenu: App.Views.RecipesContextMenu
   };
   
-  //console.log(options);
-  
   App.recipesApp = new App.Views.CategoryGrid(options);
+  
+};
+
+var recipeNew = function() {
+
+  var options = {
+    mainEl: '#CategoryGrid', 
+    category: {
+      collection: App.Collections.IngredientTypes,
+      model: App.Models.IngredientType
+    },
+    item: {
+      collection: App.Collections.Ingredients,
+      model: App.Models.Ingredient
+    },
+    templates: {
+      category: 'category_panel_std',
+      categoryItemsTable: 'ingredients_table',
+      item: 'ingredient_row'
+    },
+    contextMenu: App.Views.IngredientsContextMenu
+  };  
+  App.recipesApp = new App.Views.CategoryGrid(options);
+  
+  $('#recipe_recipe_type_id').change(App.recipesApp.loadData);
   
 };
 

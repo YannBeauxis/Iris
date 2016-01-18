@@ -49,11 +49,16 @@ class RecipesController < ApplicationController
   def new
     @recipe = Recipe.new
     init_form
+    @recipe_type_select = true
+    @variant_base_select = false
   end
 
   def edit
     init_form
     @recipe = Recipe.find(params[:id])
+    @variants = @recipe.variants
+    @recipe_type_select = false
+    @variant_base_select = (@variants.length > 1)
   end
 
   def create
@@ -154,7 +159,8 @@ class RecipesController < ApplicationController
   end
 
     def recipe_params
-      p = [:name,:recipe_type_id, :ingredient_id, :variant_id, :variant_name]
+      p = [:name,:recipe_type_id, :ingredient_id, :variant_name, :variant_base_id]
+      p << :variant_id if :action == 'create'
       if current_user.admin? then
         p << :user_id
       end

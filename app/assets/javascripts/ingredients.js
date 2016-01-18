@@ -4,13 +4,11 @@ var ready = function() {
     mainEl: '#CategoryGrid', 
     category: {
       collection: App.Collections.IngredientTypes,
-      model: App.Models.IngredientType,
-      rawData: App.ingredientTypesRaw
+      model: App.Models.IngredientType
     },
     item: {
       collection: App.Collections.Ingredients,
-      model: App.Models.Ingredient,
-      rawData: App.ingredientsRaw
+      model: App.Models.Ingredient
     },
     templates: {
       category: 'category_panel_std',

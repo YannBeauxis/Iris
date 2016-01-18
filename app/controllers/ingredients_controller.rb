@@ -3,11 +3,19 @@ class IngredientsController < ApplicationController
   before_action :is_used_by_other, only: [:edit, :update, :destroy]
   
   def index
+    if params.has_key?(:recipe_type_id)
+      @ingredients_scope = Ingredient
+        .joins(type: :recipe_types)
+        .where('ingredient_types_recipe_types.recipe_type_id = ?', params[:recipe_type_id])
+    else
+      @ingredients_scope = Ingredient.all
+    end
+
     respond_to do |format|
       format.html
       format.json { 
         @ingredients = []
-        Ingredient.all.find_each do |i|
+        @ingredients_scope.find_each do |i|
           @ingredients << {
             id: i.id,
             name: i.name,
@@ -74,7 +82,7 @@ class IngredientsController < ApplicationController
     end
 
     def ingredient_params
-      params.require(:ingredient).permit(:name, :ingredient_type_id, :density, :scope)
+      params.require(:ingredient).permit(:name, :ingredient_type_id, :density, :scope, :recipe_type_id)
     end
 
 
