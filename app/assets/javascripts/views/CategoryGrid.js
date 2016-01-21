@@ -45,14 +45,15 @@ App.Views.CategoryGrid = Backbone.View.extend({
   
   loadData : function() {
    
-    
-    if (App.categoryFitler != null) {
-      //categoryParams = {data: {}};
-      var categoryParams = {};
-      categoryParams[App.categoryFitler.param] =
-        $(App.categoryFitler.selector).val();
-     categoryParams = $.param(categoryParams);
+    var categoryParams = {}; 
+    if (App.categoryFilter != null) {
+      categoryParams[App.categoryFilter.param] =
+        $(App.categoryFilter.selector).val();
     }
+    if (App.recipeId != null) {
+      categoryParams['recipe_id'] = App.recipeId;
+    }
+    categoryParams = $.param(categoryParams);
     
     var self = App.currentGrid;
     self.$el.hide().children().remove();
@@ -61,10 +62,12 @@ App.Views.CategoryGrid = Backbone.View.extend({
     self.categories.fetch({
       data: categoryParams, 
       success: function() {
-        self.items.fetch({success: function() {
-          self.items.trigger('sortByName');
-          self.sortByName(self.$el).show();
-        }});
+        self.items.fetch({
+          data: categoryParams, 
+          success: function() {
+            self.items.trigger('sortByName');
+            self.sortByName(self.$el).show();
+          }});
     }});
   },
   

@@ -18,8 +18,6 @@ var ready = function() {
     contextMenu: App.Views.IngredientsContextMenu
   };
   
-  //console.log(options);
-  
   App.ingredientsApp = new App.Views.CategoryGrid(options);
   
 };

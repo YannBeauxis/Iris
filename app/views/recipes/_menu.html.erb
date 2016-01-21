@@ -1,7 +1,6 @@
 <% if params[:action] == 'index' then %>
   <% if params[:scope] != 'My' then%>
     <%= menu_item(menu: :content_menu, 
-         #label: 'Mes recettes', path: recipes_path(scope: 'My'), 
          label: 'Mes recettes', path: '#', link_param: {class: 'current-user-toggle'},
          can_condition: {action: :create, object: Recipe}) 
     %>
@@ -22,17 +21,11 @@
 <% end %>
 
 <% if params[:action] == 'show' then %>
-  <%= menu_item(menu: :content_menu, path: edit_recipe_path(@recipe), label: 'Paramètres',
+  <%= menu_item(menu: :content_menu, path: edit_recipe_path(@recipe), label: 'Modifer',
        can_condition: {action: :update, object: @recipe}) %>
   <%= menu_item(menu: :content_menu, path: recipe_path(@recipe), label: 'Supprimer', 
          link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cette recette ?' }},
        can_condition: {action: :delete, object: @recipe}) %>
-  <%= menu_item(menu: :content_menu, 
-       path: recipe_ingredient_candidates_path(@recipe), label: 'Ajouter ingrédient',
-       can_condition: {action: :update, object: @recipe}) %>
-  <%= menu_item(menu: :content_menu, 
-       path: recipe_delete_list_path(@recipe), label: 'Retirer ingrédient',
-       can_condition: {action: :update, object: @recipe}) %> 
     <%= menu_item(menu: :content_menu, 
          path: new_recipe_variant_path(@recipe), label: 'Ajouter variante',
        can_condition: {action: :update, object: @recipe}) %>

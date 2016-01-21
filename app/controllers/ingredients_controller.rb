@@ -11,16 +11,26 @@ class IngredientsController < ApplicationController
       @ingredients_scope = Ingredient.all
     end
 
+    if params.has_key?(:recipe_id)
+      @recipe = Recipe.find(params[:recipe_id])
+    end
+
     respond_to do |format|
       format.html
       format.json { 
         @ingredients = []
         @ingredients_scope.find_each do |i|
+          if params.has_key?(:recipe_id)
+            selected = !@recipe.ingredients.find_by_id(i.id).nil?
+          else
+            selected = false
+          end
           @ingredients << {
             id: i.id,
             name: i.name,
             ingredient_type_id: i.ingredient_type_id,
-            stock: i.quantity_in_stock(current_user)}
+            stock: i.quantity_in_stock(current_user),
+            selected: selected}
         end
         render :json => @ingredients }
     end

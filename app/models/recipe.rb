@@ -52,13 +52,6 @@ class Recipe < ActiveRecord::Base
     IngredientType.joins(ingredients: :recipes).where('recipe_id = '+ self.id.to_s).group('ingredient_types.id')
   end
 
-  def ingredient_candidates
-    Ingredient.where.not(id: self.ingredients)
-              .joins('INNER JOIN ingredient_types ON ingredients.ingredient_type_id = ingredient_types.id')
-              .joins('INNER JOIN ingredient_types_recipe_types ON ingredients.ingredient_type_id = ingredient_types_recipe_types.ingredient_type_id')
-              .where(ingredient_types_recipe_types: {recipe_type_id: self.type})
-  end
-
   def update_proportions
     self.variants.each { |v| v.update_proportions }
   end

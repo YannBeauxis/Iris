@@ -8,7 +8,7 @@ class IngredientTypesController < ApplicationController
         .joins(:recipe_types)
         .where('ingredient_types_recipe_types.recipe_type_id = ?', params[:recipe_type_id])
     else
-      @ingredient_types = Ingredient.all
+      @ingredient_types = IngredientType.all
     end
     respond_to do |format|
       format.json { render :json => @ingredient_types }

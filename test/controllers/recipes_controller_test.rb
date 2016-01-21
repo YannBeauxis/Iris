@@ -59,12 +59,4 @@ class RecipesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "get_ingredients_candidates" do
-    u = users(:one)
-    sign_in u
-    r = recipes(:one)
-    get :ingredient_candidates, recipe_id: r.id
-    assert_response :success
-  end
-
 end

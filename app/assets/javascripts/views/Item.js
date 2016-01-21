@@ -17,7 +17,7 @@ App.Views.Item= Backbone.View.extend({
 
   events: {
     "click a":  "noDisplayDetails",
-    "click":  "displayDetails"
+    "click":  "clickItem"
   },
 
   href: function (){
@@ -34,10 +34,15 @@ App.Views.Item= Backbone.View.extend({
     return true;
   },  
   
-  displayDetails: function() {
+  clickItem: function(e) {
     // to open sub line for action
     //this.$el.find('.detail').slideToggle();
-    window.location = this.href();
+    if (App.cgMode =='index') {
+      window.location = this.href();
+    } else if (App.cgMode =='form') {
+      //var checkBoxe = this.$el.find('input.select_ingredient');
+      //checkBoxe.prop("checked", !checkBoxe.prop("checked"));
+    }
   }
   
 });

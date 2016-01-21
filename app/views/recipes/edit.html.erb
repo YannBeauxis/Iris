@@ -1,9 +1,5 @@
-<%= render 'nav_resume' %>
-<%= render 'header' %>
-<%= render 'menu' %>
-
-<% content_for :item_content do %>
-
-  <%= render 'form' %>
-
+<% content_for :data_js do %>
+  App.recipeId = <%= @recipe.id %>
 <% end %>
+
+<%= render 'form' %>

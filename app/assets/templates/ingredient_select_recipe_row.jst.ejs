@@ -1,0 +1,9 @@
+<td>
+  <input type="checkbox" 
+    class="select_ingredient" 
+    name="ingredients_id[]" 
+    value="<%= this.model.get('id') %>" 
+    <%= this.model.displayChecked() %>
+  >
+  <%= this.model.get('name') %>
+</td>

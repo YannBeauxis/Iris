@@ -18,6 +18,10 @@ App.Models.Ingredient = Backbone.Model.extend({
 
   undoFilter: function() {
     this.trigger('show', this);
+  },
+
+  displayChecked: function() {
+    if (this.get('selected')) {return 'checked';}
   }
 
 });

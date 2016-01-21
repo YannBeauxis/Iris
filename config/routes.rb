@@ -30,21 +30,13 @@ Rails.application.routes.draw do
    end
 
    resources :ingredients do
-     match '/add_ingredient', to: 'recipes#add_ingredient', via: :post
      resources :containers do
        match '/update_with_mass', to: 'containers#update_with_mass', via: :patch
      end
    end
 
   resources :recipes do
-    get '/ingredient_candidates', to: 'recipes#ingredient_candidates', as: 'ingredient_candidates'
-    get '/delete_list', to: 'recipes#delete_list', as: 'delete_list'
-    
-    resources :ingredients do
-       match '/add_ingredient', to: 'recipes#add_ingredient', via: :post
-    end
-
-    match '/delete_ingredient', to: 'recipes#delete_ingredient', via: :post
+    #get '/delete_list', to: 'recipes#delete_list', as: 'delete_list'
 
     resources :variants do
       match '/update_proportions', to: 'variants#update_proportions', via: :patch

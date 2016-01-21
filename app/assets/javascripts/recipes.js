@@ -4,8 +4,8 @@ var ready = function() {
     case 'recipeIndex':
       recipeIndex();
       break;
-    case 'recipeNew':
-      recipeNew();
+    case 'recipeForm':
+      recipeForm();
       break;
     case 'productGenerator':
       productGenerator();
@@ -16,6 +16,9 @@ var ready = function() {
 
 var recipeIndex = function() {
 
+  //cg mode to specify some actions
+  App.cgMode = 'index';
+  
   var options = {
     mainEl: '#CategoryGrid', 
     category: {
@@ -38,7 +41,10 @@ var recipeIndex = function() {
   
 };
 
-var recipeNew = function() {
+var recipeForm = function() {
+
+  //cg mode to specify some actions
+  App.cgMode = 'form';
 
   var options = {
     mainEl: '#CategoryGrid', 
@@ -52,8 +58,8 @@ var recipeNew = function() {
     },
     templates: {
       category: 'category_panel_std',
-      categoryItemsTable: 'ingredients_table',
-      item: 'ingredient_row'
+      categoryItemsTable: 'ingredients_select_recipe_table',
+      item: 'ingredient_select_recipe_row'
     },
     contextMenu: App.Views.IngredientsContextMenu
   };  
