@@ -18,7 +18,7 @@
 
 <% elsif params[:action] == 'edit' then %>    
   <%= menu_item(menu: :content_menu, 
-        path: recipe_variant_path(@recipe,@variant), label: 'Retour variante') 
+        path: recipe_path(@recipe), label: 'Retour recette') 
   %>
   
 <% end%> 
