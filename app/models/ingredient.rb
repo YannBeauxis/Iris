@@ -1,5 +1,5 @@
 class Ingredient < ActiveRecord::Base
-  has_and_belongs_to_many :recipes, -> { uniq }
+  #has_and_belongs_to_many :recipes, -> { uniq }
   has_and_belongs_to_many :variants, -> { uniq }
   belongs_to :type, :class_name => 'IngredientType', :foreign_key => 'ingredient_type_id'
   has_many :containers, :dependent => :restrict_with_error
@@ -7,7 +7,11 @@ class Ingredient < ActiveRecord::Base
   has_many :container_references, through: :type
   validates :type, :name, presence: true
 
-  before_destroy :check_for_recipes
+  before_destroy :check_for_variants
+
+  def recipes
+    Recipe.joins(variants: :ingredients).where('ingredients.id = ?', self.id).uniq
+  end
 
   def recipes_count(*user)
     if user.any? then
@@ -51,9 +55,9 @@ class Ingredient < ActiveRecord::Base
     @warehouse.price_by_unit
   end
 
-  def check_for_recipes
-    if recipes.count > 0
-      errors[:base] << "cannot delete while receipes use this ingredient"
+  def check_for_variants
+    if variants.count > 0
+      errors[:base] << "cannot delete while recipes use this ingredient"
       return false
     end
   end

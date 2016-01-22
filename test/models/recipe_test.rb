@@ -19,6 +19,8 @@ class RecipeTest < ActiveSupport::TestCase
   
   test "ingredients_types" do
     r=recipes(:one)
+    r.variant_base_id = variants(:one).id
+    r.save
     it = ingredient_types(:one)
     assert_includes r.ingredient_types, it
   end
@@ -26,6 +28,8 @@ class RecipeTest < ActiveSupport::TestCase
   test "duplicate_variant" do
     r = recipes(:proportions)
     v_origin = variants(:proportions)
+    r.variant_base_id = v_origin.id
+    r.save
     v_copy = r.duplicate_variant(v_origin,'Copy of variant')
     assert v_copy.name == 'Copy of variant'
     assert_not v_copy == v_origin, "should be a copy, not the original"

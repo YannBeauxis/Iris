@@ -37,9 +37,10 @@ class IngredientsControllerTest < ActionController::TestCase
     sign_in u
     i = ingredients(:iep_shared)
     @request.headers["HTTP_REFERER"] = "http://test.host/ingredients"
-    patch(:update, id: i, ingredient: {name: 'iep_shared updated'})
+    name = 'iep_shared updated'
+    patch(:update, id: i, ingredient: {name: name})
     i = Ingredient.find(i.id)
-    assert_not i.name == 'iep_shared updated', i.name
+    assert_not i.name == name, i.name
   end
 
   test "ingredient is not editable if shared use container" do

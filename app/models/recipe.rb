@@ -1,5 +1,5 @@
 class Recipe < ActiveRecord::Base
-  has_and_belongs_to_many :ingredients, -> { uniq }
+  #has_and_belongs_to_many :ingredients, -> { uniq }
   has_many :variants, dependent: :destroy, autosave: :true 
   has_many :products, through: :variants
   belongs_to :type, :class_name => 'RecipeType', :foreign_key => 'recipe_type_id'
@@ -48,8 +48,12 @@ class Recipe < ActiveRecord::Base
     !self.variant_base.nil? ? self.variant_base.products.first : nil
   end
 
+  def ingredients
+    self.variant_base.ingredients
+  end
+
   def ingredient_types
-    IngredientType.joins(ingredients: :recipes).where('recipe_id = '+ self.id.to_s).group('ingredient_types.id')
+    IngredientType.joins(ingredients: :variants).where('variant_id = '+ self.variant_base_id.to_s).group('ingredient_types.id')
   end
 
   def update_proportions

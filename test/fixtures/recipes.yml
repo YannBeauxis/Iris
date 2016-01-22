@@ -4,71 +4,68 @@ one:
   user: one
   name: 'One'
   type: one
-  ingredients: one
+  #ingredients: one
 
 two:
   user: one
   name: 'For recipe type delete'
   type: three 
-  ingredients: one
+  #ingredients: one
   
 ingredient_candidates:
   user: one
   name: 'For ingredient Candidate'
   type: ingredient_candidates
-  ingredients: ingredient_candidates_include_already
+  #ingredients: ingredient_candidates_include_already
   
 variant_delete:
   user: one
   name: 'For variant delete wth recipe'
   type: one 
-  ingredients: one
+  #ingredients: one
   
 not_delete_if_recipe:
   user: one
   name: 'not delete if recipe'
   type: one
-  ingredients: not_delete_if_recipe
+  #ingredients: not_delete_if_recipe
   
 create_proportions:
   user: one
   name: 'create_proportions'
   type: create_proportions
-  ingredients: create_proportions_1_1, create_proportions_1_2, create_proportions_2_1, create_proportions_2_2
+  #ingredients: create_proportions_1_1, create_proportions_1_2, create_proportions_2_1, create_proportions_2_2
   
 delete_recipe_ingredient:
   user: one
   name: 'delete_recipe_ingredient'
   type: one
-  ingredients: one, delete_recipe_ingredient
-#  tagada: 'test'
   
 delete_with_user:
   user: delete_container_recipe
   name: 'One'
   type: one
-  ingredients: one
+  #ingredients: one
   
 proportions:
   user: producteur
   name: 'proportions'
   type: proportions
-  ingredients: proportions_0, proportions_1, proportions_2, proportions_3
+  #variant_base_id: 1
+  #ingredients: proportions_0, proportions_1, proportions_2, proportions_3
 
 iep_main:
   user: iep_main
   name: 'iep_main'
   type: one
-  ingredients: iep_solo, iep_shared
   
 iep_other:
   user: iep_other
   name: 'iep_other'
   type: one
-  ingredients: iep_shared
 
 product_index:
   user: one
   name: 'product_index'
   type: one 
-  ingredients: one
+  #ingredients: one
