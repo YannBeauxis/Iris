@@ -5,7 +5,7 @@ class Recipe < ActiveRecord::Base
   belongs_to :type, :class_name => 'RecipeType', :foreign_key => 'recipe_type_id'
   belongs_to :user
   validates :user, :type, :name, presence: true
-  after_save :update_proportions
+  #after_save :update_proportions
 
   after_create :variant_base_create
 
@@ -60,6 +60,7 @@ class Recipe < ActiveRecord::Base
     
     v_copy = self.variants.create! do |v|
       v.name = name
+      v.ingredients = self.ingredients
     end
    
     v_copy.proportions.each do |p|
@@ -74,6 +75,7 @@ class Recipe < ActiveRecord::Base
       end
     end
 
+    v_copy.update_proportions
     self.save
 
     return v_copy

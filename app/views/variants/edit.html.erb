@@ -46,4 +46,10 @@
   <%= f.submit 'Modifier proportions' %>
   <% end %>
 
+  <ul>
+    <% @variant.ingredients.each do |i| %>
+      <li><%= i.name %></li>
+    <% end %>
+  </ul>
+
 <% end %>

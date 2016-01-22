@@ -19,7 +19,8 @@ variant2proportion_delete:
 proportions:
   name: 'proportions'
   recipe: proportions
-  
+  ingredients: proportions_0, proportions_1, proportions_2, proportions_3
+
 product_index:
   name: 'product_index'
   recipe: product_index

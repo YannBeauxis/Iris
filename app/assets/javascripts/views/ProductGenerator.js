@@ -16,7 +16,6 @@ App.Views.ProductGenerator = Backbone.View.extend({
     var variantSelectEl = this.$el.find('#product__variant');
     this.variantSelect= new App.Views.PGVariantSelect({el: variantSelectEl, collection: this.variants});
     //select the base variant
-    this.variantSelect.focusBase();
 
     //Create Table view with ingredient types as collection
     var tableEl = this.$el.find('.table-quantities');
@@ -44,6 +43,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
     this.ingredientTypes.add(App.productGeneratorRaw.ingredientTypes);
     this.ingredients.add(App.productGeneratorRaw.ingredients);
     this.variants.add(App.productGeneratorRaw.variants);
+    this.variantSelect.focusBase();
     this.products.fetch();
 
     //default parameters

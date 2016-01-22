@@ -27,6 +27,7 @@ class VariantsController < ApplicationController
   def create
 
     @variant = Variant.new(variant_params)
+    @variant.ingredients = @recipe.ingredients
     @recipe.variants << @variant
 
     if @recipe.save

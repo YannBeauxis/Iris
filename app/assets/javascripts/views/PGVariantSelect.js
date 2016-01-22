@@ -17,7 +17,9 @@ App.Views.PGVariantSelect = Backbone.View.extend({
   
   //to select base variant
   focusBase: function() {
-    if (this.base) {this.$el.val(this.base);}
+    if (this.base) {
+      this.$el.val(this.base);
+      }
   }
   
 });

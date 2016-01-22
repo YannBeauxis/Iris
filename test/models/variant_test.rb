@@ -15,9 +15,11 @@ class VariantTest < ActiveSupport::TestCase
     i = ingredients(:delete_recipe_ingredient)
     v = r.variants.create do |vr|
       vr.name = "Delete recipe ingredient"
+      vr.ingredients = r.ingredients
     end
-    r.ingredients.destroy(i)
-    r.save
+    v.ingredients.destroy(i)
+    v.update_proportions
+    v.save
     assert v.proportions.count == 2, 
       v.proportions.count.to_s + ' Proportion associated to an ingredient should be deleted when its ingredient is'
   end
@@ -26,9 +28,10 @@ class VariantTest < ActiveSupport::TestCase
     r = recipes(:create_proportions)
     v = r.variants.create! do |vr|
       vr.name = "proportion sum"
+      vr.ingredients = r.ingredients
     end
     assert v.proportions.count == 6, 
-      'proportions.count error'
+      'proportions.count error ' + v.proportions.count.to_s
     s = 0
     v.proportions.all.each { |p| s+=p.value }
     assert s == 30000,

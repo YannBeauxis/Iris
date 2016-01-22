@@ -6,7 +6,7 @@ class ProportionCompute
 
   def update
   #Create new proportions
-    [@variant.recipe.ingredient_types, @variant.recipe.ingredients].each do |c|
+    [@variant.ingredient_types, @variant.ingredients].each do |c|
       c.each do |it|
         if @variant.proportions.find_by(composant: it).nil?
           @variant.proportions.create! do |p|
@@ -17,8 +17,8 @@ class ProportionCompute
       end
     end
     
-  #Remove proportions with composant no longer in recipe
-    dic_composant_type = {'Ingredient' => @variant.recipe.ingredients, 'IngredientType' => @variant.recipe.ingredient_types}
+  #Remove proportions with composant no longer in variant
+    dic_composant_type = {'Ingredient' => @variant.ingredients, 'IngredientType' => @variant.ingredient_types}
     @variant.proportions.each do |p|
     type_list = dic_composant_type[p.composant_type]
       if type_list.find_by(id: p.composant.id).nil? then
@@ -51,8 +51,8 @@ class ProportionCompute
       end
 
     # Ingredients
-      @variant.recipe.ingredient_types.each do |it|
-        pi = Proportion.where('variant_id = ' + @variant.id.to_s)
+      @variant.ingredient_types.each do |it|
+        pi = Proportion.where('proportions.variant_id = ' + @variant.id.to_s)
                    .joins(variant: :ingredients)
                    .where(composant_type: 'Ingredient')
                    .where('ingredients.id = composant_id')
