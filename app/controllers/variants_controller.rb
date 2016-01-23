@@ -81,7 +81,7 @@ class VariantsController < ApplicationController
   
   def check_user
     #if (current_user != @recipe.user) and !current_user.admin? then
-    if cannot?(:update, @recipe) then
+    if cannot?(:update, @variant) then
       flash[:message] = "Vous n'avez pas les autorisations nécessaires"
       redirect_to recipe_path(@recipe)
     end

@@ -22,7 +22,7 @@ class Ability
 
     if user.role.rank  <= 3 #Permissions for 'producteur'
       can :manage, Recipe, :user_id => user.id
-      can :manage, [Variant, Product], :recipe => {:user_id => user.id}
+      can :manage, [Variant, Product], :user_id => user.id#:recipe => {:user_id => user.id}
       can :create, [Variant, Product] #additional conditions in controller
       can :manage, Container, :user_id => user.id
       can :manage, Ingredient

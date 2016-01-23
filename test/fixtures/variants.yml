@@ -18,7 +18,7 @@ variant2proportion_delete:
   recipe: one
   
 proportions:
-  #id: 1
+  user: producteur
   name: 'proportions'
   recipe: proportions
   ingredients: proportions_0, proportions_1, proportions_2, proportions_3
@@ -46,3 +46,9 @@ not_delete_if_recipe:
   name: 'not delete if recipe'
   recipe: 'not delete if recipe'
   ingredients: not_delete_if_recipe
+
+duplicate_variant:
+  user: one
+  name: 'duplicate_variant'
+  recipe: one
+  ingredients: one, three

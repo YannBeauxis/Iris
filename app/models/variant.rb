@@ -53,10 +53,66 @@ class Variant < ActiveRecord::Base
      end
   end
 
+  def compare_ingredients(ingredients_id)
+    sid = self.ingredients.pluck(:id)
+    ((sid - ingredients_id) + (ingredients_id - sid)) == []
+  end
+
+  def compare_proportions(proportions)
+    test = true
+    proportions.each do |p|
+      p_origin = self.proportions.find_by_id(p[:id])#(composant_type: p.composant_type, composant_id: p.composant_id)
+      test = (test && (p[:value] == p_origin.value))
+    end
+    test
+  end
+
   def duplicate
     v_copy = Variant.create! do |v|
       v.name = self.name
       v.ingredients = self.ingredients
+    end
+    v_copy.update_proportions
+    v_copy.proportions.each do |p|
+      p_origin = self.proportions.find_by(composant_type: p.composant_type, composant_id: p.composant_id)
+      p.value = p_origin.value
+      p.save
+    end
+    v_copy.update_proportions
+    v_copy
+  end
+
+  def has_product?
+    self.products.any?
+  end
+
+  def new_version(options)
+    if !self.archived?
+      v_copy = Variant.create! do |v|
+        v.name = self.name
+        v.ingredients = options.has_key?(:ingredients) ? Ingredient.find(options[:ingredients]) : self.ingredients
+      end
+      v_copy.update_proportions
+      if options.has_key?(:proportions)
+        options[:proportions].each do |p|
+          p_origin = Proportion.find_by_id(p[:id])
+          vcp = v_copy.proportions.find_by(composant_type: p_origin.composant_type, composant_id: p_origin.composant_id)
+          if !vcp.nil?
+            vcp.value = p[:value]
+            vcp.save
+          end
+        end
+      else
+        v_copy.proportions.each do |p|
+          p_origin = self.proportions.find_by(composant_type: p.composant_type, composant_id: p.composant_id)
+          p.value = p_origin.nil? ? 0 : p_origin.value
+          p.save
+        end
+      end
+      v_copy.update_proportions
+      self.archived = true
+      self.save
+      v_copy
     end
   end
 
