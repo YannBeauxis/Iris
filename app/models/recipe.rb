@@ -5,9 +5,8 @@ class Recipe < ActiveRecord::Base
   belongs_to :type, :class_name => 'RecipeType', :foreign_key => 'recipe_type_id'
   belongs_to :user
   validates :user, :type, :name, presence: true
-  #after_save :update_proportions
-
-  after_create :variant_base_create
+  # I didn't manage to include :variant_base_id on validate
+  after_save :check_variant_base_id
 
   def variant_base
     Variant.find_by(id: self.variant_base_id)
@@ -17,23 +16,29 @@ class Recipe < ActiveRecord::Base
     self.variant_base_id = variant.id
   end
 
-  def variant_base_create
-    v = Variant.create! do |vb|
-      vb.name='Base'
-      vb.recipe = self
-      self.variant_base = vb
+
+  def check_variant_base_id
+    if self.variant_base_id.nil?
+      variant_base_set
     end
-    self.save
   end
 
   def variant_base_set
   # Add variant_base if not exist
     if self.variants.any?
-      self.variant_base = self.variants.first
+      self.variant_base_id = self.variants.first.id
     else
-      v = variant_base_create
+      variant_base_create
     end
     self.save
+  end
+
+  def variant_base_create
+    v = Variant.create! do |vb|
+      vb.name='Base'
+      vb.recipe = self
+    end
+    self.variant_base_id = v.id
   end
 
   def user_name

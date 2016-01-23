@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160122193455) do
+ActiveRecord::Schema.define(version: 20160123082953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,11 +159,16 @@ ActiveRecord::Schema.define(version: 20160122193455) do
   create_table "variants", force: :cascade do |t|
     t.string   "name"
     t.integer  "recipe_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "user_id"
+    t.string   "description"
+    t.boolean  "archived"
+    t.integer  "next_version_id"
   end
 
   add_index "variants", ["recipe_id"], name: "index_variants_on_recipe_id", using: :btree
+  add_index "variants", ["user_id"], name: "index_variants_on_user_id", using: :btree
 
   add_foreign_key "container_references", "ingredient_types"
   add_foreign_key "containers", "ingredients"
@@ -176,4 +181,5 @@ ActiveRecord::Schema.define(version: 20160122193455) do
   add_foreign_key "recipes", "users"
   add_foreign_key "users", "roles"
   add_foreign_key "variants", "recipes"
+  add_foreign_key "variants", "users"
 end

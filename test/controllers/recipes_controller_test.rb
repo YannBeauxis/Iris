@@ -26,6 +26,23 @@ class RecipesControllerTest < ActionController::TestCase
     #assert_redirected_to recipe_path(r)
   end
 
+  test "ingredients_in_variants_base_at_creation" do
+    u = users(:producteur)
+    sign_in u
+    @request.headers["HTTP_REFERER"] = "http://test.host/recipes"
+    ingredients_id = [ingredients(:one).id, ingredients(:three).id]
+    post(:create, {
+                    recipe: {
+                      name: 'New recipe', 
+                      recipe_type_id: recipe_types(:one).id
+                    },
+                    ingredients_id: ingredients_id
+                  })
+    r = assigns(:recipe)
+    assert_not r.variant_base_id.nil?
+    assert r.variant_base.ingredients.count == 2, r.variant_base.ingredients.count
+  end
+
 #  test "duplicate_variant" do
 #    u = users(:admin)
 #    sign_in u
@@ -39,20 +56,7 @@ class RecipesControllerTest < ActionController::TestCase
 #    assert_not v_copy.nil?
 #    assert_redirected_to recipe_variant_path(r, v_copy)
 #  end
-  
-  test "create_variant_base_at_creation" do
-    u = users(:producteur)
-    sign_in u
-    r = Recipe.create! do |rn|
-      rn.name = 'Auto Variant'
-      rn.user = u
-      rn.type = recipe_types(:one)
-    end
-    
-    assert r.variants.count > 0, 'Variant base not created at recipe creation'
-    
-  end
-  
+
   test "show_recipe" do
     u = users(:one)
     sign_in u

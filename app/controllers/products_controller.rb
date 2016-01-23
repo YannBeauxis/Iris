@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_action :check_user, except: [:index, :show, :edit, :update, :destroy]
   
   def index
-    @products = @recipe.products.where('user_id = ?', current_user)
+    @products = @recipe.products.where('products.user_id = ?', current_user)
     render json: @products.to_json(:include => { :variant => { :only => :name } })
   end 
 

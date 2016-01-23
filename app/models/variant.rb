@@ -1,18 +1,26 @@
 class Variant < ActiveRecord::Base
   belongs_to :recipe
+  belongs_to :user
   has_and_belongs_to_many :ingredients, -> { uniq }
   has_many :proportions, dependent: :destroy
   has_many :products, dependent: :destroy
   #has_many :ingredients, through: :recipe
   #has_many :ingredient_types, through: :ingredients, source: :type
-  has_one :user, through: :recipe  
   validates :name, presence: true
   after_create :update_proportions
   after_initialize :init_computation
+  before_destroy :not_destroy_of_base
   #after_save :update_proportions
   
   def base?
     self == self.recipe.variant_base
+  end
+  
+  def not_destroy_of_base
+    if self.base?
+      #flash[:message]  << "Une variante de base ne peut être supprimée"
+      return false
+    end
   end
   
   def init_computation
@@ -43,6 +51,13 @@ class Variant < ActiveRecord::Base
      else
        return rech.value*1.0/(10000)
      end
+  end
+
+  def duplicate
+    v_copy = Variant.create! do |v|
+      v.name = self.name
+      v.ingredients = self.ingredients
+    end
   end
 
 end
