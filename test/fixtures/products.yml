@@ -43,3 +43,9 @@ change_ingredients_with_product:
   description: 'change_ingredients_with_product'
   variant: change_ingredients_with_product
   volume: 10000
+  
+change_proportions_with_product:
+  user: one
+  description: 'change_proportions_with_product'
+  variant: change_proportions_with_product
+  volume: 10000

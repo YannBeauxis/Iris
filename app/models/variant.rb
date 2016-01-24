@@ -72,6 +72,25 @@ class Variant < ActiveRecord::Base
     v
   end
 
+  def change_proportions(options)
+  #options : user_id, ingrediens_ids
+    v = self
+    self.update_proportions
+    if !self.same_proportions?(options[:proportions])
+      if self.has_product?
+        v = self.new_version(options)
+      else
+        options[:proportions].each do |p|
+          v_p = v.proportions.find_by_id(p[:id])
+          v_p.value = p[:value]
+          v_p.save
+        end
+        self.update_proportions
+      end
+    end
+    v
+  end
+
   def same_ingredients?(ingredients_ids)
     sid = self.ingredients.pluck(:id)
     ((sid - ingredients_ids) + (ingredients_ids - sid)) == []

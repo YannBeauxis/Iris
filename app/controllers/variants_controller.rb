@@ -70,6 +70,12 @@ class VariantsController < ApplicationController
     redirect_to recipe_path(@recipe)
   end
 
+  def change_proportions
+    @variant = Variant.find(params[:variant_id])
+    @variant = @variant.change_proportions(user_id: current_user,proportions: change_proportions_params[:proportions])
+    redirect_to recipe_path(@recipe)
+  end
+
   def update_proportions
     @variant = Variant.find(params[:variant_id])
 
@@ -107,6 +113,10 @@ class VariantsController < ApplicationController
 
   def change_ingredients_params
     params.require(:variant).permit(ingredients_ids: [])
+  end
+
+  def change_proportions_params
+    params.require(:variant).permit(:id, proportions: [:id, :value])
   end
 
   def update_proportions_params

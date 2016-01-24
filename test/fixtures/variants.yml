@@ -64,3 +64,15 @@ change_ingredients_with_product:
   name: 'change_ingredients_with_product'
   recipe: one
   ingredients: one, three
+  
+change_proportions_no_product:
+  user: one
+  name: 'change_proportions_no_product'
+  recipe: one
+  ingredients: one, three
+
+change_proportions_with_product:
+  user: one
+  name: 'change_proportions_with_product'
+  recipe: one
+  ingredients: one, three
