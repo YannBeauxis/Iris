@@ -10,6 +10,7 @@ App.Views.PGVariantSelect = Backbone.View.extend({
   },
   
   addVariant: function(v) {
+    //if (!v.get('archived')) {this.$el.append(this.optionTemplate(v));}
     this.$el.append(this.optionTemplate(v));
     //check if variant base and store information
     if (v.get('selected')) { this.base = v.id; }
