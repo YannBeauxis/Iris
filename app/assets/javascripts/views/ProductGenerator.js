@@ -57,7 +57,6 @@ App.Views.ProductGenerator = Backbone.View.extend({
     $('#expiration-date__input').datetimepicker({format: 'DD/MM/YYYY'});
     $('#expiration-date').datetimepicker({format: 'DD/MM/YYYY'});
 
-    
     this.compute();
     
   },
@@ -131,7 +130,8 @@ App.Views.ProductGenerator = Backbone.View.extend({
     this.currentProduct = model;
     
     // set the value
-    this.$el.find('#product__volume').val(model.get('volume')/100);
+    this.volume = model.get('volume')/100;
+    this.$el.find('#product__volume').val(this.volume);
     this.$el.find('#product__volume').attr('disabled','');
     this.$el.find('#product__variant').val(model.get('variant_id'));
     this.$el.find('#product__variant').attr('disabled','');
