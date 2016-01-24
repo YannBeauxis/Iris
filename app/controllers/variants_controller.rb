@@ -56,6 +56,20 @@ class VariantsController < ApplicationController
     redirect_to recipe_path(@recipe)
   end
 
+  def duplicate
+    @variant_origin = Variant.find(params[:variant_id])
+    duplicate_params = {user_id: current_user}
+    duplicate_params[:name] =  variant_params[:name] if variant_params.has_key?(:name)
+    @variant = @variant_origin.duplicate(duplicate_params)
+    redirect_to edit_recipe_variant_path(@recipe,@variant)
+  end
+
+  def change_ingredients
+    @variant = Variant.find(params[:variant_id])
+    @variant = @variant.change_ingredients(user_id: current_user,ingredients_ids: change_ingredients_params[:ingredients_ids])
+    redirect_to recipe_path(@recipe)
+  end
+
   def update_proportions
     @variant = Variant.find(params[:variant_id])
 
@@ -89,6 +103,10 @@ class VariantsController < ApplicationController
   
   def variant_params
     params.require(:variant).permit(:name)
+  end
+
+  def change_ingredients_params
+    params.require(:variant).permit(ingredients_ids: [])
   end
 
   def update_proportions_params

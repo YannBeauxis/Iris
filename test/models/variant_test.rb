@@ -42,8 +42,10 @@ class VariantTest < ActiveSupport::TestCase
     prop.save
     v.update_proportions
     
-    v_copy = v.duplicate
+    v_name = 'new variant'
+    v_copy = v.duplicate(user_id: u.id, name: v_name)
     
+    assert v_copy.name == v_name
     #test ingredients
     vid = v.ingredients.pluck(:id)
     vcid = v_copy.ingredients.pluck(:id)
@@ -61,7 +63,7 @@ class VariantTest < ActiveSupport::TestCase
     assert pvid == pvcid, pvid.to_s + ' vs ' + pvcid.to_s
   end
 
-  test "compare_ingredients" do
+  test "same_ingredients" do
     u = users(:one)
     r = recipes(:one)
     v = variants(:duplicate_variant)
@@ -71,16 +73,16 @@ class VariantTest < ActiveSupport::TestCase
       ingredients(:one).id,
       ingredients(:three).id
     ]
-    assert v.compare_ingredients(ingredients_ok)
+    assert v.same_ingredients?(ingredients_ok)
     
     ingredients_nok = [
       ingredients(:one).id
     ]
-    assert_not v.compare_ingredients(ingredients_nok)
+    assert_not v.same_ingredients?(ingredients_nok)
 
   end
 
-  test "compare_proportions" do
+  test "same_proportions" do
     u = users(:one)
     r = recipes(:one)
     r.variant_base_id = variants(:one).id
@@ -90,13 +92,13 @@ class VariantTest < ActiveSupport::TestCase
     
     prop_ok = v.proportions.map { |p| {id: p.id, value: p.value} }
 
-    assert v.compare_proportions(prop_ok)
+    assert v.same_proportions?(prop_ok)
     
     prop_nok = prop_ok
     prop_nok[1][:value] = prop_ok[1][:value] +1
 
     
-    assert_not v.compare_proportions(prop_nok)    
+    assert_not v.same_proportions?(prop_nok)    
 
   end
 
@@ -115,11 +117,13 @@ class VariantTest < ActiveSupport::TestCase
       {id: p.id, value: p_value}
     end
 
-    v_new = v.new_version(proportions: proportions)
+    v_new = v.new_version(proportions: proportions, user_id: u.id)
     v = Variant.find_by_id(v.id)
     
     assert v != v_new
-    assert v.archived?
+    assert v.archived?, 'old version not archived'
+    assert v.next_version_id == v_new.id, 'next version id not set'
+    assert v_new.user == v.user, 'user not the same'
 
     v_new = Variant.find_by_id(v_new.id)
     
@@ -131,14 +135,14 @@ class VariantTest < ActiveSupport::TestCase
     
     #test ingredients
     vid = [ingredients(:one).id]
-    v_new_2 = v_new.new_version(ingredients: vid)
+    v_new_2 = v_new.new_version(ingredients_ids: vid, user_id: u.id)
     vcid = v_new_2.ingredients.pluck(:id)
     ingredients_diff = (vid - vcid) + (vcid - vid)
     assert ingredients_diff == [], 'les ingrédients dupliqués ne sont pas les mêmes'
 
   end
 
-  test "new version not if archived" do
+  test "not new version if archived" do
 
   end
   

@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     #get '/delete_list', to: 'recipes#delete_list', as: 'delete_list'
 
     resources :variants do
+      match '/duplicate', to: 'variants#duplicate', via: :post
+      match '/change_ingredients', to: 'variants#change_ingredients', via: :patch
       match '/update_proportions', to: 'variants#update_proportions', via: :patch
       match '/normalize_proportions', to: 'variants#normalize_proportions', via: :patch# , as: 'update_proportion'
     end

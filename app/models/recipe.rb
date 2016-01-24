@@ -37,6 +37,7 @@ class Recipe < ActiveRecord::Base
     v = Variant.create! do |vb|
       vb.name='Base'
       vb.recipe = self
+      vb.user = self.user
     end
     self.variant_base_id = v.id
   end
@@ -63,32 +64,6 @@ class Recipe < ActiveRecord::Base
 
   def update_proportions
     self.variants.each { |v| v.update_proportions }
-  end
-
-  def duplicate_variant(v_origin, name)
-    
-    v_copy = self.variants.create! do |v|
-      v.name = name
-      v.ingredients = self.ingredients
-    end
-   
-    v_copy.proportions.each do |p|
-      p_origin = v_origin.proportions.find_by(composant: p.composant)
-      if p_origin.value == 0 
-        #p.value = p_origin.value #Doesn't work, I don't nkow why ... 
-                                  #Unbale to reporduct bug with model test.
-        p.destroy #if destroy, recreate with update proportion with value = 0
-      else
-        p.value = p_origin.value
-        p.save
-      end
-    end
-
-    v_copy.update_proportions
-    self.save
-
-    return v_copy
-
   end
 
 end

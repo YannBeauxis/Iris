@@ -6,7 +6,7 @@ class Variant < ActiveRecord::Base
   has_many :products, dependent: :destroy
   #has_many :ingredients, through: :recipe
   #has_many :ingredient_types, through: :ingredients, source: :type
-  validates :name, presence: true
+  validates :name, :user, presence: true
   after_create :update_proportions
   after_initialize :init_computation
   before_destroy :not_destroy_of_base
@@ -53,12 +53,31 @@ class Variant < ActiveRecord::Base
      end
   end
 
-  def compare_ingredients(ingredients_id)
-    sid = self.ingredients.pluck(:id)
-    ((sid - ingredients_id) + (ingredients_id - sid)) == []
+  def change_ingredients(options)
+  #options : user_id, ingrediens_ids
+    v = self
+    self.update_proportions
+    if !self.same_ingredients?(options[:ingredients_ids])
+      if self.has_product?
+        v = self.new_version(options)
+      else
+        if options[:ingredients_ids] == []
+          self.ingredients.delete_all
+        else
+          self.ingredients = Ingredient.find(options[:ingredients_ids])
+        end
+        self.save
+      end
+    end
+    v
   end
 
-  def compare_proportions(proportions)
+  def same_ingredients?(ingredients_ids)
+    sid = self.ingredients.pluck(:id)
+    ((sid - ingredients_ids) + (ingredients_ids - sid)) == []
+  end
+
+  def same_proportions?(proportions)
     test = true
     proportions.each do |p|
       p_origin = self.proportions.find_by_id(p[:id])#(composant_type: p.composant_type, composant_id: p.composant_id)
@@ -67,9 +86,15 @@ class Variant < ActiveRecord::Base
     test
   end
 
-  def duplicate
+  def duplicate(options)
+    # create a new variant with the same proportion
+    # options :
+    #   user_id : id
+    #   name: name of new variant
+    self.update_proportions
     v_copy = Variant.create! do |v|
-      v.name = self.name
+      v.name = (options.has_key?(:name) ? options[:name] : ('Copie de ' + self.name))
+      v.user = User.find_by_id(options[:user_id])
       v.ingredients = self.ingredients
     end
     v_copy.update_proportions
@@ -87,15 +112,22 @@ class Variant < ActiveRecord::Base
   end
 
   def new_version(options)
+    #options :
+    #   user_id : id
+    #   ingredients: [ids, ..]
+    #   proportions: [{id: composant id of origin variant, value: value to set to composant of new variant}]
     if !self.archived?
       v_copy = Variant.create! do |v|
         v.name = self.name
-        v.ingredients = options.has_key?(:ingredients) ? Ingredient.find(options[:ingredients]) : self.ingredients
+        v.user = User.find_by_id(options[:user_id])
+        v.ingredients = options.has_key?(:ingredients_ids) ? Ingredient.find(options[:ingredients_ids]) : self.ingredients
       end
       v_copy.update_proportions
       if options.has_key?(:proportions)
         options[:proportions].each do |p|
+          # find proportion of origin variant with its id
           p_origin = Proportion.find_by_id(p[:id])
+          # find proportion of new variant with same composnat_typ and composant_id than proportion of origin variant
           vcp = v_copy.proportions.find_by(composant_type: p_origin.composant_type, composant_id: p_origin.composant_id)
           if !vcp.nil?
             vcp.value = p[:value]
@@ -110,6 +142,7 @@ class Variant < ActiveRecord::Base
         end
       end
       v_copy.update_proportions
+      self.next_version_id = v_copy.id
       self.archived = true
       self.save
       v_copy
