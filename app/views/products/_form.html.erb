@@ -1,19 +1,20 @@
 <%= simple_form_for [@recipe,@product] do |f| %>
 
-  <% if current_user.admin? then%>
+  <% if current_user.admin? %>
 
-      <%= f.input :user, 
+      <%= f.input :user_id, 
             label: 'Owner',
             collection: User.all
      %>
 
-      <%= f.input :recipe, 
+    <% if controller.action_name == :edit %>
+      <%= f.input :recipe_id, 
             label: 'Recette',
             collection: Recipe.all,
             disabled: true
      %>
-
-      <%= f.input :variant, 
+    <% end %>
+      <%= f.input :variant_id, 
             label: 'Variante',
             collection: Variant.all, 
             disabled: true

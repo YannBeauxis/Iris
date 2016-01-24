@@ -68,7 +68,7 @@ class RecipesController < ApplicationController
       set_ingredients
       redirect_to recipe_path(@recipe)
     else
-      flash[:message] = 'Impossible de créer la recette'
+      flash[:alert] = 'Impossible de créer la recette'
       render 'new'
     end
   end
@@ -79,7 +79,7 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to recipe_path(@recipe)
     else
-      flash[:message] = 'Impossible de modifier la recette'
+      flash[:alert] = 'Impossible de modifier la recette'
       render 'edit'
     end
   end
@@ -119,7 +119,7 @@ class RecipesController < ApplicationController
   def check_user
     @recipe = Recipe.find(params[:recipe_id])
     if current_user != @recipe.user and !current_user.admin? then
-      flash[:message] = "Vous n'avez pas les autorisations nécessaires"
+      flash[:alert] = "Vous n'avez pas les autorisations nécessaires"
       redirect_to recipe_path(@recipe)
     end
   end

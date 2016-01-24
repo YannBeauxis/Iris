@@ -19,16 +19,6 @@ class VariantTest < ActiveSupport::TestCase
     assert v.proportions.count == 2, 
       v.proportions.count.to_s + ' Proportion associated to an ingredient should be deleted when its ingredient is'
   end
-  
-  test "cannot_delete_if_base" do
-    u = users(:one)
-    r = u.recipes.create! do |ur|
-      ur.name = 'Recipe test'
-      ur.type = recipe_types(:one)
-   end
-   v = r.variant_base
-   assert_not v.destroy, 'une variant de base ne peut être supprimée'
-  end
 
   test "duplicate_variant" do
     u = users(:one)

@@ -1,6 +1,6 @@
 class VariantsController < ApplicationController
   before_action :get_recipe
-  before_action :check_user, except: [:index, :show, :edit, :update, :destroy]
+  before_action :check_user, except: [:index, :show, :new, :edit, :update, :destroy]
   
   def index
     @variants = Variant.all
@@ -27,14 +27,15 @@ class VariantsController < ApplicationController
   def create
 
     @variant = Variant.new(variant_params)
+    @variant.user = current_user
     @variant.ingredients = @recipe.ingredients
     @recipe.variants << @variant
 
     if @recipe.save
-      redirect_to edit_recipe_variant_path(@recipe,@variant)
+      redirect_to recipe_path(@recipe)
     else
+      flash[:alert] = "Erreur lors de la création de la variante"
       render 'new'
-      #render plain: 'Erreur'
     end
   end
 
@@ -51,9 +52,13 @@ class VariantsController < ApplicationController
 
   def destroy
     @variant = Variant.find(params[:id])
-    @variant.destroy
- 
-    redirect_to recipe_path(@recipe)
+    if @variant.base?
+      flash[:alert]  = "Une variante de base ne peut être supprimée"
+      redirect_to recipe_path(@recipe)
+    else
+      @variant.destroy
+      redirect_to recipe_path(@recipe)
+    end
   end
 
   def duplicate
@@ -95,7 +100,7 @@ class VariantsController < ApplicationController
   end
   
   def variant_params
-    p = [:name]
+    p = [:name, :description]
     p << [:archived, :next_version_id] if current_user.admin? 
     params.require(:variant).permit(p)
   end

@@ -16,7 +16,6 @@ class Recipe < ActiveRecord::Base
     self.variant_base_id = variant.id
   end
 
-
   def check_variant_base_id
     if self.variant_base_id.nil?
       variant_base_set

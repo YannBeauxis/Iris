@@ -9,7 +9,7 @@ class Variant < ActiveRecord::Base
   validates :name, :user, :recipe, presence: true
   after_create :update_proportions
   after_initialize :init_computation
-  before_destroy :not_destroy_of_base
+  #before_destroy :not_destroy_of_base
   #after_save :update_proportions
   
   def base?
@@ -22,8 +22,10 @@ class Variant < ActiveRecord::Base
   
   def not_destroy_of_base
     if self.base?
-      #flash[:message]  << "Une variante de base ne peut être supprimée"
-      return false
+      #flash[:alert]  << "Une variante de base ne peut être supprimée"
+      false
+    else
+      true
     end
   end
   

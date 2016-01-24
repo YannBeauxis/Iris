@@ -3,15 +3,17 @@
     <%= f.input :name, label: 'Nom' %>
     <%= f.input :description, label: 'Description' %>
 
-    <% if current_user.admin? then%>
-      <%= f.input :user, collection: User.all, label: 'Propriétaire' %>
-      <%= f.input :recipe, 
-            label: 'Recette',
-            collection: Recipe.all, 
-            include_blank: false,
-            disabled: true
-     %>
-     
+    <% if current_user.admin? %>
+      <%= f.input :user_id, collection: User.all, label: 'Propriétaire' %>
+      <% if controller.action_name == :edit %>
+        <%= f.input :recipe_id, 
+              label: 'Recette',
+              collection: Recipe.all, 
+              include_blank: false,
+              disabled: true
+        %>
+      <% end %>
+       
       <%= f.input :archived, label: 'Archived ?' %>
       <%= f.input :next_version_id, label: 'next_version_id' %>
     <% end %>
