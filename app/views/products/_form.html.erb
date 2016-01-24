@@ -1,0 +1,26 @@
+<%= simple_form_for [@recipe,@product] do |f| %>
+
+      <%= f.input :user, 
+            label: 'Owner',
+            collection: User.all
+     %>
+
+      <%= f.input :recipe, 
+            label: 'Recette',
+            collection: Recipe.all,
+            disabled: true
+     %>
+
+      <%= f.input :variant, 
+            label: 'Variante',
+            collection: Variant.all, 
+            disabled: true
+     %>
+     
+      <%= f.input :volume, label: 'Volume' %>
+      <%= f.input :container, label: 'Container' %>
+      <%= f.input :description, label: 'Description' %>
+      <%= f.input :production_date, label: 'Date de production' %>
+      <%= f.input :expiration_date, label: 'Date d\'expiration' %>
+      
+<% end %>

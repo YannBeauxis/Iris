@@ -36,7 +36,7 @@
         %>
       
         <% if current_user.admin? then%>
-          <%= f.input :user_id, collection: User.all, include_blank: false, label: 'Propriétaire' %>
+          <%= f.input :user_id, collection: User.all, label: 'Propriétaire' %>
           <p>
             <%= f.label 'Propriétaire' %><br>
             <%= f.collection_select(:user_id, User.all, :id, :name, {:selected => current_user.id}) %>

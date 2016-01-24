@@ -1,10 +1,19 @@
-<%= form_for @variant, url: {action: @form_action}, method: @form_method do |f| %>
-  <p>
-    <%= f.label 'Nom' %><br>
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.submit 'Enregistrer' %>
-  </p>
-<% end %>
+<%= simple_form_for [@recipe,@variant] do |f| %>
 
+      <%= f.input :name, label: 'Nom' %>
+      <%= f.input :description, label: 'Description' %>
+
+      <% if current_user.admin? then%>
+        <%= f.input :user, collection: User.all, label: 'Propriétaire' %>
+        <%= f.input :recipe, 
+              label: 'Recette',
+              collection: Recipe.all, 
+              include_blank: false,
+              disabled: true
+       %>
+       
+        <%= f.input :archived, label: 'Archived ?' %>
+        <%= f.input :next_version_id, label: 'nex_version_id' %>
+      <% end %>
+      
+<% end %>

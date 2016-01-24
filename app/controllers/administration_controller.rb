@@ -14,6 +14,10 @@ class AdministrationController < ApplicationController
       @recipes = Recipe.all
     end
 
+    def variants
+      @variants = Variant.all
+    end
+
     def products
       @products = Product.all
     end

@@ -1,0 +1,27 @@
+<% render 'menu' %>
+
+<% content_for :content_header do %>
+  <span class="title">Gestion des variantes</span>
+<% end %>
+
+<% content_for :item_content do %>
+
+  <table>
+    <tr>
+      <th>Nom</th>
+      <th>Recette</th>
+      <th>User</th>
+      <th></th>
+    </tr>
+    <% @variants.each do |v| %>
+      <tr>
+        <td><%= v.name %></td>      
+        <td><%= v.recipe.name %></td>
+        <td><%= v.user.nil? ? nil : v.user.name%></td>
+        <td><%= link_to 'Edit', edit_recipe_variant_path(v.recipe, v)%></td>
+     </tr>
+
+    <% end %>
+  </table>
+
+<% end %>
