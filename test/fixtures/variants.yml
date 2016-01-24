@@ -53,6 +53,12 @@ duplicate_variant:
   recipe: one
   ingredients: one, three
 
+duplicate_variant_base:
+  user: one
+  name: 'duplicate_variant_base'
+  recipe: one
+  ingredients: one, three
+
 change_ingredients_no_product:
   user: one
   name: 'change_ingredients_no_product'

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     get '/users', to: 'administration#users',as: :admin_users
     get '/containers', to: 'administration#containers',as: :admin_containers
     get '/recipes', to: 'administration#recipes',as: :admin_recipes
-    get '/varaints', to: 'administration#variants',as: :admin_variants
+    get '/variants', to: 'administration#variants',as: :admin_variants
     get '/products', to: 'administration#products',as: :admin_products
   end
 
@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       match '/duplicate', to: 'variants#duplicate', via: :post
       match '/change_ingredients', to: 'variants#change_ingredients', via: :patch
       match '/change_proportions', to: 'variants#change_proportions', via: :patch
+      match '/change_proportions_edit', to: 'variants#change_proportions_edit', via: :get
       match '/update_proportions', to: 'variants#update_proportions', via: :patch
       match '/normalize_proportions', to: 'variants#normalize_proportions', via: :patch# , as: 'update_proportion'
     end

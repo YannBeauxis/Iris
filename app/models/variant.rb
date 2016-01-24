@@ -6,14 +6,18 @@ class Variant < ActiveRecord::Base
   has_many :products, dependent: :destroy
   #has_many :ingredients, through: :recipe
   #has_many :ingredient_types, through: :ingredients, source: :type
-  validates :name, :user, presence: true
+  validates :name, :user, :recipe, presence: true
   after_create :update_proportions
   after_initialize :init_computation
   before_destroy :not_destroy_of_base
   #after_save :update_proportions
   
   def base?
-    self == self.recipe.variant_base
+    if self.recipe.nil?
+      false
+    else
+      self == self.recipe.variant_base
+    end
   end
   
   def not_destroy_of_base
@@ -114,6 +118,7 @@ class Variant < ActiveRecord::Base
     v_copy = Variant.create! do |v|
       v.name = (options.has_key?(:name) ? options[:name] : ('Copie de ' + self.name))
       v.user = User.find_by_id(options[:user_id])
+      v.recipe = self.recipe
       v.ingredients = self.ingredients
     end
     v_copy.update_proportions
@@ -139,8 +144,11 @@ class Variant < ActiveRecord::Base
       v_copy = Variant.create! do |v|
         v.name = self.name
         v.user = User.find_by_id(options[:user_id])
+        v.recipe = self.recipe
         v.ingredients = options.has_key?(:ingredients_ids) ? Ingredient.find(options[:ingredients_ids]) : self.ingredients
       end
+      self.recipe.variant_base_id = v_copy.id if self.base?
+      self.recipe.save
       v_copy.update_proportions
       if options.has_key?(:proportions)
         options[:proportions].each do |p|

@@ -37,18 +37,15 @@
       
         <% if current_user.admin? then%>
           <%= f.input :user_id, collection: User.all, label: 'Propriétaire' %>
-          <p>
-            <%= f.label 'Propriétaire' %><br>
-            <%= f.collection_select(:user_id, User.all, :id, :name, {:selected => current_user.id}) %>
-          </p>
+          <%= f.input :variant_base_id,
+            label: 'ID variante de base'
+          %>
         <% end %>
       
-        <% if @variant_base_select %>
+        <% if true %>
           <%= f.input :variant_base_id, 
             collection: @variants, 
-            include_blank: false, 
-            label: 'Variante de base', 
-            disabled: !@variant_base_select 
+            label: 'Variante de base'
           %>
         <% end %>
          

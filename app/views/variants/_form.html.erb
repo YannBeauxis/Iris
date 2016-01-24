@@ -1,19 +1,22 @@
 <%= simple_form_for [@recipe,@variant] do |f| %>
 
-      <%= f.input :name, label: 'Nom' %>
-      <%= f.input :description, label: 'Description' %>
+    <%= f.input :name, label: 'Nom' %>
+    <%= f.input :description, label: 'Description' %>
 
-      <% if current_user.admin? then%>
-        <%= f.input :user, collection: User.all, label: 'Propriétaire' %>
-        <%= f.input :recipe, 
-              label: 'Recette',
-              collection: Recipe.all, 
-              include_blank: false,
-              disabled: true
-       %>
-       
-        <%= f.input :archived, label: 'Archived ?' %>
-        <%= f.input :next_version_id, label: 'nex_version_id' %>
-      <% end %>
+    <% if current_user.admin? then%>
+      <%= f.input :user, collection: User.all, label: 'Propriétaire' %>
+      <%= f.input :recipe, 
+            label: 'Recette',
+            collection: Recipe.all, 
+            include_blank: false,
+            disabled: true
+     %>
+     
+      <%= f.input :archived, label: 'Archived ?' %>
+      <%= f.input :next_version_id, label: 'next_version_id' %>
+    <% end %>
+    
+    <%= f.button :submit, 'Enregistrer' %>
+    <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
       
 <% end %>

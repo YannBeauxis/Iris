@@ -68,6 +68,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
     "keyup #product__volume":  "changeVolume",
     "change #product__volume":  "changeVolume",
     "click #modify-variant":  "modifyVariant",
+    "click #change-proportions":  "changeProportions",
     "click #btn--product--details":  "productDetails",
     "click #btn--product--new--initiate":  "productNewInitate",
     "click #btn--product--new--save":  "productSave"
@@ -101,6 +102,13 @@ App.Views.ProductGenerator = Backbone.View.extend({
     var url = '/recipes/' + App.productGeneratorRaw.recipeId + '/variants/' + variant_id + '/edit';
     window.location = url;
   },
+
+  changeProportions: function() {
+    var variant_id = this.variantSelect.$el.val();
+    var url = '/recipes/' + App.productGeneratorRaw.recipeId + '/variants/' + variant_id + '/change_proportions_edit';
+    window.location = url;
+  },
+
 
   productDetails: function() {
     this.$el.find('#product__details').slideToggle();

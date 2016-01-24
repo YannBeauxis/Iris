@@ -4,46 +4,6 @@
      
 <% content_for :item_content do %>
 
-  <p><strong>Modifier Infos générales</strong></p>
-
   <%= render 'form' %>
-
-  <%= form_for @variant ,url: recipe_variant_update_proportions_path(@recipe,@variant), method:'patch' do |f| %>
-  <input type="hidden" name="variant[id]" step="any" type="number" value=<%= @variant.id %> />
-  
-  <p><strong>Modifier Proportions</strong></p>
-  
-  <p><strong><i>Par type</i></strong></p>
-
-  <table>
-    <% @variant.proportions.where(composant_type: 'IngredientType').each do |p| %>
-      <tr>
-         <td><%=  p.composant.name %></td>
-         <td>
-           <input type="hidden" name="variant[proportion_attributes][][id]" step="any" type="number" value=<%= p.id %> />
-           <input min="0" name="variant[proportion_attributes][][value]" step="any" type="number" value=<%= p.value %> />
-        </td>
-      </tr>
-    <% end %>
-  </table>
-
-  <p><strong><i>Ingrédients pour chaque type</i></strong></p>
-
-    <table>
-      <% @variant.proportions.where(composant_type: 'IngredientType').each do |itp| %>
-          <tr><td><strong><%=  itp.composant.name %></strong></td></tr>
-        <% @variant.proportions_for_type(itp.composant).each do |ip| %>
-          <tr>
-           <td><%=  ip.composant.name %></td>
-           <td>
-               <input type="hidden" name="variant[proportion_attributes][][id]" step="any" type="number" value=<%= ip.id %> />
-               <input min="0" name="variant[proportion_attributes][][value]" step="any" type="number" value=<%= ip.value %> />
-          </td>
-        </tr>
-      <% end %>
-    <% end %>
-  </table>
-  <%= f.submit 'Modifier proportions' %>
-  <% end %>
 
 <% end %>

@@ -1,5 +1,7 @@
 <%= simple_form_for [@recipe,@product] do |f| %>
 
+  <% if current_user.admin? then%>
+
       <%= f.input :user, 
             label: 'Owner',
             collection: User.all
@@ -23,4 +25,13 @@
       <%= f.input :production_date, label: 'Date de production' %>
       <%= f.input :expiration_date, label: 'Date d\'expiration' %>
       
+      <%= f.button :submit, 'Enregistrer' %>
+      <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+
+  <% else %>
+
+    <p>Editer les produits n'est pas possible sur cette vue pour les non admonistrateurs</p>
+
+  <% end %>
+ 
 <% end %>

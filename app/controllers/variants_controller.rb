@@ -57,38 +57,24 @@ class VariantsController < ApplicationController
   end
 
   def duplicate
-    @variant_origin = Variant.find(params[:variant_id])
     duplicate_params = {user_id: current_user}
     duplicate_params[:name] =  variant_params[:name] if variant_params.has_key?(:name)
-    @variant = @variant_origin.duplicate(duplicate_params)
+    @variant = @variant.duplicate(duplicate_params)
     redirect_to edit_recipe_variant_path(@recipe,@variant)
   end
 
   def change_ingredients
-    @variant = Variant.find(params[:variant_id])
     @variant = @variant.change_ingredients(user_id: current_user,ingredients_ids: change_ingredients_params[:ingredients_ids])
     redirect_to recipe_path(@recipe)
   end
 
-  def change_proportions
-    @variant = Variant.find(params[:variant_id])
-    @variant = @variant.change_proportions(user_id: current_user,proportions: change_proportions_params[:proportions])
-    redirect_to recipe_path(@recipe)
+  def change_proportions_edit
+    render 'change_proportions'
   end
 
-  def update_proportions
-    @variant = Variant.find(params[:variant_id])
-
-
-    update_proportions_params[:proportion_attributes].each do |up|
-       p = Proportion.find(up[:id])
-       p.value = up[:value]
-       p.save
-    end
-
-    @variant.update_proportions
-
-    redirect_to edit_recipe_variant_path(@recipe,@variant)
+  def change_proportions
+    @variant = @variant.change_proportions(user_id: current_user,proportions: change_proportions_params[:proportions])
+    redirect_to recipe_path(@recipe)
   end
 
   private
@@ -101,14 +87,17 @@ class VariantsController < ApplicationController
   
   def check_user
     #if (current_user != @recipe.user) and !current_user.admin? then
+    @variant = Variant.find(params[:variant_id])
     if cannot?(:update, @variant) then
-      flash[:message] = "Vous n'avez pas les autorisations nécessaires"
+      flash[:alert] = "Vous n'avez pas les autorisations nécessaires"
       redirect_to recipe_path(@recipe)
     end
   end
   
   def variant_params
-    params.require(:variant).permit(:name)
+    p = [:name]
+    p << [:archived, :next_version_id] if current_user.admin? 
+    params.require(:variant).permit(p)
   end
 
   def change_ingredients_params
