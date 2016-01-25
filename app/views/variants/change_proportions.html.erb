@@ -1,46 +1,65 @@
 <%= render 'nav_resume' %>
 <%= render 'header' %>
 <%= render 'menu' %>
-     
+
+<% content_for :content_header do %>
+  <div class="subtitle">Modifier Proportions</div>
+<% end %>
+
 <% content_for :item_content do %>
 
-  <%= form_for @variant ,url: recipe_variant_change_proportions_path(@recipe,@variant), method:'patch' do |f| %>
+<div class="panel panel-default">
+
+  <%= form_for @variant ,
+    url: recipe_variant_change_proportions_path(@recipe,@variant), 
+    method:'patch',
+    html: {class: "form-horizontal"} do |f| %>
   <input type="hidden" name="variant[id]" step="any" type="number" value=<%= @variant.id %> />
   
-  <p><strong>Modifier Proportions</strong></p>
+  <div class="panel-heading">Par type</div>
   
-  <p><strong><i>Par type</i></strong></p>
-
-  <table>
+  <div class="panel-body">
     <% @variant.proportions.where(composant_type: 'IngredientType').each do |p| %>
-      <tr>
-         <td><%=  p.composant.name %></td>
-         <td>
-           <input type="hidden" name="variant[proportions][][id]" step="any" type="number" value=<%= p.id %> />
-           <input min="0" name="variant[proportions][][value]" step="any" type="number" value=<%= p.value %> />
-        </td>
-      </tr>
+      <% css_id = 'proportion--' + p.id.to_s %>
+      <div class="form-group string required recipe_name" >
+        <label class="string col-sm-4 control-label" for="<%= css_id %>" ><%=  p.composant.name %></label>
+        <div class="col-sm-2">
+           <input type="hidden" name="proportions[][id]" step="any" type="number" value=<%= p.id %> />
+           <input min="0" name="proportions[][value]" step="any" type="number" value=<%= p.value %> 
+           class="numeric integer required form-control" id="<%= css_id %>" />
+        </div>
+      </div>
     <% end %>
-  </table>
+  </div>
+  
+  <div class="panel-heading">Ingrédients pour chaque type</div>
 
-  <p><strong><i>Ingrédients pour chaque type</i></strong></p>
-
-    <table>
       <% @variant.proportions.where(composant_type: 'IngredientType').each do |itp| %>
-          <tr><td><strong><%=  itp.composant.name %></strong></td></tr>
-        <% @variant.proportions_for_type(itp.composant).each do |ip| %>
-          <tr>
-           <td><%=  ip.composant.name %></td>
-           <td>
-               <input type="hidden" name="variant[proportions][][id]" step="any" type="number" value=<%= ip.id %> />
-               <input min="0" name="variant[proportions][][value]" step="any" type="number" value=<%= ip.value %> />
-          </td>
-        </tr>
-      <% end %>
+      <% css_id = 'proportion--' + itp.id.to_s %>
+        <div class="jumbotron proportion-ingredient-type"><%=  itp.composant.name %></div>
+        <div class="panel-body">
+          <% @variant.proportions_for_type(itp.composant).each do |ip| %>
+            <div class="form-group string required recipe_name">
+              <label class="string col-sm-4 control-label" for="<%= css_id %>"> <%=  ip.composant.name %></label>
+              <div class='col-sm-2'>
+                 <input type="hidden" name="proportions[][id]" 
+                      step="any" type="number" value=<%= ip.id %> 
+                  />
+                 <input min="0" name="proportions[][value]" 
+                    step="any" type="number" value=<%= ip.value %> 
+                    class="numeric integer required form-control" id="<%= css_id %>" />
+              </div>
+            </div>
+          <% end %>
+        </div>
     <% end %>
-  </table>
-  <%= f.submit 'Modifier proportions' %>
-  <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+
+  <div class="panel-heading">Valider</div>
+
+  <div class="panel-body">
+    <input type="submit" name="commit" value="Enregistrer" class="btn btn-default">
+    <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+  </div>
   <% end %>
 
 <% end %>

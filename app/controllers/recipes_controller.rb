@@ -85,8 +85,8 @@ class RecipesController < ApplicationController
   end
 
   def set_ingredients
-    if params.has_key?(:ingredients_id)
-      @recipe.variant_base.ingredients = Ingredient.find(params[:ingredients_id])
+    if params.has_key?(:ingredients_ids)
+      @recipe.variant_base.ingredients = Ingredient.find(params[:ingredients_ids])
     else
        @recipe.variant_base.ingredients.delete_all
     end
@@ -125,7 +125,7 @@ class RecipesController < ApplicationController
   end
 
     def recipe_params
-      p = [:name,:recipe_type_id, {:ingredients_id => []}, :variant_name, :variant_base_id]
+      p = [:name,:recipe_type_id, {:ingredients_ids => []}, :variant_name, :variant_base_id]
       p << :variant_id if :action == 'create'
       if current_user.admin? then
         p << :user_id

@@ -30,13 +30,13 @@ class RecipesControllerTest < ActionController::TestCase
     u = users(:producteur)
     sign_in u
     @request.headers["HTTP_REFERER"] = "http://test.host/recipes"
-    ingredients_id = [ingredients(:one).id, ingredients(:three).id]
+    ingredients_ids = [ingredients(:one).id, ingredients(:three).id]
     post(:create, {
                     recipe: {
                       name: 'New recipe', 
                       recipe_type_id: recipe_types(:one).id
                     },
-                    ingredients_id: ingredients_id
+                    ingredients_ids: ingredients_ids
                   })
     r = assigns(:recipe)
     assert_not r.variant_base_id.nil?

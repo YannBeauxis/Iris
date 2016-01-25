@@ -68,8 +68,15 @@ class VariantsController < ApplicationController
     redirect_to edit_recipe_variant_path(@recipe,@variant)
   end
 
+  def change_ingredients_edit
+    render 'change_ingredients'
+  end
+
   def change_ingredients
-    @variant = @variant.change_ingredients(user_id: current_user,ingredients_ids: change_ingredients_params[:ingredients_ids])
+    @variant = @variant.change_ingredients(
+                   user_id: current_user,
+                   ingredients_ids: params[:ingredients_ids]
+                 )
     redirect_to recipe_path(@recipe)
   end
 
@@ -78,7 +85,7 @@ class VariantsController < ApplicationController
   end
 
   def change_proportions
-    @variant = @variant.change_proportions(user_id: current_user,proportions: change_proportions_params[:proportions])
+    @variant = @variant.change_proportions(user_id: current_user,proportions: params[:proportions])
     redirect_to recipe_path(@recipe)
   end
 
@@ -106,7 +113,7 @@ class VariantsController < ApplicationController
   end
 
   def change_ingredients_params
-    params.require(:variant).permit(ingredients_ids: [])
+    params.require(:variant).permit(:variant_id, ingredients_ids: [])
   end
 
   def change_proportions_params

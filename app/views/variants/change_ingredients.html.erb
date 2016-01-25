@@ -1,0 +1,48 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "variants.js" %>
+<% end %>
+
+<% content_for :data_js do %>
+  App.recipeId = <%= @recipe.id %>
+  App.categoryFilter = {
+    param: 'recipe_type_id',
+    selector: '#variant_recipe_type_id'
+  };
+<% end %>
+
+<%= render 'nav_resume' %>
+<%= render 'header' %>
+<%= render 'menu' %>
+
+<% content_for :content_header do %>
+  <div class="subtitle">Modifier Ingrédients</div>
+<% end %>
+
+<% content_for :item_content do %>
+
+  <div class="panel panel-default">
+    
+    <%= form_for @variant ,url: recipe_variant_change_ingredients_path(@recipe,@variant), method:'patch' do |f| %>
+    <input type="hidden" name="variant[id]" step="any" type="number" value=<%= @variant.id %> />
+    
+    <div class="panel-heading">Sélectionner les ingrédients</div>
+
+      <select class="select form-control" id="variant_recipe_type_id" disabled style="display: none;">
+        <option selected value=<%= @variant.recipe.type.id %>><%= @variant.recipe.type.name %></option>
+      </select>
+      
+      <div class="panel-body">
+        <div id="CategoryGrid" class="row"></div>
+      </div>
+  
+      <div class="panel-heading">Valider</div>
+      
+      <div class="panel-body">
+        <input type="submit" name="commit" value="Enregistrer" class="btn btn-default">
+        <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+      </div>
+    <% end %>
+    
+  </div>
+
+<% end %>

@@ -27,6 +27,6 @@
          link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cette recette ?' }},
        can_condition: {action: :delete, object: @recipe}) %>
     <%= menu_item(menu: :content_menu, 
-         path: new_recipe_variant_path(@recipe), label: 'Ajouter variante',
+         path: new_recipe_variant_path(@recipe), label: 'Créer variante',
        can_condition: {action: :update, object: @recipe}) %>
 <% end %>

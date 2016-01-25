@@ -54,14 +54,14 @@ class VariantsControllerTest < ActionController::TestCase
     @request.headers["HTTP_REFERER"] = "http://test.host/recipes/" + r.id.to_s + "/variants"
     
     # variant with no products associated
-    patch(:change_ingredients, {variant_id: v_no_p, recipe_id: r, variant: {ingredients_ids: ingredients_ids}})
+    patch(:change_ingredients, {variant_id: v_no_p, recipe_id: r, ingredients_ids: ingredients_ids})
     v_updated = Variant.find_by_id(assigns(:variant).id)
     assert_not v_updated.nil?, 'new variant not reachable'
     assert v_updated == v_no_p, 'not the same variant returned'
     assert v_updated.ingredients.pluck(:id).sort == ingredients_ids.sort, 'not the right ingredients ids'
     
     # variant with products associated
-    patch(:change_ingredients, {variant_id: v_with_p, recipe_id: r, variant: {ingredients_ids: ingredients_ids}})
+    patch(:change_ingredients, {variant_id: v_with_p, recipe_id: r, ingredients_ids: ingredients_ids})
     v_updated = Variant.find_by_id(assigns(:variant).id)
     assert_not v_updated.nil?, 'new variant not reachable'
     assert_not v_updated == v_with_p, 'the same variant is returned'
@@ -89,7 +89,7 @@ class VariantsControllerTest < ActionController::TestCase
       p_value = (p.composant_id == ingredients(:three).id ? 500 : p.value)
       {id: p.id, value: p_value}
     end
-    patch(:change_proportions, {variant_id: v_no_p, recipe_id: r, variant: {proportions: proportions}})
+    patch(:change_proportions, {variant_id: v_no_p, recipe_id: r, proportions: proportions})
     v_updated = Variant.find_by_id(assigns(:variant).id)
     assert_not v_updated.nil?, 'new variant not reachable'
     assert v_updated == v_no_p, 'not the same variant returned'
@@ -103,7 +103,7 @@ class VariantsControllerTest < ActionController::TestCase
       p_value = (p.composant_id == ingredients(:three).id ? 500 : p.value)
       {id: p.id, value: p_value}
     end
-    patch(:change_proportions, {variant_id: v_with_p, recipe_id: r, variant: {proportions: proportions}})
+    patch(:change_proportions, {variant_id: v_with_p, recipe_id: r, proportions: proportions})
     v_updated = Variant.find_by_id(assigns(:variant).id)
     assert_not v_updated.nil?, 'new variant not reachable'
     assert_not v_updated == v_with_p, 'the same variant is returned'

@@ -41,9 +41,10 @@ Rails.application.routes.draw do
 
     resources :variants do
       match '/duplicate', to: 'variants#duplicate', via: :post
+      match '/change_ingredients_edit', to: 'variants#change_ingredients_edit', via: :get
       match '/change_ingredients', to: 'variants#change_ingredients', via: :patch
-      match '/change_proportions', to: 'variants#change_proportions', via: :patch
       match '/change_proportions_edit', to: 'variants#change_proportions_edit', via: :get
+      match '/change_proportions', to: 'variants#change_proportions', via: :patch
       match '/update_proportions', to: 'variants#update_proportions', via: :patch
       match '/normalize_proportions', to: 'variants#normalize_proportions', via: :patch# , as: 'update_proportion'
     end
