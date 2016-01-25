@@ -82,3 +82,9 @@ change_proportions_with_product:
   name: 'change_proportions_with_product'
   recipe: one
   ingredients: one, three
+  
+variant_with_product:
+  user: one
+  name: 'variant_with_product'
+  recipe: one
+  ingredients: one, three

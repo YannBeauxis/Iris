@@ -147,8 +147,9 @@ class VariantTest < ActiveSupport::TestCase
     
   end
 
-  test "not new version if archived" do
-
+  test "not delete if product" do
+    v = variants(:variant_with_product)
+    assert_not v.destroy, 'should not delete variant with product'
   end
   
 end

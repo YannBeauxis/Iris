@@ -3,13 +3,11 @@ class Variant < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :ingredients, -> { uniq }
   has_many :proportions, dependent: :destroy
-  has_many :products, dependent: :destroy
-  #has_many :ingredients, through: :recipe
-  #has_many :ingredient_types, through: :ingredients, source: :type
+  has_many :products, dependent: :restrict_with_error
+  has_many :ingredient_types, through: :ingredients, source: :type
   validates :name, :user, :recipe, presence: true
   after_create :update_proportions
   after_initialize :init_computation
-  #before_destroy :not_destroy_of_base
   #after_save :update_proportions
   
   def base?
@@ -20,25 +18,12 @@ class Variant < ActiveRecord::Base
     end
   end
   
-  def not_destroy_of_base
-    if self.base?
-      #flash[:alert]  << "Une variante de base ne peut être supprimée"
-      false
-    else
-      true
-    end
-  end
-  
   def init_computation
     @computation = ProportionCompute.new(self)
   end
 
   def update_proportions
     @computation.update
-  end
-
-  def ingredient_types
-    IngredientType.joins(ingredients: :variants).where('variants.id' => self).uniq
   end
 
   def proportions_for_type(type)

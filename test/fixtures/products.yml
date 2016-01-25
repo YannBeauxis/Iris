@@ -49,3 +49,9 @@ change_proportions_with_product:
   description: 'change_proportions_with_product'
   variant: change_proportions_with_product
   volume: 10000
+  
+variant_with_product:
+  user: one
+  description: 'variant_with_product'
+  variant: variant_with_product
+  volume: 10000
