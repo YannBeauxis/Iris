@@ -31,7 +31,7 @@ class RecipesController < ApplicationController
       result[:ingredientTypes] <<  { id: i.id, name: i.name}
     end
  
-    @recipe.ingredients.each do |i|
+    @recipe.ingredients_all_variants.each do |i|
       result[:ingredients] <<  { id: i.id, name: i.name, ingredient_type_id: i.type.id}
     end
     

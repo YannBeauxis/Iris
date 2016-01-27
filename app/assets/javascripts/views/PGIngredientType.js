@@ -48,8 +48,8 @@ App.Views.PGIngredientType = Backbone.View.extend({
      //reset okToCangeType
       this.collection.forEach(function(ingredient, index) {
         if (ingredient.get('ingredient_type_id') == type_id) {
-          volume += ingredient.get('volume');
-          mass += ingredient.get('mass');
+          if (ingredient.get('volume')>0) {volume += ingredient.get('volume');}
+          if (ingredient.get('mass')>0) {mass += ingredient.get('mass');}
           ingredient.set('okToChangeType', false);
         }
       });

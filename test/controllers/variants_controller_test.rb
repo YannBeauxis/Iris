@@ -59,6 +59,11 @@ class VariantsControllerTest < ActionController::TestCase
     assert_not v_updated.nil?, 'new variant not reachable'
     assert v_updated == v_no_p, 'not the same variant returned'
     assert v_updated.ingredients.pluck(:id).sort == ingredients_ids.sort, 'not the right ingredients ids'
+    som_prop = 0
+    v_updated.proportions.each do |prop|
+      som_prop += som_prop + prop.value
+    end
+    assert som_prop == 30000, som_prop
     
     # variant with products associated
     patch(:change_ingredients, {variant_id: v_with_p, recipe_id: r, ingredients_ids: ingredients_ids})

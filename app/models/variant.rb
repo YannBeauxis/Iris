@@ -57,7 +57,7 @@ class Variant < ActiveRecord::Base
         else
           self.ingredients = Ingredient.find(options[:ingredients_ids])
         end
-        self.save
+        self.update_proportions
       end
     end
     v
