@@ -35,11 +35,6 @@
         can_condition: {action: :update, object: @ingredient}) %>
 <% end %>
 
-<% if params[:action] == 'new' then %>
-  <%= menu_item(menu: :content_menu, 
-     path: ingredients_path, label: 'Annuler') %>
-<% end %>
-
 <% if params[:action] == 'edit' then %>
   <%= menu_item(menu: :content_menu, 
      path: ingredient_path(@ingredient), label: 'Annuler') %>

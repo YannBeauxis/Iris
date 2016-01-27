@@ -1,0 +1,4 @@
+  <%= menu_item(menu: :nav_resume, active: true,
+       label: @ingredient.type.name, path: ingredient_type_path(@ingredient.type)) %>
+  <%= menu_item(menu: :nav_resume, active: params[:action] == 'show',
+       label: @ingredient.name, path: ingredient_path(@ingredient)) %>

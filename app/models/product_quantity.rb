@@ -29,7 +29,7 @@ class ProductQuantity
       id: variant.id,
       name: variant.name,
       archived: variant.archived?,
-      selected: variant.base?,
+      base: variant.base?,
       ingredientTypes: {}, 
       ingredients: {}
     }

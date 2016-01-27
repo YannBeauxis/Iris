@@ -3,28 +3,28 @@
     <label class="integer required control-label col-sm-2" for="product__volume">
       <abbr title="required">*</abbr> Volume
     </label>
-    <div class="col-sm-2">
-      <input class="numeric integer required form-control" type="number" step="10" id="product__volume">
-    </div>
-    <label class="control-label col-sm-2" for="product__variant">
-      Variante
-    </label>
-    <div class="col-sm-6">
+    <div class="col-sm-3">
       <div class="input-group">
-        <select class="select form-control" id="product__variant">
-        </select>
-        <div class="input-group-btn">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-right">
-            <li><a href="#" id="modify-variant">Informations</a></li>
-            <li><a href="#" id="change-ingredients">Ingrédients</a></li>
-            <li><a href="#" id="change-proportions">Proportions</a></li>
-          </ul>
+        <input class="numeric integer required form-control" type="number" step="10" id="product__volume" min=1>
+        <span class="input-group-addon">ml</span>
+      </div>  
+    </div>
+      <div class="col-sm-7">
+        <div class="input-group">
+          <select class="select form-control" id="product__variant">
+          </select>
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a href="#" id="modify-variant">Informations</a></li>
+              <li><a href="#" id="change-ingredients">Ingrédients</a></li>
+              <li><a href="#" id="change-proportions">Proportions</a></li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
   </div>
 
   <div id="product__details" style="display: none;">

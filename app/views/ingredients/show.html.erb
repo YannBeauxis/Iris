@@ -8,10 +8,9 @@
     <div class="panel-heading">informations</div>
     <div class="panel-body">
       <span class="highlight">Densité : </span>
-      <%= @ingredient.density %>
+      <%= @ingredient.density/100.0 %>
     </div>
   </div>
-
 <div class="panel panel-default">
   <div class="panel-heading">Stocks pour l'ingrédient</div>
 
@@ -26,8 +25,8 @@
    
         <% @containers.each do |c| %>
         <tr>
-          <td><%= c.quantity_init.display %></td>
-          <td><%= if c.quantity_actual? then c.quantity_actual.display end %></td>
+          <td><%= (c.quantity_init.display/100.0).to_s + ' ml' %></td>
+          <td><%= if c.quantity_actual? then (c.quantity_actual.display/100.0).to_s + ' ml' end %></td>
           <td><%= link_to 'Modifier', edit_ingredient_container_path(@ingredient,c) %></td>
         </tr>
       <% end %>

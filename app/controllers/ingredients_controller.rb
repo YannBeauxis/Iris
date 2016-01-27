@@ -49,10 +49,11 @@ class IngredientsController < ApplicationController
 
   def new
     @ingredient = Ingredient.new
+    init_form
   end
 
   def edit
-
+    init_form
   end
 
   def create
@@ -82,6 +83,10 @@ class IngredientsController < ApplicationController
   end
 
   private
+
+    def init_form
+      @ingredient_types = IngredientType.order(:name)
+    end
 
     def is_used_by_other
       @ingredient = Ingredient.find(params[:id])

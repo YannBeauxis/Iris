@@ -1,7 +1,5 @@
-<%= render 'ingredients/nav_resume' %>
+<%= render 'nav_resume' %>
 <%= render 'ingredients/header' %>
-
-<%= render 'menu' %>
 
 <%= menu_item(menu: :content_menu, 
        path: ingredient_container_path(@ingredient,@container), label: 'Supprimer', 
@@ -11,23 +9,36 @@
 
     <%= render 'form' %>
 
-    <p><b>Modifier volume par la masse</b></p>
+    <% if !@container.mass_total.display.nil? %>
     
-    <%= form_for @container,url: ingredient_container_update_with_mass_path(@ingredient,@container), method:'patch' do |f| %>
-      <input type="hidden" name="container[id]" step="any" type="number" value=<%= @container.id %> />
-    
-    
-      <p>
-        <%= f.label 'Masse totale' %><br>
-        <input name="container[mass]" 
-                      step="any" type="number" value=<%= @container.mass_total.display %> />
-      </p>
-
-      <p>
-        <%= f.submit 'Enregistrer'%>
-      </p>
+      <div class="panel panel-default">
+      
+          <div class="panel-heading">Modifier volume par la masse</div>
+        
+            <div class="panel-body">
+      
+              <%= form_for @container,url: ingredient_container_update_with_mass_path(@ingredient,@container), method:'patch' do |f| %>
+                <input type="hidden" name="container[id]" step="any" type="number" value=<%= @container.id %> />
+              
+                <div class="form-group">
+                  <label for="mass-input" class="col-xs-3">Masse</label>
+                  <div class="col-xs-5">
+                    <div class="input-group">
+                      <input name="container[mass]" id="mass-input" class="numeric integer optional form-control"
+                            step="any" type="number" value=<%= @container.mass_total.display %> />
+                      <span class="input-group-addon">g</span>
+                    </div>
+                  </div>
+                  <div class="col-xs-4">
+                    <input type="submit" name="commit" value="Enregistrer" class="btn btn-default">
+                  </div>
+                </div>
+              <% end %>
+      
+          </div>
+        </div>
+      </div>
     <% end %>
-
 
 <% end %>
 

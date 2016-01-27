@@ -37,7 +37,7 @@
           disabled: !@recipe_type_select
         %>
       
-        <% if current_user.admin? then%>
+        <% if current_user.admin? %>
           <%= f.input :user_id, collection: User.all, label: 'Propriétaire' %>
           <%= f.input :variant_base_id,
             label: 'ID variante de base'
@@ -63,9 +63,9 @@
       <% end %>
         
           <div class="form-group"> 
-            <div class="col-sm-offset-3 col-sm-9">
-              <%= f.button :submit, 'Enregistrer' %>
+            <div class="col-sm-offset-8 col-sm-4">
               <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+              <%= f.button :submit, 'Enregistrer' %>
             </div>
           </div>
       </div>

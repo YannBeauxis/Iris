@@ -1,30 +1,32 @@
-<%= form_for @container, :url => url_for([@ingredient, @container]) do |f| %>
+<div class="panel panel-default">
 
-  <p>
-    <%= f.label 'Volume intial' %><br>
-    <%= f.number_field :quantity_init, :step => 'any' %>
-  </p>
-
-  <p>
-    <%= f.label 'Prix d\'achat' %><br>
-    <%= f.number_field :price, :step => 'any' %>
-  </p>
-
-  <p>
-    <%= f.label 'Volume actuel' %><br>
-    <%= f.number_field :quantity_actual, :step => 'any' %>
-  </p>
-      
-  <% if current_user.admin? then%>
-    <p>
-      <%= f.label 'Propriétaire' %><br>
-      <%= f.collection_select(:user_id, User.all, :id, :name, {:selected => current_user.id}) %>
-    </p>
-  <% end %>
+    <div class="panel-heading">Volume</div>
   
-  <p>
-    <%= f.submit 'Enregistrer'%>
-  </p>
-<% end %>
+      <div class="panel-body">
 
+        <%= simple_form_for [@ingredient, @container], 
+            html: { class: 'form-horizontal' },  
+            wrapper: :horizontal_form  do |f| %>
+      
+            <%= f.input :quantity_init, label: 'Volume intial' %>
+      
+            <%= f.input :price, label: 'Prix d\'achat' %>
+      
+            <%= f.input :quantity_actual, label: 'Volume actuel' %>
+      
+            <% if current_user.admin? %>
+              <%= f.input :user_id, collection: User.all, label: 'Propriétaire' %>
+            <% end %>
+            
+            <div class="form-group row"> 
+              <div class="col-sm-offset-8 col-sm-4">
+                <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+                <%= f.button :submit, 'Enregistrer' %>
+              </div>
+            </div>
+                
+        <% end %>
+    </div>
+  </div>
+</div>
 

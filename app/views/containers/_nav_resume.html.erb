@@ -1,0 +1,9 @@
+<%= render 'ingredients/nav_resume_base' %>
+
+<% if params[:action] == 'edit' %>
+  <%= menu_item(menu: :nav_resume, active:true, label: 'Modifier stock') %>
+<% end %>
+
+<% if params[:action] == 'new' %>
+  <%= menu_item(menu: :nav_resume, active:true, label: 'Nouveau stock') %>
+<% end %>
