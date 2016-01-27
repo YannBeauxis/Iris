@@ -67,7 +67,7 @@ body {
   font-size: 130%;
 }
 
-table.colored {
+table.custom-stripped {
     border-collapse:collapse;
     tr.filled {
       background-color: $color-primary-background;
@@ -94,10 +94,6 @@ table.table {
   &.table-striped {
     tr:nth-child(odd) td {
       background-color: $color-primary-background;
-    }
-    tr.category td {
-      background-color: $color-base-background !important;
-      font-weight: bold;
     }
   }
   tr.filled {

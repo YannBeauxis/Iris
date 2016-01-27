@@ -60,7 +60,20 @@ App.Views.PGIngredientType = Backbone.View.extend({
       this.$el.find('td.mass').text(
         Math.round(mass*100)/100 + ' g');    
     }
+  this.stripRows();
+  },
 
+  stripRows: function(){
+    // color one line each 2 of displayed lines
+    var el = this.$el.next();
+    var filled = false;
+    while(!el.hasClass('category') && el.length > 0) {
+      if (el.is(':visible')) {
+        el.toggleClass('filled', filled);
+        filled = !filled;
+      }
+      el = el.next();
+    }
   },
 
   render: function () {

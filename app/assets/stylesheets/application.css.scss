@@ -236,8 +236,14 @@
     #modify-variant {
       //float: right;
     }
-    table.table-quantities td.spacing {
-      width: 1px;
+    table.table-quantities {
+      tr.category td {
+        background-color: $color-base-background !important;
+        font-weight: bold;
+      }
+      td.spacing {
+        width: 1px;
+      }
     }
     #Products {
       tr.product {
