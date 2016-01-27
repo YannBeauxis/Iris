@@ -1,9 +1,17 @@
-<%= menu_item(menu: :nav_resume, 
+<%= menu_item(menu: :nav_resume, active: params[:action] == 'index',
      label: 'Ingrédients', path: ingredients_path)%>
 
 <% if ['show', 'edit'].include?(params[:action]) then %>
-  <%= menu_item(menu: :nav_resume, 
-       label: @ingredient.type.name, path: ingredient_type_path(@ingredient.type)) %>
   <%= menu_item(menu: :nav_resume, active: true,
-       label: @ingredient.name) %>
+       label: @ingredient.type.name, path: ingredient_type_path(@ingredient.type)) %>
+  <%= menu_item(menu: :nav_resume, active: params[:action] == 'show',
+       label: @ingredient.name, path: ingredient_path(@ingredient)) %>
+<% end %>
+
+<% if params[:action] == 'edit' %>
+  <%= menu_item(menu: :nav_resume, active:true, label: 'Modifier') %>
+<% end %>
+
+<% if params[:action] == 'new' %>
+  <%= menu_item(menu: :nav_resume, active:true, label: 'Nouvel ingrédient') %>
 <% end %>

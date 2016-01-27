@@ -57,6 +57,10 @@ class Recipe < ActiveRecord::Base
     self.variant_base.ingredients
   end
 
+  def ingredients_all_variants
+    Ingredient.joins(variants: :recipe).where('recipe_id = ?', self.id).uniq
+  end
+
   def ingredient_types
     IngredientType.joins(ingredients: :variants).where('variant_id = '+ self.variant_base_id.to_s).group('ingredient_types.id')
   end

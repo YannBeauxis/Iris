@@ -1,5 +1,7 @@
 var ready = function() {
  
+  App.cgMode ='index';
+ 
   var options = {
     mainEl: '#CategoryGrid', 
     category: {

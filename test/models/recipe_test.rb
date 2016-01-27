@@ -38,4 +38,19 @@ class RecipeTest < ActiveSupport::TestCase
     assert_includes r.ingredient_types, it
   end
   
+  test "ingredients_all_variants" do
+    r=recipes(:recipe_ingredients_all_variants)
+    v_one = variants(:recipe_ingredients_all_variants_one)
+    v_one.update_proportions
+    v_three = variants(:recipe_ingredients_all_variants_one)
+    v_three.update_proportions
+    r.variant_base_id = v_one.id
+    
+    i_all = [ingredients(:one).id, ingredients(:three).id].sort
+    recipe_i = r.ingredients_all_variants.pluck(:id).sort
+    
+    assert recipe_i == i_all, 'ingredients_all_variants are not goods : ' + recipe_i.to_s + ' vs ' + i_all.to_s
+    
+  end
+  
 end

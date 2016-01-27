@@ -1,6 +1,6 @@
 class VariantsController < ApplicationController
   before_action :get_recipe
-  before_action :check_user, except: [:index, :show, :new, :edit, :update, :destroy]
+  before_action :check_user, except: [:index, :show, :new, :create, :edit, :update, :destroy]
   
   def index
     @variants = Variant.all

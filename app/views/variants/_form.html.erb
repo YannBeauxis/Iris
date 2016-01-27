@@ -1,6 +1,7 @@
 <%= simple_form_for [@recipe,@variant] do |f| %>
 
-    <%= f.input :name, label: 'Nom' %>
+    <%= f.input :name, label: 'Nom', 
+            disabled: @variant.base? %>
     <%= f.input :description, label: 'Description' %>
 
     <% if current_user.admin? %>

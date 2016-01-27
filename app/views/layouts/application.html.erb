@@ -52,10 +52,16 @@
   <div id="NavBar">
     <ol class="breadcrumb">
       <% if content_for?(:nav_resume) %>
-        <li><%= link_to 'Home', root_path %></li>
+        <li>
+          <a href="/">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+          </a>
+        </li>
         <%= yield( :nav_resume ) %>
       <% else %>
-        <li class="active">Home</li>
+        <li class="active">
+          <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+        </li>
       <% end %>
     </ol>
   </div>

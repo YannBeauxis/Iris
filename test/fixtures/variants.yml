@@ -88,3 +88,15 @@ variant_with_product:
   name: 'variant_with_product'
   recipe: one
   ingredients: one, three
+  
+recipe_ingredients_all_variants_one:
+  user: one
+  name: 'recipe_ingredients_all_variants_one'
+  recipe: recipe_ingredients_all_variants
+  ingredients: one
+  
+recipe_ingredients_all_variants_three:
+  user: one
+  name: 'recipe_ingredients_all_variants_one'
+  recipe: recipe_ingredients_all_variants
+  ingredients: one, three

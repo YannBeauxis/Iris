@@ -90,6 +90,7 @@ class RecipesController < ApplicationController
     else
        @recipe.variant_base.ingredients.delete_all
     end
+    @recipe.variant_base.update_proportions
   end
 
   def destroy

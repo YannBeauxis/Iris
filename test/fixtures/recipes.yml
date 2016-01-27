@@ -68,4 +68,8 @@ product_index:
   user: one
   name: 'product_index'
   type: one 
-  #ingredients: one
+  
+recipe_ingredients_all_variants:
+  user: one
+  name: 'recipe_ingredients_all_variants'
+  type: one 

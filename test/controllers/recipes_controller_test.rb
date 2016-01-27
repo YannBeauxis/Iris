@@ -41,6 +41,8 @@ class RecipesControllerTest < ActionController::TestCase
     r = assigns(:recipe)
     assert_not r.variant_base_id.nil?
     assert r.variant_base.ingredients.count == 2, r.variant_base.ingredients.count
+    assert r.variant_base.proportions.count == 3, r.variant_base.proportions.count.to_s
+    assert r.variant_base.proportions.first.value > 0, r.variant_base.proportions.first.value.to_s
   end
 
 #  test "duplicate_variant" do
