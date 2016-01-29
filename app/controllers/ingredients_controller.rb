@@ -11,8 +11,8 @@ class IngredientsController < ApplicationController
       @ingredients_scope = Ingredient.all
     end
 
-    if params.has_key?(:recipe_id)
-      @recipe = Recipe.find(params[:recipe_id])
+    if params.has_key?(:variant_id)
+      @variant = Variant.find(params[:variant_id])
     end
 
     respond_to do |format|
@@ -20,8 +20,8 @@ class IngredientsController < ApplicationController
       format.json { 
         @ingredients = []
         @ingredients_scope.find_each do |i|
-          if params.has_key?(:recipe_id)
-            selected = !@recipe.ingredients.find_by_id(i.id).nil?
+          if params.has_key?(:variant_id)
+            selected = !@variant.ingredients.find_by_id(i.id).nil?
           else
             selected = false
           end
@@ -97,7 +97,7 @@ class IngredientsController < ApplicationController
     end
 
     def ingredient_params
-      params.require(:ingredient).permit(:name, :ingredient_type_id, :density, :scope, :recipe_type_id)
+      params.require(:ingredient).permit(:name, :ingredient_type_id, :density, :scope, :recipe_type_id, :variant_id)
     end
 
 

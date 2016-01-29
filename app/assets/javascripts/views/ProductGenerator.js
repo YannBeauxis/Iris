@@ -5,8 +5,8 @@ App.Views.ProductGenerator = Backbone.View.extend({
   initialize: function() {
 
   // Create collections
-    this.ingredientTypes = new App.Collections.IngredientTypes(); 
-    this.ingredients = new App.Collections.Ingredients(); 
+    //this.ingredientTypes = new App.Collections.IngredientTypes(); 
+    //this.ingredients = new App.Collections.Ingredients(); 
     this.variants = new App.Collections.Variants(); 
     this.products = new App.Collections.Products({
       url: '/recipes/' + App.productGeneratorRaw.recipeId + '/products'
@@ -15,14 +15,13 @@ App.Views.ProductGenerator = Backbone.View.extend({
   // Variants
     var variantSelectEl = this.$el.find('#product__variant');
     this.variantSelect= new App.Views.PGVariantSelect({el: variantSelectEl, collection: this.variants});
-    //select the base variant
 
     //Create Table view with ingredient types as collection
     var tableEl = this.$el.find('.table-quantities');
     this.quantitiesTable= 
       new App.Views.PGQuantitiesTable({
         el: tableEl, 
-        collection: this.ingredientTypes,
+        //collection: this.ingredientTypes,
         options: {
           ingredients: this.ingredients,
           appView: this
@@ -40,8 +39,8 @@ App.Views.ProductGenerator = Backbone.View.extend({
     this.listenTo(this.productsTable, 'displayProduct', this.displayProduct);
 
     //populate collections
-    this.ingredientTypes.add(App.productGeneratorRaw.ingredientTypes);
-    this.ingredients.add(App.productGeneratorRaw.ingredients);
+    //this.ingredientTypes.add(App.productGeneratorRaw.ingredientTypes);
+    //this.ingredients.add(App.productGeneratorRaw.ingredients);
     this.variants.add(App.productGeneratorRaw.variants);
     this.variantSelect.focusBase();
     this.products.fetch();
@@ -57,16 +56,16 @@ App.Views.ProductGenerator = Backbone.View.extend({
     $('#expiration-date__input').datetimepicker({format: 'DD/MM/YYYY'});
     $('#expiration-date').datetimepicker({format: 'DD/MM/YYYY'});
 
+    this.changeVariant();
     this.compute();
-    
   },
 
   events: {
-    "change #product__variant":  "compute",
+    "change #product__variant":  "changeVariant",
     //"keydown #product__volume":  "isNumberKey",
     "keyup #product__volume":  "changeVolume",
     "change #product__volume":  "changeVolume",
-    "click #modify-variant":  "modifyVariant",
+    "click #modify-variant":  "modifyVariantParams",
     "click #change-ingredients":  "changeIngredients",
     "click #change-proportions":  "changeProportions",
     "click #btn--product--details":  "productDetails",
@@ -74,12 +73,25 @@ App.Views.ProductGenerator = Backbone.View.extend({
     "click #btn--product--new--save":  "productSave"
   },
 
-  compute: function() {
-    var variant_id = this.variantSelect.$el.val();
-    var volume = this.volume;
-    this.trigger('compute', {variant_id: variant_id, volume: volume} );
+  changeVariant: function() {
+
+    this.variantSelectedId = this.variantSelect.$el.val();
+    this.quantitiesTable.ingredientTypes.reset();
+    //this.ingredients.reset();
+    var variant = this.variants
+        .findWhere({
+          id: parseInt(this.variantSelectedId)
+        }).toJSON();
+    this.quantitiesTable.ingredientTypes.add(
+      variant.ingredientTypes
+    );
+    this.compute();
   },
 
+  compute: function() {
+    this.trigger('compute', {VariantId: this.variantSelectedId, volume: this.volume});
+  },
+  
   changeVolume: function(e) {
     var value = e.target.value;
     if (value != this.volume) {
@@ -97,7 +109,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
       return true;
   },
 
-  modifyVariant: function() {
+  modifyVariantParams: function() {
     var variant_id = this.variantSelect.$el.val();
     var url = '/recipes/' + App.productGeneratorRaw.recipeId + '/variants/' + variant_id + '/edit';
     window.location = url;

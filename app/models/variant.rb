@@ -4,7 +4,7 @@ class Variant < ActiveRecord::Base
   has_and_belongs_to_many :ingredients, -> { uniq }
   has_many :proportions, dependent: :destroy
   has_many :products, dependent: :restrict_with_error
-  has_many :ingredient_types, through: :ingredients, source: :type
+  has_many :ingredient_types, -> { uniq }, through: :ingredients, source: :type
   validates :name, :user, :recipe, presence: true
   after_create :update_proportions
   after_initialize :init_computation

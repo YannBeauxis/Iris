@@ -50,10 +50,11 @@ App.Views.CategoryGrid = Backbone.View.extend({
       categoryParams[App.categoryFilter.param] =
         $(App.categoryFilter.selector).val();
     }
-    if (App.recipeId != null) {
-      categoryParams['recipe_id'] = App.recipeId;
+    if (App.variantId != null) {
+      categoryParams['variant_id'] = App.variantId;
     }
     categoryParams = $.param(categoryParams);
+    console.log(categoryParams);
     var self = App.currentGrid;
     self.$el.hide().children().remove();
     self.categories.reset();

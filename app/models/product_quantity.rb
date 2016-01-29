@@ -30,23 +30,24 @@ class ProductQuantity
       name: variant.name,
       archived: variant.archived?,
       base: variant.base?,
-      ingredientTypes: {}, 
-      ingredients: {}
+      ingredientTypes: []
     }
-    variant.ingredient_types.each do |i|
-      result[:ingredientTypes][i.id] = {
-        proportion: @product.variant.composant_proportion(i)
-      }
+    result[:ingredientTypes] = variant.ingredient_types.map do |it|
+      ingredients = @product.variant.ingredients.where('ingredient_type_id = ?', it.id).map do |i| 
+          {id: i.id,
+          name: i.name,
+          proportion: @product.variant.composant_proportion(i),
+          mass: @quantities[:mass][i],
+          volume: @quantities[:volume][i],
+          price: @quantities[:price][i],
+          quantity: conv_to_quantity(i)}
+      end
+      {id: it.id,
+      name: it.name,
+      proportion: @product.variant.composant_proportion(it),
+      ingredients: ingredients}
     end
-    @product.variant.ingredients.each do |i|
-      result[:ingredients][i.id] = {
-        proportion: @product.variant.composant_proportion(i),
-        mass: @quantities[:mass][i],
-        volume: @quantities[:volume][i],
-        price: @quantities[:price][i],
-        quantity: conv_to_quantity(i)
-      }
-    end
+
     result
   end
   

@@ -3,7 +3,7 @@
 <% end %>
 
 <% content_for :data_js do %>
-  App.recipeId = <%= @recipe.id %>
+  App.variantId = <%= @variant.id %>
   App.categoryFilter = {
     param: 'recipe_type_id',
     selector: '#variant_recipe_type_id'
