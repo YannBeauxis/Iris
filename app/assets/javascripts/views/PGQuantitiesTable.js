@@ -4,8 +4,10 @@ App.Views.PGQuantitiesTable = Backbone.View.extend({
     
     this.options = options.options;
     this.ingredientTypes = new App.Collections.IngredientTypes(); 
-    this.listenTo(this.ingredientTypes, 'reset', this.removeIngredientTypes);
+    this.quantitySelectors = new App.Collections.PGQuantitySelectors();
+    
     this.listenTo(this.ingredientTypes, 'add', this.addIngredientType);
+    this.listenTo(this.quantitySelectors, 'add', this.addQuantitySelector);
 
   },
 
@@ -19,8 +21,19 @@ App.Views.PGQuantitiesTable = Backbone.View.extend({
     itView.ingredients.add(it.get('ingredients'));
   },
 
-  removeIngredientTypes: function() {
-    
+  addQuantitySelector: function(qs) {
+    var qsView = new App.Views.PGQuantitySelector({
+                    model: qs,
+                    attributes: {selector: qs.get('quantityType')}
+                  });
+    this.$el.find('#quantity-selectors').append(qsView.render().el);
+    this.displayQuantityType({quantityType: qs.get('quantityType'), display: qs.get('selected')});
+    this.listenTo(qsView, 'selectorClick', this.displayQuantityType);
+  },
+  
+  displayQuantityType: function(options) {
+  // options : {quantityType: string, display: boolean}
+    this.$el.find('.quantity-type-' + options.quantityType).toggle(options.display);
   }
 
 });

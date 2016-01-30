@@ -16,25 +16,25 @@ App.Views.PGIngredient = Backbone.View.extend({
   },
 
   compute: function(options) {
-      this.$el.find('td.proportion').text(Math.round(this.model.get('proportion')*10000)/100 + ' %');
+      this.$el.find('td.quantity-type-proportion').text(Math.round(this.model.get('proportion')*10000)/100 + ' %');
       
       //volume
-      this.model.set('volume', this.model.get('volume')*this.options.appView.volume);
-      this.$el.find('td.volume').text(
-        Math.round(this.model.get('volume')*100)/100 + ' ml');
+      this.model.set('computed-volume', this.model.get('volume')*this.options.appView.volume);
+      this.$el.find('td.quantity-type-volume').text(
+        Math.round(this.model.get('computed-volume')*100)/100 + ' ml');
       
       //mass
-      this.model.set('mass', this.model.get('mass')*this.options.appView.volume);
-      this.$el.find('td.mass').text(
-        Math.round(this.model.get('mass')*100)/100 + ' g');
+      this.model.set('computed-mass', this.model.get('mass')*this.options.appView.volume);
+      this.$el.find('td.quantity-type-mass').text(
+        Math.round(this.model.get('computed-mass')*100)/100 + ' g');
   
       //quantity
       var quantity = this.model.get('quantity')*this.options.appView.volume;
       if (quantity > 0 && quantity < 100) {
-        this.$el.find('td.quantity').text(
+        this.$el.find('td.quantity-type-quantity').text(
           Math.round(quantity) + ' gt.');
       } else {
-        this.$el.find('td.quantity').empty();
+        this.$el.find('td.quantity-type-quantity').empty();
       }
       this.$el.show();
     //}

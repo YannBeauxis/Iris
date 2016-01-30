@@ -29,7 +29,7 @@ App.Views.PGIngredientType = Backbone.View.extend({
   },
 
   computeProp: function(options) {
-    this.$el.find('td.proportion').text(Math.round(this.model.get('proportion')*10000)/100 + ' %');
+    this.$el.find('td.quantity-type-proportion').text(Math.round(this.model.get('proportion')*10000)/100 + ' %');
   },
 
   computeValues: function(options) {
@@ -43,18 +43,16 @@ App.Views.PGIngredientType = Backbone.View.extend({
       volume = 0;
       mass = 0;
      //reset okToCangeType
-      this.collection.forEach(function(ingredient, index) {
-        if (ingredient.get('ingredient_type_id') == type_id) {
-          if (ingredient.get('volume')>0) {volume += ingredient.get('volume');}
-          if (ingredient.get('mass')>0) {mass += ingredient.get('mass');}
-          ingredient.set('okToChangeType', false);
-        }
+      this.ingredients.forEach(function(ingredient, index) {
+        if (ingredient.get('computed-volume')>0) {volume += ingredient.get('computed-volume');}
+        if (ingredient.get('computed-mass')>0) {mass += ingredient.get('computed-mass');}
+        ingredient.set('okToChangeType', false);
       });
       
-      this.$el.find('td.volume').text(
+      this.$el.find('td.quantity-type-volume').text(
         Math.round(volume*100)/100 + ' ml');
         
-      this.$el.find('td.mass').text(
+      this.$el.find('td.quantity-type-mass').text(
         Math.round(mass*100)/100 + ' g');    
     }
   },

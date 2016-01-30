@@ -52,6 +52,14 @@ App.Views.ProductGenerator = Backbone.View.extend({
 
     this.changeVariant();
     this.compute();
+
+    this.quantitiesTable.quantitySelectors.add([
+      {quantityType: 'proportion', label: 'Proportions', selected: false},
+      {quantityType: 'volume', label: 'Volume', selected: true},
+      {quantityType: 'mass', label: 'Masse', selected: false},
+      {quantityType: 'quantity', label: 'Quantités', selected: false}
+    ]);
+    
   },
 
   events: {
