@@ -13,9 +13,11 @@ App.Views.PGQuantitySelector = Backbone.View.extend({
   },
 
   clickItem: function(){
+    var checkedValue = this.$el.find('input').is(':checked');
+    this.model.set('selected', checkedValue);
     options = {
       quantityType: this.$el.attr('selector'), 
-      display: this.$el.find('input').is(':checked')};
+      display: checkedValue};
     this.trigger('selectorClick', options);
   },
 

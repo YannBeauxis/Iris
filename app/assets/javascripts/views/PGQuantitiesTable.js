@@ -31,6 +31,17 @@ App.Views.PGQuantitiesTable = Backbone.View.extend({
     this.listenTo(qsView, 'selectorClick', this.displayQuantityType);
   },
   
+  updateAllDisplayQuantityType: function() {
+    var self = this;
+    this.quantitySelectors.each(
+      function (selector, index) {
+        self.displayQuantityType({
+          quantityType: selector.get('quantityType'),
+          display: selector.get('selected')
+        });
+    });
+  },
+  
   displayQuantityType: function(options) {
   // options : {quantityType: string, display: boolean}
     this.$el.find('.quantity-type-' + options.quantityType).toggle(options.display);

@@ -87,6 +87,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
       variant.ingredientTypes
     );
     this.compute();
+    this.quantitiesTable.updateAllDisplayQuantityType();
   },
 
   compute: function() {
