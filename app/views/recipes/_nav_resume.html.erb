@@ -1,7 +1,7 @@
-<%= menu_item(menu: :nav_resume, 
+<%= menu_item(menu: :nav_resume, active: params[:action] == 'index',
      label: 'Recettes', path: recipes_path)%>
 
-<% if ['show', 'edit'].include?(params[:action]) or params[:controller] != 'recipes' then %>
-  <%= menu_item(menu: :nav_resume, 
-       label:  @recipe.type.name, path: recipe_type_path(@recipe.type)) %>
+<% if ['show', 'edit'].include?(params[:action]) %>
+  <%= render 'nav_resume_base' %>
 <% end %>
+

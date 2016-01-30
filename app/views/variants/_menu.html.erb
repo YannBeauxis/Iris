@@ -1,32 +1,12 @@
-<% if params[:action] == 'new' then %>
-  <%= menu_item(menu: :content_menu, 
-       path: recipe_path(@recipe), label: 'Annuler') 
-  %>
-       
-<% elsif params[:action] == 'show' then %>
-  <%= menu_item(menu: :content_menu, 
-       path: edit_recipe_variant_path(@recipe, @variant), label: 'Modifier', 
-         can_condition: {action: :update, object: @variant}) 
-  %>
-  <%= menu_item(menu: :content_menu, 
-       path: recipe_duplicate_variant_path(@recipe,variant_id: @variant, variant_name: 'Copie de ' + @variant.name), 
-       label: 'Dupliquer variante',link_param: {method: :patch}, 
-       can_condition: {action: :update, object: @variant}) 
-  %>
-  <%= menu_item(menu: :content_menu, 
-       path: recipe_path(@recipe), label: 'Retour Recette') %>
-
-<% elsif params[:action] == 'edit' then %>    
+<% if params[:action] == 'edit' then %>    
   <%= menu_item(menu: :content_menu, 
         path: recipe_path(@recipe), label: 'Retour recette') 
   %>
-  
+  <% if !@variant.base? %>
+    <%= menu_item(menu: :content_menu, 
+         path: recipe_variant_path(@recipe, @variant), label: 'Supprimer variante', 
+         link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cette variante  ?' }}, 
+           can_condition: {action: :delete, object: @variant}) 
+    %> 
+  <% end%> 
 <% end%> 
-
-<% if ['show', 'edit'].include?(params[:action]) then%>
-  <%= menu_item(menu: :content_menu, 
-       path: recipe_variant_path(@recipe, @variant), label: 'Supprimer', 
-       link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cette variante  ?' }}, 
-         can_condition: {action: :delete, object: @variant}) 
-  %> 
-<% end %>

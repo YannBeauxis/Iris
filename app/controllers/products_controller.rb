@@ -76,8 +76,7 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(
           :variant_id, :volume, :container, 
-          :description, :production_date, :expiration_date, 
-          :number_produced
+          :description, :production_date, :expiration_date
       )
     end
 

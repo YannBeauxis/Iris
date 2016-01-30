@@ -5,8 +5,6 @@ App.Views.ProductGenerator = Backbone.View.extend({
   initialize: function() {
 
   // Create collections
-    //this.ingredientTypes = new App.Collections.IngredientTypes(); 
-    //this.ingredients = new App.Collections.Ingredients(); 
     this.variants = new App.Collections.Variants(); 
     this.products = new App.Collections.Products({
       url: '/recipes/' + App.productGeneratorRaw.recipeId + '/products'
@@ -39,8 +37,6 @@ App.Views.ProductGenerator = Backbone.View.extend({
     this.listenTo(this.productsTable, 'displayProduct', this.displayProduct);
 
     //populate collections
-    //this.ingredientTypes.add(App.productGeneratorRaw.ingredientTypes);
-    //this.ingredients.add(App.productGeneratorRaw.ingredients);
     this.variants.add(App.productGeneratorRaw.variants);
     this.variantSelect.focusBase();
     this.products.fetch();
@@ -50,10 +46,8 @@ App.Views.ProductGenerator = Backbone.View.extend({
     this.$el.find('#product__volume').val(this.volume);
     this.$el.find('#product__number-produced').val(1);
     //initiate date pickers
-    $('#production-date').datetimepicker({format: 'DD/MM/YYYY'});
     var today = new Date();
-    $('#production-date__input').datetimepicker({format: 'DD/MM/YYYY', defaultDate: today});
-    $('#expiration-date__input').datetimepicker({format: 'DD/MM/YYYY'});
+    $('#production-date').datetimepicker({format: 'DD/MM/YYYY', defaultDate: today});
     $('#expiration-date').datetimepicker({format: 'DD/MM/YYYY'});
 
     this.changeVariant();
@@ -77,7 +71,6 @@ App.Views.ProductGenerator = Backbone.View.extend({
 
     this.variantSelectedId = this.variantSelect.$el.val();
     this.quantitiesTable.ingredientTypes.reset();
-    //this.ingredients.reset();
     var variant = this.variants
         .findWhere({
           id: parseInt(this.variantSelectedId)
@@ -155,8 +148,6 @@ App.Views.ProductGenerator = Backbone.View.extend({
     this.$el.find('#product__variant').val(model.get('variant_id'));
     this.$el.find('#product__variant').attr('disabled','');
     this.$el.find('#product__container').val(model.get('container'));
-    this.$el.find('#product__number-produced').val(model.get('number_produced'));
-    this.$el.find('#product__number-produced').attr('disabled','');
     this.$el.find('#product__description').val(model.get('description'));
     this.$el.find('#production-date__input').val(App.convertDate(model.get('production_date')));
     this.$el.find('#production-date__input').attr('disabled','');
@@ -185,14 +176,12 @@ App.Views.ProductGenerator = Backbone.View.extend({
     this.productMode = 'new';
     this.$el.find('#product__volume').removeAttr('disabled');
     this.$el.find('#product__variant').removeAttr('disabled','');
-    this.$el.find('#product__number-produced').removeAttr('disabled','');
     this.$el.find('#production-date__input').removeAttr('disabled','');
     this.$el.find('#btn--product--details').text('Annuler').show();
     this.$el.find('#btn--product--new--initiate').hide();
     this.$el.find('#btn--product--new--save').text('Enregistrer nouveau produit');  
     this.$el.find('.product--save--alert')
             .text('').slideUp();
-    //this.$el.find('#btn--product--new--save').toggle();  
     
   },
 
@@ -230,7 +219,6 @@ App.Views.ProductGenerator = Backbone.View.extend({
         variant: {name: this.$el.find('#product__variant option:selected').text()},
         volume: this.$el.find('#product__volume').val()*100,
         container: this.$el.find('#product__container').val(),
-        number_produced: parseInt(this.$el.find('#product__number-produced').val()),
         description: this.$el.find('#product__description').val(),
         production_date: prodDate,
         expiration_date: expDate

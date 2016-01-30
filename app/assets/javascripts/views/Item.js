@@ -21,7 +21,7 @@ App.Views.Item= Backbone.View.extend({
   },
 
   href: function (){
-    return this.model.url + '/' + this.model.get('id');
+    return this.model.url + '/' + this.model.get('id') + '.html';
   },
 
   render: function() {

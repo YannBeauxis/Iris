@@ -1,5 +1,8 @@
 <% content_for :content_header do %>
-  <span class="title">Variante <%= @variant.name %></span><br>
+  <span class="title">
+    <%= 'Variante ' if !@variant.base? %>
+    <%= @variant.name %>
+  </span><br>
 <% end %>
 
 <%= render '/shared/item_content_subtitle'%>
