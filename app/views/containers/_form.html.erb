@@ -3,16 +3,32 @@
     <div class="panel-heading">Volume</div>
   
       <div class="panel-body">
+        
 
-        <%= simple_form_for [@ingredient, @container], 
-            html: { class: 'form-horizontal' },  
-            wrapper: :horizontal_form  do |f| %>
-      
-            <%= f.input :quantity_init, label: 'Volume intial' %>
-      
-            <%= f.input :price, label: 'Prix d\'achat' %>
-      
-            <%= f.input :quantity_actual, label: 'Volume actuel' %>
+          <%= simple_form_for [@ingredient, @container], 
+              html: { class: 'form-horizontal' },  
+              wrapper: :horizontal_input_group  do |f| %>
+
+              <%= f.input :quantity_init, 
+                label: 'Volume intial' do %>
+                <%= f.input_field :quantity_init, class: "form-control",
+                  value: @container.quantity_init.nil? ? nil : @container.quantity_init/100.0 %>
+                <span class="input-group-addon">ml</span>
+              <% end %>
+              
+              <%= f.input :price, 
+                label: 'Prix d\'achat' do %>
+                <%= f.input_field :price, class: "form-control",
+                  value: @container.price.nil? ? nil : @container.price/100.0 %>
+                <span class="input-group-addon">€</span>
+              <% end %>
+              
+              <%= f.input :quantity_actual, 
+                label: 'Volume actuel' do %>
+                <%= f.input_field :quantity_actual, class: "form-control",
+                  value: @container.quantity_actual.nil? ? nil : @container.quantity_actual/100.0 %>
+                <span class="input-group-addon">ml</span>
+              <% end %>
       
             <% if current_user.admin? %>
               <%= f.input :user_id, collection: User.all, label: 'Propriétaire' %>

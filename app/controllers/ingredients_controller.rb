@@ -97,7 +97,9 @@ class IngredientsController < ApplicationController
     end
 
     def ingredient_params
-      params.require(:ingredient).permit(:name, :ingredient_type_id, :density, :scope, :recipe_type_id, :variant_id)
+      result = params.require(:ingredient).permit(:name, :ingredient_type_id, :density, :scope, :recipe_type_id, :variant_id)
+      result[:density] = result[:density].to_f * 100 if result.has_key?(:density)
+      result
     end
 
 

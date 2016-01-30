@@ -1,4 +1,5 @@
-<%= simple_form_for [@recipe,@product] do |f| %>
+<%= simple_form_for [@recipe,@product],  
+      wrapper: :horizontal_input_group do |f| %>
 
   <% if current_user.admin? %>
 
@@ -20,7 +21,13 @@
             disabled: true
      %>
      
-      <%= f.input :volume, label: 'Volume' %>
+      <%= f.input :volume, 
+        label: 'Volume' do %>
+        <%= f.input_field :volume, class: "form-control",
+          value: @product.volume.nil? ? nil : @product.volume/100.0 %>
+        <span class="input-group-addon">ml</span>
+      <% end %>
+              
       <%= f.input :container, label: 'Container' %>
       <%= f.input :description, label: 'Description' %>
       <%= f.input :production_date, label: 'Date de production' %>

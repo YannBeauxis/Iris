@@ -60,10 +60,16 @@ class ContainersController < ApplicationController
       if current_user.admin? then
         p << :user_id
       end
-      params.require(:container).permit(p)
+      result = params.require(:container).permit(p)
+      [:quantity_init, :quantity_actual, :price].each do |param|
+        result[param] = result[param].to_f * 100 if result.has_key?(param)
+      end
+      result
     end
     
     def update_with_mass_params
-      params.require(:container).permit(:id, :mass)
+      result = params.require(:container).permit(:id, :mass)
+      result[:mass] = result[:mass].to_f * 100 if result.has_key?(:mass)
+      result
     end
 end
