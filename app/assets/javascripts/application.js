@@ -49,3 +49,15 @@ App.invertDate = function (d) {
     return null;
   }
 };
+
+App.displayVolume = function (v) {
+  if (v != null) {
+    if (v<100000) {
+      return v/100 + ' ml';
+    }
+    else {}
+      return Math.round(v/1000)/100 + ' L';
+  } else {
+    return null;
+  }
+};
