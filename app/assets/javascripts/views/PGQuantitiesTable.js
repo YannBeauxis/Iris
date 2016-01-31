@@ -31,9 +31,9 @@ App.Views.PGQuantitiesTable = Backbone.View.extend({
       price= 0;
      //reset okToChangeTotal
       this.ingredientTypes.forEach(function(ingredientType, index) {
-        if (ingredientType.get('computed-price') != null) {price += ingredientType.get('computed-price');
+        if (ingredientType.get('computed-price') != null && price != null) {price += ingredientType.get('computed-price');
         } else {
-          price =null;
+          price = null;
         }
         ingredientType.set('okToChangeTotal', false);
       });

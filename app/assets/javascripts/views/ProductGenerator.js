@@ -96,9 +96,6 @@ App.Views.ProductGenerator = Backbone.View.extend({
 
   compute: function() {
     this.trigger('compute', {VariantId: this.variantSelectedId, volume: this.volume});
-      this.quantitiesTable.ingredientTypes.forEach(function(ingredient, index) {
-
-      });
   },
   
   changeVolume: function(e) {
@@ -110,8 +107,10 @@ App.Views.ProductGenerator = Backbone.View.extend({
   },
 
   changePrice: function(price) {
-    this.$el.find('#product__price').val(
-      Math.round(price*100)/100);
+    if (price != null) {
+      price = Math.round(price*100)/100;
+    }
+    this.$el.find('#product__price').val(price);
   },
   
   isNumberKey: function(evt) {

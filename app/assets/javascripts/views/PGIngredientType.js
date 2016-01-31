@@ -46,7 +46,7 @@ App.Views.PGIngredientType = Backbone.View.extend({
       this.ingredients.forEach(function(ingredient, index) {
         if (ingredient.get('computed-volume')>0) {volume += ingredient.get('computed-volume');}
         if (ingredient.get('computed-mass')>0) {mass += ingredient.get('computed-mass');}
-        if (ingredient.get('computed-price') != null) {price += ingredient.get('computed-price');
+        if (ingredient.get('computed-price') != null && price != null) {price += ingredient.get('computed-price');
         } else {
           price =null;
         }
