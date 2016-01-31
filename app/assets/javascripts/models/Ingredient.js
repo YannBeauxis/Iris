@@ -22,6 +22,23 @@ App.Models.Ingredient = Backbone.Model.extend({
 
   displayChecked: function() {
     if (this.get('selected')) {return 'checked';}
+  },
+
+  displayQuantity: function() {
+    unit = this.get('mesure_unit');
+    stock = this.get('stock');
+    if (stock != null) {
+      if (stock<100000) {
+        return stock/100 + ' ' + unit;
+      } else {
+        if (unit == 'ml') {
+          unit = 'L';
+        } else {
+          unit = 'k' + unit;
+        }
+        return Math.round(stock/1000)/100 + ' ' + unit;
+      }
+    }
   }
 
 });

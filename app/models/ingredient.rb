@@ -29,6 +29,10 @@ class Ingredient < ActiveRecord::Base
     (self.recipes.where.not(user: user).count > 0) or (self.containers.where.not(user: user).count > 0)
   end
 
+  def mesure_unit
+    self.type.mesure_unit
+  end
+
   def get_warehouse(user)
     @warehouse = Warehouse.new('ingredient_for_user',{user: user, ingredient: self})
   end
@@ -64,7 +68,7 @@ class Ingredient < ActiveRecord::Base
 
 # density equal ingredient type density by default
   def density
-    if super.nil? or self.type.mesure_unit == 'g' then
+    if super.nil? then
       self.type.density
     else
       super

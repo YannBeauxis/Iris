@@ -19,6 +19,28 @@ App.Views.PGQuantitiesTable = Backbone.View.extend({
                   });
     this.$el.append(itView.render().el);
     itView.ingredients.add(it.get('ingredients'));
+    this.listenTo(itView, 'okToChangeTotal', this.computeValues);
+  },
+
+  computeValues: function(options) {
+    var test = (this.ingredientTypes.where({
+                  okToChangeTotal: false
+                }).length == 0 );
+    if (test) {
+      
+      price= 0;
+     //reset okToChangeTotal
+      this.ingredientTypes.forEach(function(ingredientType, index) {
+        if (ingredientType.get('computed-price') != null) {price += ingredientType.get('computed-price');
+        } else {
+          price =null;
+        }
+        ingredientType.set('okToChangeTotal', false);
+      });
+      
+      //to display price
+      this.trigger('changePrice', price);
+    }
   },
 
   addQuantitySelector: function(qs) {

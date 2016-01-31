@@ -29,6 +29,7 @@ class IngredientsController < ApplicationController
             id: i.id,
             name: i.name,
             ingredient_type_id: i.ingredient_type_id,
+            mesure_unit: i.type.mesure_unit,
             stock: i.quantity_in_stock(current_user),
             selected: selected}
         end
@@ -98,7 +99,7 @@ class IngredientsController < ApplicationController
 
     def ingredient_params
       result = params.require(:ingredient).permit(:name, :ingredient_type_id, :density, :scope, :recipe_type_id, :variant_id)
-      result[:density] = result[:density].to_f * 100 if result.has_key?(:density)
+      result[:density] = result[:density].to_f * 100.0 if result.has_key?(:density)
       result
     end
 

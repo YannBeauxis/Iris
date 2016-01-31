@@ -15,7 +15,6 @@
   <div class="panel-heading">Stocks pour l'ingrédient</div>
 
   <% if @containers.any? then %>
-
     <table class="table">
       <tr>
         <th>Volume d'achat</th>
@@ -25,8 +24,8 @@
    
         <% @containers.each do |c| %>
         <tr>
-          <td><%= (c.quantity_init.display/100.0).to_s + ' ml' %></td>
-          <td><%= if c.quantity_actual? then (c.quantity_actual.display/100.0).to_s + ' ml' end %></td>
+          <td><%= (c.quantity_init.display/100.0).to_s + ' ' + @ingredient.mesure_unit %></td>
+          <td><%= if c.quantity_actual? then (c.quantity_actual.display/100.0).to_s + ' ' + @ingredient.mesure_unit end %></td>
           <td><%= link_to 'Modifier', edit_ingredient_container_path(@ingredient,c) %></td>
         </tr>
       <% end %>

@@ -26,6 +26,8 @@ App.Views.ProductGenerator = Backbone.View.extend({
         }
       });
 
+    this.listenTo(this.quantitiesTable, 'changePrice', this.changePrice);
+
     //Products
     this.productMode = 'new';
     tableEl = this.$el.find('.table-products');
@@ -57,7 +59,8 @@ App.Views.ProductGenerator = Backbone.View.extend({
       {quantityType: 'proportion', label: 'Proportions', selected: false},
       {quantityType: 'volume', label: 'Volume', selected: true},
       {quantityType: 'mass', label: 'Masse', selected: false},
-      {quantityType: 'quantity', label: 'Quantités', selected: false}
+      {quantityType: 'quantity', label: 'Quantités', selected: false},
+      {quantityType: 'price', label: 'Prix', selected: false}
     ]);
     
   },
@@ -92,6 +95,9 @@ App.Views.ProductGenerator = Backbone.View.extend({
 
   compute: function() {
     this.trigger('compute', {VariantId: this.variantSelectedId, volume: this.volume});
+      this.quantitiesTable.ingredientTypes.forEach(function(ingredient, index) {
+
+      });
   },
   
   changeVolume: function(e) {
@@ -102,6 +108,11 @@ App.Views.ProductGenerator = Backbone.View.extend({
     }
   },
 
+  changePrice: function(price) {
+    this.$el.find('#product__price').val(
+      Math.round(price*100)/100);
+  },
+  
   isNumberKey: function(evt) {
       var charCode = (evt.which) ? evt.which : event.keyCode;
       console.log(charCode);

@@ -13,7 +13,7 @@
                 label: 'Volume intial' do %>
                 <%= f.input_field :quantity_init, class: "form-control",
                   value: @container.quantity_init.nil? ? nil : @container.quantity_init/100.0 %>
-                <span class="input-group-addon">ml</span>
+                <span class="input-group-addon"><%= @ingredient.mesure_unit %></span>
               <% end %>
               
               <%= f.input :price, 
@@ -27,7 +27,7 @@
                 label: 'Volume actuel' do %>
                 <%= f.input_field :quantity_actual, class: "form-control",
                   value: @container.quantity_actual.nil? ? nil : @container.quantity_actual/100.0 %>
-                <span class="input-group-addon">ml</span>
+                <span class="input-group-addon"><%= @ingredient.mesure_unit %></span>
               <% end %>
       
             <% if current_user.admin? %>

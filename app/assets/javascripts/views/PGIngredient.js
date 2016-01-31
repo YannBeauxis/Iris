@@ -5,9 +5,10 @@ App.Views.PGIngredient = Backbone.View.extend({
   template: JST['pg_ingredient'],
   
   initialize: function(options) {
+
+    this.options = options.options;
     
     this.model.set('okToChangeType',false);
-    this.options = options.options;
     
     this.listenTo(this.collection, 'reset', this.removeView);   
     this.listenTo(this.model, 'remove', this.remove);   
@@ -27,7 +28,18 @@ App.Views.PGIngredient = Backbone.View.extend({
       this.model.set('computed-mass', this.model.get('mass')*this.options.appView.volume);
       this.$el.find('td.quantity-type-mass').text(
         Math.round(this.model.get('computed-mass')*100)/100 + ' g');
-  
+
+      //price
+      if (this.model.get('price') != null) {
+        this.model.set('computed-price', this.model.get('price')*this.options.appView.volume);
+        this.$el.find('td.quantity-type-price').text(
+          Math.round(this.model.get('computed-price')*100)/100 + ' €');
+      } else {
+        this.model.set('computed-price', null);
+        this.$el.find('td.quantity-type-price').text('');
+      }
+ 
+
       //quantity
       var quantity = this.model.get('quantity')*this.options.appView.volume;
       if (quantity > 0 && quantity < 100) {
