@@ -23,7 +23,7 @@ class ProductQuantity
     @product_price
   end
   
-  def product_generator
+  def product_generator(user)
     variant = @product.variant
     result = {
       id: variant.id,
@@ -40,7 +40,8 @@ class ProductQuantity
           mass: @quantities[:mass][i],
           volume: @quantities[:volume][i],
           price: @quantities[:price][i],
-          quantity: conv_to_quantity(i)}
+          quantity: conv_to_quantity(i),
+          stock: i.quantity_in_stock(user)}
       end
       {id: it.id,
       name: it.name,

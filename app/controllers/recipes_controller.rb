@@ -41,7 +41,7 @@ class RecipesController < ApplicationController
     @recipe.variants.each do |v|
       product.variant = v
       product.quantities.compute_prices(current_user)
-      result[:variants] << product.quantities.product_generator
+      result[:variants] << product.quantities.product_generator(current_user)
     end
     result
   end

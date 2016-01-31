@@ -60,7 +60,8 @@ App.Views.ProductGenerator = Backbone.View.extend({
       {quantityType: 'volume', label: 'Volume', selected: true},
       {quantityType: 'mass', label: 'Masse', selected: false},
       {quantityType: 'quantity', label: 'Quantités', selected: false},
-      {quantityType: 'price', label: 'Prix', selected: false}
+      {quantityType: 'price', label: 'Prix', selected: false},
+      {quantityType: 'stock', label: 'Stock', selected: false}
     ]);
     
   },
