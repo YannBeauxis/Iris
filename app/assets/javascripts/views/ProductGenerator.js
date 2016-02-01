@@ -107,7 +107,6 @@ App.Views.ProductGenerator = Backbone.View.extend({
   },
 
   changeCost: function(cost) {
-    console.log(cost);
     this.$el.find('#product__cost__group').toggle(cost != null);
     if (cost != null) {
       cost = Math.round(cost*100)/100;
