@@ -30,13 +30,13 @@ App.Views.PGIngredient = Backbone.View.extend({
         Math.round(this.model.get('computed-mass')*100)/100 + ' g');
 
       //price
-      if (this.model.get('price') != null) {
-        this.model.set('computed-price', this.model.get('price')*this.options.appView.volume);
-        this.$el.find('td.quantity-type-price').text(
-          Math.round(this.model.get('computed-price')*100)/100 + ' €');
+      if (this.model.get('cost') != null) {
+        this.model.set('computed-cost', this.model.get('cost')*this.options.appView.volume);
+        this.$el.find('td.quantity-type-cost').text(
+          Math.round(this.model.get('computed-cost')*100)/100 + ' €');
       } else {
-        this.model.set('computed-price', null);
-        this.$el.find('td.quantity-type-price').text('');
+        this.model.set('computed-cost', null);
+        this.$el.find('td.quantity-type-cost').text('');
       }
  
 

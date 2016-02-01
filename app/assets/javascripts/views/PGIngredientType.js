@@ -41,14 +41,14 @@ App.Views.PGIngredientType = Backbone.View.extend({
       
       volume = 0;
       mass = 0;
-      price= 0;
+      cost= 0;
      //reset okToCangeType
       this.ingredients.forEach(function(ingredient, index) {
         if (ingredient.get('computed-volume')>0) {volume += ingredient.get('computed-volume');}
         if (ingredient.get('computed-mass')>0) {mass += ingredient.get('computed-mass');}
-        if (ingredient.get('computed-price') != null && price != null) {price += ingredient.get('computed-price');
+        if (ingredient.get('computed-cost') != null && cost != null) {cost += ingredient.get('computed-cost');
         } else {
-          price =null;
+          cost =null;
         }
         ingredient.set('okToChangeType', false);
       });
@@ -59,15 +59,15 @@ App.Views.PGIngredientType = Backbone.View.extend({
       this.$el.find('td.quantity-type-mass').text(
         Math.round(mass*100)/100 + ' g');    
 
-      if (price != null) {
-        this.$el.find('td.quantity-type-price').text(
-        Math.round(price*100)/100 + ' €');          
+      if (cost != null) {
+        this.$el.find('td.quantity-type-cost').text(
+        Math.round(cost*100)/100 + ' €');          
       } else {
-        this.$el.find('td.quantity-type-price').text('');
+        this.$el.find('td.quantity-type-cost').text('');
       }
       
       //to compute total quantities
-      this.model.set('computed-price', price);
+      this.model.set('computed-cost', cost);
       this.model.set('okToChangeTotal',true);
       this.trigger('okToChangeTotal');
     }

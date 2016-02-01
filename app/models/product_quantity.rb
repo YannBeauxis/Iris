@@ -39,7 +39,7 @@ class ProductQuantity
           proportion: @product.variant.composant_proportion(i),
           mass: @quantities[:mass][i],
           volume: @quantities[:volume][i],
-          price: @quantities[:price][i],
+          cost: @quantities[:price][i],
           quantity: conv_to_quantity(i),
           stock: i.quantity_in_stock(user)}
       end

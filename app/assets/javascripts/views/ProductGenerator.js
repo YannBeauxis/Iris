@@ -26,7 +26,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
         }
       });
 
-    this.listenTo(this.quantitiesTable, 'changePrice', this.changePrice);
+    this.listenTo(this.quantitiesTable, 'changeCost', this.changeCost);
 
     //Products
     this.productMode = 'new';
@@ -60,7 +60,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
       {quantityType: 'volume', label: 'Volume', selected: true},
       {quantityType: 'mass', label: 'Masse', selected: false},
       {quantityType: 'quantity', label: 'Quantités', selected: false},
-      {quantityType: 'price', label: 'Prix', selected: false},
+      {quantityType: 'cost', label: 'Coûts', selected: false},
       {quantityType: 'stock', label: 'Stock', selected: false}
     ]);
     
@@ -106,11 +106,13 @@ App.Views.ProductGenerator = Backbone.View.extend({
     }
   },
 
-  changePrice: function(price) {
-    if (price != null) {
-      price = Math.round(price*100)/100;
+  changeCost: function(cost) {
+    console.log(cost);
+    this.$el.find('#product__cost__group').toggle(cost != null);
+    if (cost != null) {
+      cost = Math.round(cost*100)/100;
     }
-    this.$el.find('#product__price').val(price);
+    this.$el.find('#product__cost__input').val(cost);
   },
   
   isNumberKey: function(evt) {

@@ -12,6 +12,16 @@
 <%= render 'menu' %>
 
 <% content_for :item_content do %>
+
+  <% if !@recipe.description.nil? %>
+    <div class="panel panel-default">
+      <div class="panel-heading">Description</div>
+      <div class="panel-body">
+        <p><i><%= @recipe.description %></i></p>      
+      </div>
+    </div>
+  <% end %>
+
   <div id="ProductGenerator">
     <div class="panel panel-default" id="ProductCompute">
       <div class="panel-heading">Quantités</div>
@@ -39,7 +49,7 @@
             <th class="quantity-type-volume">Volume</th>
             <th class="quantity-type-mass">Masse</th>
             <th class="quantity-type-quantity">Quantité</th>
-            <th class="quantity-type-price">Prix</th>
+            <th class="quantity-type-cost">Coûts</th>
             <th class="quantity-type-stock">Stock</th>
           </tr></thead>
           <tbody></tbody>
@@ -48,7 +58,7 @@
     </div>
   
     <div class="panel panel-default" id="Products">
-      <div class="panel-heading">Liste des produits</div>
+      <div class="panel-heading">Produits fabriqués</div>
       <div class="table-responsive">
         <table class="table table-products table-striped">
           <thead><tr>
