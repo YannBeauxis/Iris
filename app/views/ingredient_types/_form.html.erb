@@ -1,27 +1,17 @@
-<%= form_for @ingredient_type do |f| %>
-  <p>
-    <%= f.label 'Nom' %><br>
-    <%= f.text_field :name %>
-  </p>
+<%= simple_form_for @ingredient_type do |f| %>
 
-  <p>
-    <%= f.label 'Nom abrégé' %><br>
-    <%= f.text_field :name_short %>
-  </p>
+  <%= f.input :name, label: 'Nom' %>
 
-  <p>
-    <%= f.label 'Unité de mesure' %><br>
-    <%= f.text_field :mesure_unit %>
-  </p>
+  <%= f.input :name_short, label: 'Nom abrégé' %>
 
-  <% if @ingredient_type.mesure_unit != 'g' then %>
-    <p>
-      <%= f.label 'Densité' %><br>
-      <%= f.number_field :density, :step => 'any' %>
-    </p>
-  <% end %>
+  <%= f.input :description, as: :text, label: 'Description', input_html: {rows: 2} %>
 
-  <p>
-    <%= f.submit 'Enregistrer' %>
-  </p>
+  <%= f.input :mesure_unit, label: 'Unité de mesure' %>
+
+  <%= f.input :density, label: 'Densité' %>
+
+    
+  <%= f.button :submit, 'Enregistrer' %>
+  <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+    
 <% end %>

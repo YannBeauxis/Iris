@@ -1,26 +1,15 @@
-<%= form_for @recipe_type do |f| %>
-  <p>
-    <%= f.label 'Nom' %><br>
-    <%= f.text_field :name %>
-  </p>
+<%= simple_form_for @recipe_type do |f| %>
 
-  <p>
-    <%= f.label 'Types d\'ingrédients' %><br>
-    <%= f.collection_check_boxes(:ingredient_type_ids, @ingredient_types, 
-          :id, :name) do |b| %>
-      <div class="line">
-        <%= b.check_box %>
-        <%= b.label %>
-      </div>
-    <% end %>
-  </p>
+  <%= f.input :name, label: 'Nom' %>
 
-  <p>
-    <%= f.label 'Densité' %><br>
-    <%= f.number_field :density, :step => 'any' %>
-  </p>
+  <%= f.input :description, as: :text, label: 'Description', input_html: {rows: 2} %>
 
-  <p>
-    <%= f.submit 'Enregistrer' %>
-  </p>
+  <%= f.input :density, label: 'Densité' %>
+
+  <%= f.association :ingredient_types, collection: @ingredient_types, label: 'Types d\'ingrédients',
+      as: :check_boxes %>
+    
+  <%= f.button :submit, 'Enregistrer' %>
+  <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+
 <% end %>

@@ -126,7 +126,7 @@ class RecipesController < ApplicationController
   end
 
     def recipe_params
-      p = [:name,:recipe_type_id, {:ingredients_ids => []}, :variant_name, :variant_base_id]
+      p = [:name,:recipe_type_id, {:ingredients_ids => []}, :variant_name, :variant_base_id, :description]
       p << :variant_id if :action == 'create'
       if current_user.admin? then
         p << :user_id

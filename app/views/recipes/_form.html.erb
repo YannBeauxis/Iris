@@ -36,7 +36,9 @@
           label: 'Type de recette', 
           disabled: !@recipe_type_select
         %>
-      
+        
+        <%= f.input :description, as: :text, label: 'Description', input_html: {rows: 2} %>
+        
         <% if current_user.admin? %>
           <%= f.input :user_id, collection: User.all, label: 'Propriétaire' %>
           <%= f.input :variant_base_id,

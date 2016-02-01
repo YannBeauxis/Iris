@@ -2,7 +2,7 @@
 
     <%= f.input :name, label: 'Nom', 
             disabled: @variant.base? %>
-    <%= f.input :description, label: 'Description' %>
+    <%= f.input :description, as: :text, label: 'Description', input_html: {rows: 2} %>
 
     <% if current_user.admin? %>
       <%= f.input :user_id, collection: User.all, label: 'Propriétaire' %>
