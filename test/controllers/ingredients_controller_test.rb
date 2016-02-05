@@ -8,6 +8,14 @@ class IngredientsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  
+  test "should get new" do
+    sign_in users(:one)
+    get :new
+    assert_response :success
+  end
+
+
   test "should not get index if not signed" do
     get :index
     assert_response 302

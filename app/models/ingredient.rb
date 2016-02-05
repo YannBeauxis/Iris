@@ -69,7 +69,11 @@ class Ingredient < ActiveRecord::Base
 # density equal ingredient type density by default
   def density
     if super.nil? then
-      self.type.density
+      if self.type.nil?
+        100
+      else
+        self.type.density
+      end
     else
       super
     end
