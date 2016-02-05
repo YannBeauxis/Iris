@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   
   def index
     @products = @recipe.products.where('products.user_id = ?', current_user)
-    render json: @products.to_json(:include => { :variant => { :only => :name } })
+    render json: @products.to_json#(:include => { :variant => { :only => [:id, :name] } })
   end 
 
   def show

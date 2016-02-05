@@ -7,7 +7,8 @@ App.Views.ProductGenerator = Backbone.View.extend({
   // Create collections
     this.variants = new App.Collections.Variants(); 
     this.products = new App.Collections.Products({
-      url: '/recipes/' + App.productGeneratorRaw.recipeId + '/products'
+      url: '/recipes/' + App.productGeneratorRaw.recipeId + '/products',
+      variants: this.variants
     }); 
 
   // Variants
@@ -37,12 +38,12 @@ App.Views.ProductGenerator = Backbone.View.extend({
         collection: this.products
       });
     this.listenTo(this.productsTable, 'displayProduct', this.displayProduct);
-    this.listenTo(this.products, 'remove', this.productRemove);
-
+    this.listenTo(this.products, 'remove', this.removeProduct);
+    
     //populate collections
     this.variants.add(App.productGeneratorRaw.variants);
     this.variantSelect.focusBase();
-    this.products.fetch();
+    this.products.fetch({variants: this.variants});
 
     //default parameters
     this.setDefaultParameters();
@@ -165,14 +166,19 @@ App.Views.ProductGenerator = Backbone.View.extend({
   displayProduct: function(model) {
 
     this.productMode = 'display';
+    this.removeArchivedVariantSelect();
     this.currentProduct = model;
     
     // set the value
     this.volume = model.get('volume')/100;
     this.$el.find('#product__volume').val(this.volume);
     this.$el.find('#product__volume').attr('disabled','');
-    this.$el.find('#product__variant').val(model.get('variant_id'));
-    this.$el.find('#product__variant').attr('disabled','');
+      //Variant
+      if ($('#product__variant').find("[value='" + model.variant.id + "']").length == 0){
+        model.variant.trigger('displaySelect', model.variant);
+      }
+      this.$el.find('#product__variant').val(model.get('variant_id'));
+      this.$el.find('#product__variant').attr('disabled','');
     this.$el.find('#product__container').val(model.get('container'));
     this.$el.find('#product__description').val(model.get('description'));
     this.$el.find('#production-date__input').val(App.convertDate(model.get('production_date')));
@@ -200,6 +206,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
   productNewInitate: function() {
     
     this.productMode = 'new';
+    this.removeArchivedVariantSelect();
     this.$el.find('#product__volume').removeAttr('disabled');
     this.$el.find('#product__variant').removeAttr('disabled','');
     this.$el.find('#production-date__input').removeAttr('disabled','');
@@ -240,9 +247,12 @@ App.Views.ProductGenerator = Backbone.View.extend({
       (prodDate != '') ? prodDate = App.invertDate(prodDate) : prodDate = null;
       var expDate = this.$el.find('#expiration-date__input').val();
       (expDate != '') ? expDate = App.invertDate(expDate) : expDate = null;
+      //var variant_id = parseInt(this.$el.find('#product__variant').val());
       var params = {
         variant_id: parseInt(this.$el.find('#product__variant').val()),
-        variant: {name: this.$el.find('#product__variant option:selected').text()},
+        /*variant: {
+          id: variant_id,
+          name: this.$el.find('#product__variant option:selected').text()},*/
         volume: this.$el.find('#product__volume').val()*100,
         container: this.$el.find('#product__container').val(),
         description: this.$el.find('#product__description').val(),
@@ -268,11 +278,19 @@ App.Views.ProductGenerator = Backbone.View.extend({
     }
   },
 
-  productRemove: function(product) {
+  removeProduct: function(product) {
     if (this.productMode == 'display' && this.currentProduct == product) {
       this.setDefaultParameters();
       this.productNewInitate();
     }
+  },
+
+  removeArchivedVariantSelect: function() {
+    var variant = this.variants.findWhere({id: parseInt(this.$el.find('#product__variant').val())});
+    if (variant.get('archived')) {
+      $('#product__variant').find("[value='" + variant.id + "']").remove();
+    }
+    this.variantSelect.focusBase();
   },
 
   render: function() {

@@ -4,6 +4,7 @@ App.Collections.Products = Backbone.Collection.extend({
   
   initialize: function(options) {
     this.url = options.url;
+    this.variants = options.variants;
   }
   
 });

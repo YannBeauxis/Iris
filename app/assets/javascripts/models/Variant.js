@@ -1,9 +1,9 @@
 App.Models.Variant = Backbone.Model.extend({
 
-  nameSelector : function(){
+  nameSelector: function() {
     display = this.get('name');
-    if (!this.get('base')) {display = 'Variante ' + display;}
-    if (this.get('archived')) {display = display + ' archivée';}
+    if (!this.get('base') && this.get('name')!='Base') {display = 'Variante ' + display;}
+    if (this.get('archived')) {display = display + ' ancienne';}
     return display;
   }
 
