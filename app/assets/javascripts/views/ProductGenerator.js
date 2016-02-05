@@ -30,7 +30,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
 
     //Products
     this.productMode = 'new';
-    tableEl = this.$el.find('.table-products');
+    tableEl = this.$el.find('#table-products');
     this.productsTable= 
       new App.Views.PGProductsTable({
         el: tableEl, 
