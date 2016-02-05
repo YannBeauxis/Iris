@@ -37,6 +37,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
         collection: this.products
       });
     this.listenTo(this.productsTable, 'displayProduct', this.displayProduct);
+    this.listenTo(this.products, 'remove', this.productRemove);
 
     //populate collections
     this.variants.add(App.productGeneratorRaw.variants);
@@ -44,16 +45,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
     this.products.fetch();
 
     //default parameters
-    this.volume = 10;
-    this.$el.find('#product__volume').val(this.volume);
-    this.$el.find('#product__number-produced').val(1);
-    //initiate date pickers
-    var today = new Date();
-    $('#production-date').datetimepicker({format: 'DD/MM/YYYY', defaultDate: today});
-    $('#expiration-date').datetimepicker({format: 'DD/MM/YYYY'});
-
-    this.changeVariant();
-    this.compute();
+    this.setDefaultParameters();
 
     this.quantitiesTable.quantitySelectors.add([
       {quantityType: 'proportion', label: 'Proportions', selected: false},
@@ -77,6 +69,19 @@ App.Views.ProductGenerator = Backbone.View.extend({
     "click #btn--product--details":  "productDetails",
     "click #btn--product--new--initiate":  "productNewInitate",
     "click #btn--product--new--save":  "productSave"
+  },
+
+  setDefaultParameters: function() {
+    this.volume = 10;
+    this.$el.find('#product__volume').val(this.volume);
+    this.$el.find('#product__number-produced').val(1);
+    //initiate date pickers
+    var today = new Date();
+    $('#production-date').datetimepicker({format: 'DD/MM/YYYY', defaultDate: today});
+    $('#expiration-date').datetimepicker({format: 'DD/MM/YYYY'});
+
+    this.changeVariant();
+    this.compute();
   },
 
   changeVariant: function() {
@@ -192,7 +197,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
       
   },
 
-  productNewInitate: function(model) {
+  productNewInitate: function() {
     
     this.productMode = 'new';
     this.$el.find('#product__volume').removeAttr('disabled');
@@ -260,6 +265,13 @@ App.Views.ProductGenerator = Backbone.View.extend({
             App.test = false;
         }
       });
+    }
+  },
+
+  productRemove: function(product) {
+    if (this.productMode == 'display' && this.currentProduct == product) {
+      this.setDefaultParameters();
+      this.productNewInitate();
     }
   },
 
