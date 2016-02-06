@@ -60,7 +60,7 @@ App.sortBy = function(options) {
 };
 
 App.sortByName = function(elTarget) {
-  return App.sortBy({elTarget: elTarget, param: 'name'});
+  return App.sortBy({elTarget: elTarget, sort_key: 'name'});
 };
 
 App.convertDate = function (inputFormat) {
