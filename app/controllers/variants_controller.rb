@@ -45,7 +45,7 @@ class VariantsController < ApplicationController
 
     if @variant.update(variant_params)
       @variant.update_proportions
-      redirect_to edit_recipe_variant_path(@recipe,@variant)
+      redirect_to recipe_path(@recipe)
     else
       render 'edit'
     end
