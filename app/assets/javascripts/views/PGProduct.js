@@ -8,6 +8,14 @@ App.Views.PGProduct = Backbone.View.extend({
 
   initialize: function() {
       this.model.bind('change', this.render, this);
+      if (this.model.get('production_date') == null) {
+        var today = new Date('1900/01/01');
+        var sort_key = today;
+      } else {
+        var sort_key = new Date(this.model.get('production_date'));
+      }
+      sort_key = App.convertDateYearFirst(sort_key);
+      this.$el.attr({sort_key: sort_key});
   },
 
   events: {

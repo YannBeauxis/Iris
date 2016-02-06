@@ -20,8 +20,18 @@ App.Views.PGProductsTable = Backbone.View.extend({
     this.trigger('displayProduct',model);
   },
 
+  sortRows: function() {
+    App.sortBy({
+      elTarget: this.$el.find('tbody'),
+      sort_key: 'sort_key',
+      order: -1
+    });
+    return this.$el;
+  },
+
   render: function() {
-    this.$el.toggle(this.collection.length>0);
+    this.sortRows().toggle(this.collection.length>0);
+    return this;
   }
 
 });

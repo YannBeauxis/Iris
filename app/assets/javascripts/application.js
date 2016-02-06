@@ -44,12 +44,16 @@ App.getParameterByName = function(name, url) {
 
     
 App.sortBy = function(options) {
-// options = {elTarget: [element to be sorted], sort_key: [param to sort]}
+/* options = {
+    elTarget: [element to be sorted], 
+    sort_key: [param to sort], 
+    order: [1 or -1]}*/
+  if (options.order == null) {options.order = 1;}
   options.elTarget.append(
       options.elTarget.children().sort(function (a,b) {
       aParam = $(a).attr(options.sort_key);
       bParam = $(b).attr(options.sort_key);
-      return (aParam < bParam) ? -1 : (bParam < aParam) ? 1 : 0;
+      return (aParam < bParam) ? -1*options.order : (bParam < aParam) ? 1*options.order : 0;
     })
   );
   return options.elTarget;
@@ -64,6 +68,16 @@ App.convertDate = function (inputFormat) {
   var d = new Date(inputFormat);
   if (inputFormat != null) {
     return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
+  } else {
+    return null;
+  }
+};
+
+App.convertDateYearFirst = function (inputFormat) {
+  function pad(s) { return (s < 10) ? '0' + s : s; }
+  var d = new Date(inputFormat);
+  if (inputFormat != null) {
+    return [d.getFullYear(), pad(d.getMonth()+1), pad(d.getDate())].join('/');
   } else {
     return null;
   }
