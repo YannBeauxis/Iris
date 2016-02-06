@@ -41,7 +41,8 @@ class ProductQuantity
           volume: @quantities[:volume][i],
           cost: @quantities[:price][i],
           quantity: conv_to_quantity(i),
-          stock: i.quantity_in_stock(user)}
+          stock: i.quantity_in_stock(user),
+          mesure_unit: i.mesure_unit}
       end
       {id: it.id,
       name: it.name,

@@ -54,14 +54,26 @@ App.Views.PGIngredientType = Backbone.View.extend({
       });
       
       this.$el.find('td.quantity-type-volume').text(
-        Math.round(volume*100)/100 + ' ml');
+        App.displayQuantity({
+          quantity: volume*100, 
+          unit: 'ml'
+        })
+      );
         
       this.$el.find('td.quantity-type-mass').text(
-        Math.round(mass*100)/100 + ' g');    
+        App.displayQuantity({
+          quantity: mass*100, 
+          unit: 'g'
+        })
+      ); 
 
       if (cost != null) {
         this.$el.find('td.quantity-type-cost').text(
-        Math.round(cost*100)/100 + ' €');          
+        App.displayQuantity({
+          quantity: cost*100, 
+          unit: '€'
+        })
+      );       
       } else {
         this.$el.find('td.quantity-type-cost').text('');
       }

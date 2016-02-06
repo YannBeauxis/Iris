@@ -60,13 +60,30 @@ App.invertDate = function (d) {
   }
 };
 
-App.displayVolume = function (v) {
-  if (v != null) {
-    if (v<100000) {
-      return v/100 + ' ml';
+App.displayQuantity = function (options) {
+// options = {quantity: [integer],unit: ['ml' or 'g'] }
+  var qu = options.quantity/100;
+  var unit = options.unit;
+  if (unit == undefined) {unit = '';}
+  if (unit == 'ml') {
+    var unitBig = 'L';
+  } else {
+    var unitBig = 'k' + unit;
+  }
+  if (qu!= null) {
+    if (qu > 100000) {
+      return Math.round(qu/1000) + ' ' + unitBig;
+    } else if (qu > 10000 ) {
+      return Math.round(qu/100)/10 + ' ' + unitBig;
+    } else if (qu > 1000 ) {
+      return Math.round(qu/10)/100 + ' ' + unitBig;
+    } else if (qu > 100 ) {
+      return Math.round(qu) + ' ' + unit;
+    } else if (qu > 10 ) {
+      return Math.round(qu*10)/10 + ' ' + unit;
+    } else {
+      return Math.round(qu*100)/100 + ' ' + unit;
     }
-    else {}
-      return Math.round(v/1000)/100 + ' L';
   } else {
     return null;
   }

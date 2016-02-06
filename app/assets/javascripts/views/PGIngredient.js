@@ -22,18 +22,30 @@ App.Views.PGIngredient = Backbone.View.extend({
       //volume
       this.model.set('computed-volume', this.model.get('volume')*this.options.appView.volume);
       this.$el.find('td.quantity-type-volume').text(
-        Math.round(this.model.get('computed-volume')*100)/100 + ' ml');
-      
+        App.displayQuantity({
+          quantity: this.model.get('computed-volume')*100, 
+          unit: 'ml'
+        })
+      );
+
       //mass
       this.model.set('computed-mass', this.model.get('mass')*this.options.appView.volume);
       this.$el.find('td.quantity-type-mass').text(
-        Math.round(this.model.get('computed-mass')*100)/100 + ' g');
+        App.displayQuantity({
+          quantity: this.model.get('computed-mass')*100, 
+          unit: 'g'
+        })
+      );
 
-      //price
+      //cost
       if (this.model.get('cost') != null) {
         this.model.set('computed-cost', this.model.get('cost')*this.options.appView.volume);
         this.$el.find('td.quantity-type-cost').text(
-          Math.round(this.model.get('computed-cost')*100)/100 + ' €');
+        App.displayQuantity({
+          quantity: this.model.get('computed-cost')*100, 
+          unit: '€'
+        })
+      );
       } else {
         this.model.set('computed-cost', null);
         this.$el.find('td.quantity-type-cost').text('');
@@ -61,7 +73,7 @@ App.Views.PGIngredient = Backbone.View.extend({
   },
   
   render: function () {
-    this.$el.html(this.template(this.model.toJSON()));
+    this.$el.html(this.template(this.model));
     return this;
   }
 
