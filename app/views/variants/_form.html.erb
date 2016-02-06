@@ -20,6 +20,6 @@
     <% end %>
     
     <%= f.button :submit, 'Enregistrer' %>
-    <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+    <%= link_to( 'Annuler', recipe_path(@recipe,format: :html, variant_id: @variant), {class: "btn btn-default", role: "button"} )%>
       
 <% end %>

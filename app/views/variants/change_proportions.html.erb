@@ -58,7 +58,7 @@
 
   <div class="panel-body">
     <input type="submit" name="commit" value="Enregistrer" class="btn btn-default">
-    <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+    <%= link_to( 'Annuler', recipe_path(@recipe,format: :html, variant_id: @variant), {class: "btn btn-default", role: "button"} )%>
   </div>
   <% end %>
 

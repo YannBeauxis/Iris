@@ -33,7 +33,7 @@ class VariantsController < ApplicationController
     @recipe.variants << @variant
 
     if @recipe.save
-      redirect_to recipe_path(@recipe)
+      redirect_to recipe_path(@recipe,format: :html, variant_id: @variant)
     else
       flash[:alert] = "Erreur lors de la création de la variante"
       render 'new'
@@ -45,7 +45,7 @@ class VariantsController < ApplicationController
 
     if @variant.update(variant_params)
       @variant.update_proportions
-      redirect_to recipe_path(@recipe)
+      redirect_to recipe_path(@recipe,format: :html, variant_id: @variant)
     else
       render 'edit'
     end
@@ -78,7 +78,7 @@ class VariantsController < ApplicationController
                    user_id: current_user,
                    ingredients_ids: params[:ingredients_ids]
                  )
-    redirect_to recipe_path(@recipe)
+    redirect_to recipe_path(@recipe,format: :html, variant_id: @variant)
   end
 
   def change_proportions_edit
@@ -87,7 +87,7 @@ class VariantsController < ApplicationController
 
   def change_proportions
     @variant = @variant.change_proportions(user_id: current_user,proportions: params[:proportions])
-    redirect_to recipe_path(@recipe)
+    redirect_to recipe_path(@recipe,format: :html, variant_id: @variant)
   end
 
   private

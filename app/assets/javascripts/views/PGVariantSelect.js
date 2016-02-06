@@ -21,9 +21,13 @@ App.Views.PGVariantSelect = Backbone.View.extend({
     this.$el.append(this.optionTemplate(variant));
   },
   
-  //to select base variant
-  focusBase: function() {
-    if (this.base) {
+  //to select base or variant if param
+  focusVariant: function() {
+    var variant_id = App.getParameterByName('variant_id');
+    if (variant_id != null && variant_id != "") {
+      this.$el.val(parseInt(variant_id));
+    }
+    else if (this.base) {
       this.$el.val(this.base);
       }
   }

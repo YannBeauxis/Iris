@@ -42,7 +42,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
     
     //populate collections
     this.variants.add(App.productGeneratorRaw.variants);
-    this.variantSelect.focusBase();
+    this.variantSelect.focusVariant();
     this.products.fetch({variants: this.variants});
 
     //default parameters
@@ -290,7 +290,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
     if (variant.get('archived')) {
       $('#product__variant').find("[value='" + variant.id + "']").remove();
     }
-    this.variantSelect.focusBase();
+    this.variantSelect.focusVariant();
   },
 
   render: function() {
