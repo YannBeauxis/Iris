@@ -7,6 +7,7 @@ App.Views.PGIngredient = Backbone.View.extend({
   initialize: function(options) {
 
     this.options = options.options;
+    this.$el.attr({sort_key: this.options.ingredientType.get('name') + '_' + this.model.get('name')});
     
     this.model.set('okToChangeType',false);
     

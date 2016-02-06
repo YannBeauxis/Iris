@@ -62,6 +62,14 @@ App.Views.PGQuantitiesTable = Backbone.View.extend({
           display: selector.get('selected')
         });
     });
+    return this;
+  },
+  
+  sortRows: function() {
+    return App.sortBy({
+      elTarget: this.$el.find('tbody'),
+      sort_key: 'sort_key'
+    });
   },
   
   displayQuantityType: function(options) {

@@ -12,17 +12,6 @@ App.Views.CategoryGrid = Backbone.View.extend({
     // Hide the element before it's completely load
     this.$el.hide();
     
-    App.sortByName = function(elTarget) {
-      elTarget.append(
-          elTarget.children().sort(function (a,b) {
-          aName = $(a).attr('name');
-          bName = $(b).attr('name');
-          return (aName < bName) ? -1 : (bName < aName) ? 1 : 0;
-        })
-      );
-      return elTarget;
-    };
-    
     // For listenTo filter on some views
     App.contextMenuView = 
       new this.options.contextMenu({el: $('#ContextMenu'),options: this.options});
@@ -54,7 +43,6 @@ App.Views.CategoryGrid = Backbone.View.extend({
       categoryParams['variant_id'] = App.variantId;
     }
     categoryParams = $.param(categoryParams);
-    console.log(categoryParams);
     var self = App.currentGrid;
     self.$el.hide().children().remove();
     self.categories.reset();
@@ -66,7 +54,7 @@ App.Views.CategoryGrid = Backbone.View.extend({
           data: categoryParams, 
           success: function() {
             self.items.trigger('sortByName');
-            self.sortByName(self.$el).show();
+            App.sortByName(self.$el).show();
           }});
     }});
   },
@@ -77,17 +65,6 @@ App.Views.CategoryGrid = Backbone.View.extend({
                       options: this.options});
     var it = this.$el.append(view.render().el);
     it.find('.default-hidden').hide();
-  },
-  
-  sortByName: function() {
-    this.$el.append(
-        this.$el.children().sort(function (a,b) {
-        aName = $(a).attr('name');
-        bName = $(b).attr('name');
-        return (aName < bName) ? -1 : (bName < aName) ? 1 : 0;
-      })
-    );
-    return this.$el;
   }
   
 });

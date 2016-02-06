@@ -15,7 +15,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
     var variantSelectEl = this.$el.find('#product__variant');
     this.variantSelect= new App.Views.PGVariantSelect({el: variantSelectEl, collection: this.variants});
 
-    //Create Table view with ingredient types as collection
+    //Create Table view
     var tableEl = this.$el.find('.table-quantities');
     this.quantitiesTable= 
       new App.Views.PGQuantitiesTable({
@@ -97,7 +97,8 @@ App.Views.ProductGenerator = Backbone.View.extend({
       variant.ingredientTypes
     );
     this.compute();
-    this.quantitiesTable.updateAllDisplayQuantityType();
+    this.quantitiesTable.updateAllDisplayQuantityType().sortRows();
+
   },
 
   compute: function() {

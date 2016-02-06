@@ -42,6 +42,23 @@ App.getParameterByName = function(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 };
 
+    
+App.sortBy = function(options) {
+// options = {elTarget: [element to be sorted], sort_key: [param to sort]}
+  options.elTarget.append(
+      options.elTarget.children().sort(function (a,b) {
+      aParam = $(a).attr(options.sort_key);
+      bParam = $(b).attr(options.sort_key);
+      return (aParam < bParam) ? -1 : (bParam < aParam) ? 1 : 0;
+    })
+  );
+  return options.elTarget;
+};
+
+App.sortByName = function(elTarget) {
+  return App.sortBy({elTarget: elTarget, param: 'name'});
+};
+
 App.convertDate = function (inputFormat) {
   function pad(s) { return (s < 10) ? '0' + s : s; }
   var d = new Date(inputFormat);

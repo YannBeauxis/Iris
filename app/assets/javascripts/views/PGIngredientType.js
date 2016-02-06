@@ -9,6 +9,9 @@ App.Views.PGIngredientType = Backbone.View.extend({
   initialize: function(options) {
     
     this.options = options.options;
+    this.options.ingredientType = this.model;
+    
+    this.$el.attr({sort_key: this.model.get('name')});
     
     this.model.set('okToChangeTotal',false);
     this.ingredients = new App.Collections.Ingredients(); 
