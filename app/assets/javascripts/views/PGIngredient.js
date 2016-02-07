@@ -38,6 +38,16 @@ App.Views.PGIngredient = Backbone.View.extend({
         })
       );
 
+      //check-stock
+      var mesure_unit = this.model.get('mesure_unit');
+      if (mesure_unit == 'ml') {
+        var quantity_stock = 'volume';
+      } else if (mesure_unit == 'g') {
+        var quantity_stock = 'mass';
+      }
+      var test_stock = this.model.get('stock')/100 < this.model.get('computed-' + quantity_stock);
+      this.$el.toggleClass('not-in-stock', test_stock);
+        
       //cost
       if (this.model.get('cost') != null) {
         this.model.set('computed-cost', this.model.get('cost')*this.options.appView.volume);

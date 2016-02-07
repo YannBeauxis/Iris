@@ -244,6 +244,9 @@
       td.spacing {
         width: 1px;
       }
+      tr.not-in-stock td.quantity-type-stock{
+        color: red;
+      }
     }
     #quantity-selectors {
       padding-left: 8px;
