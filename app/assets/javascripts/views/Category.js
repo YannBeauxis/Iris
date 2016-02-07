@@ -65,7 +65,8 @@ App.Views.Category = Backbone.View.extend({
         model: item, 
         options: this.options
       });
-      this.changeSelect().$el.find('.items-table').find('tbody').append(view.render().el);
+      this.$el.find('.items-table').find('tbody').append(view.render().el);
+      this.changeSelect();
       if (this.options.badgeOnSelected) {
         this.listenTo(view, 'changeSelect', this.changeSelect);
       }
