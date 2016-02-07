@@ -41,7 +41,8 @@ App.Views.Item= Backbone.View.extend({
       window.location = this.href();
     } else if (App.cgMode =='form') {
       var checkBoxe = this.$el.find('input.select_ingredient');
-      checkBoxe.prop("checked", !checkBoxe.prop("checked"));
+      if (e.target.tagName != 'INPUT') {
+        checkBoxe.prop("checked", !checkBoxe.prop("checked"));}
       this.trigger('changeSelect');
     }
   }
