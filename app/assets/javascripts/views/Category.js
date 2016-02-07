@@ -33,7 +33,11 @@ App.Views.Category = Backbone.View.extend({
       });
       
     this.badgeView = 
-      new App.Views.CategoryBadge({model: this.model, collection: this.collection});
+      new App.Views.CategoryBadge({
+        model: this.model, 
+        collection: this.collection,
+        options: this.options
+      });
 
     this.listenTo(this.options['mainView'].items, 'sortByName', this.sortByName);
 
@@ -61,8 +65,18 @@ App.Views.Category = Backbone.View.extend({
         model: item, 
         options: this.options
       });
-      this.$el.find('.items-table').find('tbody').append(view.render().el);
+      this.changeSelect().$el.find('.items-table').find('tbody').append(view.render().el);
+      if (this.options.badgeOnSelected) {
+        this.listenTo(view, 'changeSelect', this.changeSelect);
+      }
     }
+  },
+
+  changeSelect: function() {
+  // Badge is number of selected items, change the badge value
+    this.badgeView.numberSelected = this.$el.find('input:checked').length;
+    this.badgeView.render();
+    return this;
   },
 
   removeItem: function(item) {

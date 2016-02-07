@@ -61,7 +61,8 @@ var recipeForm = function() {
       categoryItemsTable: 'ingredients_select_recipe_table',
       item: 'ingredient_select_recipe_row'
     },
-    contextMenu: App.Views.IngredientsContextMenu
+    contextMenu: App.Views.IngredientsContextMenu,
+    badgeOnSelected: true
   };  
   App.recipesApp = new App.Views.CategoryGrid(options);
   

@@ -4,12 +4,18 @@ App.Views.CategoryBadge = Backbone.View.extend({
   
   className: 'badge',
  
-  initialize: function() {
+  initialize: function(options) {
+    this.options = options.options;
     this.listenTo(this.collection, 'add reset remove', this.render);
   },
  
   render: function(){
-    this.$el.text(this.collection.length);
+    if (this.options.badgeOnSelected) {
+      this.$el.text(this.numberSelected);  
+    } else {
+      this.$el.text(this.collection.length);      
+    }
+
     return this;
   }
 });
