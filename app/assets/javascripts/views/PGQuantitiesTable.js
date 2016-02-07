@@ -75,6 +75,10 @@ App.Views.PGQuantitiesTable = Backbone.View.extend({
   displayQuantityType: function(options) {
   // options : {quantityType: string, display: boolean}
     this.$el.find('.quantity-type-' + options.quantityType).toggle(options.display);
-  }
+  },
 
+  checkStock: function() {
+    return this.$el.find('.not-in-stock').length == 0;
+  }
+  
 });

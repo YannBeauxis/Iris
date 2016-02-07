@@ -39,4 +39,24 @@ class IngredientTest < ActiveSupport::TestCase
     assert_not hcr.container_references.blank?, hcr.container_references.count
     assert nhcr.container_references.blank?, nhcr.container_references.count
   end
+  
+  test "cosume_stock_one_container" do
+    u = users(:one)
+    i = ingredients(:consume_stock_one_container)
+    i.consume_stock(user: u, quantity: 2)
+    assert i.quantity_in_stock(u) == 800, i.quantity_in_stock(u)
+  end
+
+  test "cosume_stock_many_container" do
+    u = users(:one)
+    i = ingredients(:consume_stock_many_conainers)
+    i.consume_stock(user: u, quantity: 2)
+    assert i.quantity_in_stock(u) == 900, i.quantity_in_stock(u)
+    
+    c_one = containers(:consume_stock_many_conainers_one)
+    c_ten = containers(:consume_stock_many_conainers_ten)
+    assert c_one.quantity_actual == 0, c_one.quantity_actual
+    assert c_ten.quantity_actual == 900, c_ten.quantity_actual
+  end
+
 end

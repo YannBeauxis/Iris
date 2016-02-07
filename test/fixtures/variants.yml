@@ -100,3 +100,9 @@ recipe_ingredients_all_variants_three:
   name: 'recipe_ingredients_all_variants_one'
   recipe: recipe_ingredients_all_variants
   ingredients: one, three
+  
+consume_stock:
+  user: one
+  name: 'consume_stock'
+  recipe: consume_stock
+  ingredients: consume_stock_one, consume_stock_two

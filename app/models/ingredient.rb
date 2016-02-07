@@ -42,6 +42,11 @@ class Ingredient < ActiveRecord::Base
     @warehouse.quantity_sum
   end
 
+  def consume_stock(options)
+    self.get_warehouse(options[:user])
+    @warehouse.consume(options[:quantity])
+  end
+
   def price_by_unit_display(user)
     pbu = self.price_by_unit(user)
     if pbu.present? then

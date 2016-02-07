@@ -36,3 +36,18 @@ proportions_0:
   variant: proportions
   composant: proportions_0(Ingredient)
   value: 0
+
+consume_stock_type:
+  variant: consume_stock
+  composant: one(IngredientType)
+  value: 1000
+
+consume_stock_one:
+  variant: consume_stock
+  composant: consume_stock_one(Ingredient)
+  value: 1000
+  
+consume_stock_two:
+  variant: consume_stock
+  composant: consume_stock_two(Ingredient)
+  value: 2000

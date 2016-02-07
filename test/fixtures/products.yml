@@ -55,3 +55,9 @@ variant_with_product:
   description: 'variant_with_product'
   variant: variant_with_product
   volume: 10000
+  
+consume_stock:
+  user: one
+  description: 'consume_stock'
+  variant: consume_stock
+  volume: 300

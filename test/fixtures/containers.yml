@@ -80,3 +80,38 @@ iep_shared_container:
   quantity_init: 3000
   quantity_actual: 2000
   price: 200
+
+consume_stock_one_container:
+  user: one
+  ingredient: consume_stock_one_container
+  quantity_init: 1000
+  quantity_actual: 1000
+  price: 20
+ 
+consume_stock_many_conainers_one:
+  user: one
+  ingredient: consume_stock_many_conainers
+  quantity_init: 1000
+  quantity_actual: 100
+  price: 10
+  
+consume_stock_many_conainers_ten:
+  user: one
+  ingredient: consume_stock_many_conainers
+  quantity_init: 1000
+  quantity_actual: 1000
+  price: 20
+  
+consume_stock_one:
+  user: one
+  ingredient: consume_stock_one
+  quantity_init: 1000
+  quantity_actual: 1000
+  price: 20
+  
+consume_stock_two:
+  user: one
+  ingredient: consume_stock_two
+  quantity_init: 1000
+  quantity_actual: 1000
+  price: 20

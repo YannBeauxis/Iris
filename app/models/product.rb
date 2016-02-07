@@ -27,4 +27,11 @@ class Product < ActiveRecord::Base
     quantities.product_price
   end
 
+  def consume_stock
+    self.variant.ingredients.each do |i|
+      quantity = {'ml' => :volume, 'g' => :mass}[i.mesure_unit]
+      i.consume_stock(user: self.user, quantity: self.quantities.get(quantity,i))
+    end
+  end
+
 end

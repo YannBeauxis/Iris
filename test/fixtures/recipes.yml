@@ -73,3 +73,8 @@ recipe_ingredients_all_variants:
   user: one
   name: 'recipe_ingredients_all_variants'
   type: one 
+  
+consume_stock:
+  user: one
+  name: 'consume_stock'
+  type: one 

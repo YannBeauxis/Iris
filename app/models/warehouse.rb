@@ -33,4 +33,24 @@ class Warehouse
    end
   end
   
+  def consume(quantity)
+    qu = quantity*100
+    if self.quantity_sum > quantity
+      @containers.order(:quantity_actual).each do |c|
+        if c.quantity_actual >= qu
+          c.quantity_actual -= qu
+          c.save
+          break
+        else
+          qu -= c.quantity_actual
+          c.quantity_actual = 0
+          c.save
+        end
+      end
+      true
+    else
+      false
+    end
+  end
+  
 end

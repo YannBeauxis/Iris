@@ -125,3 +125,8 @@ table.table {
 .item-description {
   font-style: italic;
 }
+
+.btn-primary {
+  background-color: $color-primary-text;
+  border-color: $color-primary-text;
+}

@@ -105,3 +105,19 @@ iep_shared_container:
   name: 'iep_shared_container'
   type: one
   density: 100
+  
+consume_stock_one_container:
+  name: 'consumconsume_stock_one_containere_stock'
+  type: one
+  
+consume_stock_many_conainers:
+  name: 'consume_stock_many_conainers'
+  type: one
+  
+consume_stock_one:
+  name: 'consume_stock_one'
+  type: one
+  
+consume_stock_two:
+  name: 'consume_stock_two'
+  type: one

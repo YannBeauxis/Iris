@@ -9,7 +9,7 @@ class IngredientType < ActiveRecord::Base
     
 # density equal 1 by default
   def density
-    if super.nil? or :mesure_unit == 'g' then
+    if super.nil? then
       100
     else
       super

@@ -15,6 +15,9 @@ App.Views.ProductGenerator = Backbone.View.extend({
     var variantSelectEl = this.$el.find('#product__variant');
     this.variantSelect= new App.Views.PGVariantSelect({el: variantSelectEl, collection: this.variants});
 
+  //check consume elemane
+    this.checkConsumeEl = this.$el.find('#btn--product--new--save .consume-stock');
+
     //Create Table view
     var tableEl = this.$el.find('.table-quantities');
     this.quantitiesTable= 
@@ -57,6 +60,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
       {quantityType: 'stock', label: 'Stock', selected: false}
     ]);
     
+    //this.reloadQuantitiestable();
   },
 
   events: {
@@ -69,7 +73,8 @@ App.Views.ProductGenerator = Backbone.View.extend({
     "click #change-proportions":  "changeProportions",
     "click #btn--product--details":  "productDetails",
     "click #btn--product--new--initiate":  "productNewInitate",
-    "click #btn--product--new--save":  "productSave"
+    "click #btn--product--new--save--btn":  "productSave",
+    "change #btn--product--new--save .consume-stock input": "checkConsumeChange"
   },
 
   setDefaultParameters: function() {
@@ -107,6 +112,15 @@ App.Views.ProductGenerator = Backbone.View.extend({
 
   compute: function() {
     this.trigger('compute', {VariantId: this.variantSelectedId, volume: this.volume});
+    var checkStock = this.quantitiesTable.checkStock();
+    this.checkConsumeEl
+      .toggle(checkStock && (this.productMode == 'new'));
+    if (!checkStock) {this.checkConsumeEl.find('input').prop('checked', false);}
+    this.checkConsumeChange();
+  },
+  
+  checkConsumeChange: function() {
+    this.checkConsume = this.checkConsumeEl.find('input').prop('checked');
   },
   
   changeVolume: function(e) {
@@ -196,7 +210,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
     this.$el.find('#btn--product--new--initiate').show();
     this.$el.find('#btn--product--details').hide();
     this.$el.find('#btn--product--new--save').show();  
-    this.$el.find('#btn--product--new--save').text('Enregistrer modifications');  
+    this.$el.find('#btn--product--new--save--btn').text('Enregistrer modifications');  
     
     // display details
     this.$el.find('#product__details').slideDown();
@@ -217,9 +231,11 @@ App.Views.ProductGenerator = Backbone.View.extend({
     this.$el.find('#production-date__input').removeAttr('disabled','');
     this.$el.find('#btn--product--details').text('Annuler').show();
     this.$el.find('#btn--product--new--initiate').hide();
-    this.$el.find('#btn--product--new--save').text('Enregistrer nouveau produit');  
+    this.$el.find('#btn--product--new--save--btn').text('Enregistrer nouveau produit');  
     this.$el.find('.product--save--alert')
             .text('').slideUp();
+            
+    this.compute();
     
   },
 
@@ -252,17 +268,14 @@ App.Views.ProductGenerator = Backbone.View.extend({
       (prodDate != '') ? prodDate = App.invertDate(prodDate) : prodDate = null;
       var expDate = this.$el.find('#expiration-date__input').val();
       (expDate != '') ? expDate = App.invertDate(expDate) : expDate = null;
-      //var variant_id = parseInt(this.$el.find('#product__variant').val());
       var params = {
         variant_id: parseInt(this.$el.find('#product__variant').val()),
-        /*variant: {
-          id: variant_id,
-          name: this.$el.find('#product__variant option:selected').text()},*/
         volume: this.$el.find('#product__volume').val()*100,
         container: this.$el.find('#product__container').val(),
         description: this.$el.find('#product__description').val(),
         production_date: prodDate,
-        expiration_date: expDate
+        expiration_date: expDate,
+        consume_stock: this.checkConsume
       };
       var self = this;
       this.currentProduct = this.products.create(params, {
@@ -271,6 +284,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
             .text('Produit enregistré avec succès')
             .addClass('alert-success').slideDown();
           self.displayProduct(self.currentProduct);
+          if (self.checkConsume) {self.reloadQuantitiestable();}
         }, 
         error: function(err) {
           $('.product--save--alert')
@@ -281,6 +295,23 @@ App.Views.ProductGenerator = Backbone.View.extend({
         }
       });
     }
+  },
+
+  reloadQuantitiestable: function() {
+    console.log('reload');
+    // get product generator
+    var self = this;
+    $.get(
+      '/recipes/' + App.productGeneratorRaw.recipeId + '.json',
+      function(data, status) {
+        App.productGeneratorRaw = data;
+        self.variants.reset();
+        self.quantitiesTable.$el.find('tbody').empty();
+        self.variants.add(App.productGeneratorRaw.variants);
+        self.variantSelect.focusVariant();
+        self.changeVariant();
+      }
+    );
   },
 
   removeProduct: function(product) {

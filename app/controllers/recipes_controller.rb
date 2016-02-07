@@ -22,6 +22,10 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @product_generator = product_generator
     @product = Product.new
+    respond_to do |format|
+      format.html
+      format.json { render :json => @product_generator.to_json.html_safe }
+    end
   end 
 
   def product_generator

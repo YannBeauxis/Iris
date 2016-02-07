@@ -5,7 +5,7 @@ App.Views.PGVariantSelect = Backbone.View.extend({
     this.optionTemplate = JST['pg_variant_selector_option'];
     
     this.listenTo(this.collection, 'add', this.addVariant);
-
+    this.listenTo(this.collection, 'reset', this.removeVariant);
 
   },
   
@@ -17,17 +17,23 @@ App.Views.PGVariantSelect = Backbone.View.extend({
     if (variant.get('base')) { this.base = variant.id; }
   },
   
+  removeVariant: function(variant) {
+    this.$el.empty();
+  },
+  
   displaySelect: function(variant) {
     this.$el.append(this.optionTemplate(variant));
   },
   
   //to select base or variant if param
   focusVariant: function() {
+
     var variant_id = App.getParameterByName('variant_id');
     if (variant_id != null && variant_id != "") {
       this.$el.val(parseInt(variant_id));
     }
     else if (this.base) {
+      console.log(this.base);
       this.$el.val(this.base);
       }
   }

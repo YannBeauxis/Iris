@@ -22,4 +22,15 @@ class ProductTest < ActiveSupport::TestCase
     assert p.price.round(2) == 130.77, 'price = ' + p.price.to_s + ' not 130.77'
   end
   
+  test "consume_stock" do
+    u = users(:one)
+    p = products(:consume_stock)
+    p.consume_stock
+    
+    i_one = ingredients(:consume_stock_one)
+    i_two = ingredients(:consume_stock_two)
+    assert i_one.quantity_in_stock(u) == 900, i_one.quantity_in_stock(u)
+    assert i_two.quantity_in_stock(u) == 800, i_two.quantity_in_stock(u)
+  end
+  
 end

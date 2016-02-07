@@ -14,7 +14,7 @@ class ProductQuantity
     value = self.get(quantity,ingredient)
     return @display.(value, quantity, ingredient, mode)
   end
-  
+
   def get(quantity,ingredient)
     return @quantities[quantity][ingredient]
   end

@@ -32,7 +32,10 @@ class ProductsController < ApplicationController
     @variant = @product.variant#Variant.find(id: params[:variant_id])
     @variant.products << @product
 
-    render :json => { :success => @product.save && @variant.save }
+    success = @product.save && @variant.save
+    @product.consume_stock if (success && params[:consume_stock])
+
+    render :json => { :success => success }
   
     #if @variant.save
     #  redirect_to recipe_product_path(@recipe,@product)
@@ -76,7 +79,8 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(
           :variant_id, :volume, :container, 
-          :description, :production_date, :expiration_date
+          :description, :production_date, :expiration_date,
+          :consume_stock
       )
     end
 

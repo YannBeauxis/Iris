@@ -75,7 +75,14 @@
         <button class="btn btn-default" type="button" id="btn--product--new--initiate" style="display: none;">Nouveau produit</button>
     </div>
     <div class="col-sm-4">
-      <button class="btn btn-default" type="button" id="btn--product--new--save" style="display: none;">Enregistrer</button>
+      <div id="btn--product--new--save" style="display: none;">
+        <button class="btn btn-primary" type="button" id="btn--product--new--save--btn">Enregistrer</button>
+        <div class="checkbox consume-stock">
+          <label>
+            <input type="checkbox"> Déduire des stocks
+          </label>
+        </div>
+      </div>
     </div>
 
     <div id ="product__cost__group">
