@@ -33,7 +33,6 @@ App.Views.PGVariantSelect = Backbone.View.extend({
       this.$el.val(parseInt(variant_id));
     }
     else if (this.base) {
-      console.log(this.base);
       this.$el.val(this.base);
       }
   }

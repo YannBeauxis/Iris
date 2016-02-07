@@ -298,7 +298,6 @@ App.Views.ProductGenerator = Backbone.View.extend({
   },
 
   reloadQuantitiestable: function() {
-    console.log('reload');
     // get product generator
     var self = this;
     $.get(
