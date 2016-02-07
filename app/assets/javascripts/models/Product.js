@@ -10,6 +10,11 @@ App.Models.Product = Backbone.Model.extend({
     this.url = this.collection.url + '/' + this.get('id');
   },
 
+  nameDisplay: function() {
+    return this.get('container') + ' ' + 
+      App.displayQuantity({quantity: this.get('volume'), unit: 'ml'});
+  },
+
   productionDateDisplay: function() {
     var date = this.get('production_date');
     return (date == null) ? date : App.convertDate(date);
