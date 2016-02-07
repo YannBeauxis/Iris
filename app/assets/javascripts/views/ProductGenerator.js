@@ -99,6 +99,10 @@ App.Views.ProductGenerator = Backbone.View.extend({
     this.compute();
     this.quantitiesTable.updateAllDisplayQuantityType().sortRows();
 
+    this.$el.find('#product__variant__frame .item-description')
+      .text(variant.description)
+      .toggle(variant.description != undefined);
+
   },
 
   compute: function() {

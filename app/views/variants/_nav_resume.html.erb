@@ -1,4 +1,6 @@
-<%= render 'recipes/nav_resume' %>
+<%= menu_item(menu: :nav_resume, active: params[:action] == 'index',
+     label: 'Recettes', path: recipes_path)%>
+
 <%= render 'recipes/nav_resume_base' %>
 
 <% if params[:action] != 'new' %>

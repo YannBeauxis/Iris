@@ -28,6 +28,7 @@ class ProductQuantity
     result = {
       id: variant.id,
       name: variant.name,
+      description: variant.description,
       archived: variant.archived?,
       base: variant.base?,
       ingredientTypes: []
