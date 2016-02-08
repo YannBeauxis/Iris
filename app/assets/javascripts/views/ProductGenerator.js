@@ -287,6 +287,7 @@ App.Views.ProductGenerator = Backbone.View.extend({
             .addClass('alert-success').slideDown();
           self.displayProduct(self.currentProduct);
           if (self.checkConsume) {self.reloadQuantitiestable();}
+          self.checkConsumeEl.find('input').prop('checked', false);
         }, 
         error: function(err) {
           $('.product--save--alert')
