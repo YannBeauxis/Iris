@@ -34,8 +34,12 @@ class ProductsController < ApplicationController
 
     success = @product.save && @variant.save
     @product.consume_stock if (success && params[:consume_stock])
-
-    render :json => { :success => success }
+   
+      if success 
+       render :json => @product.to_json
+      else
+       render false
+      end
   
     #if @variant.save
     #  redirect_to recipe_product_path(@recipe,@product)

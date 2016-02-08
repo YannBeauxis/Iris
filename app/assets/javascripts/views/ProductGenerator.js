@@ -279,9 +279,11 @@ App.Views.ProductGenerator = Backbone.View.extend({
       };
       var self = this;
       this.currentProduct = this.products.create(params, {
+        wait: true,
         success: function() {
           $('.product--save--alert')
             .text('Produit enregistré avec succès')
+            .removeClass('alert-danger')
             .addClass('alert-success').slideDown();
           self.displayProduct(self.currentProduct);
           if (self.checkConsume) {self.reloadQuantitiestable();}
@@ -289,8 +291,9 @@ App.Views.ProductGenerator = Backbone.View.extend({
         error: function(err) {
           $('.product--save--alert')
             .text('Erreur dans l\'enregisterement du produit')
+            .removeClass('alert-success')
             .addClass('alert-danger').slideDown();
-            console.log(err);
+            //console.log(err);
             App.test = false;
         }
       });
