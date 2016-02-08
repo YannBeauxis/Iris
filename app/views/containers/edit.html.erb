@@ -25,7 +25,7 @@
                   <div class="col-xs-5">
                     <div class="input-group">
                       <input name="container[mass]" id="mass-input" class="numeric integer optional form-control"
-                            step="any" type="number" value=<%= @container.mass_total.display %> />
+                            step="any" type="number" value=<%= @container.mass_total.display/100.0 %> />
                       <span class="input-group-addon">g</span>
                     </div>
                   </div>
