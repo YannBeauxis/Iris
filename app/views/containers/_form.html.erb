@@ -10,7 +10,7 @@
               wrapper: :horizontal_input_group  do |f| %>
 
               <%= f.input :quantity_init, 
-                label: 'Volume intial' do %>
+                label: 'Quantité initiale' do %>
                 <%= f.input_field :quantity_init, class: "form-control",
                   value: @container.quantity_init.nil? ? nil : @container.quantity_init/100.0 %>
                 <span class="input-group-addon"><%= @ingredient.mesure_unit %></span>
@@ -24,7 +24,7 @@
               <% end %>
               
               <%= f.input :quantity_actual, 
-                label: 'Volume actuel' do %>
+                label: 'Quantité actuelle' do %>
                 <%= f.input_field :quantity_actual, class: "form-control",
                   value: @container.quantity_actual.nil? ? nil : @container.quantity_actual/100.0 %>
                 <span class="input-group-addon"><%= @ingredient.mesure_unit %></span>
