@@ -2,7 +2,8 @@
   <span class="title">Identification</span>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%# previously used for insert menu %>
+<%# render "devise/shared/links" %>
 
 <% content_for :item_content do %>
 
@@ -11,16 +12,22 @@
 
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     
-      <%= f.input :email, placeholder: 'user@domain.com' %>
-    
-      <%= f.input :password, label: 'Mot de passe', autocomplete: "off" %>
-    
-      <% if devise_mapping.rememberable? -%>
-        <%= f.input :remember_me, as: :boolean, inline_label: 'Se souvenir de moi' %>
-      <% end -%>
-    
-      <%= f.button :submit, 'Se connecter' %>
-    
+        <%= f.input :email, placeholder: 'user@domain.com' %>
+      
+        <%= f.input :password, label: 'Mot de passe', autocomplete: "off" %>
+      
+        <%= link_to('Mot de passe oublié ?', new_password_path(resource_name)) %>
+      
+        <% if devise_mapping.rememberable? -%>
+          <%= f.input :remember_me, as: :boolean, inline_label: 'Se souvenir de moi' %>
+        <% end -%>
+      
+        <div class="form-group">
+          <%= f.button :submit, 'Se connecter', class: "btn btn-primary" %>
+        
+          <%= link_to('Nouvel utilisateur', new_user_registration_path, class: "btn btn-default") %>
+        </div>
+        
       <% end %>
       
     </div>

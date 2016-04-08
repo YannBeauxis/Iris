@@ -8,14 +8,16 @@
   
     <div class="panel-body">
       
-      <%= f.input :name, label: 'Nom' %>
+      <%= f.input :name, label: 'Nom', 
+          disabled: !@edit_name %>
       
-        <%= f.input :ingredient_type_id, 
+      <%= f.input :ingredient_type_id, 
           collection: @ingredient_types, 
           include_blank: false, 
           label: 'Type d\'ingrédient', 
-          disabled: controller.action_name != 'new'
-        %>
+          disabled: !@edit_type
+          #disabled: controller.action_name != 'new'
+      %>
       
       <%= f.input :description, as: :text, label: 'Description', input_html: {rows: 2} %>
       
@@ -24,15 +26,26 @@
             input_html: {value: @ingredient.density/100.0},
             placeholder: '1 par défaut' %>
       
-      <div class="form-group row"> 
-        <div class="col-sm-offset-8 col-sm-4">
-          <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
-          <%= f.button :submit, 'Enregistrer' %>
+      <div class="form-group"> 
+        <div class="col-sm-12">
+          <div class="pull-right">
+            <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+            <%= f.button :submit, 'Enregistrer', class: "btn btn-primary" %>
+          </div>
         </div>
       </div>
-      
+      <% if controller.action_name != 'new'%>
+        <div class="form-group"> 
+          <div class="col-sm-12">
+            <div class="pull-right">
+              <%= link_to( 'Supprimer l\'ingrédient', ingredient_path(@ingredient),
+                    method: :delete, data: { confirm: 'Voulez-vous supprimer cet ingrédient ?' }
+              )%>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
-    
   <% end %>
   
 </div>

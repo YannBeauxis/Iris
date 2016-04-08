@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
   #respond_to :html, :xml, :json
-  before_action :is_used_by_other, only: [:edit, :update, :destroy]
+  before_action :check_is_used_by_other, only: [:edit, :update, :destroy]
   
   def index
     if params.has_key?(:recipe_type_id)
@@ -51,10 +51,14 @@ class IngredientsController < ApplicationController
   def new
     @ingredient = Ingredient.new
     init_form
+    @edit_type = true
+    @edit_name = true
   end
 
   def edit
     init_form
+    @edit_type = false
+    @edit_name = !is_used_by_other
   end
 
   def create
@@ -91,9 +95,13 @@ class IngredientsController < ApplicationController
 
     def is_used_by_other
       @ingredient = Ingredient.find(params[:id])
-      if @ingredient.used_by_other_users?(current_user) and (current_user.role.rank  > 2) then
+      @ingredient.used_by_other_users?(current_user) and (current_user.role.rank  > 2)
+    end
+
+    def check_is_used_by_other
+      if is_used_by_other
         redirect_to :back, 
-          :flash => { :error => "Vous ne pouvez modifier cet ingrédient car il est utilisé par d'autres utilisateurs" }
+          flash: { alert: "Vous ne pouvez modifier cet ingrédient car il est utilisé par d'autres utilisateurs" }
       end
     end
 

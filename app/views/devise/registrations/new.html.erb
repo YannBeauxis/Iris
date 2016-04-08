@@ -2,7 +2,7 @@
   <span class="title">Nouvel utilisateur</span>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%# render "devise/shared/links" %>
 
 <% content_for :item_content do %>
 
@@ -24,7 +24,12 @@
               selected: 4,
               label: 'Role demandé', include_blank: false %>
         
-        <%= f.button :submit, 'Créer utilisateur' %>
+        <div class="form-group">
+          <%= f.button :submit, 'Créer utilisateur', class: "btn btn-primary" %>
+        
+          <%= link_to('Annuler', :back, class: "btn btn-default") %>
+        </div>
+
 
       <% end %>
     </div>
