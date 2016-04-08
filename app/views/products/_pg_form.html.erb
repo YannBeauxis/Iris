@@ -9,7 +9,11 @@
         <span class="input-group-addon">ml</span>
       </div>  
     </div>
-      <div class="col-sm-7" id="product__variant__frame">
+      <div class="col-sm-7" id="product__variant__frame" 
+        <% if !can? :update, @recipe %> 
+          style="display: none;"
+        <% end %>
+      >
         <div class="input-group">
           <select class="select form-control" id="product__variant">
           </select>
@@ -69,32 +73,34 @@
       </div>  
     </div>
   </div>
-  <div class="form-group">
-    <div class="col-sm-3 btn--product">
-        <button class="btn btn-default" type="button" id="btn--product--details" >Créer produit</button>
-        <button class="btn btn-default" type="button" id="btn--product--new--initiate" style="display: none;">Nouveau produit</button>
-    </div>
-    <div class="col-sm-4">
-      <div id="btn--product--new--save" style="display: none;">
-        <button class="btn btn-primary" type="button" id="btn--product--new--save--btn">Enregistrer</button>
-        <div class="checkbox consume-stock">
-          <label>
-            <input type="checkbox"> Déduire des stocks
-          </label>
+  <% if can? :create, Product%>
+    <div class="form-group">
+      <div class="col-sm-3 btn--product">
+          <button class="btn btn-default" type="button" id="btn--product--details" >Créer produit</button>
+          <button class="btn btn-default" type="button" id="btn--product--new--initiate" style="display: none;">Nouveau produit</button>
+      </div>
+      <div class="col-sm-4">
+        <div id="btn--product--new--save" style="display: none;">
+          <button class="btn btn-primary" type="button" id="btn--product--new--save--btn">Enregistrer</button>
+          <div class="checkbox consume-stock">
+            <label>
+              <input type="checkbox"> Déduire des stocks
+            </label>
+          </div>
+        </div>
+      </div>
+  
+      <div id ="product__cost__group">
+        <label class="integer optional control-label col-sm-2" for="product__cost__input">
+          Coût
+        </label>
+        <div class="col-sm-3">
+          <div class="input-group">
+            <input class="numeric integer optional form-control" type="number" id="product__cost__input" disabled>
+            <span class="input-group-addon">€</span>
+          </div>  
         </div>
       </div>
     </div>
-
-    <div id ="product__cost__group">
-      <label class="integer optional control-label col-sm-2" for="product__cost__input">
-        Coût
-      </label>
-      <div class="col-sm-3">
-        <div class="input-group">
-          <input class="numeric integer optional form-control" type="number" id="product__cost__input" disabled>
-          <span class="input-group-addon">€</span>
-        </div>  
-      </div>
-    </div>
-  </div>
+  <% end %>
 </form>
