@@ -22,7 +22,7 @@ fr:
       confirmation_instructions:
         subject: "Instructions de confirmation"
       reset_password_instructions:
-        subject: "Instructions pour changer le mot de passe"
+        subject: "[Projet-Iris] Instructions pour changer le mot de passe"
       unlock_instructions:
         subject: "Instructions pour déverrouiller le compte"
       new_user_alert:
