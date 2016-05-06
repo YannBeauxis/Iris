@@ -1,3 +1,7 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "dataTables.js" %>
+<% end %>
+
 <% render 'menu' %>
 
 <% content_for :content_header do %>
@@ -6,23 +10,29 @@
 
 <% content_for :item_content do %>
 
-  <table>
-    <tr>
-      <th>Type</th>
-      <th>Ingrédient</th>
-      <th>Volume actuel</th>
-      <th>User</th>
-    </tr>
-    <% @containers.each do |c| %>
-      <tr>      
-        <td><%= c.ingredient.type.name_short %></td>
-        <td><%= c.ingredient.name %></td>
-        <td><%= c.quantity_actual %></td>
-        <td><%= c.user.name %></td>
-        <td><%= link_to 'Edit', edit_ingredient_container_path(c.ingredient,c)%></td>
-     </tr>
-
-    <% end %>
+  <table class='data-table stripe'>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Ingrédient</th>
+        <th>Volume actuel</th>
+        <th>User</th>
+        <th>Modified</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @containers.each do |c| %>
+        <tr>      
+          <td><%= c.ingredient.type.name_short %></td>
+          <td><%= c.ingredient.name %></td>
+          <td><%= c.quantity_actual %></td>
+          <td><%= c.user.name %></td>
+          <td><%= c.updated_at.strftime("%Y-%m-%d") %></td>
+          <td><%= link_to 'Edit', edit_ingredient_container_path(c.ingredient,c)%></td>
+       </tr>
+      <% end %>
+    </tbody>
   </table>
 
 <% end %>

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   scope :admin do
     get '/users', to: 'administration#users',as: :admin_users
+    get '/ingredients', to: 'administration#ingredients',as: :admin_ingredients
     get '/containers', to: 'administration#containers',as: :admin_containers
     get '/recipes', to: 'administration#recipes',as: :admin_recipes
     get '/variants', to: 'administration#variants',as: :admin_variants

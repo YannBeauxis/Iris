@@ -1,3 +1,7 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "dataTables.js" %>
+<% end %>
+
 <% render 'menu' %>
 
 <% content_for :content_header do %>
@@ -7,25 +11,29 @@
 <% content_for :item_content do %>
   <% if current_user.admin? then %>
   <p>
-    <table>
+    <table class='data-table stripe'>
+      <thead>
       <tr>
-        <th></th>
-        <th>id</th>
-        <th>Nom</th>
-        <th>email</th>
-        <th>approved</th>
-        <th>Rôle</th>
-      </tr>
-      <% @users.each do |u| %>
-        <tr>
-          <td><%= link_to 'Edit', edit_user_path(u.id) %></td>
-          <td><%= u.id %></td>
-          <td><%= u.name %></td>
-          <td><%= u.email %></td>
-          <td><%= u.approved %></td>
-          <td><%= u.role.name %></td>
+          <th></th>
+          <th>id</th>
+          <th>Nom</th>
+          <th>email</th>
+          <th>approved</th>
+          <th>Rôle</th>
         </tr>
-      <% end %>
+      </thead>
+      <tbody>
+        <% @users.each do |u| %>
+          <tr>
+            <td><%= link_to 'Edit', edit_user_path(u.id) %></td>
+            <td><%= u.id %></td>
+            <td><%= u.name %></td>
+            <td><%= u.email %></td>
+            <td><%= u.approved %></td>
+            <td><%= u.role.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
   </p>
   

@@ -5,6 +5,10 @@ class AdministrationController < ApplicationController
     def users
       @users = User.all
     end
+
+    def ingredients
+      @ingredients = Ingredient.all
+    end
     
     def containers
       @containers = Container.all

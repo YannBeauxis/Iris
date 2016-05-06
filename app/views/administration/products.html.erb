@@ -1,3 +1,7 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "dataTables.js" %>
+<% end %>
+
 <% render 'menu' %>
 
 <% content_for :content_header do %>
@@ -6,23 +10,29 @@
 
 <% content_for :item_content do %>
 
-  <table>
-    <tr>
-      <th>Recette</th>
-      <th>Variante</th>
-      <th>Volume</th>
-      <th>User</th>
-    </tr>
-    <% @products.each do |p| %>
-      <tr>      
-        <td><%= p.recipe.name %></td>
-        <td><%= p.variant.name %></td>
-        <td><%= p.volume %></td>
-        <td><%= p.user.nil? ? nil : p.user.name%></td>
-        <td><%= link_to 'Edit', edit_recipe_product_path(p.recipe, p)%></td>
-     </tr>
-
-    <% end %>
+  <table class='data-table stripe'>
+    <thead>
+      <tr>
+        <th>Recette</th>
+        <th>Variante</th>
+        <th>Volume</th>
+        <th>User</th>
+        <th>Modified</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |p| %>
+        <tr>      
+          <td><%= p.recipe.name %></td>
+          <td><%= p.variant.name %></td>
+          <td><%= p.volume %></td>
+          <td><%= p.user.nil? ? nil : p.user.name%></td>
+          <td><%= p.updated_at.strftime("%Y-%m-%d") %></td>
+          <td><%= link_to 'Edit', edit_recipe_product_path(p.recipe, p)%></td>
+       </tr>
+      <% end %>
+    </tbody>
   </table>
 
 <% end %>

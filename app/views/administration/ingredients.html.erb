@@ -5,7 +5,7 @@
 <% render 'menu' %>
 
 <% content_for :content_header do %>
-  <span class="title">Gestion des recettes</span>
+  <span class="title">Gestion des ingrédients</span>
 <% end %>
 
 <% content_for :item_content do %>
@@ -14,20 +14,18 @@
     <thead>
       <tr>
         <th>Type</th>
-        <th>Recette</th>
-        <th>User</th>
+        <th>Ingredient</th>
         <th>Modified</th>
         <th>Edit</th>
       </tr>
     </thead>
     <tbody>
-      <% @recipes.each do |r| %>
+      <% @ingredients.each do |i| %>
         <tr>      
-          <td><%= r.type.name %></td>
-          <td><%= r.name %></td>
-          <td><%= r.user.name %></td>
-          <td><%= r.updated_at.strftime("%Y-%m-%d") %></td>
-          <td><%= link_to 'Edit', edit_recipe_path(r)%></td>
+          <td><%= i.type.name %></td>
+          <td><%= i.name %></td>
+          <td><%= i.updated_at.strftime("%Y-%m-%d") %></td>
+          <td><%= link_to 'Edit', edit_ingredient_path(i)%></td>
        </tr>
       <% end %>
     </tbody>

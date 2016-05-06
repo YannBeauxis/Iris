@@ -1,3 +1,7 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "dataTables.js" %>
+<% end %>
+
 <% render 'menu' %>
 
 <% content_for :content_header do %>
@@ -6,22 +10,27 @@
 
 <% content_for :item_content do %>
 
-  <table>
-    <tr>
-      <th>Nom</th>
-      <th>Recette</th>
-      <th>User</th>
-      <th></th>
-    </tr>
-    <% @variants.each do |v| %>
+  <table class='data-table stripe'>
+    <thead>
       <tr>
-        <td><%= v.name %></td>      
-        <td><%= v.recipe.name %></td>
-        <td><%= v.user.nil? ? nil : v.user.name%></td>
-        <td><%= link_to 'Edit', edit_recipe_variant_path(v.recipe, v)%></td>
-     </tr>
-
-    <% end %>
+        <th>Nom</th>
+        <th>Recette</th>
+        <th>User</th>
+        <th>Modified</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @variants.each do |v| %>
+        <tr>
+          <td><%= v.name %></td>      
+          <td><%= v.recipe.name %></td>
+          <td><%= v.user.nil? ? nil : v.user.name%></td>
+          <td><%= v.updated_at.strftime("%Y-%m-%d") %></td>
+          <td><%= link_to 'Edit', edit_recipe_variant_path(v.recipe, v)%></td>
+       </tr>
+      <% end %>
+    </tbody>
   </table>
 
 <% end %>
