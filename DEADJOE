@@ -1,0 +1,21 @@
+
+*** These modified files were found in JOE when it aborted on Fri May  6 15:01:39 2016
+*** JOE was aborted because the terminal closed
+
+*** File '(Unnamed)'
+/home/igrec/Rails/IRIS/.git/COMMIT_EDITMSG
+
+*** File '/home/igrec/Rails/IRIS/.git/COMMIT_EDITMSG'
+Design account interface
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   app/views/devise/passwords/edit.html.erb
+#	modified:   app/views/devise/passwords/new.html.erb
+#	modified:   app/views/devise/registrations/edit.html.erb
+#	modified:   app/views/layouts/application.html.erb
+#	modified:   app/views/users/_form.html.erb
+#

@@ -6,24 +6,18 @@
 
   <div class="panel panel-default">
     <div class="panel-body">
-  
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        
+      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), method: :put) do |f| %>
+      <%# form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
         <%= devise_error_messages! %>
         <%= f.hidden_field :reset_password_token %>
       
-        <div class="field">
-          <%= f.label :password, "Nouveau mot de passe" %><br />
-          <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
-        </div>
+        <%= f.input :password, label: "Nouveau mot de passe", autofocus: true, autocomplete: "off"  %>
+ 
+        <%= f.input :password_confirmation, label: "Confirmer mot de passe", autocomplete: "off"  %> 
+        
+        <%= f.button :submit, 'Modifier mon mot de passe', class: "btn btn-primary" %>
       
-        <div class="field">
-          <%= f.label :password_confirmation, "Confirmer mot de passe" %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "off" %>
-        </div>
-      
-        <div class="actions">
-          <%= f.submit "Change my password" %>
-        </div>
       <% end %>
     </div>
   </div>

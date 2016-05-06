@@ -2,7 +2,7 @@
 
   <div class="panel-body">
 
-<%= simple_form_for @user, 
+<%# simple_form_for @user, 
       html: { class: 'form-horizontal' },  
       wrapper: :horizontal_form,
       wrapper_mappings: {
@@ -11,6 +11,8 @@
         file: :horizontal_file_input,
         boolean: :horizontal_boolean
       } do |f|%>
+
+<%= simple_form_for @user do |f|%>
 
   <%= f.error_notification %>
 
@@ -27,10 +29,8 @@
   <% end %>
   
   <div class="form-group"> 
-    <div class="col-sm-offset-3 col-sm-9">
-      <%= f.button :submit, 'Enregistrer' %>
+      <%= f.button :submit, 'Enregistrer', class: "btn btn-primary"  %>
       <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
-    </div>
   </div>
   
 <% end %>
