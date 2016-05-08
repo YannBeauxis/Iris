@@ -193,11 +193,16 @@ App.Views.ProductGenerator = Backbone.View.extend({
     this.$el.find('#product__volume').val(this.volume);
     this.$el.find('#product__volume').attr('disabled','');
       //Variant
+      // For old version of variant, add it on select options
       if ($('#product__variant').find("[value='" + model.variant.id + "']").length == 0){
         model.variant.trigger('displaySelect', model.variant);
       }
+      // chang value on select
       this.$el.find('#product__variant').val(model.get('variant_id'));
+      // unable variant change (product variant cannot be changed)
       this.$el.find('#product__variant').attr('disabled','');
+      // compute variant change on quantities table
+      this.changeVariant();
     this.$el.find('#product__container').val(model.get('container'));
     this.$el.find('#product__description').val(model.get('description'));
     this.$el.find('#production-date__input').val(App.convertDate(model.get('production_date')));

@@ -18,6 +18,7 @@ App.Views.PGVariantSelect = Backbone.View.extend({
   },
   
   removeVariant: function(variant) {
+    // ??? not should remove all variant, to be checked
     this.$el.empty();
   },
   
