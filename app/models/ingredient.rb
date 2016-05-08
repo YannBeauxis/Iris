@@ -1,5 +1,6 @@
 class Ingredient < ActiveRecord::Base
   #has_and_belongs_to_many :recipes, -> { uniq }
+  belongs_to :user
   has_and_belongs_to_many :variants, -> { uniq }
   belongs_to :type, :class_name => 'IngredientType', :foreign_key => 'ingredient_type_id'
   has_many :containers, :dependent => :restrict_with_error

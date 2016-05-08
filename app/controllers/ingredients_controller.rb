@@ -63,6 +63,7 @@ class IngredientsController < ApplicationController
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
+    @ingredient.user = current_user
 
     if @ingredient.save
       redirect_to @ingredient
