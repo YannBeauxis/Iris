@@ -9,9 +9,17 @@ class IngredientTest < ActiveSupport::TestCase
     assert i.save
   end
   
-  test "exist ingredient 2" do
-    i = ingredients(:two)
-    assert_includes Ingredient.all, i
+  test "user visible" do 
+    u = users(:one)
+    il = Ingredient.user_scope(u)
+    i_one_validated = ingredients(:one)
+    i_one_not_validated = ingredients(:one_not_validated)
+    i_not_one = ingredients(:not_one)
+    i_not_one_not_validated = ingredients(:not_one_not_validated)
+    assert_includes(il, i_one_validated, 'user scope should include user validated')
+    assert_includes(il, i_one_not_validated, 'user scope should include user not validated')
+    assert_includes(il, i_not_one, 'user scope should include other user validated')
+    assert_not_includes(il, i_not_one_not_validated, 'user scope should not include other user not validated')
   end
 
   test "not delete if containers" do

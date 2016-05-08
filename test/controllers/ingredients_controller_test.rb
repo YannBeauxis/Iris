@@ -2,13 +2,22 @@ require 'test_helper'
 
 class IngredientsControllerTest < ActionController::TestCase
   
-  test "should get index" do
+  test "should get index by html" do
     sign_in users(:one)
     get :index
     assert_response :success
   end
 
-  
+  test "index by ajax" do
+    u = users(:one)
+    sign_in u
+    get :index, :format => :json
+    assert_response :success
+    il = assigns(:ingredients).map { |i| i[:id] }
+    il_model = Ingredient.user_scope(u).pluck(:id)
+    assert_equal il.to_set, il_model.to_set, 'ingredient list should be equal to Ingredient.user_scope'
+  end
+
   test "should get new" do
     sign_in users(:one)
     get :new

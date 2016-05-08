@@ -8,7 +8,7 @@ class IngredientsController < ApplicationController
         .joins(type: :recipe_types)
         .where('ingredient_types_recipe_types.recipe_type_id = ?', params[:recipe_type_id])
     else
-      @ingredients_scope = Ingredient.all
+      @ingredients_scope = Ingredient.user_scope(current_user)
     end
 
     if params.has_key?(:variant_id)

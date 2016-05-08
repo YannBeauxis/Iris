@@ -3,30 +3,62 @@
 one:
   name: 'Lavandin Super'
   type: one
-  
+  user: one
+  validated: true
+
+one_not_validated:
+  name: 'Lavandin Super'
+  type: one
+  user: one
+  validated: false
+
+not_one:
+  name: 'not user one'
+  type: one
+  user: not_one
+  validated: true
+
+not_one_not_validated:
+  name: 'not validated'
+  type: one
+  user: not_one
+  validated: false
+
 two:
   name: 'For ingredient type delete'
   type: two
+  user: one
+  validated: true
   
 three:
   name: 'For Container Delete'
   type: one
+  user: one
+  validated: true
 
 four:
   name: 'For Container Delete by Ingredient Type'
   type: three
-
+  user: one
+  validated: true
+  
 ingredient_candidates_include_already:
   name: 'icia'
   type: ingredient_candidates_include
+  user: one
+  validated: true
   
 ingredient_candidates_include_not_already:
   name: 'icina'
   type: ingredient_candidates_include
+  user: one
+  validated: true
   
 ingredient_candidates_not_include:
   name: 'icnin'
   type: ingredient_candidates_not_include
+  user: one
+  validated: true
   
 not_delete_if_recipe:
   name: 'ndir'
@@ -35,6 +67,8 @@ not_delete_if_recipe:
 delete_recipe_ingredient:
   name: delete_recipe_ingredient
   type: one
+  user: one
+  validated: true
   
 create_proportions_1_1:
   name: 'create_proportions_1_1'
@@ -43,81 +77,118 @@ create_proportions_1_1:
 create_proportions_1_2:
   name: 'create_proportions_1_2'
   type: create_proportions_1
+  user: one
+  validated: true
   
 create_proportions_2_1:
   name: 'create_proportions_2_1'
   type: create_proportions_2
+  user: one
+  validated: true
   
 create_proportions_2_2:
   name: 'create_proportions_2_2'
   type: create_proportions_2
+  user: one
+  validated: true
   
 no_density:
   name: 'no_density'
   type: 'one'
+  user: one
+  validated: true
   
 density_2:
   name: 'no_density'
   type: 'one'
   density: 200
-
+  user: one
+  validated: true
+  
 proportions_1:
   name: 'proportions_1'
   type: 'proportions_1'
   density: 80
+  user: one
+  validated: true
   
 proportions_2:
   name: 'proportions_2'
   type: 'proportions_1'
   density: 120
-
+  user: one
+  validated: true
+  
 proportions_3:
   name: 'proportions_3'
   type: 'proportions_2'
   density: 120
-
+  user: one
+  validated: true
+  
 proportions_0:
   name: 'proportions_0'
   type: 'proportions_1'
   density: 120
-
+  user: one
+  validated: true
+  
 has_container_reference:
   name: 'has_container_reference'
   type: has_container_reference
   density: 120
-
+  user: one
+  validated: true
+  
 not_has_container_reference:
   name: 'not_has_container_reference'
   type: not_has_container_reference
   density: 120
+  user: one
+  validated: true
   
 iep_solo:
   name: 'iep_solo'
   type: one
   density: 100
+  user: one
+  validated: true
   
 iep_shared:
   name: 'iep_shared'
   type: one
   density: 100
+  user: one
+  validated: true
   
 iep_shared_container:
   name: 'iep_shared_container'
   type: one
   density: 100
+  user: one
+  validated: true
   
 consume_stock_one_container:
   name: 'consumconsume_stock_one_containere_stock'
   type: one
+  user: one
+  validated: true
   
 consume_stock_many_conainers:
   name: 'consume_stock_many_conainers'
   type: one
+  user: one
+  validated: true
   
 consume_stock_one:
   name: 'consume_stock_one'
   type: one
+  user: one
+  validated: true
   
 consume_stock_two:
   name: 'consume_stock_two'
   type: one
+  user: one
+  validated: true
+  
