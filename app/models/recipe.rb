@@ -41,6 +41,20 @@ class Recipe < ActiveRecord::Base
     self.variant_base_id = v.id
   end
 
+  def variants_user_scope(user)
+    result = []
+    self.variants.each do |v|
+      test = true
+      v.ingredients.each  do |i|
+        test = test && ((i.user == user) || i.validated)
+      end
+      if test && !v.archived?
+        result << v
+      end
+    end
+    result
+  end
+
   def user_name
     self.user.name
   end

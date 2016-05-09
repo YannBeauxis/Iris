@@ -11,6 +11,11 @@ two:
   name: 'For recipe type delete'
   type: three 
   #ingredients: one
+
+not_one:
+  user: not_one
+  name: 'not one'
+  type: one
   
 ingredient_candidates:
   user: one

@@ -7,7 +7,7 @@ one:
   validated: true
 
 one_not_validated:
-  name: 'Lavandin Super'
+  name: 'one_not_validated'
   type: one
   user: one
   validated: false

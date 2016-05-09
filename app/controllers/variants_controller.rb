@@ -27,8 +27,6 @@ class VariantsController < ApplicationController
   def create
 
     @variant = @recipe.variant_base.duplicate(user_id: current_user, name: variant_params[:name])
-    #@variant.user = current_user
-    #@variant.ingredients = @recipe.ingredients
     @variant.description = variant_params[:description]
     @recipe.variants << @variant
 

@@ -42,7 +42,7 @@ class RecipesController < ApplicationController
     product = Product.new do |p|
       p.volume = 100
     end
-    @recipe.variants.each do |v|
+    @recipe.variants_user_scope(current_user).each do |v|
       product.variant = v
       product.quantities.compute_prices(current_user)
       result[:variants] << product.quantities.product_generator(current_user)
@@ -60,7 +60,8 @@ class RecipesController < ApplicationController
   def edit
     init_form
     @recipe = Recipe.find(params[:id])
-    @variants = @recipe.variants
+    #@variants = @recipe.variants
+    @variants = @recipe.variants_user_scope(current_user)
     @recipe_type_select = false
     @variant_base_select = (@variants.length > 1)
   end

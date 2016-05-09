@@ -1,19 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  user: one
   name: 'one'
   recipe: one
   ingredients: one
 
 recipe_delete:
+  user: one
   name: 'recipe_delete'
   recipe: variant_delete
 
 product_delete:
+  user: one
   name: 'variant_delete'
   recipe: one
   
 variant2proportion_delete:
+  user: one
   name: 'variant2proportion_delete'
   recipe: one
   
@@ -24,25 +28,30 @@ proportions:
   ingredients: proportions_0, proportions_1, proportions_2, proportions_3
 
 product_index:
+  user: one
   name: 'product_index'
   recipe: product_index
   
 delete_recipe_ingredient:
+  user: one
   name: 'delete_recipe_ingredient'
   recipe: delete_recipe_ingredient
   ingredients: one, delete_recipe_ingredient
   
 iep_main:
+  user: one
   name: 'iep_main'
   recipe: 'iep_main'
   ingredients: iep_solo, iep_shared
   
 iep_other:
+  user: one
   name: 'iep_other'
   recipe: 'iep_other'
   ingredients: iep_shared
   
 not_delete_if_recipe:
+  user: one
   name: 'not delete if recipe'
   recipe: 'not delete if recipe'
   ingredients: not_delete_if_recipe
@@ -106,3 +115,27 @@ consume_stock:
   name: 'consume_stock'
   recipe: consume_stock
   ingredients: consume_stock_one, consume_stock_two
+
+one_ingredient_not_validated:
+  user: one
+  name: 'one_ingredient_not_validated'
+  recipe: one
+  ingredients: one, one_not_validated
+
+not_one:
+  user: not_one
+  name: 'not_one'
+  recipe: one
+  ingredients: one
+
+recipe_not_one:
+  user: not_one
+  name: 'recipe_not_one'
+  recipe: not_one
+  ingredients: one
+
+recipe_not_one_ingredient_not_validated:
+  user: not_one
+  name: 'recipe_not_one_ingredient_not_validated'
+  recipe: not_one
+  ingredients: one, not_one_not_validated

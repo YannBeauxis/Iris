@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
   def edit
     @product = Product.find(params[:id])
     @variant = @product.variant
-    @variants = @product.recipe.variants
+    #@variants = @product.recipe.variants
   end
 
   def create
