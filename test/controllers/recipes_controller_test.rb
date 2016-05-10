@@ -2,6 +2,21 @@ require 'test_helper'
 
 class RecipesControllerTest < ActionController::TestCase
 
+  test "variant_base_user_constraint" do
+    u = users(:one)
+    sign_in u
+    r = recipes(:one)
+    v_one = variants(:one)
+    v_not_one = variants(:not_one)
+    @request.headers["HTTP_REFERER"] = "http://test.host/recipes"
+    
+    patch(:update, id: r, recipe: {variant_base_id: v_one.id})
+    assert_equal r.reload.variant_base_id, v_one.id
+    
+    patch(:update, id: r, recipe: {variant_base_id: v_not_one.id})
+    assert_not_equal r.reload.variant_base_id, v_not_one.id, "should not have variant base with other user"
+  end
+
   test "update_recipe_name" do
     u = users(:producteur)
     sign_in u

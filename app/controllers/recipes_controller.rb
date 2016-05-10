@@ -60,8 +60,8 @@ class RecipesController < ApplicationController
   def edit
     init_form
     @recipe = Recipe.find(params[:id])
-    #@variants = @recipe.variants
-    @variants = @recipe.variants_user_scope(current_user)
+    @variants = @recipe.variants
+      .where(user_id: @recipe.user, archived: [false, nil])
     @recipe_type_select = false
     @variant_base_select = (@variants.length > 1)
   end
@@ -81,6 +81,16 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
     #set_ingredients
+
+    if recipe_params.has_key?(:variant_base_id) 
+      v = Variant.find(recipe_params[:variant_base_id])
+       if v.user != current_user 
+        flash[:alert] = 'Impossible de modifier la recette'
+        render 'edit'
+        return false
+      end
+    end
+    
     if @recipe.update(recipe_params)
       redirect_to recipe_path(@recipe)
     else
@@ -132,7 +142,7 @@ class RecipesController < ApplicationController
 
     def recipe_params
       p = [:name,:recipe_type_id, {:ingredients_ids => []}, :variant_name, :variant_base_id, :description]
-      p << :variant_id if :action == 'create'
+      #p << :variant_id if :action == 'create'
       if current_user.admin? then
         p << :user_id
       end
