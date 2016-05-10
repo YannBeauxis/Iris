@@ -30,14 +30,6 @@ class IngredientsControllerTest < ActionController::TestCase
     assert_response 302
   end
 
-  test "should get edit" do
-    u = users(:one)
-    sign_in u
-    @request.headers["HTTP_REFERER"] = "http://test.host/ingredients"
-    get :edit, id: u
-    assert_response :success
-  end
-
 # for fixtures iep means "Ingredient Edited by Producteur"
   test "ingredient is editable if solo use" do
     u = users(:iep_main)
