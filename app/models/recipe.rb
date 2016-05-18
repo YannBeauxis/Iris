@@ -8,6 +8,10 @@ class Recipe < ActiveRecord::Base
   # I didn't manage to include :variant_base_id on validate
   after_save :check_variant_base_id
 
+  def self.user_enable(user)
+    where(variant_base_id: Variant.user_enable(user))
+  end
+
   def variant_base
     Variant.find_by(id: self.variant_base_id)
   end
@@ -39,20 +43,6 @@ class Recipe < ActiveRecord::Base
       vb.user = self.user
     end
     self.variant_base_id = v.id
-  end
-
-  def variants_user_scope(user)
-    result = []
-    self.variants.each do |v|
-      test = true
-      v.ingredients.each  do |i|
-        test = test && ((i.user == user) || i.validated)
-      end
-      if test && !v.archived?
-        result << v
-      end
-    end
-    result
   end
 
   def user_name

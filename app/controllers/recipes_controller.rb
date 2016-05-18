@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
       format.html
       format.json { 
         @recipes = []
-        Recipe.all.find_each do |r|
+        Recipe.user_enable(current_user).find_each do |r|
           @recipes << {
             id: r.id,
             name: r.name,
@@ -42,7 +42,7 @@ class RecipesController < ApplicationController
     product = Product.new do |p|
       p.volume = 100
     end
-    @recipe.variants_user_scope(current_user).each do |v|
+    @recipe.variants.user_enable(current_user).each do |v|
       product.variant = v
       product.quantities.compute_prices(current_user)
       result[:variants] << product.quantities.product_generator(current_user)

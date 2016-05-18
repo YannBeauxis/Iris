@@ -17,7 +17,11 @@ class Variant < ActiveRecord::Base
       self == self.recipe.variant_base
     end
   end
-  
+
+  def self.user_enable(user)
+    where.not(id: Ingredient.not_user_enable(user).joins(:variants).select(:variant_id).uniq)
+  end
+
   def init_computation
     @computation = ProportionCompute.new(self)
   end

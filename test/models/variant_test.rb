@@ -20,13 +20,13 @@ class VariantTest < ActiveSupport::TestCase
       v.proportions.count.to_s + ' Proportion associated to an ingredient should be deleted when its ingredient is'
   end
 
-  test "user_visible" do
+  test "user_enable" do
     u = users(:one)
     
     r_one = recipes(:one)
     v_not_one = variants(:not_one)
     v_one_ingredient_not_validated = variants(:one_ingredient_not_validated)
-    variants_one = r_one.variants_user_scope(u)
+    variants_one = r_one.variants.user_enable(u)
     assert_includes variants_one, v_not_one, 
       'should include other user variant if ingredients validated'
     assert_includes variants_one, v_one_ingredient_not_validated, 
@@ -35,7 +35,7 @@ class VariantTest < ActiveSupport::TestCase
     v_recipe_not_one = variants(:recipe_not_one)
     v_recipe_not_one_ingredient_not_validated = variants(:recipe_not_one_ingredient_not_validated)
     r_not_one = recipes(:not_one)
-    variants_not_one = r_not_one.variants_user_scope(u)
+    variants_not_one = r_not_one.variants.user_enable(u)
     assert_includes variants_not_one, v_recipe_not_one, 
       'should include other user variant if ingredients validated'
     assert_not_includes variants_not_one, v_recipe_not_one_ingredient_not_validated, 

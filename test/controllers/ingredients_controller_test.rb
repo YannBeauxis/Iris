@@ -14,8 +14,9 @@ class IngredientsControllerTest < ActionController::TestCase
     get :index, :format => :json
     assert_response :success
     il = assigns(:ingredients).map { |i| i[:id] }
-    il_model = Ingredient.user_scope(u).pluck(:id)
-    assert_equal il.to_set, il_model.to_set, 'ingredient list should be equal to Ingredient.user_scope'
+    il_model = Ingredient.user_enable(u).pluck(:id)
+    assert_equal il.to_set, il_model.to_set, 
+      'ingredient list should be equal to Ingredient.user_enable'
   end
 
   test "should get new" do

@@ -2,6 +2,17 @@ require 'test_helper'
 
 class RecipesControllerTest < ActionController::TestCase
 
+  test "index by ajax" do
+    u = users(:one)
+    sign_in u
+    get :index, :format => :json
+    assert_response :success
+    rl = assigns(:recipes).map { |i| i[:id] }
+    rl_model = Recipe.user_enable(u).pluck(:id)
+    assert_equal rl.to_set, rl_model.to_set, 
+      'Recipe list should be equal to Recipe.user_enable'
+  end
+
   test "variant_base_user_constraint" do
     u = users(:one)
     sign_in u

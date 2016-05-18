@@ -26,8 +26,12 @@ class Ingredient < ActiveRecord::Base
     return result
   end
 
-  def self.user_scope(user)
-    Ingredient.where('user_id = ? or validated = ?', user, true)
+  def self.user_enable(user)
+    where('ingredients.user_id = ? or validated = ?', user, true)
+  end
+
+  def self.not_user_enable(user)
+    where.not('ingredients.user_id = ? or validated = ?', user, true)
   end
 
   def used_by_other_users?(user)

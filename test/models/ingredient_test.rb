@@ -11,7 +11,7 @@ class IngredientTest < ActiveSupport::TestCase
   
   test "user visible" do 
     u = users(:one)
-    il = Ingredient.user_scope(u)
+    il = Ingredient.user_enable(u)
     i_one_validated = ingredients(:one)
     i_one_not_validated = ingredients(:one_not_validated)
     i_not_one = ingredients(:not_one)

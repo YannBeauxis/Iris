@@ -17,7 +17,38 @@ class RecipeTest < ActiveSupport::TestCase
    r.save
    assert r.shared?
   end
-  
+
+  test "user_enable" do
+    u = users(:one)
+    
+    r_one = recipes(:one)
+    r_not_one = recipes(:not_one)
+    v_uo_ro_iv = variants(:one)
+    v_uo_ro_in = variants(:one_ingredient_not_validated)
+    v_un_rn_iv = variants(:recipe_not_one)
+    v_un_rn_in = variants(:recipe_not_one_ingredient_not_validated)
+    
+    # test recipe owned by user is enable
+    r_one.variant_base_id = v_uo_ro_iv.id
+    r_one.save
+    assert_includes Recipe.user_enable(u), r_one
+    
+    assert_includes Variant.user_enable(u), v_uo_ro_in
+    r_one.variant_base_id = v_uo_ro_in.id
+    r_one.save
+    assert_includes Recipe.user_enable(u), r_one
+ 
+     # test recipe not owned by user
+    r_not_one.variant_base_id = v_un_rn_iv.id
+    r_not_one.save
+    assert_includes Recipe.user_enable(u), r_not_one
+    r_not_one.variant_base_id = v_un_rn_in.id
+    r_not_one.save
+    assert_not_includes Recipe.user_enable(u), r_not_one, 
+      "should not enable recipe with variant base not enable"
+ 
+  end
+
   test "no_delete_variant_base_id" do
     u = users(:one)
     r = u.recipes.create! do |ur|
