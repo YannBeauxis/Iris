@@ -9,25 +9,31 @@
         <span class="input-group-addon">ml</span>
       </div>  
     </div>
-      <div class="col-sm-7" id="product__variant__frame" 
-        <% if !can? :update, @recipe %> 
-          style="display: none;"
-        <% end %>
+      <div class="col-sm-7" id="product__variant__frame"
+        <% if (@variants.count<=1) && (!can? :update, @recipe) %>
+          style="display:none;"
+        <%end%>
       >
-        <div class="input-group">
+        <% if can? :update, @recipe %>
+          <div class="input-group">
+        <%end%>
           <select class="select form-control" id="product__variant">
           </select>
-          <div class="input-group-btn">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-right">
-              <li><a href="#" id="modify-variant">Informations</a></li>
-              <li><a href="#" id="change-ingredients">Ingrédients</a></li>
-              <li><a href="#" id="change-proportions">Proportions</a></li>
-            </ul>
+          <% if can? :update, @recipe %> 
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right">
+                <li><a href="#" id="modify-variant">Informations</a></li>
+                <li><a href="#" id="change-ingredients">Ingrédients</a></li>
+                <li><a href="#" id="change-proportions">Proportions</a></li>
+              </ul>
+            </div>
+          <% end %>
+        <% if can? :update, @recipe %>
           </div>
-        </div>
+        <%end%>
         <div class='item-description' style="display: none;">
         </div>
       </div>

@@ -20,6 +20,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @variants = @recipe.variants.user_enable(current_user)
     @product_generator = product_generator
     @product = Product.new
     respond_to do |format|
