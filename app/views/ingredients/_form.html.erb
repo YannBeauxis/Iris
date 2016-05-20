@@ -10,7 +10,10 @@
       
       <%= f.input :name, label: 'Nom', 
           disabled: !@edit_name %>
-      
+
+      <%= f.input :name_latin, label: 'Nom latin', 
+          disabled: !@edit_name %>
+
       <%= f.input :ingredient_type_id, 
           collection: @ingredient_types, 
           include_blank: false, 
