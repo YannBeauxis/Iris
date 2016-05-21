@@ -30,6 +30,10 @@ class Ingredient < ActiveRecord::Base
     where('ingredients.user_id = ? or validated = ?', user, true)
   end
 
+  def user_enable?(user)
+    (self.user == user) || (self.validated?)
+  end
+
   def self.not_user_enable(user)
     where.not('ingredients.user_id = ? or validated = ?', user, true)
   end

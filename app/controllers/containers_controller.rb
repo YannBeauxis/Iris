@@ -12,14 +12,21 @@ class ContainersController < ApplicationController
   end
 
   def create
-    @container = @ingredient.containers.new(container_params)
-    @container.user = current_user
+    
+    success = false
 
-    if @container.save
-      redirect_to @ingredient
-    else
-      render 'new'
+    if @ingredient.user_enable?(current_user)
+      @container = @ingredient.containers.new(container_params)
+      @container.user = current_user
+  
+      if @container.save
+        redirect_to @ingredient
+        success = true
+      end
     end
+    
+    render 'new' if !success
+    
   end
 
   def update
