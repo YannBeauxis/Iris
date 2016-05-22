@@ -1,6 +1,6 @@
 class IngredientsController < ApplicationController
   #respond_to :html, :xml, :json
-  before_action :check_is_used_by_other, only: [:edit, :update, :destroy]
+  before_action :select_ingredient, only: [:edit, :update, :destroy]
   
   def index
     if params.has_key?(:recipe_type_id)
@@ -82,7 +82,6 @@ class IngredientsController < ApplicationController
   end
 
   def destroy
-    #@ingredient = Ingredient.find(params[:id])
     @ingredient.destroy
  
     redirect_to ingredients_path
@@ -94,16 +93,8 @@ class IngredientsController < ApplicationController
       @ingredient_types = IngredientType.order(:name)
     end
 
-    def is_used_by_other
+    def select_ingredient
       @ingredient = Ingredient.find(params[:id])
-      @ingredient.used_by_other_users?(current_user) and (current_user.role.rank  > 2)
-    end
-
-    def check_is_used_by_other
-      if is_used_by_other
-        redirect_to :back, 
-          flash: { alert: "Vous ne pouvez modifier cet ingrédient car il est utilisé par d'autres utilisateurs" }
-      end
     end
 
     def ingredient_params

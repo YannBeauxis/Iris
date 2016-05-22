@@ -13,12 +13,8 @@ class Ability
       cannot :read, User
       can :get_table, Ingredient
     end
-    
+
     can :manage, User, :id => user.id
-    
-    if user.role.rank <= 2 #Permissions for 'gerant'
-      can :manage, [IngredientType, RecipeType]
-    end
 
     if user.role.rank  <= 3 #Permissions for 'producteur'
       can :manage, Recipe, :user_id => user.id
@@ -26,6 +22,13 @@ class Ability
       can :create, [Variant, Product] #additional conditions in controller
       can :manage, Container, :user_id => user.id
       can :manage, Ingredient
+      if user.role.rank == 3
+        cannot [:update, :destroy], Ingredient, :validated => true
+      end
+    end
+ 
+    if user.role.rank <= 2 #Permissions for 'gerant'
+      can :manage, [IngredientType, RecipeType]
     end
 
     #

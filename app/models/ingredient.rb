@@ -38,10 +38,6 @@ class Ingredient < ActiveRecord::Base
     where.not('ingredients.user_id = ? or validated = ?', user, true)
   end
 
-  def used_by_other_users?(user)
-    (self.recipes.where.not(user: user).count > 0) or (self.containers.where.not(user: user).count > 0)
-  end
-
   def mesure_unit
     self.type.mesure_unit
   end

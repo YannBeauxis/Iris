@@ -24,10 +24,12 @@
       
       <%= f.input :description, as: :text, label: 'Description', input_html: {rows: 2} %>
       
-      <%= f.input :density, 
-            label: 'Densité', 
-            input_html: {value: @ingredient.density/100.0},
-            placeholder: '1 par défaut' %>
+      <% if @can_edit_density %>
+        <%= f.input :density, 
+              label: 'Densité', 
+              input_html: {value: @ingredient.density/100.0},
+              placeholder: '1 par défaut' %>
+      <% end %>
       
       <div class="form-group"> 
         <div class="col-sm-12">

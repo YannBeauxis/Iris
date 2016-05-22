@@ -46,7 +46,27 @@ class IngredientsControllerTest < ActionController::TestCase
     assert i.name_latin == i_name_latin
     assert i.description == i_description
     assert i.density == 110, i.density
-    
+  end
+
+  test "create ingredient with defaut density" do
+    sign_in users(:one)
+    i_type_id = ingredient_types(:one).id
+    i_name = "new_ingredient"
+    i_name_latin = "nova ingrediento"
+    i_description = "Ipsem lorum"
+    @request.headers["HTTP_REFERER"] = "http://test.host/ingredients"
+    post(:create, ingredient: {
+                    ingredient_type_id: i_type_id,
+                    name: i_name,
+                    name_latin: i_name_latin,
+                    description: i_description})
+    i = assigns(:ingredient)
+    assert_not_nil i , "should create ingredient"
+    assert i.ingredient_type_id == i_type_id
+    assert i.name == i_name
+    assert i.name_latin == i_name_latin
+    assert i.description == i_description
+    assert i.density == ingredient_types(:one).density, i.density
   end
 
   test "should not get index if not signed" do
@@ -54,7 +74,6 @@ class IngredientsControllerTest < ActionController::TestCase
     assert_response 302
   end
 
-# for fixtures iep means "Ingredient Edited by Producteur"
   test "ingredient is editable by producteur if not validated" do
     sign_in users(:one)
     i = ingredients(:one_not_validated)
