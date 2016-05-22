@@ -19,7 +19,11 @@ class Variant < ActiveRecord::Base
   end
 
   def self.user_enable(user)
-    where.not(id: Ingredient.not_user_enable(user).joins(:variants).select(:variant_id).uniq)
+    if user.admin?
+      all
+    else
+      where.not(id: Ingredient.not_user_enable(user).joins(:variants).select(:variant_id).uniq)
+    end
   end
 
   def init_computation

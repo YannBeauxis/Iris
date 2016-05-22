@@ -39,7 +39,7 @@ class Ingredient < ActiveRecord::Base
   end
 
   def self.not_user_enable(user)
-    where.not('ingredients.user_id = ? or validated = ?', user, true)
+      where.not('ingredients.user_id = ? or validated = ?', user, true)
   end
 
   def mesure_unit
