@@ -58,7 +58,6 @@ class IngredientsController < ApplicationController
   def edit
     init_form
     @edit_type = false
-    @edit_name = !is_used_by_other
   end
 
   def create
@@ -91,6 +90,7 @@ class IngredientsController < ApplicationController
 
     def init_form
       @ingredient_types = IngredientType.order(:name)
+      @can_edit_density = current_user.role.rank <= 2  
     end
 
     def select_ingredient
@@ -102,6 +102,7 @@ class IngredientsController < ApplicationController
         :name, :name_latin, :ingredient_type_id, :density, 
         :scope, :recipe_type_id, :variant_id, :description)
       result[:density] = result[:density].to_f * 100.0 if result.has_key?(:density)
+      result[:name_latin] = nil if result[:name_latin] == ""
       result
     end
 

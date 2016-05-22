@@ -8,18 +8,15 @@
   
     <div class="panel-body">
       
-      <%= f.input :name, label: 'Nom', 
-          disabled: !@edit_name %>
+      <%= f.input :name, label: 'Nom' %>
 
-      <%= f.input :name_latin, label: 'Nom latin', 
-          disabled: !@edit_name %>
+      <%= f.input :name_latin, label: 'Nom latin' %>
 
       <%= f.input :ingredient_type_id, 
           collection: @ingredient_types, 
           include_blank: false, 
           label: 'Type d\'ingrédient', 
           disabled: !@edit_type
-          #disabled: controller.action_name != 'new'
       %>
       
       <%= f.input :description, as: :text, label: 'Description', input_html: {rows: 2} %>

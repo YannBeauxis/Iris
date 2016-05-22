@@ -43,7 +43,7 @@ class IngredientsControllerTest < ActionController::TestCase
     assert_not_nil i , "should create ingredient"
     assert i.ingredient_type_id == i_type_id
     assert i.name == i_name
-    assert i.name_latin == i_name_latin
+    assert i.name_latin == i_name_latin, i.name_latin
     assert i.description == i_description
     assert i.density == 110, i.density
   end
@@ -64,7 +64,7 @@ class IngredientsControllerTest < ActionController::TestCase
     assert_not_nil i , "should create ingredient"
     assert i.ingredient_type_id == i_type_id
     assert i.name == i_name
-    assert i.name_latin == i_name_latin
+    assert i.name_latin == i_name_latin, i.name_latin
     assert i.description == i_description
     assert i.density == ingredient_types(:one).density, i.density
   end
