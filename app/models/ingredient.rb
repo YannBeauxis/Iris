@@ -27,15 +27,15 @@ class Ingredient < ActiveRecord::Base
   end
 
   def self.user_enable(user)
-    if user.role.rank > 1
-      where('ingredients.user_id = ? or validated = ?', user, true)
-    else
+    if user.admin?
       all
+    else
+      where('ingredients.user_id = ? or validated = ?', user, true)
     end
   end
 
   def user_enable?(user)
-    (self.user == user) || (self.validated?)
+    (self.user == user) || (self.validated?) || user.admin?
   end
 
   def self.not_user_enable(user)
