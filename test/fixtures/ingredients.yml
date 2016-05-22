@@ -147,27 +147,6 @@ not_has_container_reference:
   user: one
   validated: true
   
-iep_solo:
-  name: 'iep_solo'
-  type: one
-  density: 100
-  user: one
-  validated: true
-  
-iep_shared:
-  name: 'iep_shared'
-  type: one
-  density: 100
-  user: one
-  validated: true
-  
-iep_shared_container:
-  name: 'iep_shared_container'
-  type: one
-  density: 100
-  user: one
-  validated: true
-  
 consume_stock_one_container:
   name: 'consumconsume_stock_one_containere_stock'
   type: one

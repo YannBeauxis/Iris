@@ -25,6 +25,29 @@ class IngredientsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "create ingredient" do
+    sign_in users(:one)
+    i_type_id = ingredient_types(:one).id
+    i_name = "new_ingredient"
+    i_name_latin = "nova ingrediento"
+    i_description = "Ipsem lorum"
+    i_density = 1.10
+    @request.headers["HTTP_REFERER"] = "http://test.host/ingredients"
+    post(:create, ingredient: {
+                    ingredient_type_id: i_type_id,
+                    name: i_name,
+                    name_latin: i_name_latin,
+                    description: i_description,
+                    density: i_density})
+    i = assigns(:ingredient)
+    assert_not_nil i , "should create ingredient"
+    assert i.ingredient_type_id == i_type_id
+    assert i.name == i_name
+    assert i.name_latin == i_name_latin
+    assert i.description == i_description
+    assert i.density == 110, i.density
+    
+  end
 
   test "should not get index if not signed" do
     get :index
@@ -32,35 +55,24 @@ class IngredientsControllerTest < ActionController::TestCase
   end
 
 # for fixtures iep means "Ingredient Edited by Producteur"
-  test "ingredient is editable if solo use" do
-    u = users(:iep_main)
-    sign_in u
-    i = ingredients(:iep_solo)
+  test "ingredient is editable by producteur if not validated" do
+    sign_in users(:one)
+    i = ingredients(:one_not_validated)
+    i_name_updated = "name updated"
     @request.headers["HTTP_REFERER"] = "http://test.host/ingredients"
-    patch(:update, id: i, ingredient: {name: 'iep_main updated'})
+    patch(:update, id: i, ingredient: {name: i_name_updated})
     i = Ingredient.find(i.id)
-    assert i.name == 'iep_main updated', i.name
+    assert i.name == i_name_updated, i.name
   end
 
-  test "ingredient is not editable if shared use recipe" do
-    u = users(:iep_main)
-    sign_in u
-    i = ingredients(:iep_shared)
+  test "ingredient is not editable by producteur if validated" do
+    sign_in users(:one)
+    i = ingredients(:one)
+    i_name_updated = "name updated"
     @request.headers["HTTP_REFERER"] = "http://test.host/ingredients"
-    name = 'iep_shared updated'
-    patch(:update, id: i, ingredient: {name: name})
+    patch(:update, id: i, ingredient: {name: i_name_updated})
     i = Ingredient.find(i.id)
-    assert_not i.name == name, i.name
-  end
-
-  test "ingredient is not editable if shared use container" do
-    u = users(:iep_main)
-    sign_in u
-    i = ingredients(:iep_shared_container)
-    @request.headers["HTTP_REFERER"] = "http://test.host/ingredients"
-    patch(:update, id: i, ingredient: {name: 'iep_shared_container updated'})
-    i = Ingredient.find(i.id)
-    assert_not i.name == 'iep_shared_container updated', i.name
+    assert_not i.name == i_name_updated, i.name
   end
   
 end
