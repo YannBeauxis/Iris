@@ -73,11 +73,17 @@ class IngredientsController < ApplicationController
 
   def update
  
-    if @ingredient.update(ingredient_params)
-      redirect_to @ingredient
-    else
-      render 'edit'
+  success = false
+ 
+    if !@ingredient.validated || current_user.role.rank <= 2
+      if @ingredient.update(ingredient_params)
+        success = true
+        redirect_to @ingredient
+      end
     end
+      
+    render 'edit' if !success
+
   end
 
   def destroy

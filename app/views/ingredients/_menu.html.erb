@@ -22,8 +22,9 @@
 <% end %>
 
 <% if params[:action] == 'show' then %>
-  <%= menu_item(menu: :content_menu, path: edit_ingredient_path(@ingredient), label: 'Modifier',
-        can_condition: {action: :update, object: @ingredient}) %>
+  <% if !@ingredient.validated || current_user.role.rank <= 2 %>
+    <%= menu_item(menu: :content_menu, path: edit_ingredient_path(@ingredient), label: 'Modifier') %>
+  <% end %>
   <%= menu_item(menu: :content_menu, path: new_ingredient_container_path(@ingredient), 
     label: 'Ajouter un stock',
         can_condition: {action: :update, object: @ingredient}) %>
@@ -32,7 +33,7 @@
 <% if ['show','edit'].include?(params[:action]) then %>
     <%= menu_item(menu: :content_menu, path: ingredient_path(@ingredient), label: 'Supprimer', 
         link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet ingrédient ?' }},
-        can_condition: {action: :update, object: @ingredient}) %>
+        can_condition: {action: :destroy, object: @ingredient}) %>
 <% end %>
 
 <% if params[:action] == 'edit' then %>

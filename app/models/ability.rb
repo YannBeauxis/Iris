@@ -23,7 +23,7 @@ class Ability
       can :manage, Container, :user_id => user.id
       can :manage, Ingredient
       if user.role.rank == 3
-        cannot [:update, :destroy], Ingredient, :validated => true
+        cannot :destroy, Ingredient, :validated => true
       end
     end
  
