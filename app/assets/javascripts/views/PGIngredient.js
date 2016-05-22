@@ -82,7 +82,11 @@ App.Views.PGIngredient = Backbone.View.extend({
   removeView: function(){
     this.remove();
   },
-  
+
+  href: function (){
+    return this.model.url + '/' + this.model.get('id') + '.html';
+  },
+
   render: function () {
     this.$el.html(this.template(this.model));
     return this;
