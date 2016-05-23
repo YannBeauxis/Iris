@@ -5,6 +5,7 @@ class IngredientsController < ApplicationController
   def index
     if params.has_key?(:recipe_type_id)
       @ingredients_scope = Ingredient
+        .user_enable(current_user)
         .joins(type: :recipe_types)
         .where('ingredient_types_recipe_types.recipe_type_id = ?', params[:recipe_type_id])
     else
