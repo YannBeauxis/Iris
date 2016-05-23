@@ -19,7 +19,7 @@
       <%= f.input :next_version_id, label: 'next_version_id' %>
     <% end %>
     
-    <%= f.button :submit, 'Enregistrer' %>
+    <%= f.button :submit, 'Enregistrer', class:"btn btn-primary" %>
     <%= link_to( 'Annuler', recipe_path(@recipe,format: :html, variant_id: @variant), {class: "btn btn-default", role: "button"} )%>
       
 <% end %>
