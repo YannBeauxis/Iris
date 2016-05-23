@@ -23,10 +23,13 @@
       <% css_id = 'proportion--' + p.id.to_s %>
       <div class="form-group string required recipe_name" >
         <label class="string col-sm-4 control-label" for="<%= css_id %>" ><%=  p.composant.name %></label>
-        <div class="col-sm-2">
-           <input type="hidden" name="proportions[][id]" step="any" type="number" value=<%= p.id %> />
-           <input min="0" name="proportions[][value]" step="any" type="number" value=<%= p.value %> 
-           class="numeric integer required form-control" id="<%= css_id %>" />
+        <div class="col-sm-3">
+            <input type="hidden" name="proportions[][id]" step="any" type="number" value=<%= p.id %> />
+           <div class="input-group">
+             <input min="0" name="proportions[][value]" step="any" type="number" value=<%= p.value/100.0 %> 
+              class="numeric integer required form-control" id="<%= css_id %>" />
+             <span class="input-group-addon">%</span>
+           </div>
         </div>
       </div>
     <% end %>
@@ -41,13 +44,16 @@
           <% @variant.proportions_for_type(itp.composant).each do |ip| %>
             <div class="form-group string required recipe_name">
               <label class="string col-sm-4 control-label" for="<%= css_id %>"> <%=  ip.composant.name %></label>
-              <div class='col-sm-2'>
+              <div class='col-sm-3'>
                  <input type="hidden" name="proportions[][id]" 
                       step="any" type="number" value=<%= ip.id %> 
                   />
+               <div class="input-group">
                  <input min="0" name="proportions[][value]" 
-                    step="any" type="number" value=<%= ip.value %> 
+                    step="any" type="number" value=<%= ip.value/100.0 %> 
                     class="numeric integer required form-control" id="<%= css_id %>" />
+                 <span class="input-group-addon">%</span>
+               </div>
               </div>
             </div>
           <% end %>

@@ -72,7 +72,7 @@ class RecipesController < ApplicationController
     @recipe.user = current_user
     if @recipe.save
       set_ingredients
-      redirect_to recipe_path(@recipe)
+      redirect_to recipe_variant_change_proportions_edit_path(@recipe, @recipe.variant_base_id)
     else
       flash[:alert] = 'Impossible de créer la recette'
       render 'new'
