@@ -7,10 +7,11 @@
 #
 default: &default
   adapter: postgresql
+  host: localhost
   pool: 5
   timeout: 5000
-  username: igrec
-  password: mdppg
+  username: iris
+  password: M2P&Iris@BB
 
 development:
   <<: *default
