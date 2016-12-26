@@ -56,3 +56,6 @@ bower.json
 
 # Ignore pow environment settings
 .powenv
+
+# Ignore metadata from Aptana
+.metadata/*
