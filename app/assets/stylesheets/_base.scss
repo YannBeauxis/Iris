@@ -1,53 +1,58 @@
-@import "compass";
-@import "compass/css3";
-@import "normalize";
+/*@import "compass";
+@import "compass/css3";*/
+/*@import "normalize";*/
 /*@import "compass/reset";*/
 /*@import "compass/reset/utilities";*/
-@import "compass/typography/vertical_rhythm";
+/*@import "compass/typography/vertical_rhythm";*/
 
-@import "bootstrap-sprockets";
+/*@import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap-datetimepicker';
+@import 'bootstrap-material-design';*/
 
-/*$base-font-size: 0.8em;
-$base-line-height: 0.8em;*/
+@import "variables";
+
+@mixin default_fonts {
+  /*font-family: Verdana, Geneva, sans-serif;*/
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: $base-font-size;
+  /*color: $color-base-text;*/
+  font-weight: normal;
+}
+
+html {
+  /* overflow-y: scroll;*/
+}
+
+body {
+  width: 100%;
+  @include default_fonts;
+  margin: 0 auto;
+  color: $brand-primary-text;
+  background-color: white;
+}
+
+
+/*
 
 $base-font-size: 16px;
 $base-line-height: 16px;
+*/
 
-$page-width-max: 700px;
-$page-width-1: 480px;
-
-$header-min-height: 40px; /*for main content of header with no message*/
+/*for main content of header with no message*/
+/*
+$header-min-height: 40px; 
 $padding-step: 6px;
 
 $color-base-text: rgb(92,90,98); 
 $color-base-line: #E8EBF3;
-$color-base-background: #F1F4F8; 
+$color-base-background: #F1F4F8;
 $color-primary-text: #325A86;
 $color-primary-background: #F6FAFD; // E9F3FD
 $color-primary-background-dark: #dfe8f2;
 $color-secondary-text: rgb(195,146,0); 
 $color-secondary-background: #FFFFF7;
 $color-secondary-background-dark: #FFFFE4;
-
-@mixin default_fonts {
-    /*font-family: Verdana, Geneva, sans-serif;*/
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: $base-font-size;
-    color: $color-base-text;
-    font-weight: normal;
-}
-
-html {
-  overflow-y: scroll;
-}
-
-body {
-  max-width: $page-width-max;
-  @include default_fonts;
-  margin: 0 auto;
-}
 
  a {
    color: $color-primary-text;
@@ -130,3 +135,5 @@ table.table {
   background-color: $color-primary-text;
   border-color: $color-primary-text;
 }
+
+*/

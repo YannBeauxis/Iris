@@ -10,6 +10,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actionmailer (4.2.0)
       actionpack (= 4.2.0)
@@ -149,6 +150,15 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.0)
       sprockets-rails
+    rails-assets-bootstrap (3.3.7)
+      rails-assets-jquery (>= 1.9.1, < 4)
+    rails-assets-bootstrap-material-design (0.5.10)
+      rails-assets-bootstrap (~> 3.3.6)
+      rails-assets-bootstrap-sass (~> 3.3.6)
+      rails-assets-jquery (>= 2.2, < 3)
+    rails-assets-bootstrap-sass (3.3.7)
+      rails-assets-jquery (>= 1.9.1, < 4)
+    rails-assets-jquery (2.2.4)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.6)
@@ -239,6 +249,7 @@ DEPENDENCIES
   momentjs-rails (>= 2.9.0)
   pg
   rails (= 4.2.0)
+  rails-assets-bootstrap-material-design!
   rails-erd
   rename
   sass-rails (~> 5.0)
@@ -254,4 +265,4 @@ RUBY VERSION
    ruby 2.2.1p85
 
 BUNDLED WITH
-   1.13.5
+   1.13.7

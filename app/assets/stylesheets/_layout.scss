@@ -1,0 +1,131 @@
+/* file layout.css
+ * Contain main layout : header, footer ...
+ */
+@import "variables";
+
+.navbar .logo{
+  height: 36px;
+}
+
+.navbar,
+.navbar.navbar-default{
+  background-color: $brand-primary-text;
+  color: white;
+  margin-bottom: 0;
+}
+
+.navbar,
+.navbar .navbar-nav,
+.navbar .navbar-brand,
+.navbar .navbar-brand:hover{
+}
+
+.navbar .navbar-nav li.active a:hover,
+.navbar .navbar-nav li.active a:focus,
+.navbar .navbar-nav li.active a{
+  background-color: $brand-primary-background-dark;
+  color: $brand-primary-text;
+}
+
+.navbar .navbar-nav li a:hover{
+  background-color: $brand-primary-background-dark;
+  color: $brand-primary-text;
+}
+
+.navbar button{
+  color: $brand-primary-text;
+}
+
+.panel-context{
+  margin: 12px;
+  height: 600px;
+}
+
+.collection-frame.col-lg-8{
+  padding-right: 0;
+}
+
+.collection-frame .panel-default.collection-panel{
+  box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+
+}
+
+.collection-frame .panel-heading{
+  border-radius: 0;
+}
+
+.collection-item .panel{
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.panel-item{
+  width: 250px;
+}
+
+.panel.panel-default .panel-heading{
+  background-color: $brand-primary-background-dark;
+  color: $brand-primary-text;
+}
+
+.panel.panel-default .panel-body{
+  background-color: white;
+}
+
+.panel.panel-default.panel-item .panel-heading{
+  background-color: $brand-secondary-background-dark;
+  color: $brand-secondary-background;
+}
+
+.panel.panel-default.panel-item .panel-body{
+  background-color: white;
+  color: $brand-secondary-text;
+}
+
+/*
+.navbar .navbar-brand{
+  @media (min-width: $screen-size-xs){
+    padding: 12px;
+  }
+  @media (max-width: $screen-size-xs){
+    padding: 6px 15px;
+  }
+}
+*/
+
+/*
+.navbar-brand img{
+  display: inline;
+}
+*/
+
+/*
+.navbar .navbar-nav li{
+  @media (max-width: $screen-size-sm){
+    margin-left: 4px;
+    border-left: 2px solid $brand-primary-background-dark;
+  }
+}
+*/
+
+/*
+.navbar .navbar-nav li.active,
+.navbar .navbar-nav li.active:hover{
+  border-bottom: 2px solid $brand-primary-text;
+}
+.navbar .navbar-nav li:hover{
+  border-bottom: 1px solid $brand-primary-text;
+*/
+  
+/*
+  @media (min-width: $screen-size-sm){
+    border-bottom: 2px solid $brand-primary-text;
+  }
+  @media (max-width: $screen-size-sm){
+    border-left: 2px solid $brand-primary-text;
+  }
+*/
+/*
+}
+*/
+

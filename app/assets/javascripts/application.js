@@ -17,6 +17,7 @@
 //= require bootstrap-sprockets
 //= require moment
 //= require bootstrap-datetimepicker
+//= require bootstrap-material-design
 //= require underscore
 //= require backbone
 //= require iris
@@ -120,3 +121,10 @@ App.displayQuantity = function (options) {
     return null;
   }
 };
+
+var docReady = function() {
+	$.material.init();
+};
+
+
+$(document).ready(docReady);

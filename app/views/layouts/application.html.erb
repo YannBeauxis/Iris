@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>IRIS Project</title>
+  <title>IRIS Project</title>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= yield :javascript_includes %>
@@ -12,123 +12,87 @@
 
 <body>
   
-  <div id="Header">
-    <div class="title-and-session row">
-      <div class="title col-xs-4">
-        <%= link_to 'IRIS', root_path %>
+  <div class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand">
+          <img src="/images/logo_white_text.png" class="logo" alt="">
+        </a>
       </div>
-    
-      <div class="session col-xs-8">
-        <div class="btn-group" role="group" aria-label="...">
-          <% if user_signed_in? %>
-            <%= content_tag(:button, current_user.name, {type: :button, class: "btn disabled"}) %>
-            <%= link_to(
-                  content_tag(:span, nil, class: "glyphicon glyphicon-user"),
-                  user_path(current_user), {type: :button, class: "btn btn-default"}) %>
-            <%= link_to(
-                  content_tag(:span, nil, class: "glyphicon glyphicon-off"),
-                  destroy_user_session_path, 
-                  {:method => :delete, type: :button, class: "btn btn-default"}) %>
-          <%else%>      
-            <%= link_to('Se connecter', new_user_session_path, {type: :button, class: "btn btn-default connect"}) %>
-          <% end %>
-        </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="javascript:void(0)">Recettes <span class="sr-only">(current)</span></a></li>
+          <li><a href="javascript:void(0)">Ingrédients</a></li>
+        </ul>
       </div>
     </div>
   </div>
-        
-  <div id="MainMenu">
-    <div class="general-menu btn-group">
-      <%= link_to 'Ingrédients', ingredients_path + '.html', 
-            {type: :button, class: "btn btn-default", name: 'Ingrédients'} %>
-      <%= link_to 'Recettes', recipes_path + '.html', 
-            {type: :button, class: "btn btn-default", name: 'Recettes'} %>
-      <% if user_signed_in? && current_user.admin? %>
-        <%= link_to 'Administration', admin_users_path, {type: :button, class: "btn btn-default"} %>
-      <% end %>
-    </div>   
-  </div> 
-  
-  <div id="NavBar">
-    <ol class="breadcrumb">
-      <% if content_for?(:nav_resume) %>
-        <li>
-          <a href="/">
-            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-          </a>
-        </li>
-        <%= yield( :nav_resume ) %>
-      <% else %>
-        <li class="active">
-          <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-        </li>
-      <% end %>
-    </ol>
-  </div>
 
-  <div id="MainMessage">
-    <% if flash.any? %>
-  		<% flash.each do |name, msg| %>
-    		<% if name == 'alert' %>
-    		  <%= content_tag :div, msg, {class: 'alert alert-danger', role: 'alert'} %>
-        <% elsif name == 'notice' %>
-          <%= content_tag :div, msg, {class: 'alert alert-success', role: 'alert'} %>
-        <% else %>
-          <%= content_tag :div, name + ":" + msg, {class: 'alert alert-info', role: 'alert'} %>
-        <% end %>
-  		<% end %>
-  	<%end%>
-  </div>
-
-  <div id="ContextMenu">
-    <% if content_for?(:content_menu) %>  
-      <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ContextMenuNav" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
+  <div class="row">
+    <div class="col-lg-8 collection-frame">
+      <div class="panel panel-default collection-panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">Diffuseur aérien</h3>
+        </div>
+        <div class="panel-body">
+          
+          <div class="collection-item">
+            <div class="panel panel-default panel-item">
+              <div class="panel-heading">
+                <h3 class="panel-title">A la fraiche</h3>
+              </div>
+              <div class="panel-body">
+                Content ...
+              </div>
             </div>
-          <div class="collapse navbar-collapse" id="ContextMenuNav">
-            <ul class="nav navbar-nav">
-              <%= yield( :content_menu ) %>
-            </ul>
-          </div>
+            <div class="panel panel-default panel-item">
+              <div class="panel-heading">
+                <h3 class="panel-title">Anti Rhume</h3>
+              </div>
+              <div class="panel-body">
+                Content ...
+              </div>
+            </div>
+            <div class="panel panel-default panel-item">
+              <div class="panel-heading">
+                <h3 class="panel-title">Kibouste</h3>
+              </div>
+              <div class="panel-body">
+                Content ...
+              </div>
+            </div>
+          </div>   
         </div>
-      </nav>
-    <% end %>   
-  </div>
-
-  <div id="MainContent">
-    <div class="header">
-      <% if content_for?(:content_header) %>
-        <%= yield( :content_header ) %>
-      <% end %>
+        <div class="panel-heading">
+          <h2 class="panel-title">Gel douche</h3>
+        </div>
+        <div class="panel-body">
+            <div class="panel panel-default panel-item">
+              <div class="panel-heading">
+                <h3 class="panel-title">Matin de Noel</h3>
+              </div>
+              <div class="panel-body">
+                Content ...
+              </div>
+            </div>
+        </div>
+      </div>
     </div>
     
-    <%= yield %>
-       
-    <% if content_for?(:item_content) %>
-    
-      <div class="content">
-        <%= yield( :item_content ) %>
+    <div class="col-lg-4">
+      <div class="panel panel-default panel-context">
+        <div class="panel-body">
+          Texte Contextuel ...
+        </div>
       </div>
-    <% end %>
+    </div>
   </div>
-
-  <script id="DataJS">
-    <%= yield( :data_js ) %>
-  </script>
-
-
-<div id="Footer">
-  <a href="http://blog.projet-iris.com/" target="_blank">Blog du projet</a> - 
-  <a href="http://blog.projet-iris.com/prendre-contact/" target="_blank">Prendre contact</a>
-</div>
-
 
 </body>
 </html>

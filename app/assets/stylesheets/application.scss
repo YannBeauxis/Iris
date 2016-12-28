@@ -15,8 +15,18 @@
  *= require dataTables/jquery.dataTables
  */
 
-@import "base";
+/*@import "compass";
+@import "compass/css3";*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import 'bootstrap-datetimepicker';
+@import 'bootstrap-material-design';
 
+@import "variables";
+@import "base";
+@import "layout";
+
+/*
 #Header {
   padding: $padding-step;
   .title-and-session {
@@ -270,3 +280,4 @@
   text-align: center;
   font-size: 90%;
 }
+*/
