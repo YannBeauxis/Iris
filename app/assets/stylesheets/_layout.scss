@@ -9,7 +9,7 @@
 
 .navbar,
 .navbar.navbar-default{
-  background-color: $brand-primary-text;
+  background-color: $brand-primary-background-dark;
   color: white;
   margin-bottom: 0;
 }
@@ -23,12 +23,12 @@
 .navbar .navbar-nav li.active a:hover,
 .navbar .navbar-nav li.active a:focus,
 .navbar .navbar-nav li.active a{
-  background-color: $brand-primary-background-dark;
+  background-color: $brand-primary-background;
   color: $brand-primary-text;
 }
 
 .navbar .navbar-nav li a:hover{
-  background-color: $brand-primary-background-dark;
+  background-color: $brand-primary-background;
   color: $brand-primary-text;
 }
 
@@ -46,8 +46,8 @@
 }
 
 .collection-frame .panel-default.collection-panel{
-  box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
-
+  /*box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);*/
+ box-shadow: none;
 }
 
 .collection-frame .panel-heading{
@@ -63,14 +63,24 @@
   width: 250px;
 }
 
-.panel.panel-default .panel-heading{
-  background-color: $brand-primary-background-dark;
+.panel.panel-default.collection-panel .panel-heading.collection-heading{
+  background-color: $brand-primary-background;
   color: $brand-primary-text;
+  box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
 }
 
 .panel.panel-default .panel-body{
   background-color: white;
+  margin-top : 20px;
+  padding-top: 0;
 }
+
+/*
+.panel.panel-default.panel-item {
+  box-shadow: none;
+  border: 0.5px solid $brand-primary-background;
+}
+*/
 
 .panel.panel-default.panel-item .panel-heading{
   background-color: $brand-secondary-background-dark;
@@ -80,6 +90,20 @@
 .panel.panel-default.panel-item .panel-body{
   background-color: white;
   color: $brand-secondary-text;
+}
+
+button.navbar-toggle{
+  color: $brand-secondary-text;
+}
+
+.item-collection-image{
+  background-color: $brand-primary-background;
+  height: 100px;
+  float: left;
+  margin: -5px 20px 0 0;
+  @media (max-width: $screen-size-xs){
+    display: none;
+  }
 }
 
 /*
