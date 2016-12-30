@@ -41,8 +41,16 @@
   height: 600px;
 }
 
-.collection-frame.col-lg-8{
-  padding-right: 0;
+.wrapper{
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.scrolls{
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space:nowrap
 }
 
 .collection-frame .panel-default.collection-panel{
@@ -52,6 +60,10 @@
 
 .collection-frame .panel-heading{
   border-radius: 0;
+}
+
+.collection-item{
+  margin-bottom: 10px;
 }
 
 .collection-item .panel{
@@ -104,6 +116,13 @@ button.navbar-toggle{
   @media (max-width: $screen-size-xs){
     display: none;
   }
+}
+
+.row-fluid{
+     white-space: nowrap;
+}
+.row-fluid .col-lg-6{
+     display: inline-block;
 }
 
 /*
