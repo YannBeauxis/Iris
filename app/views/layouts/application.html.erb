@@ -10,18 +10,18 @@
   <%= yield :javascript_includes %>
 	<%= csrf_meta_tags %>
 	<meta name="viewport" content="width=device-width" />
-	<%= favicon_link_tag %>
+	<%= favicon_link_tag 'favicon.ico?v=2' %>
 </head>
 
 <body>
 
   <%= render '/layouts/navbar' %>
 
-  <%# render '/layouts/recipes_exemple' %>
+  <%= render '/layouts/recipes_exemple' %>
 
   <%= yield %>
 
-  <%= yield( :item_content ) %>
+  <%# yield( :item_content ) %>
 
 </body>
 </html>

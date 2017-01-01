@@ -5,11 +5,13 @@
 @import "variables";
 
 .collection-panel{
-  height: 140px;
+  height: 170px;
   & .collection-heading{
   background-color: $brand-primary-background;
   color: $brand-primary-text;
   box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+  margin-bottom: 4px;
+  padding: 4px 6px;
   }
 }
 
@@ -24,31 +26,38 @@
 }
 
 .collection-item{
-  display: inline-block;
+  //display: inline-flex;
+  //float: left;
+  //top: 0;
   margin-bottom: 0;
   width: 200px;
   height: 90px;
   margin: 10px;
-  background-color: $brand-secondary-background;
+  vertical-align:top;
+  //background-color: $brand-secondary-background;
+  background-color: #f3f4f6;
   & .card, .card-content{
     padding: 0;
 
     //color: $secondary-color-dark;
-    color:white;
+    //color:white;
     //background-color: $secondary-color;
     //#d7b25a
     & .card-title{
       padding: 2px 6px;
       line-height: 30px;
       //color: $brand-secondary-text;
-      background-color: $secondary-color;
-      color: white;
+      //background-color: $secondary-color;
+      //color: white;
     }
     & .item-list{
+      width: 200px;
+      height: 60px;
       padding: 2px 6px;  
       & .main-item-badge{
         display: inline-block;
-        white-space:normal;
+        white-space: normal;
+
       }
     }
   }
@@ -62,9 +71,10 @@
 }
 
 .scrolls{
-  overflow-x: hidden;//scroll;
+  height: 130px;
+  overflow-x: auto;
   overflow-y: hidden;
-  white-space:nowrap;
+  //white-space: nowrap;
   padding: 6px;
 }
 

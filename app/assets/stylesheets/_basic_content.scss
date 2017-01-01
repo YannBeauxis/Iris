@@ -27,11 +27,13 @@ a{
 
 .main-item-badge{
  //margin: 0 4px;
- padding: 2px 4px;
- font-size: 12px;
+ padding: 1px 4px;
+ font-size: 11px;
+ font-weight: 600;
  //background-color: #388e3c;
- //color: white;
- background-color: #4caf50;
+ color: white;
+ //background-color: #4caf50;
+ background-color: $secondary-color;
  border-radius: 4px;
 }
 
