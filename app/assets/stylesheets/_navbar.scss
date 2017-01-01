@@ -1,0 +1,69 @@
+@import "variables";
+
+.brand-logo img{
+  height: 44px;
+  margin: 10px;
+}
+
+.main-menu{
+  margin-left: 150px;
+}
+
+.nav-wrapper .main-menu li.active:hover,
+.nav-wrapper .main-menu li.active:focus,
+.nav-wrapper .main-menu li.active{
+  background-color: $brand-primary-background;
+  & a{
+    color: $brand-primary-text;
+  }
+}
+
+/*
+.navbar,
+.navbar.navbar-default{
+  background-color: $brand-primary-background-dark;
+  color: white;
+  margin-bottom: 0;
+}
+
+.navbar .navbar-nav li.active a:hover,
+.navbar .navbar-nav li.active a:focus,
+.navbar .navbar-nav li.active a{
+  background-color: $brand-primary-background;
+  color: $brand-primary-text;
+}
+
+.navbar .navbar-nav li a:hover{
+  background-color: $brand-primary-background;
+  color: $brand-primary-text;
+}
+
+.navbar button{
+  color: $brand-primary-text;
+}
+
+button.navbar-toggle{
+  color: $brand-secondary-text;
+}
+
+.btn.btn-default.btn-session{
+  width: 40px;
+  height: 40px;
+  padding: 6px 0;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+  background-color: $brand-primary-background;
+  &:focus, &:hover{
+    color:white;
+  }
+  &.connected{
+    background-color: $brand-secondary-background-dark;
+    color: white;
+    &:focus, &:hover{
+      background-color: $brand-secondary-background;
+      color:$brand-secondary-text;
+    }
+  }
+}
+*/

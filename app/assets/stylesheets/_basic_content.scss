@@ -1,0 +1,44 @@
+@import "variables";
+
+a{
+  color: $secondary-color-dark;
+}
+
+.basic-content{
+  margin: 20px;
+  //@extend .z-depth-3;
+}
+
+.switch{
+  margin-bottom: 6px;
+}
+
+.btn{
+  margin-right: 12px;
+}
+
+.card-action a {
+  white-space:nowrap;
+  & i.material-icons{
+    display: inline-flex;
+    vertical-align: bottom;
+  }
+}
+
+.main-item-badge{
+ //margin: 0 4px;
+ padding: 2px 4px;
+ font-size: 12px;
+ //background-color: #388e3c;
+ //color: white;
+ background-color: #4caf50;
+ border-radius: 4px;
+}
+
+/*
+.btn.btn-primary.btn-raised,
+.btn.btn-primary.btn-raised:focus,
+.btn.btn-primary.btn-raised:hover{
+  background-color: $brand-primary-background-dark;
+}
+*/

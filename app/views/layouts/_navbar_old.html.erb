@@ -1,0 +1,44 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand">
+        <img src="/images/logo.png" class="logo" alt="">
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <%= link_to 'Ingrédients', ingredients_path + '.html', 
+              {type: :button,name: 'Ingrédients'} %>
+        </li>
+        <li>
+          <%= link_to 'Recettes', recipes_path + '.html', 
+              {type: :button, name: 'Recettes'} %>
+        </li>
+        <% if user_signed_in? && current_user.admin? %>
+          <li>
+            <%= link_to 'Administration', admin_users_path, {type: :button, class: "btn btn-default"} %>
+          </li>
+        <% end %>
+      </ul>
+  <!-- User log -->
+      <div class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <%= link_to(
+                  content_tag(:i, "person", class: "material-icons"), user_path(current_user), 
+                  {type: :button, class: "btn btn-default btn-session connected"}) 
+            %>
+          <% else %>      
+            <%= link_to(
+              content_tag(:i, "person", class: "material-icons"), new_user_session_path, 
+                  {type: :button, class: "btn btn-default btn-session"}) 
+            %>
+          <% end %>
+  </div>
+</nav>

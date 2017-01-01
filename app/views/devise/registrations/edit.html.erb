@@ -9,27 +9,35 @@
      link_param: {method: :delete, data: { confirm: 'Voulez-vous supprimer cet utilisteur ?' }}) %>
 
 <% content_for :item_content do %>
+
+  <div class="basic-content">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Changer de mot de passe</span>
   
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put) do |f| %>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), method: :put) do |f| %>
+        
+        <%# form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= devise_error_messages! %>
+        
+          <%= f.input :current_password, label: 'Mot de passe actuel', autofocus: false  %>
+        
+          <%= f.input :password, label: 'Nouveau mot de passe', autofocus: false  %>
+        
+          <%= f.input :confirm_password, label: 'Confirmation du nouveau mot de passe', autofocus: false  %>
+        
+          <div class="card-action"> 
+              <%= f.button :submit, 'Modifier', class: "btn btn-primary"  %>
+              <%= link_to( 'Annuler', :back )%>
+          </div>
+         
+          <% if false #devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
+        
+        <% end %>
 
-<%# form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <%= f.input :current_password, label: 'Mot de passe actuel', autofocus: true  %>
-
-  <%= f.input :password, label: 'Nouveau mot de passe', autofocus: true  %>
-
-  <%= f.input :confirm_password, label: 'Confirmation du nouveau mot de passe', autofocus: true  %>
-
-  <div class="form-group"> 
-      <%= f.button :submit, 'Mettre à jour', class: "btn btn-primary"  %>
-      <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+      </div>
+    </div>
   </div>
- 
-  <% if false #devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-<% end %>
-
 <% end %>

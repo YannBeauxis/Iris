@@ -14,10 +14,13 @@
 //= require jquery_ujs
 //= require dataTables/jquery.dataTables
 // not turbolinks
-//= require bootstrap-sprockets
-//= require moment
-//= require bootstrap-datetimepicker
-//= require bootstrap-material-design
+// require moment
+// require bootstrap-sprockets
+// require bootstrap-datetimepicker
+// require bootstrap-material-design
+//= require jquery.turbolinks
+//= require materialize
+//= require turbolinks
 //= require underscore
 //= require backbone
 //= require iris
@@ -123,7 +126,8 @@ App.displayQuantity = function (options) {
 };
 
 var docReady = function() {
-	$.material.init();
+  $(".button-collapse").sideNav();
+  $('select').material_select();
 };
 
 

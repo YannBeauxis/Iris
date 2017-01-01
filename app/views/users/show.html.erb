@@ -9,12 +9,26 @@
 
 <% content_for :item_content do %>
 
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <p><b>Nom</b> : <%= @user.name %></p>
-      <p><b>Email</b> : <%= @user.email %></p>
-      <p><b>Rôle</b> : <%= @user.role.name %></p>
+  <div class="basic-content">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Utilisateur connecté</span>
+        <p><b>Nom</b> : <%= @user.name %></p>
+        <p><b>Email</b> : <%= @user.email %></p>
+        <p><b>Rôle</b> : <%= @user.role.name %></p>
+      </div>
+      <div class="card-action">
+        <%= link_to(
+          content_tag(:i, :mode_edit, class: "material-icons") + "Modifier infos",
+          edit_user_path(current_user)) %>
+        <%= link_to( 
+          content_tag(:i, :vpn_key, class: "material-icons") + 'Changer mot de passe', 
+          edit_user_registration_path)%>
+        <%= link_to(
+          content_tag(:i, :power_settings_new, class: "material-icons") + " Déconnecter",
+          destroy_user_session_path, 
+          {:method => :delete}) %>
+      </div>
     </div>
-  </div>
   
 <% end %>

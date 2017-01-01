@@ -8,16 +8,17 @@ gem 'rails', '4.2.0'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'materialize-sass'
 #gem 'compass-rails'
-gem "compass-rails", github: "Compass/compass-rails", branch: "master"
-gem 'compass-normalize', '~> 1.5'
+#gem "compass-rails", github: "Compass/compass-rails", branch: "master"
+#gem 'compass-normalize', '~> 1.5'
 #Bootstrap
-gem 'bootstrap-sass', '~> 3.2.0'
-gem 'momentjs-rails', '>= 2.9.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
-source 'https://rails-assets.org' do
-  gem 'rails-assets-bootstrap-material-design'
-end
+#gem 'bootstrap-sass', '~> 3.2.0'
+#gem 'momentjs-rails', '>= 2.9.0'
+#gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
+#source 'https://rails-assets.org' do
+#  gem 'rails-assets-bootstrap-material-design'
+#end
 #Simple_form
 gem 'simple_form'
 
@@ -44,6 +45,7 @@ gem 'jquery-rails'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.

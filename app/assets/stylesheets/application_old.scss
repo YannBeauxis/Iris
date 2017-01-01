@@ -1,0 +1,255 @@
+/*
+#Header {
+  padding: $padding-step;
+  .title-and-session {
+    .title {
+      padding: 0;
+      font-size: 280%;
+      line-height: 1;
+      a:hover {
+      text-decoration: none
+      }
+    }
+    .session {
+      padding: 0;
+      .btn {
+        border: 1px solid $color-base-line;
+      }
+      .btn-group {
+        float: right
+      }
+     .disabled {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background-color: $color-base-background;
+      color: $color-primary-text;
+      max-width: 130px;
+      } 
+      .connect {
+        background-color: $color-base-background;
+        border: 1px solid $color-base-line;
+      }
+    }
+  }
+}
+
+#MainMenu {
+  a {
+    border-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-color: $color-base-line;
+    color: $color-secondary-text;
+    padding: 8px 15px;
+    &:hover {
+      background-color: $color-secondary-background;
+      font-weight: bold;
+    }
+    &::after {
+      display:block;
+      content:attr(name);
+      font-weight:bold;
+      height:1px;
+      color:transparent;
+      overflow:hidden;
+      visibility:hidden;
+    }
+  }
+}
+
+#NavBar{
+  .breadcrumb {
+      font-size: 90%;
+      padding: 4px 12px;
+      margin-bottom: 0;
+      border-radius: 0;
+      border: 1px solid $color-base-line;
+      background-color: $color-base-background;
+      color: $color-primary-text;
+  }
+}
+
+#MainMessage {
+  .alert {
+    font-size: 90%;
+    text-align: center;
+    border-radius: 0;
+    margin-bottom: 0;
+    padding: 5px;
+    border-left: 1px solid $color-base-line;
+    border-right: 1px solid $color-base-line;
+    border-bottom: 1px solid $color-base-line;
+    border-top: 0;
+  }
+}
+
+#ContextMenu {
+  nav {
+    .navbar-header{
+      margin: 0;
+      .navbar-toggle{
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        .icon-bar {
+          background-color: $color-secondary-text;
+        }
+        &:hover {
+          background-color: transparent;
+        }
+        &:focus {
+          background-color: transparent;
+        }
+      }
+    }
+    .navbar-nav{
+      margin: 0;
+    }
+    .navbar-collapse{
+      margin: 0;
+    }
+    &.navbar {
+      margin-bottom: 0;
+    }
+    .container-fluid {
+      padding: 0;
+    }
+    background-color: transparent;
+    min-height: 0;
+    border-color: $color-base-line;
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    a {
+      color: $color-secondary-text;
+      font-size: 90%;
+      background-color: transparent;
+      padding: $padding-step;
+      &.dropdown-toggle {
+        margin: 0 $padding-step;
+        border-top: 0 ;
+        border-bottom: 0;
+      }
+      &:hover {
+        font-weight: bold;
+      }
+      &::after {
+        display:block;
+        content:attr(name);
+        font-weight:bold;
+        height:1px;
+        color:transparent;
+        overflow:hidden;
+        visibility:hidden;
+      }
+    }
+  }
+}
+
+#MainContent {
+  padding: $padding-step;
+  .header{
+    .title {
+      font-size: 180%;
+      color: $color-primary-text;
+    }
+    .subtitle {
+      font-style : italic;
+      color: $color-secondary-text;
+    }
+  }
+  .content {
+    padding-top: $padding-step;
+  }
+  #CategoryGrid {
+    .category {
+      margin: 0;
+      padding: $padding-step;
+      .panel {
+        margin: 0;
+        border-color: $color-base-line;
+        .panel-heading {
+          cursor: pointer;
+          .badge {
+            float: right;
+            background-color: $color-primary-text;
+          }
+        }
+        .panel-body {
+          padding: $padding-step;
+        }
+        .table {
+          width: 100%;
+          padding-top: $padding-step;
+          td, th { 
+            border-color: $color-base-line;
+          }
+          &.table-striped tr:nth-child(odd) td {
+            background-color: $color-primary-background;
+          }
+          tbody tr {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  #ProductGenerator {
+    .panel-body {
+      padding-bottom: 0;
+    }
+    .product--save--alert {
+      border-radius: 0;
+      border: 0;
+      margin: 0;
+      padding: 8px;
+      text-align: center;
+      display: none;
+    }
+    .form-group {
+      padding-right: 8px;
+      #product_volume {
+        max-width: 90px;
+      }
+    }
+    .btn--product button {
+      margin-bottom: 6px;
+    }
+    #modify-variant {
+      //float: right;
+    }
+    table.table-quantities {
+      tr.category td {
+        background-color: $color-base-background !important;
+        font-weight: bold;
+      }
+      td.spacing {
+        width: 1px;
+      }
+      tr.not-in-stock td.quantity-type-stock{
+        color: red;
+      }
+    }
+    #quantity-selectors {
+      padding-left: 8px;
+    }
+    #Products {
+      tr.product {
+        cursor: pointer;
+      }
+    }
+  }
+  .jumbotron.proportion-ingredient-type {
+    padding: 4px;
+    margin: 0;
+  }
+}
+
+#Footer {
+  border-top: 1px solid $color-base-line;
+  padding-top: 6px;
+  text-align: center;
+  font-size: 90%;
+}
+*/

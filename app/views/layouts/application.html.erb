@@ -3,6 +3,9 @@
 <head>
   <title>IRIS Project</title>
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <!-- Material Design fonts -->
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= yield :javascript_includes %>
 	<%= csrf_meta_tags %>
@@ -12,89 +15,13 @@
 
 <body>
 
-  <div class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand">
-          <img src="/images/logo.png" class="logo" alt="">
-        </a>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="javascript:void(0)">Recettes <span class="sr-only">(current)</span></a></li>
-          <li><a href="javascript:void(0)">Ingrédients</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <%= render '/layouts/navbar' %>
 
+  <%# render '/layouts/recipes_exemple' %>
 
-      <div class="collection-frame">
-        <div class="panel panel-default collection-panel">
-          <div class="panel-heading collection-heading">
-            <h3 class="panel-title">Diffuseur aérien</h3>
-          </div>
-          <div class="panel-body">
-            <img src="/images/rotins_primary.jpg" class="item-collection-image" alt="">
-            <div class="wrapper">
-              <div class="scrolls">
-                <div class="collection-item">
-                  <div class="panel panel-default panel-item">
-                    <div class="panel-heading">
-                      <h3 class="panel-title">A la fraiche</h3>
-                    </div>
-                    <div class="panel-body">
-                      Content ...
-                    </div>
-                  </div>
-                  <div class="panel panel-default panel-item">
-                    <div class="panel-heading">
-                      <h3 class="panel-title">Anti Rhume</h3>
-                    </div>
-                    <div class="panel-body">
-                      Content ...
-                    </div>
-                  </div>
-                  <div class="panel panel-default panel-item">
-                    <div class="panel-heading">
-                      <h3 class="panel-title">Kibouste</h3>
-                    </div>
-                    <div class="panel-body">
-                      Content ...
-                    </div>
-                  </div>
-                </div>   
-              </div>
-            </div>
-            </div>
-          <div>
-        </div>
-          <div class="panel-heading collection-heading">
-            <h2 class="panel-title">Gel douche</h3>
-          </div>
-          <div class="panel-body">
-            <img src="/images/douche_primary.jpg" class="item-collection-image" alt="">
-              <div class="collection-item">
-                <div class="panel panel-default panel-item">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">Matin de Noel</h3>
-                  </div>
-                  <div class="panel-body">
-                    Content ...
-                  </div>
-                </div>
-              </div>
-          </div>
-      </div>
-     
-    </div>
-  </div>
+  <%= yield %>
+
+  <%= yield( :item_content ) %>
 
 </body>
 </html>

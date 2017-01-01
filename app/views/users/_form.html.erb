@@ -14,23 +14,31 @@
 
 <%= simple_form_for @user do |f|%>
 
-  <%= f.error_notification %>
+  <div class="basic-content">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Se connecter</span>
+        <%= f.error_notification %>
+      
+        <%= f.input :name, label: 'Nom' %>
+      
+        <%= f.input :email, placeholder: 'user@domain.com' %>
+            
+        <% if current_user.admin? %>
+        
+          <%= f.input :approved, inline_label: 'Approved' %>
+          
+          <%= f.input :role_id, collection: Role.all, include_blank: false %>
+        
+        <% end %>
+        
+        <div class="card-action"> 
+            <%= f.button :submit, 'Enregistrer', class: "btn"  %>
 
-  <%= f.input :name, label: 'Nom' %>
-
-  <%= f.input :email, placeholder: 'user@domain.com' %>
-
-  <% if current_user.admin? %>
-  
-    <%= f.input :approved, inline_label: 'Approved' %>
-    
-    <%= f.input :role_id, collection: Role.all, include_blank: false %>
-  
-  <% end %>
-  
-  <div class="form-group"> 
-      <%= f.button :submit, 'Enregistrer', class: "btn btn-primary"  %>
-      <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+            <%= link_to( 'Annuler', :back )%>
+        </div>
+      </div>
+    </div>
   </div>
   
 <% end %>

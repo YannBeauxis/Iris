@@ -1,0 +1,107 @@
+/* file layout.css
+ * Contain main layout : header, footer ...
+ */
+
+@import "variables";
+
+.collection-panel{
+  height: 140px;
+  & .collection-heading{
+  background-color: $brand-primary-background;
+  color: $brand-primary-text;
+  box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+  }
+}
+
+.item-collection-image{
+  background-color: $brand-primary-background;
+  height: 80px;
+  float: left;
+  margin: 10px 10px 0 0;
+  @media (max-width: $screen-size-xs){
+    display: none;
+  }
+}
+
+.collection-item{
+  display: inline-block;
+  margin-bottom: 0;
+  width: 200px;
+  height: 90px;
+  margin: 10px;
+  background-color: $brand-secondary-background;
+  & .card, .card-content{
+    padding: 0;
+
+    //color: $secondary-color-dark;
+    color:white;
+    //background-color: $secondary-color;
+    //#d7b25a
+    & .card-title{
+      padding: 2px 6px;
+      line-height: 30px;
+      //color: $brand-secondary-text;
+      background-color: $secondary-color;
+      color: white;
+    }
+    & .item-list{
+      padding: 2px 6px;  
+      & .main-item-badge{
+        display: inline-block;
+        white-space:normal;
+      }
+    }
+  }
+}
+
+.wrapper{
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  height: 90px;
+}
+
+.scrolls{
+  overflow-x: hidden;//scroll;
+  overflow-y: hidden;
+  white-space:nowrap;
+  padding: 6px;
+}
+
+.collection-frame {
+ box-shadow: none;
+}
+
+.collection-frame .panel-heading{
+  border-radius: 0;
+}
+
+
+.panel-item{
+  width: 250px;
+}
+
+
+.panel.panel-default .panel-body{
+  background-color: white;
+  margin-top : 20px;
+  padding-top: 0;
+}
+
+.panel.panel-default.panel-item .panel-heading{
+  background-color: $brand-secondary-background-dark;
+  color: $brand-secondary-background;
+}
+
+.panel.panel-default.panel-item .panel-body{
+  background-color: white;
+  color: $brand-secondary-text;
+}
+
+
+.row-fluid{
+     white-space: nowrap;
+}
+.row-fluid .col-lg-6{
+     display: inline-block;
+}

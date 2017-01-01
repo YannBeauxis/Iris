@@ -6,31 +6,44 @@
 
 <% content_for :item_content do %>
 
-<div class="panel panel-default">
-  <div class="panel-body">
-    <%= simple_form_for(@user, as: :user, url: registration_path(:user)) do |f| %>
-      <% devise_error_messages=! %>
-  
-        <%= f.input :name, :required => true, autofocus: true, label: :Nom  %>
-        
-        <%= f.input :email, :required => true, placeholder: 'user@domain.com', label: :Email  %>
+  <div class="card basic-content">
+    <div class="card-content">
+    <p class="card-title">Nouvel utilisateur</p>
+      <%= simple_form_for(@user, as: :user, url: registration_path(:user)) do |f| %>
+        <% devise_error_messages=! %>
     
-        <%= f.input :password, autocomplete: "off", label: 'Mot de passe' %>
-    
-        <%= f.input :password_confirmation, autocomplete: "off", label: 'Confirmation du mot de passe' %>
-          
-        <%= f.input :role_id, collection: @roles, 
-              label_method: :name, value_method: :id,
-              selected: 4,
-              label: 'Role demandé', include_blank: false %>
-        
-        <div class="form-group">
-          <%= f.button :submit, 'Créer utilisateur', class: "btn btn-primary" %>
-        
-          <%= link_to('Annuler', :back, class: "btn btn-default") %>
+        <div class="row">
+          <div class="col s12 m6">
+            <%= f.input :name, :required => true, autofocus: true, label: :Nom, class: 'col s12 m6'  %>
+          </div>
+          <div class="col s12 m6">
+            <%= f.input :email, :required => true, placeholder: 'user@domain.com', label: :Email, class: 'col s12 m6'  %>
+          </div>
         </div>
-
-
+        
+        <div class="row">
+          <div class="col s12 m6">
+          <%= f.input :password, autocomplete: "off", label: 'Mot de passe' %>
+          </div>
+          <div class="col s12 m6">
+          <%= f.input :password_confirmation, autocomplete: "off", label: 'Confirmation du mot de passe' %>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col s12 m6">
+              <%= f.input :role_id, collection: @roles, 
+                    label_method: :name, value_method: :id,
+                    selected: 4,
+                    label: 'Role demandé', include_blank: false %>
+          </div>
+        </div>
+        
+        <div class="card-action">
+          <%= f.button :submit, 'Créer', class: "btn" %>
+        
+          <%= link_to('Annuler', :back) %>
+        </div>
       <% end %>
     </div>
   </div>

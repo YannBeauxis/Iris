@@ -161,11 +161,28 @@ SimpleForm.setup do |config|
     end
   end
   
+  config.wrappers :materialize_form, class: 'input-field my-class', error_class: 'has_error' do |b|
+  
+    b.use :html5
+  
+    b.use :placeholder
+  
+    b.use :input
+  
+    b.use :label
+  
+    b.use :error, wrap_with: { tag: 'p' , class: 'error-text'}
+  
+    # b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+  
+  end
+  
   # Wrappers for forms and inputs using the Bootstrap toolkit.
   # Check the Bootstrap docs (http://getbootstrap.com)
   # to learn about the different styles for forms and inputs,
   # buttons and other elements.
-  config.default_wrapper = :vertical_form
+  config.default_wrapper = :materialize_form
+  #config.default_wrapper = :vertical_form
   config.wrapper_mappings = {
     check_boxes: :vertical_radio_and_checkboxes,
     radio_buttons: :vertical_radio_and_checkboxes,
@@ -176,3 +193,4 @@ SimpleForm.setup do |config|
     time: :multi_select
   }
 end
+

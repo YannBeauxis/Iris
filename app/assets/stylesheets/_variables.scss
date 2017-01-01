@@ -1,3 +1,25 @@
+@import "materialize/components/color";
+
+$primary-color: #3B618C !default;
+$primary-color-light: false !default;
+$primary-color-dark: false !default;
+@if not $primary-color-light {
+  $primary-color-light: lighten($primary-color, 15%);
+}
+@if not $primary-color-dark {
+  $primary-color-dark: darken($primary-color, 15%);
+}
+
+$secondary-color: #d2ad53 !default;
+$secondary-color-light: false !default;
+$secondary-color-dark: rgb(195,146,0) !default;
+@if not $secondary-color-light {
+  $secondary-color-light: lighten($secondary-color, 15%);
+}
+@if not $secondary-color-dark {
+  $secondary-color-dark: darken($secondary-color, 15%);
+}
+
 $screen-size-xs: 767px;
 $screen-size-sm: 768px;
 $screen-size-md: 992px;

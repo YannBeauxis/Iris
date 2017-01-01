@@ -1,0 +1,105 @@
+
+/*
+
+$base-font-size: 16px;
+$base-line-height: 16px;
+*/
+
+/*for main content of header with no message*/
+/*
+$header-min-height: 40px; 
+$padding-step: 6px;
+
+$color-base-text: rgb(92,90,98); 
+$color-base-line: #E8EBF3;
+$color-base-background: #F1F4F8;
+$color-primary-text: #325A86;
+$color-primary-background: #F6FAFD; // E9F3FD
+$color-primary-background-dark: #dfe8f2;
+$color-secondary-text: rgb(195,146,0); 
+$color-secondary-background: #FFFFF7;
+$color-secondary-background-dark: #FFFFE4;
+
+ a {
+   color: $color-primary-text;
+   text-decoration: none; 
+   &:hover {
+      text-decoration: underline; 
+  }
+}
+
+.panel-default{
+  .panel-heading {
+    background-color: $color-base-background;
+  }
+}
+
+.glyphicon.action {
+  font-size: 130%;
+}
+
+table.custom-stripped {
+    border-collapse:collapse;
+    tr.filled {
+      background-color: $color-primary-background;
+    }
+    td {
+        padding-right: 10px;
+      &.category {
+        font-weight: bold;   
+        padding-left: 4px;
+      }
+      &.item {
+        @include box-sizing(border-box);
+        padding-left: 8px;
+      }
+    }
+}
+
+table.table {
+  td.spacing {
+    background-color: $color-base-background !important;
+    border-top: 0;
+    border-right: 1px solid #ddd;
+  }     
+  &.table-striped {
+    tr:nth-child(odd) td {
+      background-color: $color-primary-background;
+    }
+  }
+  tr.filled {
+    background-color: $color-primary-background;
+  }
+  tr.type {
+    background-color: $color-base-background;
+  }
+  td {
+    &.category {
+      font-weight: bold;   
+      padding-left: 4px;
+    }
+    &.item {
+      @include box-sizing(border-box);
+      padding-left: 8px;
+    }
+    a div {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+.row {
+  margin: 0;
+}
+
+.item-description {
+  font-style: italic;
+}
+
+.btn-primary {
+  background-color: $color-primary-text;
+  border-color: $color-primary-text;
+}
+
+*/
