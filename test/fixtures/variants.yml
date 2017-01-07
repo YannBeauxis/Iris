@@ -6,6 +6,12 @@ one:
   recipe: one
   ingredients: one
 
+two:
+  user: one
+  name: 'one'
+  recipe: two
+  ingredients: one
+
 recipe_delete:
   user: one
   name: 'recipe_delete'

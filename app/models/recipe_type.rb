@@ -17,5 +17,9 @@ class RecipeType < ActiveRecord::Base
     self.recipes.each { |r| nb += r.products.count }
     return nb
   end
+  
+  def recipes_user_enable(user)
+    Recipe.user_enable(user).where(recipe_type_id: self.id)
+  end
 
 end

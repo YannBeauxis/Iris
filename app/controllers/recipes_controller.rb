@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   before_action :check_user, except: [:index, :show, :new, :create, :edit, :update, :destroy]
 
-  def index
+  def index_OLD
     respond_to do |format|
       format.html
       format.json { 
@@ -17,6 +17,24 @@ class RecipesController < ApplicationController
         render :json => @recipes }
     end
   end
+
+  def index
+    respond_to do |format|
+      format.html
+      format.json { 
+        @recipes = RecipeType.all.map { |t| {
+          id: t.id,
+          name: t.name,
+          recipes: t.recipes_user_enable(current_user).map{ |r| {
+            id: r.id,
+            name: r.name
+          }
+        }}}
+        
+        render :json => @recipes }
+    end
+  end
+
 
   def show
     @recipe = Recipe.find(params[:id])

@@ -18,9 +18,12 @@ class RecipeTest < ActiveSupport::TestCase
    assert r.shared?
   end
 
+
   test "user_enable" do
+  # Test if a recipe is user enable if variant base is user enable
     u = users(:one)
     
+    #rlist = recipes_user_enable_list
     r_one = recipes(:one)
     r_not_one = recipes(:not_one)
     v_uo_ro_iv = variants(:one)
