@@ -2,6 +2,22 @@ require 'test_helper'
 
 class RecipesControllerTest < ActionController::TestCase
 
+  # check if json response return all expected recipes
+  test "index by ajax OLD" do
+    u = users(:one)
+    sign_in u
+    get :index, :format => :json
+    assert_response :success
+    type_list_response = assigns(:recipes).map { |t| t[info: :id] }
+    type_list_target = RecipeType.pluck(:id)
+  # http://ruby-doc.org/stdlib-1.9.3/libdoc/set/rdoc/Set.html
+  # .to_set is used to compare
+    assert_equal type_list.to_set, rl_model.to_set, 
+      'Recipe list should be equal to Recipe.user_enable'
+  end
+  
+  # check if json response return all expected recipes
+  # json format should be [recipetype_1: {infos, recipes: [recipe_1, ...}],recipe_type_2 ...]
   test "index by ajax" do
     u = users(:one)
     sign_in u
@@ -9,6 +25,8 @@ class RecipesControllerTest < ActionController::TestCase
     assert_response :success
     rl = assigns(:recipes).map { |i| i[:id] }
     rl_model = Recipe.user_enable(u).pluck(:id)
+  # http://ruby-doc.org/stdlib-1.9.3/libdoc/set/rdoc/Set.html
+  # .to_set is used to compare
     assert_equal rl.to_set, rl_model.to_set, 
       'Recipe list should be equal to Recipe.user_enable'
   end
