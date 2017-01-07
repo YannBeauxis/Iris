@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   force_ssl if: :ssl_configured?
 
   def ssl_configured?
-    !Rails.env.development?
+    !Rails.env.development? && !Rails.env.test?
   end
 
   before_filter :authenticate_user!
