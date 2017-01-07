@@ -25,8 +25,12 @@
   }
 }
 
+.main-view__item {
+  display: inline-flex;
+}
+
 .collection-item{
-  //display: inline-flex;
+  display: inline-flex;
   //float: left;
   //top: 0;
   margin-bottom: 0;
@@ -74,7 +78,7 @@
   height: 130px;
   overflow-x: auto;
   overflow-y: hidden;
-  //white-space: nowrap;
+  white-space: nowrap;
   padding: 6px;
 }
 

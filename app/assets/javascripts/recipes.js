@@ -30,14 +30,12 @@ var recipeIndex = function() {
       model: App.Models.Recipe,
     },
     templates: {
-      category: 'category_panel_std',
-      categoryItemsTable: 'recipes_table',
-      item: 'recipe_row'
-    },
-    contextMenu: App.Views.RecipesContextMenu
+      category: 'mv_category',
+      item: 'mv_item'
+    }
   };
   
-  App.recipesApp = new App.Views.CategoryGrid(options);
+  App.recipesApp = new App.Views.MV_Main(options);
   
 };
 

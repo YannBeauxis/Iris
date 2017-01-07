@@ -21,7 +21,17 @@
 
   <%= yield %>
 
-  <%= yield( :item_content ) %>
+    <% if content_for?(:item_content) %>
+    
+      <div class="content">
+        <%= yield( :item_content ) %>
+      </div>
+    <% end %>
+  </div>
 
+  <script id="DataJS">
+    <%= yield( :data_js ) %>
+  </script>
+  
 </body>
 </html>

@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   before_action :check_user, except: [:index, :show, :new, :create, :edit, :update, :destroy]
 
-  def index_OLD
+  def index
     respond_to do |format|
       format.html
       format.json { 
@@ -18,7 +18,7 @@ class RecipesController < ApplicationController
     end
   end
 
-  def index
+  def index_NOGOD
     respond_to do |format|
       format.html
       format.json { 

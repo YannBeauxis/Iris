@@ -1,23 +1,19 @@
-App.Views.Item= Backbone.View.extend({
-  
-  tagName: 'tr',
+App.Views.MV_Item= Backbone.View.extend({
 
-  attributes: function(){
-      return {name: this.model.get('name')};
-    },
+  className: ['main-view__item'],
+
 
   initialize: function(options) {
-    
+      
     this.options = options.options;
-    
+      
     this.template = JST[this.options.templates['item']];
-    
-    this.listenTo(this.model, 'hide', this.remove);  
+      
   },
 
   events: {
-    "click a":  "noDisplayDetails",
-    "click":  "clickItem"
+    //"click a":  "noDisplayDetails",
+    //"click":  "clickItem"
   },
 
   href: function (){
@@ -28,11 +24,6 @@ App.Views.Item= Backbone.View.extend({
     this.$el.html(this.template(this));
     return this;
   },
-  
-  noDisplayDetails: function (e) {
-    e.stopPropagation();
-    return true;
-  },  
   
   clickItem: function(e) {
     // to open sub line for action
