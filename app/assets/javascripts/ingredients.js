@@ -13,14 +13,13 @@ var ready = function() {
       model: App.Models.Ingredient
     },
     templates: {
-      category: 'category_panel_std',
-      categoryItemsTable: 'ingredients_table',
-      item: 'ingredient_row'
+      category: 'mv_category',
+      item: 'mv_item'
     },
     contextMenu: App.Views.IngredientsContextMenu
   };
   
-  App.ingredientsApp = new App.Views.CategoryGrid(options);
+  App.ingredientsApp = new App.Views.MV_Main(options);
   
 };
 
