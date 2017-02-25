@@ -20,58 +20,45 @@
 #Header {
   padding: $padding-step;
   .title-and-session {
+    z-index: 10;
     .title {
       padding: 0;
-      font-size: 280%;
-      line-height: 1;
-      a:hover {
-      text-decoration: none
+      img.logo {
+        height: 49px;
       }
     }
-    .session {
-      padding: 0;
-      .btn {
-        border: 1px solid $color-base-line;
+    .general-menu {
+      padding-top: 8px;
+      padding-left: 0;
+      a {
+        color: $color-secondary-text;
       }
-      .btn-group {
-        float: right
-      }
-     .disabled {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      background-color: $color-base-background;
-      color: $color-primary-text;
-      max-width: 130px;
-      } 
-      .connect {
-        background-color: $color-base-background;
-        border: 1px solid $color-base-line;
-      }
+     li.active a {
+       color: white;
+       background-color: $color-secondary-text;
+     }
     }
   }
-}
-
-#MainMenu {
-  a {
-    border-bottom: 0;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border-color: $color-base-line;
-    color: $color-secondary-text;
-    padding: 8px 15px;
-    &:hover {
-      background-color: $color-secondary-background;
-      font-weight: bold;
+  .session {
+    .btn-group {
+      z-index: 100;
+      float: right
     }
-    &::after {
-      display:block;
-      content:attr(name);
-      font-weight:bold;
-      height:1px;
-      color:transparent;
-      overflow:hidden;
-      visibility:hidden;
+    padding: 0;
+    .btn {
+      border: 1px solid $color-base-line;
+    }
+   .disabled {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: $color-base-background;
+    color: $color-primary-text;
+    max-width: 130px;
+    } 
+    .connect {
+      background-color: $color-base-background;
+      border: 1px solid $color-base-line;
     }
   }
 }

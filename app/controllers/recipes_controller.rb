@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  before_action {@active_tab = 'recipe'}
   before_action :check_user, except: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   def index

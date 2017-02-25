@@ -7,47 +7,71 @@
   <%= yield :javascript_includes %>
 	<%= csrf_meta_tags %>
 	<meta name="viewport" content="width=device-width" />
-	<%= favicon_link_tag %>
+	<%= favicon_link_tag 'favicon.ico?v=2' %>
 </head>
 
 <body>
   
   <div id="Header">
-    <div class="title-and-session row">
-      <div class="title col-xs-4">
-        <%= link_to 'IRIS', root_path %>
-      </div>
     
-      <div class="session col-xs-8">
-        <div class="btn-group" role="group" aria-label="...">
-          <% if user_signed_in? %>
-            <%= content_tag(:button, current_user.name, {type: :button, class: "btn disabled"}) %>
-            <%= link_to(
-                  content_tag(:span, nil, class: "glyphicon glyphicon-user"),
-                  user_path(current_user), {type: :button, class: "btn btn-default"}) %>
-            <%= link_to(
-                  content_tag(:span, nil, class: "glyphicon glyphicon-off"),
-                  destroy_user_session_path, 
-                  {:method => :delete, type: :button, class: "btn btn-default"}) %>
-          <%else%>      
-            <%= link_to('Se connecter', new_user_session_path, {type: :button, class: "btn btn-default connect"}) %>
-          <% end %>
-        </div>
+    <div class="session">
+      <div class="btn-group" role="group" aria-label="...">
+        <% if user_signed_in? %>
+          <%= content_tag(:button, current_user.name, {type: :button, class: "btn disabled"}) %>
+          <%= link_to(
+                content_tag(:span, nil, class: "glyphicon glyphicon-user"),
+                user_path(current_user), {type: :button, class: "btn btn-default"}) %>
+          <%= link_to(
+                content_tag(:span, nil, class: "glyphicon glyphicon-off"),
+                destroy_user_session_path, 
+                {:method => :delete, type: :button, class: "btn btn-default"}) %>
+        <%else%>      
+          <%= link_to('Se connecter', new_user_session_path, {type: :button, class: "btn btn-default connect"}) %>
+        <% end %>
       </div>
     </div>
+    
+    <div class="title-and-session row">
+      <div class="title col-sm-2">
+        <a href="<%=root_path %>" class="brand-logo"><img src="/images/logo_text.png" class="logo" alt=""></a>
+      </div>
+      
+      <div class="general-menu col-sm-6">
+        <ul class="nav nav-pills">
+          
+          <li role="presentation" 
+            <% if @active_tab == 'recipe' %>
+              class="active" 
+            <%end %>
+          >
+            <%= link_to 'Recettes', recipes_path + '.html', 
+                {name: 'Recettes'} %>
+          </li>
+          
+          <li role="presentation" 
+            <% if @active_tab == 'ingredient' %>
+              class="active" 
+            <%end %>
+          >
+            <%= link_to 'Ingrédients', ingredients_path + '.html', 
+                {name: 'Ingrédients'} %>
+          </li>
+
+          <% if user_signed_in? && current_user.admin? %>
+          <li role="presentation" 
+            <% if @active_tab == 'admin' %>
+              class="active" 
+            <%end %>
+          >
+              <%= link_to 'Admin', admin_users_path%>
+            </li>
+          <% end %>
+        </ul>   
+      </div> 
+  
+    </div>
+      
   </div>
-        
-  <div id="MainMenu">
-    <div class="general-menu btn-group">
-      <%= link_to 'Ingrédients', ingredients_path + '.html', 
-            {type: :button, class: "btn btn-default", name: 'Ingrédients'} %>
-      <%= link_to 'Recettes', recipes_path + '.html', 
-            {type: :button, class: "btn btn-default", name: 'Recettes'} %>
-      <% if user_signed_in? && current_user.admin? %>
-        <%= link_to 'Administration', admin_users_path, {type: :button, class: "btn btn-default"} %>
-      <% end %>
-    </div>   
-  </div> 
   
   <div id="NavBar">
     <ol class="breadcrumb">

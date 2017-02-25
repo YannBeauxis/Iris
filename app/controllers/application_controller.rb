@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+#https://github.com/plataformatec/devise/wiki/How-To:-Create-a-guest-user
   protect_from_forgery
 
   # if user is logged in, return current_user, else return guest_user

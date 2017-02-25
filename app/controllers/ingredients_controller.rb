@@ -1,5 +1,6 @@
 class IngredientsController < ApplicationController
   #respond_to :html, :xml, :json
+  before_action {@active_tab = 'ingredient'}
   before_action :select_ingredient, only: [:edit, :update, :destroy]
   
   def index
