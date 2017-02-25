@@ -5,11 +5,11 @@ class IngredientsController < ApplicationController
   def index
     if params.has_key?(:recipe_type_id)
       @ingredients_scope = Ingredient
-        .user_enable(current_user)
+        .user_enable(current_or_guest_user)
         .joins(type: :recipe_types)
         .where('ingredient_types_recipe_types.recipe_type_id = ?', params[:recipe_type_id])
     else
-      @ingredients_scope = Ingredient.user_enable(current_user)
+      @ingredients_scope = Ingredient.user_enable(current_or_guest_user)
     end
 
     if params.has_key?(:variant_id)
@@ -31,7 +31,7 @@ class IngredientsController < ApplicationController
             name: i.name,
             ingredient_type_id: i.ingredient_type_id,
             mesure_unit: i.type.mesure_unit,
-            stock: i.quantity_in_stock(current_user),
+            stock: i.quantity_in_stock(current_or_guest_user),
             selected: selected}
         end
         render :json => @ingredients }
@@ -45,7 +45,7 @@ class IngredientsController < ApplicationController
       redirect_to ingredients_path
       return
     end
-    w = Warehouse.new('ingredient_for_user', {user: current_user, ingredient: @ingredient})
+    w = Warehouse.new('ingredient_for_user', {user: current_or_guest_user, ingredient: @ingredient})
     @containers = w.list
   end 
 
@@ -63,7 +63,7 @@ class IngredientsController < ApplicationController
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
-    @ingredient.user = current_user
+    @ingredient.user = current_or_guest_user
 
     if @ingredient.save
       redirect_to @ingredient
@@ -97,7 +97,7 @@ class IngredientsController < ApplicationController
 
     def init_form
       @ingredient_types = IngredientType.order(:name)
-      @can_edit_density = current_user.role.rank <= 2  
+      @can_edit_density = current_or_guest_user.role.rank <= 2  
     end
 
     def select_ingredient

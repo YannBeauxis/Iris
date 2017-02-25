@@ -22,7 +22,7 @@
 <% end %>
 
 <% if params[:action] == 'show' then %>
-  <% if !@ingredient.validated || current_user.role.rank <= 2 %>
+  <% if !@ingredient.validated || current_or_guest_user.role.rank <= 2 %>
     <%= menu_item(menu: :content_menu, path: edit_ingredient_path(@ingredient), label: 'Modifier') %>
   <% end %>
   <%= menu_item(menu: :content_menu, path: new_ingredient_container_path(@ingredient), 

@@ -23,4 +23,16 @@ module DeviseHelper
     resource.errors.empty? ? false : true
   end
 
+  def current_or_guest_user
+    controller.current_or_guest_user
+  end
+
+  def current_user
+    if super
+      super
+    else
+    controller.current_or_guest_user
+    end
+  end
+
 end

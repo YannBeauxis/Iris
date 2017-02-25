@@ -69,9 +69,9 @@ class IngredientsControllerTest < ActionController::TestCase
     assert i.density == ingredient_types(:one).density, i.density
   end
 
-  test "should not get index if not signed" do
+  test "should get index if not signed" do
     get :index
-    assert_response 302
+    assert_response :success
   end
 
   test "ingredient is editable by producteur if not validated" do

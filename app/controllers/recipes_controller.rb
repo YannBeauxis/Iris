@@ -6,13 +6,13 @@ class RecipesController < ApplicationController
       format.html
       format.json { 
         @recipes = []
-        Recipe.user_enable(current_user).find_each do |r|
+        Recipe.user_enable(current_or_guest_user).find_each do |r|
           @recipes << {
             id: r.id,
             name: r.name,
             recipe_type_id: r.recipe_type_id,
             owner: r.user.name,
-            is_current_user: r.user == current_user}
+            is_current_user: r.user == current_or_guest_user}
         end
         render :json => @recipes }
     end
@@ -20,7 +20,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
-    @variants = @recipe.variants.user_enable(current_user)
+    @variants = @recipe.variants.user_enable(current_or_guest_user)
     @product_generator = product_generator
     @product = Product.new
     respond_to do |format|
@@ -43,10 +43,10 @@ class RecipesController < ApplicationController
     product = Product.new do |p|
       p.volume = 100
     end
-    @recipe.variants.user_enable(current_user).each do |v|
+    @recipe.variants.user_enable(current_or_guest_user).each do |v|
       product.variant = v
-      product.quantities.compute_prices(current_user)
-      result[:variants] << product.quantities.product_generator(current_user)
+      product.quantities.compute_prices(current_or_guest_user)
+      result[:variants] << product.quantities.product_generator(current_or_guest_user)
     end
     result
   end
@@ -69,7 +69,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.user = current_user
+    @recipe.user = current_or_guest_user
     if @recipe.save
       set_ingredients
       redirect_to recipe_variant_change_proportions_edit_path(@recipe, @recipe.variant_base_id)
@@ -85,7 +85,7 @@ class RecipesController < ApplicationController
 
     if recipe_params.has_key?(:variant_base_id) 
       v = Variant.find(recipe_params[:variant_base_id])
-       if v.user != current_user 
+       if v.user != current_or_guest_user 
         flash[:alert] = 'Impossible de modifier la recette'
         render 'edit'
         return false
@@ -135,7 +135,7 @@ class RecipesController < ApplicationController
 
   def check_user
     @recipe = Recipe.find(params[:recipe_id])
-    if current_user != @recipe.user and !current_user.admin? then
+    if current_or_guest_user != @recipe.user and !current_or_guest_user.admin? then
       flash[:alert] = "Vous n'avez pas les autorisations nécessaires"
       redirect_to recipe_path(@recipe)
     end
@@ -144,7 +144,7 @@ class RecipesController < ApplicationController
     def recipe_params
       p = [:name,:recipe_type_id, {:ingredients_ids => []}, :variant_name, :variant_base_id, :description]
       #p << :variant_id if :action == 'create'
-      if current_user.admin? then
+      if current_or_guest_user.admin? then
         p << :user_id
       end
       params.require(:recipe).permit(p)
