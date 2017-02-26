@@ -1,15 +1,37 @@
 <% content_for :content_header do %>
-  <span class="title">Bienvenue sur le prototype du projet IRIS</span><br>
-  <span class="subtitle">Site en cours de construction ...</span>
+  <span class="title">Bienvenue sur IRIS !</span><br>
+  <!-- <span class="subtitle"></span> -->
 <% end %>
 
 <% content_for :item_content do %>
-
-<p>Ce projet est un prototype de site web 
-  d'aide à la conception de mélanges (<%= link_to 'recettes', recipes_path %>) 
-  de produits naturels (<%= link_to 'ingrédients', ingredients_path %>), 
-  en particulier les compositions à base d'huiles essentielles : diffuseur de parfum, huile de massage...</p>
-
+<div class="long-text">
+  <p>
+    Ce prototype d'appli web s'adresse à tous ceux qui s'intéressent à la 
+    fabrication maison de produits à base de produits végétaux, ce qui inclut la
+    <a href="https://fr.wikipedia.org/wiki/Phytoth%C3%A9rapie" target="_blank" class="highlight">phytothérapie</a>, 
+      c'est un outil pratique pour :
+    <ul>
+      <li>Consulter des <%= link_to 'recettes', recipes_path %> existantes</li>
+      <li>Gérer ses propres <%= link_to 'recettes', recipes_path %></li>
+      <li>Gérer ses stocks d'<%= link_to 'ingrédients', ingredients_path %></li>
+    </ul>
+  </p>
+  <p>
+    La phytothérapie englobe toutes les approches thérapeutiques à base de plantes
+    dont <a href="https://fr.wikipedia.org/wiki/Aromath%C3%A9rapie" target="_blank" class="highlight">
+    l'aromathérapie</a> qui utilise 
+    <a href="https://fr.wikipedia.org/wiki/Huile_essentielle" target="_blank" class="highlight">
+      les huiles essentielles</a>. 
+  </p>
+  
+  <p>Parmi les usages proposés, vous trouverez :
+    <ul>
+      <li>Des diffuseurs aériens</li>
+      <li>Des applications cosmétiques</li>
+      <li>Des produits d'entretien</li>
+    </ul>
+  </p>
+</div>
 <!--
 <p>Pour plus d'information, consultez le <a href="https://igreciris.wordpress.com/" target="_blank">Blog du projet</a>.</p>
 -->

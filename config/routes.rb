@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   #get 'users/index'
-
+  
+  get '/contact', to: 'users#contact_form',as: :contact
+  patch '/contact_send', to: 'users#contact_send',as: :contact_send
+  
   scope :admin do
     get '/users', to: 'administration#users',as: :admin_users
     get '/ingredients', to: 'administration#ingredients',as: :admin_ingredients

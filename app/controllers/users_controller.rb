@@ -38,6 +38,14 @@ class UsersController < ApplicationController
     redirect_to admin_users_path
   end
   
+  def contact_form
+    @user = current_or_guest_user
+  end
+  
+  def contact_send
+    redirect_to root_path, :notice => params[:user][:name]
+  end
+  
   def user_params
     list_params_allowed = [:name,:email]
     list_params_allowed << :role_id << :approved if current_user.admin?

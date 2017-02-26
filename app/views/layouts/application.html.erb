@@ -98,7 +98,7 @@
         <% elsif name == 'notice' %>
           <%= content_tag :div, msg, {class: 'alert alert-success', role: 'alert'} %>
         <% else %>
-          <%= content_tag :div, name + ":" + msg, {class: 'alert alert-info', role: 'alert'} %>
+          <%= content_tag :div, name.to_s + ":" + msg.to_s, {class: 'alert alert-info', role: 'alert'} %>
         <% end %>
   		<% end %>
   	<%end%>
@@ -148,12 +148,30 @@
     <%= yield( :data_js ) %>
   </script>
 
-<!-- 
-<div id="Footer">
-<a href="http://blog.projet-iris.com/" target="_blank">Blog du projet</a> - 
-  <a href="http://blog.projet-iris.com/prendre-contact/" target="_blank">Prendre contact</a>
+
+<div class="footer">
+  <p class="warning center">
+    <a  role="button" data-toggle="collapse" 
+    href="#collapseWarning" aria-expanded="false" aria-controls="collapseExample">
+      Précautions d'emploi à consulter avant toute utilisation du site
+    </a>
+     - 
+    <%= link_to('Contact', contact_path) %>
+  </p>
+  <div class="collapse" id="collapseWarning">
+    <p class="warning content">
+      Certains ingrédients comme les huiles essentielles peuvent
+      présenter des risques pour la santé si ils sont mal utilisés.
+      Les recettes présentes sont fournies par les internautes, leurs usages sont
+      sous l'entière responsabilité des utilisateurs.
+      Avant toute utilisation d'une recette, 
+      vérifier qu'elle soit conforme avec les précautions d'emploi et les contre-indications éventuelles
+      qui sont fournies par le fabricant et/ou distributeur des ingrédients. 
+      En cas de doute consulter un médecin. 
+    </p>
+  </div>
 </div>
--->
+
 
 </body>
 </html>

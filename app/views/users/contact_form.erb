@@ -1,0 +1,21 @@
+<% content_for :content_header do %>
+  <span class="title">Nous contacter</span>
+<% end %>
+
+<% content_for :item_content do %>
+
+  <%= simple_form_for @user, :url=> contact_send_path do |f|%>
+  
+    <%= f.error_notification %>
+  
+    <%= f.input :name, label: 'Nom' %>
+  
+    <%= f.input :email, placeholder: 'user@domain.com' %>
+    
+    <div class="form-group"> 
+        <%= f.button :submit, 'Envoyer', class: "btn btn-primary"  %>
+        <%= link_to( 'Annuler', :back, {class: "btn btn-default", role: "button"} )%>
+    </div>
+    
+  <% end %>
+<% end %>

@@ -11,6 +11,13 @@
          can_condition: {action: :create, object: Container}) 
     %>
   <% end %>
+  <% if !user_signed_in?  
+    content_for :content_menu do
+      content_tag(:li, 
+        link_to('Se connecter pour rajouter un ingrédient', new_ingredient_path, class: "menu-link")
+      )
+      end 
+    end %>
   <%= menu_item(menu: :content_menu, 
        path: new_ingredient_path, label: 'Nouvel ingrédient',
        can_condition: {action: :create, object: Ingredient}) 
