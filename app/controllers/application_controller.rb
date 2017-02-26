@@ -67,10 +67,15 @@ class ApplicationController < ActionController::Base
   end
 
   def create_guest_user
-    u = User.create#(:name => "guest", :email => "guest_#{Time.now.to_i}#{rand(100)}@example.com")
+    guest_email = "guest@projet-iris.com"
+    u = User.find_by(email: guest_email)
+    if u.nil?
+      u = User.create(:name => "guest", :email => guest_email)
+    end
     u.save!(:validate => false)
     session[:guest_user_id] = u.id
     u
+    #User.new
   end
   
 end

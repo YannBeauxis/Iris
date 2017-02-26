@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   #get 'users/index'
   
   get '/contact', to: 'users#contact_form',as: :contact
-  patch '/contact_send', to: 'users#contact_send',as: :contact_send
+  post '/contact_message', to: 'users#contact_message',as: :contact_message
   
   scope :admin do
     get '/users', to: 'administration#users',as: :admin_users

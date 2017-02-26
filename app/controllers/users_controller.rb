@@ -39,15 +39,23 @@ class UsersController < ApplicationController
   end
   
   def contact_form
-    @user = current_or_guest_user
+    if user_signed_in?
+      @name = current_user.name
+      @email = current_user.email
+    else
+      @name = ""
+      @email = ""
+    end
+    #@user = current_or_guest_user
   end
   
-  def contact_send
-    redirect_to root_path, :notice => params[:user][:name]
+  def contact_message
+    CustomMailer.contact_message(current_or_guest_user,params[:user]).deliver_now
+    redirect_to root_path, :notice => 'Message envoyé'
   end
   
   def user_params
-    list_params_allowed = [:name,:email]
+    list_params_allowed = [:name, :email, :message]
     list_params_allowed << :role_id << :approved if current_user.admin?
     params.require(:user).permit(list_params_allowed)
   end

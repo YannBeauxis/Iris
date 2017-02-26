@@ -1,16 +1,18 @@
 <% content_for :content_header do %>
-  <span class="title">Nous contacter</span>
+  <span class="title">Formulaire de contact</span>
 <% end %>
 
 <% content_for :item_content do %>
 
-  <%= simple_form_for @user, :url=> contact_send_path do |f|%>
+  <%= simple_form_for :user, :url=> contact_message_path do |f|%>
   
     <%= f.error_notification %>
+    
+    <%= f.input :name, label: 'Nom', input_html: {value: @name} %>
   
-    <%= f.input :name, label: 'Nom' %>
-  
-    <%= f.input :email, placeholder: 'user@domain.com' %>
+    <%= f.input :email, input_html: {value: @email}, placeholder: 'user@domain.com' %>
+    
+    <%= f.input :message, as: :text, label: 'Message', placeholder: 'Ecrire ici vote message', input_html: {rows: 4}  %>
     
     <div class="form-group"> 
         <%= f.button :submit, 'Envoyer', class: "btn btn-primary"  %>
