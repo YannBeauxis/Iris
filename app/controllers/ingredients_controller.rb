@@ -98,7 +98,7 @@ class IngredientsController < ApplicationController
 
     def init_form
       @ingredient_types = IngredientType.order(:name)
-      @can_edit_density = current_or_guest_user.role.rank <= 2  
+      @can_admin_ingredient = current_or_guest_user.role.rank <= 2  
     end
 
     def select_ingredient
@@ -106,9 +106,13 @@ class IngredientsController < ApplicationController
     end
 
     def ingredient_params
-      result = params.require(:ingredient).permit(
-        :name, :name_latin, :ingredient_type_id, :density, 
-        :scope, :recipe_type_id, :variant_id, :description)
+      init_form
+      params_ok = [:name, :name_latin, :ingredient_type_id, 
+        :scope, :recipe_type_id, :variant_id, :description, :density]
+      if @can_admin_ingredient
+        params_ok << [:validated]
+      end
+      result = params.require(:ingredient).permit(params_ok)
       result[:density] = result[:density].to_f * 100.0 if result.has_key?(:density)
       result[:name_latin] = nil if result[:name_latin] == ""
       result
