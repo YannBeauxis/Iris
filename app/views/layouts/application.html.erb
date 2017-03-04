@@ -150,14 +150,6 @@
 
 
 <div class="footer">
-  <p class="warning center">
-    <a  role="button" data-toggle="collapse" 
-    href="#collapseWarning" aria-expanded="false" aria-controls="collapseExample">
-      Précautions d'emploi à consulter avant toute utilisation du site
-    </a>
-     - 
-    <%= link_to('Contact', contact_path) %>
-  </p>
   <div class="collapse" id="collapseWarning">
     <p class="warning content">
       Certains ingrédients comme les huiles essentielles peuvent
@@ -170,6 +162,14 @@
       En cas de doute consulter un médecin. 
     </p>
   </div>
+  <p class="warning center">
+    <a  role="button" data-toggle="collapse" 
+    href="#collapseWarning" aria-expanded="false" aria-controls="collapseExample">
+      Précautions d'emploi à consulter avant toute utilisation du site
+    </a>
+     - 
+    <%= link_to('Contact', contact_path) %>
+  </p>
 </div>
 
 
