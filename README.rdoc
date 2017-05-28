@@ -1,31 +1,21 @@
-== README
+== Projet IRIS
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ce prototype d'appli web s'adresse à tous ceux qui s'intéressent à la fabrication maison de produits à base de produits végétaux, ce qui inclut la phytothérapie, c'est un outil pratique pour :
+<ul>
+<li>Consulter des recettes existantes</li>
+<li>Gérer ses propres recettes</li>
+<li>Gérer ses stocks d'ingrédients</li>
+</ul>
 
-Things you may want to cover:
+La phytothérapie englobe toutes les approches thérapeutiques à base de plantes dont l'aromathérapie qui utilise les huiles essentielles.
 
-* Ruby version
+Parmi les usages proposés, vous trouverez :
+<ul>
+<li>Des diffuseurs aériens</li>
+<li>Des applications cosmétiques</li>
+<li>Des produits d'entretien</li>
+</ul>
 
-* System dependencies
+Le prototype est utilisable à l'adresse suivante :
+<a href="https://www.projet-iris.com">www.projet-iris.com</a>
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
-
-test
