@@ -1,15 +1,15 @@
 == Projet IRIS
 
 Ce prototype d'appli web s'adresse à tous ceux qui s'intéressent à la fabrication maison de produits à base de produits végétaux, ce qui inclut la phytothérapie, c'est un outil pratique pour :
--Consulter des recettes existantes
--Gérer ses propres recettes
--Gérer ses stocks d'ingrédients
+- Consulter des recettes existantes
+- Gérer ses propres recettes
+- Gérer ses stocks d'ingrédients
 
 La phytothérapie englobe toutes les approches thérapeutiques à base de plantes dont l'aromathérapie qui utilise les huiles essentielles.
 
 Parmi les usages proposés, vous trouverez :
--Des diffuseurs aériens
--Des applications cosmétiques
--Des produits d'entretien
+- Des diffuseurs aériens
+- Des applications cosmétiques
+- Des produits d'entretien
 
 Le prototype est utilisable à l'adresse suivante : www.projet-iris.com
