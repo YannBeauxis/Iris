@@ -14,7 +14,7 @@
   
   <div id="Header">
     
-    <div class="session">
+    <div class="session" hidden>
       <div class="btn-group" role="group" aria-label="...">
         <% if user_signed_in? %>
           <%= content_tag(:button, current_user.name, {type: :button, class: "btn disabled"}) %>
